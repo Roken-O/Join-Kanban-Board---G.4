@@ -22,6 +22,10 @@
     display: none;
   }
 
+  #main-container {
+    padding: 144px 64px 64px 32px !important;
+  }
+
   /* MOBILE MENU - START */
 
   #mobile-menu {
