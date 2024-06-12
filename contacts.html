@@ -11,11 +11,11 @@
     <link rel="icon" href="/assets/img/join_icons_favicon.svg" />
     <title>Join</title>
   </head>
-  <body onload="includeHTML()">
+  <body onload="includeHTML();init()">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
     <section class="flex" id="main-container-contacts flex-align-center">
       <div class="contacts-list flex-col-align-center">
-        <button class="dark-grey flex-just-align-center" id="add-new-contact-btn">
+        <button onclick="addNewContact()" class="dark-grey flex-just-align-center" id="add-new-contact-btn">
             <span>Add new contact</span>
             <img src="./assets/img/add_contact_icon.svg" alt="">
         </button>
@@ -88,11 +88,18 @@
   </div>
         </div>
       </div>
+
+      <div id="add-new-contact-popUp-Bg-Id">
+        <div id="add-new-contact-popUp">
+
+        </div>
+      </div>
+
       <div id="contacts-container">
-        <div class="flex-align-center" id="headline-div-contacts">
+        <div class="flex-align-center headline-div-contacts">
           <h1>Contacts</h1>
-          <div class="light-blue" id="parting-line-h1"></div>
-          <span id="head-description">Better with a team</span>
+          <div class="light-blue parting-line-h1"></div>
+          <span class="head-description">Better with a team</span>
         </div>
         <div id="contact">
           <div class="flex-align-center" id="contact-pic-name-container">
