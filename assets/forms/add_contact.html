@@ -9,9 +9,20 @@
     <link rel="stylesheet" href="/CSS/media.css">
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="icon" href="/assets/img/join_icons_favicon.svg">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <title>Join</title>
 </head>
-<body>
+<body>  
+    <form onsubmit="saveContact()">
+        <input type="text" id="contact-name" placeholder="Name">
+        <input type="email" id="contact-email" placeholder="Email">
+        <input type="text" id="contact-phone" placeholder="Telefonnummer">
+        <button>Speichern</button>
+    </form>
+        <div id="contacts-container"></div>
+        <div id="contact-entry"></div>    
+
     <script src="/js/add_task.js"></script>
     <script src="/js/board.js"></script>
     <script src="/js/contacts.js"></script>
