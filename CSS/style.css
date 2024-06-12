@@ -130,6 +130,172 @@
   padding: 144px 64px 64px 296px;
 }
 
+/* main-container-contacts */
+
+.contacts-list{
+  height: 913px;
+  margin-left: 232px;
+  background-color: white;
+ 
+  
+}
+
+#add-new-contact-btn{
+  width: 352px;
+  height: 56px;
+  border-radius: 10px;
+  padding: 12px 0px 12px 0px;
+  font-size: 21px;
+  font-weight: 700;
+  color: white;
+  gap: 16px;
+  border: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#add-new-contact-btn img{
+  width: 32px;
+  height: 32px;
+}
+#add-new-contact-btn:hover{
+  background: #29abe2;
+  cursor: pointer;
+}
+
+#contacts-list-content{
+  height: 800px;
+  overflow: scroll;
+  scrollbar-width: thin;
+  width: 456px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#initial-letter{
+  font-size: 24px;
+  padding: 17px 36px 17px 36px;
+}
+
+#breakline-contactlist{
+  height: 1px;
+  width: 352px;
+  background-color: #D1D1D1;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+#contact-contactlist{
+  padding: 15px 24px 15px 24px;
+  gap: 35px;
+}
+
+#icon-contact-contactlist{
+  height: 42px;
+}
+
+#contact-name-email-contactlist{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#contact-name-contactlist{
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/* contacts-container */
+#contacts-container{
+  padding: 126px 64px 64px 64px;
+  background-color: #f6f7f8;
+  width: 100%;
+}
+
+#headline-div-contacts{
+  gap: 30px;
+  margin-bottom: 32px;
+}
+
+#headline-div-contacts h1{
+  font-size: 61px;
+  font-weight: 700;
+}
+
+#parting-line-h1{
+  width: 3px;
+  height: 59px;
+}
+
+#head-description{
+  font-size: 27px;
+  font-weight: 400;
+}
+
+#contact{
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+
+#contact-pic-name-container{
+  gap: 54px;
+}
+
+#contact-name{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#contact-name h2{
+  font-size: 47px;
+  font-weight: 500;
+}
+
+#contact-edit-delete{
+  gap: 13px;
+}
+
+#contact-edit{
+  gap: 8px;
+}
+
+#contact-delete{
+  gap: 8px;
+}
+
+#span-contact-information{
+  font-size: 20px;
+  font-weight: 400;
+  height: 74px;
+  display: flex;
+  align-items: center;
+}
+
+#email-telefon-contact{
+ gap: 22px;
+}
+
+#email-contact{
+  gap: 15px;
+}
+
+#email-contact a{
+  text-decoration: none;
+  color: #007cee;
+}
+
+#phone-contact{
+  gap: 15px;
+}
+
+#phone-contact a{
+  text-decoration: none;
+  color: black;
+}
+
 /* ADD TASK CONTAINER*/
 .flex-evenly-start {
   display: flex;

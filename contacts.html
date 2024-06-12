@@ -1,27 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/colors.css">
-    <link rel="stylesheet" href="/CSS/fonts.css">
-    <link rel="stylesheet" href="/CSS/global_style.css">
-    <link rel="stylesheet" href="/CSS/media.css">
-    <link rel="stylesheet" href="/CSS/style.css">
-    <link rel="icon" href="/assets/img/join_icons_favicon.svg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/CSS/colors.css" />
+    <link rel="stylesheet" href="/CSS/fonts.css" />
+    <link rel="stylesheet" href="/CSS/global_style.css" />
+    <link rel="stylesheet" href="/CSS/media.css" />
+    <link rel="stylesheet" href="/CSS/style.css" />
+    <link rel="icon" href="/assets/img/join_icons_favicon.svg" />
     <title>Join</title>
-</head>
-<body onload="includeHTML()">
+  </head>
+  <body onload="includeHTML()">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
-    <div class="contacts-list">
-        test1234
+    <section class="flex" id="main-container-contacts">
+      <div class="contacts-list flex-col-align-center">
+        <button class="dark-grey flex-just-align-center" id="add-new-contact-btn">
+            <span>Add new contact</span>
+            <img src="./assets/img/add_contact_icon.svg" alt="">
+        </button>
+        <div id="contacts-list-content">
+            <div>
+                <div id="initial-letter">A</div>
+                <div id="breakline-contactlist"></div>
+                <div class="flex-align-center" id="contact-contactlist">
+                    <img id="icon-contact-contactlist" src="./assets/img/contact_orange_bg.svg" alt="">
+                    <div id="contact-name-email-contactlist">
+                        <span id="contact-name-contactlist">Anton Mayer</span>
+                        <a id="contact-email-contactlist" href="">anton@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+            <div>
+              <div id="initial-letter">A</div>
+              <div id="breakline-contactlist"></div>
+              <div class="flex-align-center" id="contact-contactlist">
+                  <img id="icon-contact-contactlist" src="./assets/img/contact_orange_bg.svg" alt="">
+                  <div id="contact-name-email-contactlist">
+                      <span id="contact-name-contactlist">Anton Mayer</span>
+                      <a id="contact-email-contactlist" href="">anton@gmail.com</a>
+                  </div>
+              </div>
+          </div>
+          <div>
+            <div id="initial-letter">A</div>
+            <div id="breakline-contactlist"></div>
+            <div class="flex-align-center" id="contact-contactlist">
+                <img id="icon-contact-contactlist" src="./assets/img/contact_orange_bg.svg" alt="">
+                <div id="contact-name-email-contactlist">
+                    <span id="contact-name-contactlist">Anton Mayer</span>
+                    <a id="contact-email-contactlist" href="">anton@gmail.com</a>
+                </div>
+            </div>
+        </div>
+        <div>
+          <div id="initial-letter">A</div>
+          <div id="breakline-contactlist"></div>
+          <div class="flex-align-center" id="contact-contactlist">
+              <img id="icon-contact-contactlist" src="./assets/img/contact_orange_bg.svg" alt="">
+              <div id="contact-name-email-contactlist">
+                  <span id="contact-name-contactlist">Anton Mayer</span>
+                  <a id="contact-email-contactlist" href="">anton@gmail.com</a>
+              </div>
+          </div>
+      </div>
+      <div>
+        <div id="initial-letter">A</div>
+        <div id="breakline-contactlist"></div>
+        <div class="flex-align-center" id="contact-contactlist">
+            <img id="icon-contact-contactlist" src="./assets/img/contact_orange_bg.svg" alt="">
+            <div id="contact-name-email-contactlist">
+                <span id="contact-name-contactlist">Anton Mayer</span>
+                <a id="contact-email-contactlist" href="">anton@gmail.com</a>
+            </div>
+        </div>
     </div>
-    <section id="main-container" class="background-grey">
-<<<<<<< HEAD
-=======
-        <span id="testbt">test</span>
->>>>>>> e97f4048040893484339d5f16a9c75773540bb1d
+    <div>
+      <div id="initial-letter">A</div>
+      <div id="breakline-contactlist"></div>
+      <div class="flex-align-center" id="contact-contactlist">
+          <img id="icon-contact-contactlist" src="./assets/img/contact_orange_bg.svg" alt="">
+          <div id="contact-name-email-contactlist">
+              <span id="contact-name-contactlist">Anton Mayer</span>
+              <a id="contact-email-contactlist" href="">anton@gmail.com</a>
+          </div>
+      </div>
+  </div>
+        </div>
+      </div>
+      <div id="contacts-container">
+        <div class="flex-align-center" id="headline-div-contacts">
+          <h1>Contacts</h1>
+          <div class="light-blue" id="parting-line-h1"></div>
+          <span id="head-description">Better with a team</span>
+        </div>
+        <div id="contact">
+          <div class="flex-align-center" id="contact-pic-name-container">
+            <img src="./assets/img/contact_orange_bg.svg" alt="" />
+            <div id="contact-name">
+              <h2>Anton Mayer</h2>
+              <div class="flex-align-center" id="contact-edit-delete">
+                <div class="flex-align-center" id="contact-edit">
+                  <img src="./assets/img/pen.svg" alt="" />
+                  <span>Edit</span>
+                </div>
+                <div class="flex-align-center" id="contact-delete">
+                  <img src="./assets/img/delete-small.svg" alt="" />
+                  <span> Delete</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span id="span-contact-information">Contact Information</span>
+          <div class="flex-col-just-center" id="email-telefon-contact">
+            <div class="flex-col-just-center" id="email-contact">
+              <span>Email</span>
+              <a href="">anton@gmail.com</a>
+            </div>
+            <div class="flex-col-just-center" id="phone-contact">
+              <span>Phone</span>
+              <a href="">+49 1111 111 11 1</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
     <script src="/js/add_task.js"></script>
     <script src="/js/board.js"></script>
     <script src="/js/contacts.js"></script>
@@ -29,7 +133,5 @@
     <script src="/js/register.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/summary.js"></script>
-
-
-</body>
+  </body>
 </html>
