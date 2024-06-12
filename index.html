@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,49 @@
     <link rel="stylesheet" href="/CSS/global_style.css">
     <link rel="stylesheet" href="/CSS/media.css">
     <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="stylesheet" href="/CSS/index.css">
     <link rel="icon" href="/assets/img/join_icons_favicon.svg">
     <title>Join</title>
 </head>
-<body onload="includeHTML()">
-    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+
+<body onload="animate()">
+    <section id="login-site" class="login-site w-100">
+        <div id="signUp-Container" class="signUp-container">
+            <span>Not a Join user?</span>
+            <button onclick="goToSignupSite()">Sign up</button>
+        </div>
+        <div id="logo-container" class="logo-container">
+            <img id="logo" src="./assets/img/join_logo_DARK.svg">
+        </div>
+        <div id="login-container" class="login-container">
+            <form onsubmit="logIn()">
+                <div class="h1-container">
+                    <h1>Log in</h1>
+                    <div class="line"></div>
+                </div>
+                <div class="inputs-container flex-col-just-center">
+                    <input type="email" required placeholder="Email" class="input1">
+                    <input type="text" required placeholder="Password" class="input2">
+                    <div class="checkbox">
+                        <input type="checkbox">
+                        <span>Remember me</span>
+                    </div>
+                </div>
+                <div class="login-buttons-container">
+                    <button class="login-button">Log in</button>
+                    <button>Guest Log in</button>
+                </div>
+            </form>
+        </div>
+        <div id="signup-site-container" class="login-container" style="opacity: 0;"></div>
+       
+        <div id="imprint-container" class="imprint-container">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Legal notice</a>
+        </div>
+    </section>
+
+
     <script src="/js/add_task.js"></script>
     <script src="/js/board.js"></script>
     <script src="/js/contacts.js"></script>
@@ -21,4 +60,5 @@
     <script src="/js/script.js"></script>
     <script src="/js/summary.js"></script>
 </body>
+
 </html>
