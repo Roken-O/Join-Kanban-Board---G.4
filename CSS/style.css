@@ -130,14 +130,12 @@
   padding: 144px 64px 64px 296px;
 }
 
-/* main-container-contacts */
+/* main-container-contacts Start */
 
 .contacts-list{
   height: 913px;
   margin-left: 232px;
-  background-color: white;
- 
-  
+  background-color: white; 
 }
 
 #add-new-contact-btn{
@@ -206,6 +204,31 @@
   font-weight: 400;
 }
 
+/* PopUp Add new contact */
+
+#add-new-contact-popUp-Bg-Id{
+
+}
+
+.popUp-add-new-contact-Bg{
+  background: rgba(35, 36, 35, 0.3);
+  z-index: 998;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#add-new-contact-popUp{
+  background-color: white;
+  height: 592px;
+  width: 1212px;
+  border-radius: 30px;
+}
 /* contacts-container */
 #contacts-container{
   padding: 126px 64px 64px 64px;
@@ -213,22 +236,22 @@
   width: 100%;
 }
 
-#headline-div-contacts{
+.headline-div-contacts{
   gap: 30px;
   margin-bottom: 32px;
 }
 
-#headline-div-contacts h1{
+.headline-div-contacts h1{
   font-size: 61px;
   font-weight: 700;
 }
 
-#parting-line-h1{
+.parting-line-h1{
   width: 3px;
   height: 59px;
 }
 
-#head-description{
+.head-description{
   font-size: 27px;
   font-weight: 400;
 }
@@ -295,6 +318,8 @@
   text-decoration: none;
   color: black;
 }
+
+/* main-container-contacts End */
 
 /* ADD TASK CONTAINER*/
 .flex-evenly-start {
