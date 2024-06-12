@@ -1,10 +1,14 @@
 
 .dark-grey {
-    background: #2c2c2c;
+    background: #2a3647;
 }
 
 .light-grey {
     background: #d1d1d1;
+}
+
+.background-grey {
+    background: #f6f7f8;
 }
 
 .dark-grey-hover {

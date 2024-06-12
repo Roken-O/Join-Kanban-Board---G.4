@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/colors.css">
+    <link rel="stylesheet" href="/CSS/fonts.css">
+    <link rel="stylesheet" href="/CSS/global_style.css">
+    <link rel="stylesheet" href="/CSS/media.css">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="icon" href="/assets/img/join_icons_favicon.svg">
+    <title>Join</title>
+</head>
+
+<body onload="includeHTML()">
+    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+    <section id="main-container" class="background-grey">
+
+        <h2 class="task-headline mb-64">Add Task</h2>
+        <form class="form-height w-50 " onsubmit="addTask()">
+            <div class="flex-evenly-start padding-bottom-80">
+                <div class="left-container">
+                    <div class="padding-bottom-24">
+                        <div class="mb-8 flex">Title<div class="asterisk-color">*</div>
+                        </div>
+                        <input class="field-325" type="text" placeholder="Enter a title">
+                    </div>
+                    <div class="padding-bottom-24">
+                        <div class="mb-8">Description</div>
+                        <textarea class="description-input" name="w3review" rows="4" cols="50"
+                            placeholder="Enter a Description"></textarea>
+                    </div>
+                    <div class="assigned-flex">
+                        <div class="mb-8">Assigned to</div>
+                        <select class="select" name="select contact" id="selectContact">
+                            <option value="firstContact">Select contacts to assign</option>
+                            <option value="secondContact">Michael Lückenbüßer</option>
+                            <option value="thirdContact">Sebastian Platzhalter</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-seperator"></div>
+                <div class="right-container">
+                    <div class="padding-bottom-24">
+                        <div class="mb-8 flex">Due date<div class="asterisk-color">*</div>
+                        </div>
+                        <input class="field-325 date" type="date" placeholder="dd/mm/yyyy Kalenderbutton">
+                    </div>
+                    <div class="padding-bottom-24">
+                        <div class="mb-8">Prio</div>
+                        <div class="flex gap-16">
+                            <button class="prio-button-urgend flex-just-align-center">Urgend<img class="urgend-icon"
+                                    src="./assets/img/urgent_icon.svg" alt="priority urgent"></button>
+                            <button class="orange-button flex-just-align-center">Medium <img class="medium-icon"
+                                    src="assets/img/medium_icon_white.svg" alt="priority medium"></button>
+                            <button class="prio-button-low flex-just-align-center">Low <img class="low-icon"
+                                    src="assets/img/low_icon.svg" alt="priority low"></button>
+                        </div>
+                    </div>
+                    <div class="padding-bottom-24">
+                        <div class="mb-8 flex">Category<div class="asterisk-color">*</div>
+                        </div>
+                        <select class="select" name="select task" id="selectTask">
+                            <option value="firstTask">Select task category</option>
+                            <option value="secondTask">Raum reservieren</option>
+                            <option value="thirdTask">Einladungen verschicken</option>
+                        </select>
+                    </div>
+                    <div class="subtasks-flex">
+                        <div class="mb-8">Subtasks</div>
+                        <input class="field-325" type="text" placeholder="Add new subtask">
+                    </div>
+                </div>
+            </div>
+            <div class="form-execution">
+                <div class="flex">
+                    <div class="asterisk-color">*</div>
+                    <div>This field is required</div>
+                </div>
+
+                <div class="flex gap-16">
+                    <button class="clear flex-just-align-center">Clear<img class="clear-icon"
+                            src="assets/img/close_icon.svg" alt="clear"></button><button
+                        class="create-task flex-just-align-center">Create Task <img class="create-task-icon"
+                            src="assets/img/add_task_icon.svg" alt="create task"></IMG></button>
+                </div>
+            </div>
+        </form>
+
+        <!-- placeholder; text; number, email; alt und leertaste; <form onsubmit="meineFunktion()"> wird nur onsubmittet, wenn
+        es komplett ausgefüllt ist. Vor "type" sollte required verlangt werden -->
+
+
+
+
+
+
+
+
+
+    </section>
+    <script src="/js/add_task.js"></script>
+    <script src="/js/board.js"></script>
+    <script src="/js/contacts.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/register.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/summary.js"></script>
+</body>
+
+</html>
