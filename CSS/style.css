@@ -82,7 +82,7 @@
   margin-left: 232px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
   clip-path: inset(0px 0px -10px 0px);
-    background: white;
+  background: white;
 }
 
 #header h1 {
@@ -121,11 +121,243 @@
 
 /* MAIN CONTAINER - START */
 #main-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-    padding: 144px 64px 64px 296px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  padding: 144px 64px 64px 296px;
+}
+
+/* ADD TASK CONTAINER*/
+.flex-evenly-start {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.flex-center-start {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.form-seperator {
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 375px;
+}
+
+.task-headline {
+  font-size: 36px;
+}
+
+.padding-bottom-16 {
+  padding-bottom: 16px !important;
+}
+
+.padding-bottom-8 {
+  padding-bottom: 16px !important;
+}
+
+.padding-bottom-24 {
+  padding-bottom: 24px;
+}
+
+.padding-bottom-80 {
+  padding-bottom: 80px;
+}
+
+.gap-8 {
+  gap: 8px !important;
+}
+
+.gap-16 {
+  gap: 16px !important;
+}
+
+.asterisk-color {
+  color: #ff3d00;
+  font-size: 20px;
+}
+
+.field-325 {
+  width: 325px;
+  height: 36px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
+}
+
+.description-input {
+  width: 325px;
+  height: 80px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.prio-button-urgend {
+  width: 100px;
+  height: 44px;
+  border-radius: 10px;
+  outline: none;
+  border: 2px solid rgb(211, 211, 211, 0.3);
+  background-color: white;
+  font-size: 17px;
+}
+
+.prio-button-urgend:hover {
+  cursor: pointer;
+}
+
+.urgend-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.prio-button-low {
+  width: 100px;
+  height: 44px;
+  border-radius: 10px;
+  outline: none;
+  border: 2px solid rgb(211, 211, 211, 0.3);
+  background-color: white;
+  font-size: 17px;
+}
+
+.prio-button-low:hover {
+  cursor: pointer;
+}
+
+.orange-button {
+  width: 110px;
+  height: 44px;
+  border-radius: 10px;
+  outline: none;
+  border: 2px solid #ff7a00;
+  background-color: #ff7a00;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.orange-button:hover {
+  cursor: pointer;
+  opacity: 85%;
+}
+
+.medium-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.medium-icon:hover {
+  cursor: pointer;
+}
+
+.prio-buttons:hover {
+  cursor: pointer;
+}
+
+.low-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.form-execution {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px 0 24px;
+}
+
+.clear {
+  width: 100px;
+  height: 44px;
+  border-radius: 10px;
+  outline: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: #2c2c2c;
+}
+
+.clear-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.clear:hover {
+  cursor: pointer;
+}
+
+.create-task {
+  width: 164px;
+  height: 44px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #091931;
+  background-color: #091931;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.create-task:hover:hover {
+  cursor: pointer;
+  opacity: 85%;
+}
+
+.create-task-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+::placeholder {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: lightgray;
+  padding: 8px 0 8px 8px;
+  font-size: 17px;
+}
+
+.date:hover {
+  cursor: pointer;
+}
+
+::-webkit-datetime-edit {
+  padding: 8px;
+  color: lightgray;
+  font-size: 17px;
+}
+
+::-webkit-calendar-picker-indicator {
+  padding: 8px;
+}
+
+::-webkit-calendar-picker-indicator:hover {
+  cursor: pointer;
+}
+
+.select {
+  font-weight: 500;
+  font-size: 17px;
+  padding: 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 325px;
+  height: 40px;
+  border-radius: 10px;
+  /* border-color:  #f6f7f8; */
+  outline: none;
+  border: 1px solid lightgray;
 }
