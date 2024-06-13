@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,46 +13,73 @@
     <link rel="icon" href="/assets/img/join_icons_favicon.svg">
     <title>Join</title>
 </head>
+
 <body onload="includeHTML()">
 
 
-      <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
-      <section class="summary-container">
-        <div>
-            <div>
-                <h1>Join 360</h1>
-                <div></div>
-                <h4>Key Metrics at a Glance</h4>
-            </div>
-            <div>
-                <div>
-                    <img src="" alt="">
-                    <div>
-                        <h2>1</h2>
-                        <span>To-do</span>
-                    </div>
-                </div>
-                <div>
-                    <img src="" alt="">
-                    <div>
-                        <h2>1</h2>
-                        <span>Done</span>
-                    </div>
-                </div>
-            </div>
-            <div></div>
-            <div></div>
-        </div>
-        <div>
-            <h2>Good morning,</h2>
-            <h2>Sofia Müller</h2>
-        </div>
-    </section>
-
-
+    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
     <section id="main-container" class="background-grey">
-        
+        <div class="flex-align-center">
+            <div class="flex-align-center headline-div-contacts">
+                <div>
+                    <div class="flex-align-center headline-div-contacts">
+                        <h1>Join 360</h1>
+                        <div class="light-blue parting-line-h1"></div>
+                        <span class="span-head-description">Key Metrics at a Glance</span>
+                      </div>
+                    <div class="todo-done-container">
+                        <div class="flex-align-center-evenly to-do-container">
+                            <img class="pen-img" src="./assets/img/pen_icon_WHt.svg">
+                            <div>
+                                <h2>1</h2>
+                                <span>To-do</span>
+                            </div>
+                        </div>
+                        <div class="flex-align-center-evenly to-do-container">
+                            <img src="./assets/img/check_icon_WHT.svg">
+                            <div>
+                                <h2>1</h2>
+                                <span>Done</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="urgent-container">
+                        <div class="flex-align-center-evenly sub-urgent-container">
+                            <img src="./assets/img/urgent_icon_WHT.svg" alt="urgent_icon">
+                            <div>
+                                <h2>1</h2>
+                                <span>Urgent</span>
+                            </div>
+                        </div>
+                        <div class="line-urgent-container"></div>
+                        <div>
+                            <h3>October 16, 2022</h3>
+                            <span>Upcoming Deadline</span>
+                        </div>
+                    </div>
+                    <div class="tasks-container">
+                        <div class="sub-tasks-container">
+                            <h2>5</h2>
+                            <span>Tasks in Board</span>
+                        </div>
+                        <div class="sub-tasks-container">
+                            <h2>2</h2>
+                            <span>Tasks in Progress</span>
+                        </div>
+                        <div class="sub-tasks-container">
+                            <h2>2</h2>
+                            <span>Awaiting Feedback</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="greet">
+                    <h2>Good morning,</h2>
+                    <h1>Sofia Müller</h1>
+                </div>
+            </div>
     </section>
+
+
     <script src="/js/add_task.js"></script>
     <script src="/js/board.js"></script>
     <script src="/js/contacts.js"></script>
@@ -60,4 +88,5 @@
     <script src="/js/script.js"></script>
     <script src="/js/summary.js"></script>
 </body>
+
 </html>

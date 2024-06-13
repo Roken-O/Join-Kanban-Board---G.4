@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 function emailFormatted(email) {
-  return email.replace(".", "/").replace("@", "*");
+   return email.replace(".", ",").replace("@", "_");
 }
 
 
@@ -68,3 +68,11 @@ function loadContacts() {
 
 
 window.onload = loadContacts;
+
+function init(){
+  document.getElementById('add-new-contact-popUp-Bg-Id').classList.add('d-none');
+}
+
+function addNewContact(){
+    document.getElementById('add-new-contact-popUp-Bg-Id').classList.add('popUp-add-new-contact-Bg');
+}
