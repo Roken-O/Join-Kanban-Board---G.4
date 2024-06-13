@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 function emailFormatted(email) {
-  return email.replace(".", "/").replace("@", "*");
+   return email.replace(".", ",").replace("@", "_");
 }
 
 
