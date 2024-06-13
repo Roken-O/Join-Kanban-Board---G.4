@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="checkbox_unchecked" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #2a3647;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" x="1" y="1" width="16" height="16" rx="3" ry="3"/>
+</svg>

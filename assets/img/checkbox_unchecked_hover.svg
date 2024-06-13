@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="checkbox_unchecked_hover" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #2a3647;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: #edf2fa;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <path class="cls-2" d="M12,0h0c6.63,0,12,5.37,12,12h0c0,6.63-5.37,12-12,12h0C5.37,24,0,18.63,0,12h0C0,5.37,5.37,0,12,0Z"/>
+  <rect class="cls-1" x="4" y="4" width="16" height="16" rx="3" ry="3"/>
+</svg>
