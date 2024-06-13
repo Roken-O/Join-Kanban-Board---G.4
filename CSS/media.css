@@ -183,7 +183,7 @@
 }
 
 /* ADD TASK-START */
-@media (max-width: 1600px) {
+@media (max-width: 1120px) {
   .form-seperator {
     display: none;
   }
