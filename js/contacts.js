@@ -18,9 +18,9 @@ function emailFormatted(email) {
 
 
 function saveContact() {
-  let name = document.getElementById("contact-name").value;
-  let email = document.getElementById("contact-email").value;
-  let phone = document.getElementById("contact-phone").value;
+  let name = document.getElementById("contact-trial-name").value;
+  let email = document.getElementById("contact-trial-email").value;
+  let phone = document.getElementById("contact-trial-phone").value;
 
   let contact = {
     "name": name,
@@ -49,7 +49,7 @@ function loadContacts() {
   let contactEntries = database.ref("contacts");
 
   contactEntries.on("value", function (snapshot) {
-    let contactsContainer = document.getElementById("contacts-container");
+    let contactsContainer = document.getElementById("contacts-trial-container");
     contactsContainer.innerHTML = ""; 
 
     snapshot.forEach(function (childSnapshot) {
@@ -57,9 +57,9 @@ function loadContacts() {
 
       contactsContainer.innerHTML += /*html*/ `
           <div id="contact-entry">
-            <div id="contact-name-container">Name: ${contact.name}</div>
-            <div id="contact-email-container">Email: ${contact.email}</div>
-            <div id="contact-phone-container">Telefonnummer: ${contact.phone}</div>
+            <div id="contact-trial-name-container">Name: ${contact.name}</div>
+            <div id="contact-trial-email-container">Email: ${contact.email}</div>
+            <div id="contact-trial-phone-container">Telefonnummer: ${contact.phone}</div>
             <button onclick="deleteContact('${contact.email}')">Löschen</button>
           </div>`;
     });
