@@ -19,7 +19,7 @@
 
         <h2 class="task-headline mb-64">Add Task</h2>
         <form class="form-height w-50 " onsubmit="addTask()">
-            <div class="flex-evenly-start padding-bottom-80">
+            <div class="parent-container flex-evenly-start padding-bottom-80">
                 <div class="left-container">
                     <div class="padding-bottom-24">
                         <div class="mb-8 flex">Title<div class="asterisk-color">*</div>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="padding-bottom-24">
                         <div class="mb-8">Description</div>
-                        <textarea class="description-input" name="w3review" rows="4" cols="50"
+                        <textarea class="description-input" name="addDescription" rows="4" cols="50"
                             placeholder="Enter a Description"></textarea>
                     </div>
                     <div class="assigned-flex">
@@ -75,8 +75,8 @@
             </div>
             <div class="form-execution">
                 <div class="flex">
-                    <div class="asterisk-color">*</div>
-                    <div>This field is required</div>
+                    <div class="required asterisk-color">*</div>
+                    <div class="required">This field is required</div>
                 </div>
 
                 <div class="flex gap-16">
