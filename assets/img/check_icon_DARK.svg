@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250">
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100.8 97.02">
   <defs>
     <style>
       .cls-1 {
@@ -11,5 +11,5 @@
       }
     </style>
   </defs>
-  <path class="cls-1" d="M79.6,138.24l30.27,30.27,60.53-87.02"/>
+  <path class="cls-1" d="M5,61.75l30.27,30.27L95.8,5"/>
 </svg>
