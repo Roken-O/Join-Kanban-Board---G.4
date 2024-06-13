@@ -415,10 +415,12 @@
   border: 2px solid rgb(211, 211, 211, 0.3);
   background-color: white;
   font-size: 17px;
+  font-weight: bold;
 }
 
 .prio-button-urgend:hover {
   cursor: pointer;
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.05); 
 }
 
 .urgend-icon {
@@ -435,10 +437,12 @@
   border: 2px solid rgb(211, 211, 211, 0.3);
   background-color: white;
   font-size: 17px;
+  font-weight: bold;
 }
 
 .prio-button-low:hover {
   cursor: pointer;
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.05); 
 }
 
 .orange-button {
@@ -446,16 +450,18 @@
   height: 44px;
   border-radius: 10px;
   outline: none;
-  border: 2px solid #ff7a00;
-  background-color: #ff7a00;
-  color: white;
+  border: 2px solid rgb(211, 211, 211, 0.3);
+  background-color: white;
   font-size: 17px;
   font-weight: bold;
+ 
 }
 
 .orange-button:hover {
   cursor: pointer;
   opacity: 85%;
+  /* background-color:#ff7a00; */
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.05); 
 }
 
 .medium-icon {
@@ -501,8 +507,17 @@
   object-fit: cover;
 }
 
+.clear-icon:hover {
+ background-color: green; 
+}
+
 .clear:hover {
   cursor: pointer;
+  /* box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.3); */
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.15);
+  opacity: 85%;
+  color:#29abe2;
+  border-color:#29abe2;
 }
 
 .create-task {
@@ -515,11 +530,16 @@
   color: white;
   font-weight: 700;
   font-size: 16px;
+ 
 }
 
-.create-task:hover:hover {
+.create-task:hover {
   cursor: pointer;
   opacity: 85%;
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.15); 
+  /* box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.05); */
+  background-color:#29abe2;
+  border: 1px solid #29abe2;
 }
 
 .create-task-icon {
@@ -569,3 +589,5 @@
   outline: none;
   border: 1px solid lightgray;
 }
+
+/* ADD-TASK Container END */
