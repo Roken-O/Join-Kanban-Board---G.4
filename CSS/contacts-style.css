@@ -79,7 +79,7 @@
 
 /* PopUp Add new contact */
 
-.popUp-add-new-contact-Bg {
+.add-new-or-edit-contact-popUp-bg{
   background: rgba(35, 36, 35, 0.3);
   z-index: 998;
   position: fixed;
@@ -92,7 +92,7 @@
   align-items: center;
 }
 
-#add-new-contact-popUp {
+.add-new-or-edit-contact-popUp {
   background-color: white;
   height: 592px;
   width: 1212px;
@@ -134,6 +134,14 @@
   height: 66.48px;
 }
 
+.line-under-add-or-edit-contact-popup{
+  width: 90px;
+  border: 3px;
+  border-radius: 3px;
+  height: 3px;
+  background-color: #29abe2;
+}
+
 .popUp-edit-add-middle {
   padding: 66px 48px 66px 48px;
   display: flex;
@@ -162,7 +170,6 @@
 }
 
 .container-close-icon {
-  width: 100%;
   display: flex;
   justify-content: end;
   margin-bottom: 66px;
@@ -171,11 +178,13 @@
 .close-icon {
   height: 13px;
   width: 13px;
+  padding: 5px;
 }
 
 .close-icon:hover {
   cursor: pointer;
   background-color: #d1d1d1;
+  border-radius: 50%;
 }
 
 .form-add-new-contact {
@@ -193,12 +202,33 @@
   width: 422px;
 }
 
-.input-text-email-number-contact img {
-  height: 16px;
-}
 .input-text-contact {
-  background-image: url(http://127.0.0.1:5500/assets/img/contact_icon.png.preview);
+  background: url('/assets/img/contact_icon.png');
+  background-repeat: no-repeat;
   background-size: 16px;
+  background-position: 421px;
+}
+
+.input-email-contact {
+  background: url('/assets/img/mail_icon.png');
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 421px;
+}
+
+.input-number-contact {
+  background: url('/assets/img/phone_icon.png');
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 421px;
+}
+
+.button_cancel{
+  cursor: pointer;
+}
+
+.button_create_contact{
+  cursor: pointer;
 }
 
 /* contacts-container */
@@ -221,6 +251,9 @@
 .parting-line-h1 {
   width: 3px;
   height: 59px;
+  border: 3px;
+  border-radius: 3px;
+  background-color: #29abe2;
 }
 
 .head-description {
@@ -238,6 +271,10 @@
   gap: 54px;
 }
 
+.contact-img{
+  width: 120px;
+}
+
 #contact-name {
   display: flex;
   flex-direction: column;
@@ -249,16 +286,30 @@
   font-weight: 500;
 }
 
-#contact-edit-delete {
+#contact-edit-delete{
   gap: 13px;
+}
+
+#contact-edit-delete img{
+ width: 24px;
 }
 
 #contact-edit {
   gap: 8px;
 }
 
+#contact-edit:hover {
+  cursor: pointer;
+  color: #29abe2;
+}
+
 #contact-delete {
   gap: 8px;
+}
+
+#contact-delete:hover {
+  cursor: pointer;
+  color: #29abe2;
 }
 
 #span-contact-information {

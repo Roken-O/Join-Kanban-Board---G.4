@@ -70,13 +70,19 @@ function loadContacts() {
 window.onload = loadContacts;
 
 function init(){
-  document.getElementById('add-new-contact-popUp-Bg-Id').classList.add('d-none');
+  document.getElementById('add-new-contact-popUp-bg').classList.add('d-none');
+  document.getElementById('edit-contact-popUp-bg').classList.add('d-none');
 }
 
-function addNewContact(){
-    document.getElementById('add-new-contact-popUp-Bg-Id').classList.add('popUp-add-new-contact-Bg');
+function addNewContactPopUp(){
+    document.getElementById('add-new-contact-popUp-bg').classList.add('add-new-or-edit-contact-popUp-bg');
 }
 
-function closePupUpaddNewContact(){
-  document.getElementById('add-new-contact-popUp-Bg-Id').classList.remove('popUp-add-new-contact-Bg');
+function closePupUpaddNewOrEdditContact(){
+  document.getElementById('add-new-contact-popUp-bg').classList.remove('add-new-or-edit-contact-popUp-bg');
+  document.getElementById('edit-contact-popUp-bg').classList.remove('add-new-or-edit-contact-popUp-bg');
+}
+
+function editContactPopUp(){
+  document.getElementById('edit-contact-popUp-bg').classList.add('add-new-or-edit-contact-popUp-bg');
 }
