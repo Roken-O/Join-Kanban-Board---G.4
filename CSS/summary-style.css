@@ -203,9 +203,9 @@ span {
 /* Summary site */
 
 @media (max-width: 1210px) {
-  .greet {
+  /* .greet {
     margin-left: 0px;
-  }
+  } */
 }
 
 @media (max-width: 1140px) {

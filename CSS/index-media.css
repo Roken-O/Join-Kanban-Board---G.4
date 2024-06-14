@@ -1,5 +1,12 @@
 /* login seite */
 
+@media (max-width: 1000px) {
+  .logo-container img{
+    height: 100px;
+  }
+  }
+
+
 @media (max-width: 700px) {
   .arrow-left-container img {
     margin-right: 64px;
@@ -21,6 +28,7 @@
   }
 
   form {
+    margin-top: 0px;
     padding: 12px 12px 12px 12px;
   }
   .inputs-container {
@@ -39,6 +47,10 @@
     margin-bottom: 60px;
     margin-right: 0px;
   }
+
+  .logo-container img {
+    height: 60px;
+}
 
   .logo-container {
     width: 80px;
@@ -79,12 +91,17 @@
   .imprint-container {
     margin-bottom: 10px;
   }
+
+  .arrow-left-container img {
+    width:20px;
+    margin-right: 64px;
+  }
 }
 
 @media (max-width: 430px) {
   .inputs-container input {
     width: 240px;
-    background-position: 240px 5px;
+    background-position: 240px 10px;
   }
   .arrow-left-container img {
     margin-right: 32px;
@@ -94,7 +111,7 @@
 @media (max-width: 370px) {
   .inputs-container input {
     width: 220px;
-    background-position: 220px 5px;
+    background-position: 220px 10px;
   }
   .arrow-left-container img {
     margin-right: 16px;

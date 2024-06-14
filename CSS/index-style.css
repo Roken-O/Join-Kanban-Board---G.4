@@ -41,9 +41,9 @@ body {
 .logo-container {
   width: 140.03px;
   height: 170.97px;
-  margin-top: -64px;
+  margin-top: -32px;
   margin-left: 64px;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
 
   position: relative;
   transform: scale(2.5);
@@ -57,6 +57,10 @@ body {
   transform: scale(1);
   top: 0;
   left: 0;
+}
+
+.logo-container img{
+  height: 120px;
 }
 
 .login-container {
@@ -115,8 +119,8 @@ form {
   border: 1px solid rgba(209, 209, 209, 1);
   outline: none;
   background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: 300px 5px;
+  background-size: 16px;
+  background-position: 300px 10px;
 }
 
 .input1 {
@@ -184,7 +188,7 @@ form {
   bottom: 0;
   left: 0;
   right: 0;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   opacity: 0;
 }
 
@@ -206,13 +210,21 @@ form {
 .arrow-left-container {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   width: 100%;
 }
 
 .arrow-left-container img {
-  width: 40px;
+  width: 30px;
+  height: 30px;
   margin-right: 135px;
   cursor: pointer;
+}
+
+.arrow-left-container img:hover{
+  background-color:  rgba(202, 199, 199, 0.6);
+ border-radius: 100%;
+ padding: 4px
 }
 
 .input0 {
