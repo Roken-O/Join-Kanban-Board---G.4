@@ -21,22 +21,74 @@
     <section id="main-container" class="background-grey">
         <div class="flex-align-center">
             <div class="flex-align-center headline-div-contacts">
-                <div>
+                <div class="left-main-container">
                     <div class="flex-align-center headline-div-contacts">
                         <h1>Join 360</h1>
                         <div class="light-blue parting-line-h1"></div>
                         <span class="span-head-description">Key Metrics at a Glance</span>
                       </div>
                     <div class="todo-done-container">
-                        <div class="flex-align-center-evenly to-do-container">
-                            <img class="pen-img" src="./assets/img/pen_icon_WHt.svg">
+                        <div class="flex-align-center-evenly to-do-container" onmouseover="changeSvgColor('pen_DARK_OPAC', 'pen-path')" onmouseleave="resetSvgColor('pen_DARK_OPAC', 'pen-path')">
+                            <div class="svg-to-do-container">
+                                <svg id="pen_DARK_OPAC" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 108.15 108">
+                                <defs>
+                                  <style >
+                                    .cls-1 {
+                                      fill: white;
+                                    }
+                              
+                                    .cls-1, .cls-2 {
+                                      stroke-width: 0px;
+                                    }
+                              
+                                    .cls-2 {
+                                      fill: white;
+                                    }
+                              
+                                    .cls-3 {
+                                      mask: url(#mask);
+                                    }
+
+                                    .cls-4{
+                                        fill: rgba(42, 54, 71, 1);
+                                    }
+                                  </style>
+                                  <mask id="mask" x="-17.75" y="-16.27" width="142.03" height="142.03" maskUnits="userSpaceOnUse">
+                                    <g id="mask0_185215_6093" data-name="mask0 185215 6093">
+                                      <rect class="cls-1" x="-17.75" y="-16.27" width="142.03" height="142.03"/>
+                                    </g>
+                                  </mask>
+                                </defs>
+                                <g class="cls-3">
+                                  <path id="pen-path" class="cls-2" d="M11.84,96.16h8.28l51.04-51.04-8.28-8.29L11.84,87.88v8.29ZM96.46,36.54l-25.15-24.85,8.28-8.28c2.27-2.27,5.05-3.4,8.36-3.4s6.09,1.13,8.36,3.4l8.29,8.28c2.27,2.27,3.45,5.01,3.55,8.21.1,3.21-.99,5.94-3.26,8.21l-8.43,8.43ZM87.88,45.27l-62.73,62.73H0v-25.15L62.73,20.12l25.15,25.15Z"/>
+                                </g>
+                              </svg>
+                            </div>
                             <div>
                                 <h2>1</h2>
                                 <span>To-do</span>
                             </div>
                         </div>
-                        <div class="flex-align-center-evenly to-do-container">
-                            <img src="./assets/img/check_icon_WHT.svg">
+                        <div class="flex-align-center-evenly to-do-container" onmouseover="changeSvgColor('check_small_DARK', 'check-small-path')" onmouseleave="resetSvgColor('check_small_DARK', 'check-small-path')">
+                           <div  class="svg-check-to-do-container">
+                            <svg id="check_small_DARK" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 81.54 62.88">
+                                <defs>
+                                  <style>
+                                    .cls-111 {
+                                      fill: none;
+                                      stroke: white;
+                                      stroke-linecap: round;
+                                      stroke-linejoin: round;
+                                      stroke-width: 10px;
+                                    }
+                                    .cls-4{
+                                        stroke:  rgba(42, 54, 71, 1);
+                                    }
+                                  </style>
+                                </defs>
+                                <path id="check-small-path" class="cls-111" d="M5,31.44l26.83,26.44L76.54,5"/>
+                              </svg>
+                            </div>
                             <div>
                                 <h2>1</h2>
                                 <span>Done</span>
@@ -45,7 +97,20 @@
                     </div>
                     <div class="urgent-container">
                         <div class="flex-align-center-evenly sub-urgent-container">
-                            <img src="./assets/img/urgent_icon_WHT.svg" alt="urgent_icon">
+                            <div class="svg-urgent-container">
+                                <svg id="urgent_icon_WHT" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 133 97.72">
+                                <defs>
+                                  <style>
+                                    .cls-1 {
+                                      fill: #fff;
+                                      stroke-width: 0px;
+                                    }
+                                  </style>
+                                </defs>
+                                <path class="cls-1" d="M125.7,97.71c-1.56,0-3.08-.5-4.34-1.44l-54.87-40.96L11.63,96.27c-.77.58-1.65.99-2.57,1.23-.93.23-1.9.28-2.84.14-.95-.14-1.86-.47-2.68-.97-.82-.5-1.54-1.16-2.11-1.94-.57-.78-.98-1.66-1.21-2.61-.23-.94-.28-1.92-.14-2.88.29-1.94,1.32-3.68,2.88-4.84l59.2-44.24c1.25-.94,2.77-1.45,4.34-1.45s3.08.51,4.34,1.45l59.2,44.24c1.24.92,2.15,2.22,2.62,3.7.47,1.48.46,3.07-.02,4.55-.48,1.48-1.41,2.76-2.66,3.67-1.24.91-2.74,1.4-4.28,1.4Z"/>
+                                <path class="cls-1" d="M125.7,59c-1.56,0-3.08-.5-4.34-1.44l-54.87-40.96L11.63,57.56c-1.56,1.16-3.5,1.65-5.42,1.36-1.91-.29-3.63-1.34-4.78-2.91-1.15-1.57-1.63-3.55-1.35-5.48.29-1.94,1.32-3.68,2.88-4.84L62.16,1.45c1.25-.94,2.77-1.45,4.34-1.45s3.08.51,4.34,1.45l59.2,44.24c1.24.92,2.15,2.22,2.62,3.7.47,1.48.46,3.07-.02,4.55-.48,1.48-1.41,2.76-2.66,3.67-1.24.91-2.74,1.4-4.28,1.4Z"/>
+                              </svg>
+                            </div>
                             <div>
                                 <h2>1</h2>
                                 <span>Urgent</span>
@@ -80,6 +145,7 @@
     </section>
 
     <script src="/js/script.js"></script>
+    <script src="/js/summary.js"></script>
 </body>
 
 </html>

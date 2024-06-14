@@ -1,22 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/colors.css">
-    <link rel="stylesheet" href="/CSS/fonts.css">
-    <link rel="stylesheet" href="/CSS/global_style.css">
-    <link rel="stylesheet" href="/CSS/style.css">
-    <link rel="stylesheet" href="/CSS/media.css">
-    <link rel="icon" href="/assets/img/join_favicon.svg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/CSS/colors.css" />
+    <link rel="stylesheet" href="/CSS/fonts.css" />
+    <link rel="stylesheet" href="/CSS/global_style.css" />
+    <link rel="stylesheet" href="/CSS/style.css" />
+    <link rel="stylesheet" href="/CSS/media.css" />
+    <link rel="icon" href="/assets/img/join_favicon.svg" />
     <title>Join</title>
-</head>
-<body onload="includeHTML()">
+    <style>
+        .imprint-container {
+            display: flex;
+            flex-direction: column;
+            margin-right: 32px;
+            color: #2a3647;
+        }
+
+        .imprint-container h2, h3 {
+            color: #29abe2;
+        }
+
+        .imprint-container p {
+            color: #2a3647;
+        }
+
+        .imprint-container a {
+            color: #29abe2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+  </head>
+  <body onload="includeHTML()">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
     <section id="main-container" class="background-grey">
+      <div class="imprint-container">
+        <h2>Impressum</h2>
+        <br />
+        <h3>Postadresse</h3>
+        <p>
+          Felix Kroth<br />
+          Im Wingert 24<br />
+          63801 Kleinostheim
+        </p>
+        <br />
+        <h3>Kontakt</h3>
+        <p>
+          Telefon: 0163 2076800<br />
+          E-Mail: felix_kroth@web.de
+        </p>
+        <br>
+        <p>
+          <h3>Vertreten durch:</h3><br />
+          
+          Roken Othman<br />
+          Langerfelder Str.76<br />
+          42389 Wuppertal<br />
+          roken.othman91@gmail.com<br /><br />
+          Karina Tanei<br />
+          Norderstr.11-13<br />
+          24939 Flensburg<br />
+          karinataneis@gmail.com<br /><br />
+          B&uuml;nyamin Tig<br />
+          Lortzingstra&szlig;e 11<br />
+          58840 Plettenberg<br />
+          buenyamin.tig@gmail.com
+        </p>
 
+        <br />
+        <p>
+          Quelle:
+          <a href="https://www.e-recht24.de">https://www.e-recht24.de</a>
+        </p>
+      </div>
     </section>
 
     <script src="/js/script.js"></script>
-</body>
+  </body>
 </html>
