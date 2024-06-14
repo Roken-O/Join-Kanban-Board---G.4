@@ -1,0 +1,161 @@
+/* ADD TASK-START */
+@media (max-width: 1120px) {
+  .form-seperator {
+    display: none;
+  }
+
+  .parent-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .clear {
+    display: none;
+  }
+
+  .form-execution {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .create-task {
+    width: 124px;
+    height: 44px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .assigned-flex {
+    padding-bottom: 24px;
+  }
+}
+
+@media (max-width: 750px) {
+  .create-task {
+    width: 108px;
+    height: 40px;
+    font-weight: 500;
+    font-size: 13px;
+  }
+
+  .required {
+    font-size: 13px;
+  }
+
+  .field-325 {
+    width: 250px;
+  }
+
+  .description-input {
+    width: 250px;
+  }
+
+  .select {
+    width: 250px;
+  }
+
+  .prio-button-urgend {
+    width: 80px;
+    height: 34px;
+    font-size: 12px;
+  }
+  .urgend-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .orange-button {
+    width: 80px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .medium-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
+
+  .prio-button-low {
+    width: 80px;
+    height: 34px;
+    object-fit: cover;
+  }
+
+  .low-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
+
+  .gap-16 {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 580px) {
+  .create-task {
+    width: 88px;
+    height: 32px;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .required {
+    font-size: 12px;
+  }
+
+  .field-325 {
+    width: 200px;
+  }
+
+  .description-input {
+    width: 200px;
+  }
+
+  .select {
+    width: 200px;
+  }
+
+  .prio-button-urgend {
+    width: 65px;
+    height: 24px;
+    font-size: 12px;
+  }
+  .urgend-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .orange-button {
+    width: 65px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .medium-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: cover;
+  }
+
+  .prio-button-low {
+    width: 65px;
+    height: 24px;
+    font-size: 12px;
+    object-fit: cover;
+  }
+
+  .low-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: cover;
+  }
+
+  .gap-16 {
+    gap: 5px;
+  }
+}

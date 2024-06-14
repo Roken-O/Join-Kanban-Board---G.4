@@ -1,0 +1,370 @@
+/*ADD TASK CONTAINER*/
+
+/* flex-box */
+.flex-evenly-start {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.flex-center-start {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* padding */
+.padding-bottom-80 {
+  padding-bottom: 80px;
+}
+
+.padding-bottom-24 {
+  padding-bottom: 24px;
+}
+.padding-bottom-16 {
+  padding-bottom: 16px !important;
+}
+
+.padding-bottom-8 {
+  padding-bottom: 16px !important;
+}
+
+/* gap */
+.gap-16 {
+  gap: 16px !important;
+}
+
+.gap-8 {
+  gap: 8px !important;
+}
+/* placeholder */
+::placeholder {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: lightgray;
+  padding: 8px 0 8px 8px;
+  font-size: 17px;
+}
+
+/* headline */
+.task-headline {
+  font-size: 36px;
+}
+
+/* title */
+.asterisk-color {
+  color: #ff3d00;
+  font-size: 20px;
+}
+
+.field-325 {
+  width: 325px;
+  height: 36px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
+}
+
+/* description */
+.description-input {
+  width: 325px;
+  height: 80px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* assigned to */
+.flex-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 0 8px;
+  background-color: white;
+  width: 320px;
+  height: 36px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
+}
+
+.select {
+  font-weight: 500;
+  font-size: 17px;
+  padding: 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 325px;
+  height: 40px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
+}
+
+/* seperator */
+.form-seperator {
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 375px;
+}
+
+/* due date */
+.date:hover {
+  cursor: pointer;
+}
+
+::-webkit-datetime-edit {
+  padding: 8px;
+  color: lightgray;
+  font-size: 17px;
+}
+
+::-webkit-calendar-picker-indicator {
+  padding: 8px;
+}
+
+::-webkit-calendar-picker-indicator:hover {
+  cursor: pointer;
+}
+
+/* prio */
+.prio-button-urgend {
+  width: 100px;
+  height: 44px;
+  border-radius: 10px;
+  outline: none;
+  border: 2px solid rgb(211, 211, 211, 0.3);
+  background-color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.prio-button-urgend:hover {
+  cursor: pointer;
+  box-shadow: -2px 0px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+.urgend-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+}
+
+.orange-button {
+  width: 110px;
+  height: 44px;
+  border-radius: 10px;
+  outline: none;
+  border: 2px solid rgb(211, 211, 211, 0.3);
+  background-color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.orange-button:hover {
+  cursor: pointer;
+  opacity: 85%;
+  box-shadow: -2px 0px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+.medium-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+}
+
+.medium-icon:hover {
+  cursor: pointer;
+}
+
+.prio-button-low {
+  width: 100px;
+  height: 44px;
+  border-radius: 10px;
+  outline: none;
+  border: 2px solid rgb(211, 211, 211, 0.3);
+  background-color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.low-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+}
+
+.prio-button-low:hover {
+  cursor: pointer;
+  box-shadow: -2px 0px 6px 0px rgba(0, 0, 0, 0.2);
+}
+/* category */
+
+/* subtasks */
+.subtask-input {
+  width: 325px;
+  height: 36px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
+  background-image: url("./assets/img/plus_icon.svg");
+  background-repeat: no-repeat;
+}
+/* clear */
+.clear {
+  width: 100px;
+  height: 44px;
+  border-radius: 10px;
+  outline: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: #2c2c2c;
+}
+
+.clear:hover {
+  cursor: pointer;
+  box-shadow: -2px 0px 6px 0px rgba(0, 0, 0, 0.2);
+  opacity: 85%;
+  color: #29abe2;
+  border-color: #29abe2;
+}
+
+.clear-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+}
+
+.clear-icon:hover {
+  background-color: green;
+}
+
+.clear:hover {
+  cursor: pointer;
+  box-shadow: -2px 0px 6px 0px rgba(0, 0, 0, 0.2);
+  opacity: 85%;
+  color: #29abe2;
+  border-color: #29abe2;
+}
+
+.create-task {
+  width: 164px;
+  height: 44px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #091931;
+  background-color: #091931;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.create-task:hover {
+  cursor: pointer;
+  opacity: 85%;
+  box-shadow: -2px 0px 6px 0px rgba(0, 0, 0, 0.2);
+  background-color: #29abe2;
+  border: 1px solid #29abe2;
+}
+
+.create-task-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+}
+
+.form-execution {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px 0 24px;
+}
+
+.dropdown {
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+}
+
+.dropdown:hover {
+  cursor: pointer;
+}
+
+.dropbtn {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: -2px 0px 6px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+/* items to clean up */
+.plus {
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+}
+
+.input-search {
+  width: 500px;
+  height: 40px;
+  border: none;
+  border-radius: 24px;
+  padding-left: 50px;
+  padding-right: 16px;
+
+  background-color: #f0f4f9;
+  outline: none;
+  background-image: url("./img/magnifying-glass-solid.svg");
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: 14px 10px;
+}
+
+.input-with-image {
+  width: 500px;
+  height: 100px;
+  background-image: url("./assets/img/low_icon.svg");
+  background-size: 20px 20px; /* set the size of your image */
+  background-position: 5px center; /* set the position of your image */
+  background-repeat: no-repeat;
+  padding-left: 30px; /* add some padding to make room for the image */
+}
+
+/* ADD-TASK Container END */
