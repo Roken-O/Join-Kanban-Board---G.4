@@ -1,62 +1,4 @@
-/* SIDEBAR MENU - START */
-
-@media screen and (max-width: 720px) {
-  #header h1 {
-    display: none;
-  }
-
-  #header {
-    margin-left: 0px !important;
-    padding-left: 16px !important;
-  }
-
-  #mobile-logo-container {
-    display: flex;
-  }
-
-  #mobile-logo {
-    height: 48px;
-    cursor: pointer;
-  }
-
-  #sidebar-menu {
-    width: 200px;
-  }
-
-  #sidebar-menu-privacy {
-    width: 200px;
-  }
-
-  #sidebar-menu-imprint {
-    width: 200px;
-  }
-
-  .sidebar-menu-item {
-    width: 200px;
-  }
-
-  #summary-menu-icon {
-    background-position: 40px center;
-    text-indent: 85px;
-  }
-
-  #addtask-menu-icon {
-    background-position: 40px center;
-    text-indent: 85px;
-  }
-
-  #board-menu-icon {
-    background-position: 40px center;
-    text-indent: 85px;
-  }
-
-  #contacts-menu-icon {
-    background-position: 40px center;
-    text-indent: 85px;
-  }
-}
-
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 840px) {
   #sidebar-menu {
     display: none;
   }
@@ -93,10 +35,6 @@
     color: #cdcdcd;
     vertical-align: 8px;
     height: 80px;
-  }
-
-  .mobile-menu-item span:hover {
-    color: red;
   }
 
   .mobile-menu-item a {
@@ -180,13 +118,71 @@
   .tooltip:hover .tooltiptext {
     visibility: visible;
   }
+
+  #header h1 {
+    display: none;
+  }
+
+  #header {
+    margin-left: 0px !important;
+    padding-left: 16px !important;
+  }
+
+  #mobile-logo-container {
+    display: flex;
+  }
+
+  #mobile-logo {
+    height: 48px;
+    cursor: pointer;
+  }
+}
+
+/* SIDEBAR MENU - START */
+
+@media screen and (max-width: 720px) {
+  #sidebar-menu {
+    width: 200px;
+  }
+
+  #sidebar-menu-privacy {
+    width: 200px;
+  }
+
+  #sidebar-menu-imprint {
+    width: 200px;
+  }
+
+  .sidebar-menu-item {
+    width: 200px;
+  }
+
+  #summary-menu-icon {
+    background-position: 40px center;
+    text-indent: 85px;
+  }
+
+  #addtask-menu-icon {
+    background-position: 40px center;
+    text-indent: 85px;
+  }
+
+  #board-menu-icon {
+    background-position: 40px center;
+    text-indent: 85px;
+  }
+
+  #contacts-menu-icon {
+    background-position: 40px center;
+    text-indent: 85px;
+  }
 }
 
 /* PRIVACY - START */
 
 @media screen and (max-width: 1120px) {
   .privacy-container {
-    width: 65%;
+    width: 60%;
   }
 }
 
@@ -198,39 +194,16 @@
 
 @media screen and (max-width: 840px) {
   .privacy-container {
-    width: 50%;
-  }
-}
-
-@media screen and (max-width: 680px) {
-  .privacy-container {
-    margin-left: -32px;
-  }
-}
-
-@media screen and (max-width: 620px) {
-  .privacy-container {
-    width: 45%;
-  }
-}
-
-@media screen and (max-width: 560px) {
-  .privacy-container {
-    width: 40%;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .privacy-container {
-    padding-right: 16px;
-    line-break: strict;
+    width: 80%;
   }
 }
 
 @media screen and (max-width: 450px) {
   .privacy-container {
     margin-left: 0;
-    width: 80% !important;
+    width: 70% !important;
     max-height: 65% !important;
   }
 }
+
+
