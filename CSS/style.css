@@ -380,11 +380,32 @@
   width: 453px;
   height: 594px;
   border-radius: 30px 0px 0px 30px;
+  display: flex;
+  align-items: center;
 }
 
 .popUp-edit-add-leftside-content {
   padding: 66px 48px 66px 48px;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
+}
+
+.span-Contact{
+  font-size: 61px;
+  font-weight: 700;
+  color: white;
+}
+
+.span-tasks-are-better{
+  font-size: 27px;
+  font-weight: 400px;
+  color: white;
+}
+
+.popUp-edit-add-leftside-content img{
+  width: 55.6px;
+  height: 66.48px;
 }
 
 .popUp-edit-add-middle{
@@ -427,6 +448,11 @@
   width: 13px;
 }
 
+.close-icon:hover{
+  cursor: pointer;
+  background-color: #D1D1D1;
+}
+
 .form-add-new-contact{
   display: flex;
   flex-direction: column;
@@ -445,6 +471,11 @@
 .input-text-email-number-contact img{
   height: 16px;
 }
+.input-text-contact{
+  background-image: url(http://127.0.0.1:5500/assets/img/contact_icon.png.preview);
+  background-size: 16px;
+}
+
 
 /* contacts-container */
 #contacts-container {
