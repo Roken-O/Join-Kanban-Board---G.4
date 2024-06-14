@@ -57,8 +57,19 @@
   gap: 35px;
 }
 
-#icon-contact-contactlist {
+/* #icon-contact-contactlist {
   height: 42px;
+} */
+
+.first-letters-name-contactlist-bg{
+  background-color: #FFBB2A;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
 }
 
 #contact-name-email-contactlist {
@@ -160,6 +171,10 @@
   margin-top: -60px;
 }
 
+.margin-top-60px{
+  margin-top: -60px;
+}
+
 .bg-contact_icon svg {
   width: 43px;
   height: 43px;
@@ -223,6 +238,16 @@
   background-position: 421px;
 }
 
+.button-container-add{
+  display: flex;
+  gap: 4px;
+}
+
+.button-container-edit{
+  display: flex;
+  gap: 25px;
+}
+
 .button_cancel{
   cursor: pointer;
 }
@@ -271,8 +296,20 @@
   gap: 54px;
 }
 
-.contact-img{
+/* .contact-img{
   width: 120px;
+} */
+
+.first-letters-name-bg{
+  background-color: #FFBB2A;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  font-size: 47px;
 }
 
 #contact-name {
