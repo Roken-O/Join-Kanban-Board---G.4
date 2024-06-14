@@ -1,8 +1,5 @@
 /* ADD TASK-START */
-@media (max-width: 1120px) {
-  .form-seperator {
-    display: none;
-  }
+@media (max-width: 1600px) {
 
   .parent-container {
     display: flex;
@@ -16,7 +13,7 @@
 
   .form-execution {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     gap: 24px;
   }
@@ -29,9 +26,17 @@
   }
 
   .assigned-flex {
-    padding-bottom: 24px;
+    padding-bottom: 24px;;
+  }
+
+}
+
+@media (max-width: 1200px) {
+  .form-seperator {
+    display: none;
   }
 }
+
 
 @media (max-width: 750px) {
   .create-task {
