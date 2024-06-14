@@ -180,9 +180,9 @@
 
 /* PRIVACY - START */
 
-@media screen and (max-width: 1120px) {
+@media screen and (max-width: 1200px) {
   .privacy-container {
-    width: 60%;
+    width: 58%;
   }
 }
 
