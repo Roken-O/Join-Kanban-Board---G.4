@@ -76,3 +76,7 @@ function init(){
 function addNewContact(){
     document.getElementById('add-new-contact-popUp-Bg-Id').classList.add('popUp-add-new-contact-Bg');
 }
+
+function closePupUpaddNewContact(){
+  document.getElementById('add-new-contact-popUp-Bg-Id').classList.remove('popUp-add-new-contact-Bg');
+}
