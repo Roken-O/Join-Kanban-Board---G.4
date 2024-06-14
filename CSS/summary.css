@@ -47,21 +47,48 @@ span {
     font-weight: 600;
 }
 
-.to-do-container img {
-    width: 40px;
-    background-color: rgba(42, 54, 71, 1);
+.svg-to-do-container{
+    width: 30px;
+    height: 30px; /* gleiche Höhe wie Breite, damit es rund wird */
+    background:  rgba(42, 54, 71, 1);
     padding: 12px;
-    border-radius: 100px;
+    border-radius: 50%; /* 50% für einen runden Hintergrund */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+ 
+.svg-to-do-container svg {
+    width: 60%;
+    height: auto;
+} 
 
-.to-do-container:hover img {
+.to-do-container:hover .svg-to-do-container  {
     background: white;
 }
 
-.pen-img {
-    width: 30px !important;
-    padding: 16px !important;
+.cls-4{
+    fill: rgba(42, 54, 71, 1);
+}
 
+.svg-check-to-do-container{
+    width:26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:  rgba(42, 54, 71, 1);
+    padding: 12px;
+    border-radius: 50%; 
+}
+
+.svg-check-to-do-container svg{
+    width: 30px;
+    height: auto;
+}
+
+.to-do-container:hover .svg-check-to-do-container  {
+    background: white;
 }
 
 .urgent-container {
@@ -106,11 +133,16 @@ span {
     font-weight: 600;
 }
 
-.sub-urgent-container img {
-    width: 40px;
-    background: #ff3d00;
-    padding: 12px;
-    border-radius: 100px;
+
+.svg-urgent-container{
+  width: 30px;
+  height: 30px; 
+  background: #ff3d00;
+  padding: 12px;
+  border-radius: 50%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .line-urgent-container {
@@ -173,3 +205,16 @@ span {
    font-weight: 700;
    font-size: 48px;
 }
+
+/* Summary site */
+
+@media (max-width: 1210px) {
+    .greet {
+        margin-left: 0px;
+    }
+}  
+@media (max-width: 1140px) {
+    /* .left-main-container {
+       display: none;
+    } */
+}  
