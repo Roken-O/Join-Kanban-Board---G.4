@@ -1,23 +1,25 @@
 function init() {
     includeHTML();
+    showGreeting();
     greetAnimate();
 }
 
-// function greetAnimate() {
-//     if (window.innerWidth < 1100) {
-//         setTimeout(() => {
-//             document.getElementById('left-main-container').style.display = 'none';
-//             document.getElementById('greet').style.display = 'block';
+function showGreeting(){
+    let hours = new Date().getHours();
+    let greeting = document.getElementById('greeting');
+    let topGreeting = document.getElementById('top-greeting');
 
-//             // document.getElementById('greet').classList.add('greet-animate');
-
-//             setTimeout(() => {
-//                 document.getElementById('left-main-container').style.display = 'flex';
-//                 document.getElementById('greet').style.display = 'none';
-//             }, 2000);
-//         }, 10);
-//     }
-// }
+    if (hours >= 6 && hours < 12) {
+        greeting.innerHTML = 'Good Morning';
+        topGreeting.innerHTML = 'Good Morning';
+    } else if (hours >= 12 && hours < 18) {
+        greeting.innerHTML = 'Good Afternoon';
+        topGreeting.innerHTML = 'Good Afternoon';
+    } else {
+        greeting.innerHTML = 'Good Evening';
+        topGreeting.innerHTML = 'Good Evening';
+    }
+}
 
 function greetAnimate() {
     if (window.innerWidth < 1100) {
@@ -25,22 +27,17 @@ function greetAnimate() {
             let leftMainContainer = document.getElementById('left-main-container');
             let greet = document.getElementById('greet');
 
-            if (leftMainContainer && greet) {
-                leftMainContainer.style.opacity = '0';
-                greet.style.opacity = '1';
-                greet.style.display = 'flex';
-                setTimeout(() => {
-                    leftMainContainer.style.opacity = '1';
-                    greet.style.display = 'none';
-                    greet.style.opacity = '0';
-                }, 1500);
-            }
+            leftMainContainer.style.opacity = '0';
+            greet.style.opacity = '1';
+            greet.style.display = 'flex';
+            setTimeout(() => {
+                leftMainContainer.style.opacity = '1';
+                greet.style.display = 'none';
+                greet.style.opacity = '0';
+            }, 1500);
         }, 10);
     }
 }
-
-
-
 
 function changeSvgColor(svgId, path) {
     let svgElement = document.getElementById(svgId);
