@@ -94,7 +94,7 @@ function displaySubTasks() {
 
   subtasks.forEach((subtask, index) => {
       let subtaskItem = document.createElement('div');
-      subtaskItem.innerHTML = `${subtask} <button type="button" onclick="removeSubTask(${index})">Remove</button>`;
+      subtaskItem.innerHTML = `${subtask} <button type="button" onclick="removeSubTask(${index})">X</button>`;
       subtaskList.appendChild(subtaskItem);
   });
 }
