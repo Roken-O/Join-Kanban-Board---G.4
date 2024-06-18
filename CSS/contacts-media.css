@@ -69,7 +69,7 @@
 @media(max-width:1050px){
     .main-container-contacts{
         justify-content: center;
-        padding: 80px 64px 64px 115px;
+        margin: 80px 64px 64px 115px;
     }
 
     .contacts-container{
@@ -164,9 +164,15 @@
     }
 }
 
+@media(max-width:880px){
+    #breakline-contactlist {
+        width: 535px;
+    }
+}
+
 @media(max-width:840px){
     .main-container-contacts{
-        padding: 80px 32px 32px 0px;
+        margin: 80px 32px 32px 0px;
     }
 }
 
@@ -180,6 +186,12 @@
     #breakline-contactlist{
         width: 430px;
     }
+
+     /* PopUp */
+
+    
+
+
 }
 
 @media(max-width:475px){
