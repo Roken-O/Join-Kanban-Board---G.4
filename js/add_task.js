@@ -1,6 +1,14 @@
 let selectedCategory = '';
 let selectedContacts = [];
 let allContacts = [];
+let subtasks = [];
+
+
+function init() {
+  loadContactList();
+  loadTasks();
+  setMinDateDatepicker();
+}
 
 
 function deleteTask(taskId) {
@@ -44,14 +52,10 @@ function saveTask() {
     'taskDate': dueDate,
     'taskPriority': priority,
     'taskAssignment': selectedContacts,
-    'taskSubTask': subTask
+    'taskSubTask': subtasks
   };
 
-  document.getElementById('task-trial-title').value = "";
-  document.getElementById('task-trial-description').value = "";
-  document.getElementById('task-trial-subtask-input').value = "";
-  selectedContacts = [];
-  updateSelectedContactsDisplay();
+  clearInputsAndArrays();
 
   let database = firebase.database();
   let newTask = database.ref('tasks').push();
@@ -60,6 +64,45 @@ function saveTask() {
   document.getElementById('task-trial-category-selection').innerText = "Category";
   priority = '';
   dueDate = date.datepicker( "option" , {setDate: null, minDate: null, maxDate: null} ); 
+}
+
+
+function clearInputsAndArrays() {
+  document.getElementById('task-trial-title').value = "";
+  document.getElementById('task-trial-description').value = "";
+  document.getElementById('task-trial-subtask-input').value = "";
+  selectedContacts = [];
+  updateSelectedContactsDisplay();
+}
+
+
+function addSubTask() {
+  let subTaskInput = document.getElementById('task-trial-subtask-input');
+  let subTaskValue = subTaskInput.value.trim();
+
+  if (subTaskValue !== "") {
+      subtasks.push(subTaskValue);
+      subTaskInput.value = "";
+      displaySubTasks();
+  }
+}
+
+
+function displaySubTasks() {
+  let subtaskList = document.getElementById('subtask-list');
+  subtaskList.innerHTML = "";
+
+  subtasks.forEach((subtask, index) => {
+      let subtaskItem = document.createElement('div');
+      subtaskItem.innerHTML = `${subtask} <button type="button" onclick="removeSubTask(${index})">Remove</button>`;
+      subtaskList.appendChild(subtaskItem);
+  });
+}
+
+
+function removeSubTask(index) {
+  subtasks.splice(index, 1);
+  displaySubTasks();
 }
 
 
@@ -171,10 +214,10 @@ function selectCategory(event, category) {
 }
 
 
-window.onload = function() {
-  loadContactList();
-  loadTasks();
-}
+// window.onload = function() {
+
+  
+// }
 
 
 function createCategoryIconUrgent() {
@@ -192,6 +235,16 @@ function createCategoryIconLow() {
 }
 
 
+function setMinDateDatepicker() {
+  let today = new Date();
+  let tt = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let jjjj = today.getFullYear();
+
+  today = jjjj + '-' + mm + '-' + tt;
+  document.getElementById('task-trial-date-picker').min = today;
+  document.getElementById('task-trial-date-picker').value = today;
+}
 
 // set actual date-function
 //         function getDate() {

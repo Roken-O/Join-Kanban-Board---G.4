@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de-DE">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +19,7 @@
             flex-direction: column;
             align-items: center;
             gap: 32px;
+            margin-top: 100px;
         }
 
         #icon-dropdown-arrow-image {
@@ -96,6 +97,17 @@
         overflow-y: auto; /* Falls erforderlich, um scrollbare Liste zu ermöglichen */
         }
 
+        .task-trial-category-dropdown-links {
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+          border: 1px solid #ccc;
+        max-height: 200px; /* Falls erforderlich, um die Dropdown-Höhe zu begrenzen */
+        overflow-y: auto; /* Falls erforderlich, um scrollbare Liste zu ermöglichen */
+        }
+
         .dropdown-list .dropdown-item {
           padding: 8px 16px;
           cursor: pointer;
@@ -124,13 +136,20 @@
             height: 16px;
             width: 16px;
         }
+
+        #task-trial-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
-<body>
+<body onload="includeHTML(); init();">
+    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
     <form id="task-trial-task-form" onsubmit="saveTask(); return false;">
         <input id="task-trial-title" type="text" placeholder="Title" required>
         <input id="task-trial-description" type="text" placeholder="Description" required>
-        <input type="datetime-local" id="task-trial-date-picker" required>
+        <input type="date" id="task-trial-date-picker" required>
         <section class="task-trial-category-dropdown-container">
             <div id="task-trial-category-selection-container">
                 <div id="task-trial-category-selection" onclick="toggleCategoryDropdown()">Category</div>
@@ -169,7 +188,9 @@
             </div>
         </section>
         <div id="selected-contacts" class="d-none">Selected Contacts: None</div>
-        <input id="task-trial-subtask-input" type="text" placeholder="Subtask" required>
+        <input id="task-trial-subtask-input" type="text" placeholder="Subtask">
+        <button type="button" onclick="addSubTask()">Add Subtask</button>
+        <div id="subtask-list"></div>
         <button>Speichern</button>
       </form>
       <div id="task-trial-container"></div>
