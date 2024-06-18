@@ -2,9 +2,10 @@ function init() {
     includeHTML();
     showGreeting();
     greetAnimate();
+    urgentDate();
 }
 
-function showGreeting(){
+function showGreeting() {
     let hours = new Date().getHours();
     let greeting = document.getElementById('greeting');
     let topGreeting = document.getElementById('top-greeting');
@@ -51,4 +52,16 @@ function resetSvgColor(svgId, path) {
     if (svgElement) {
         document.getElementById(path).classList.remove('cls-4');
     }
+}
+
+function urgentDate() {
+    let months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+    let urgentDate = new Date();
+    urgentDate.setDate(urgentDate.getDate() + 4);
+
+    let year = urgentDate.getFullYear();
+    let month = months[urgentDate.getMonth()];
+    let day = urgentDate.getDate();
+    let upcomingDate = `${month} ${day}, ${year}`;
+    document.getElementById('urgent-date').innerHTML = upcomingDate;
 }
