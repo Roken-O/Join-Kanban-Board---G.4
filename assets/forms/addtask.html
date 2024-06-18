@@ -20,18 +20,19 @@
     <section id="main-container" class="background-grey">
         
         <h2 class="task-headline mb-48">Add Task</h2>
+
         <form class="form-height w-50 " onsubmit="addTask()">
             <div class="flex-evenly-start padding-bottom-24">
                 <div class="left-container">
                     <div class="padding-bottom-24">
                         <div class="mb-8 flex field-headline">Title<div class="asterisk-color">*</div>
                         </div>
-                        <input class="field-325" type="text" placeholder="Enter a title">
+                        <input required minlength="2" class="field-325" type="text" placeholder="Enter a title">
                     </div>
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Description</div>
-                        <textarea class="description-input" name="w3review" rows="4" cols="50"
-                            placeholder="Enter a Description"></textarea>
+                        <textarea required pattern="[A-Za-z0-9]+" maxlength="450" class="description-input" name="w3review" rows="4" cols="50"
+                            placeholder="Enter a description in english please!"></textarea>
                     </div>
                     <div class="assigned-flex">
                         <div class="mb-8 field-headline">Assigned to</div>
@@ -43,7 +44,7 @@
                     <div class="padding-bottom-24">
                         <div class="mb-8 flex field-headline">Due date<div class="asterisk-color">*</div>
                         </div>
-                        <input class="field-325 date" type="date" placeholder="dd/mm/yyyy Kalenderbutton">
+                        <input required class="field-325 date" type="date" placeholder="dd/mm/yyyy Kalenderbutton">
                     </div>
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Prio</div>
