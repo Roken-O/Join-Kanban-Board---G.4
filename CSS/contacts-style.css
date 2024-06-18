@@ -12,6 +12,7 @@
 }
 
 .contacts-list {
+  height: 75%;
   padding: 0px 32px;
   background-color: white;
 }
@@ -41,7 +42,7 @@
 }
 
 #contacts-list-content {
-  height: 70%;
+  height: 90%;
   overflow: scroll;
   scrollbar-width: thin;
   display: flex;
