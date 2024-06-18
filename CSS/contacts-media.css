@@ -1,0 +1,199 @@
+@media(max-width:1250px){
+    .headline-div-contacts{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .parting-line-h1{
+        display: none;
+    }
+
+    .parting-line-h1-horizontal{
+        display: unset;
+    }
+
+    .contact-pic-name-container{
+        gap: 20px;
+    }
+
+    .first-letters-name-bg{
+        height: 80px;
+        width: 80px;
+        font-size: 27px;
+    }
+
+    .headline-div-contacts h1{
+        font-size: 47px;
+    }
+
+    .head-description{
+        font-size: 20px;
+    }
+
+    #contact-name h2{
+        font-size: 36px;
+    }
+
+    #span-contact-information{
+        height: 24px;
+    }
+
+    /* PopUp */
+
+    .add-new-or-edit-contact-popUp{
+        width: 1000px;
+    }
+
+    .popUp-edit-add-middle{
+        padding: 66px 10px 66px 10px;
+    }
+    .popUp-edit-add-rightside{
+        padding: 66px 48px 66px 10px;
+    }
+}
+
+@media(max-width:1200px){
+    .contacts-container{
+        align-items: flex-start;
+    }
+
+    .contact-pic-name-container{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media(max-width:1050px){
+    .main-container-contacts{
+        justify-content: center;
+        padding: 80px 64px 64px 115px;
+    }
+
+    .contacts-container{
+        display: none;
+    }
+
+    #breakline-contactlist{
+        width: 580px;
+    }
+
+    /* PopUp */
+
+    .add-new-or-edit-contact-popUp{
+        display: flex;
+        flex-direction: column;
+        width: 396px;
+        height: 760px;
+    }
+
+    .popUp-edit-add-leftside{
+        width: 396px;
+        height: 352px;
+        border-radius: 30px 30px 0px 0px;
+        display: flex;
+        justify-content: center;
+       
+    }
+
+    .popUp-edit-add-leftside-content{
+        gap: 8px;
+        padding-bottom: 190px;
+    }
+
+    .popUp-edit-add-leftside-content img{
+        display: none;
+    }
+
+    .span-Contact{
+        font-size: 47px;
+    }
+
+    .span-tasks-are-better{
+        font-size: 20px;
+    }
+
+    .popUp-edit-add-middle{
+        padding: 0;
+    }
+
+    .container-close-icon {
+        display: none;
+    }
+
+    .popUp-edit-add-rightside{
+        padding-top: 35px;
+        padding: 35px 0px 0px 0px;
+    }
+
+    .form-add-new-contact{
+        gap: 15px;
+        align-items: center;
+        margin-bottom: 44px;
+    }
+
+    .input-text-email-number-contact{
+        width: 318px;
+    }
+
+    .input-text-contact{
+        background-position: 327px;
+    }
+
+    .input-email-contact{
+        background-position: 327px;
+    }
+
+    .input-number-contact{
+        background-position: 327px;
+    }
+
+    .button-container-add {
+        justify-content: center;
+    }
+
+    .button_cancel {
+        display: none;
+    }
+
+    .button_create_contact {
+        width: 202px;
+        height: 52px;
+    }
+}
+
+@media(max-width:840px){
+    .main-container-contacts{
+        padding: 80px 32px 32px 0px;
+    }
+}
+
+@media(max-width:615px){
+    #breakline-contactlist{
+        width: 515px;
+    }
+}
+
+@media(max-width:530px){
+    #breakline-contactlist{
+        width: 430px;
+    }
+}
+
+@media(max-width:475px){
+    #breakline-contactlist{
+        width: 375px;
+    }
+
+    #add-new-contact-btn{
+        width: 300px;
+    }
+}
+
+@media(max-width:400px){
+    #breakline-contactlist{
+        width: 300px;
+    }
+}

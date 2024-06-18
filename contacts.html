@@ -15,7 +15,7 @@
   </head>
   <body onload="includeHTML();init()">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
-    <section class="flex" id="main-container-contacts flex-align-center">
+    <section class="main-container-contacts">
       <div class="contacts-list flex-col-align-center">
         <button
           onclick="addNewContactPopUp()"
@@ -110,6 +110,9 @@
       <div id="add-new-contact-popUp-bg">
         <div class="add-new-or-edit-contact-popUp">
           <div class="popUp-edit-add-leftside">
+            <div class="container-close-icon-responsive">
+              <img onclick="closePupUpaddNewOrEdditContact()" class="close-icon" src="./assets/img/close_icon.svg" alt="">
+              </div>
             <div class="popUp-edit-add-leftside-content">
               <img src="./assets/img/join_logo_WHT.svg" alt="">
               <span class="span-Contact">Add contact</span>
@@ -179,14 +182,15 @@
         </div>
       </div>
               <img src="" alt="">
-      <div id="contacts-container">
+      <div class="contacts-container">
         <div class="flex-align-center headline-div-contacts">
           <h1>Contacts</h1>
           <div class="light-blue parting-line-h1"></div>
           <span class="head-description">Better with a team</span>
+          <div class="parting-line-h1-horizontal"></div>
         </div>
         <div id="contact">
-          <div class="flex-align-center" id="contact-pic-name-container">
+          <div class="flex-align-center contact-pic-name-container">
             <div class="first-letters-name-bg">
               <span class="first-letters-name">AM</span>
             </div>
