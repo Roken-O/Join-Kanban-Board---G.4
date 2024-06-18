@@ -43,6 +43,9 @@
                     </div>
                 </div>
             </div>
+
+            <div id="task" onclick="closePopup()"></div>
+
             <div class="column-container">
                 <div class="sub-column-container">
                     <div class="column-head">
@@ -50,28 +53,30 @@
                         <img src="./assets/img/plus_icon.png">
                     </div>
                     <div id="empty0">No tasks To do</div>
-                    <div class="task-container">
-                        <h4>User Story</h4>
-                        <span>Contact Form & Imprintjljljlj ldfdfkjlj k,ökö lnmölnmöl lnölnfdfdfsdsdsd sdsfddfdfdfdf</span>
-                        <p>Crate a contact from and imprint page..jjj</p>
-                        <div class="subtask-progress-container">
-                            <div class="progress-bar">
-                                <div class="fill-progress-bar"></div>
+                    <div class="tasks-container">
+                        <div onclick="openTaskDetails()" class="task-container">
+                            <h4>User Story</h4>
+                            <span>Contact Form & Imprint</span>
+                            <p>Crate a contact from and imprint page..jjj</p>
+                            <div class="subtask-progress-container">
+                                <div class="progress-bar">
+                                    <div class="fill-progress-bar"></div>
+                                </div>
+                                <div>
+                                    <span>
+                                        <span>1</span>/<span>2</span> Subtasks
+                                    </span>
+                                </div>
                             </div>
-                            <div>
-                                <span>
-                                    <span>1</span>/<span>2</span> Subtasks
-                                </span>
-                            </div>
-                        </div>
-                        <div class="badge-prio-container">
-                            <div class="main-badge-container">
-                                <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
-                                <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
-                                <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                            <div class="badge-prio-container">
+                                <div class="main-badge-container">
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
 
+                                </div>
+                                <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
                             </div>
-                            <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
                         </div>
                     </div>
                 </div>
@@ -81,52 +86,54 @@
                         <img src="./assets/img/plus_icon.png">
                     </div>
                     <div id="empty1"></div>
-                    <div class="task-container">
-                        <h4>User Story</h4>
-                        <span>Contact Form & Imprint</span>
-                        <p>Crate a contact from and imprint page</p>
-                        <div class="subtask-progress-container">
-                            <div class="progress-bar">
-                                <div class="fill-progress-bar"></div>
+                    <div class="tasks-container">
+                        <div class="task-container">
+                            <h4>User Story</h4>
+                            <span>Contact Form & Imprint</span>
+                            <p>Crate a contact from and imprint page</p>
+                            <div class="subtask-progress-container">
+                                <div class="progress-bar">
+                                    <div class="fill-progress-bar"></div>
+                                </div>
+                                <div>
+                                    <span>
+                                        <span>1</span>/<span>2</span> Subtasks
+                                    </span>
+                                </div>
                             </div>
-                            <div>
-                                <span>
-                                    <span>1</span>/<span>2</span> Subtasks
-                                </span>
-                            </div>
-                        </div>
-                        <div class="badge-prio-container">
-                            <div class="main-badge-container">
-                                <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
-                                <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
-                                <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                            <div class="badge-prio-container">
+                                <div class="main-badge-container">
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
 
-                            </div>
-                            <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
-                        </div>
-                    </div>
-                    <div class="task-container">
-                        <h4>User Story</h4>
-                        <span>Contact Form & Imprint</span>
-                        <p>Crate a contact from and imprint page</p>
-                        <div class="subtask-progress-container">
-                            <div class="progress-bar">
-                                <div class="fill-progress-bar"></div>
-                            </div>
-                            <div>
-                                <span>
-                                    <span>1</span>/<span>2</span> Subtasks
-                                </span>
+                                </div>
+                                <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
                             </div>
                         </div>
-                        <div class="badge-prio-container">
-                            <div class="main-badge-container">
-                                <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
-                                <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
-                                <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                        <div class="task-container">
+                            <h4>User Story</h4>
+                            <span>Contact Form & Imprint</span>
+                            <p>Crate a contact from and imprint page</p>
+                            <div class="subtask-progress-container">
+                                <div class="progress-bar">
+                                    <div class="fill-progress-bar"></div>
+                                </div>
+                                <div>
+                                    <span>
+                                        <span>1</span>/<span>2</span> Subtasks
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="badge-prio-container">
+                                <div class="main-badge-container">
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
 
+                                </div>
+                                <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
                             </div>
-                            <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
                         </div>
                     </div>
                 </div>
@@ -136,28 +143,30 @@
                         <img src="./assets/img/plus_icon.png">
                     </div>
                     <div id="empty2"></div>
-                    <div class="task-container">
-                        <h4>User Story</h4>
-                        <span>Contact Form & Imprint</span>
-                        <p>Crate a contact from and imprint page</p>
-                        <div class="subtask-progress-container">
-                            <div class="progress-bar">
-                                <div class="fill-progress-bar"></div>
+                    <div class="tasks-container">
+                        <div class="task-container">
+                            <h4>User Story</h4>
+                            <span>Contact Form & Imprint</span>
+                            <p>Crate a contact from and imprint page</p>
+                            <div class="subtask-progress-container">
+                                <div class="progress-bar">
+                                    <div class="fill-progress-bar"></div>
+                                </div>
+                                <div>
+                                    <span>
+                                        <span>1</span>/<span>2</span> Subtasks
+                                    </span>
+                                </div>
                             </div>
-                            <div>
-                                <span>
-                                    <span>1</span>/<span>2</span> Subtasks
-                                </span>
-                            </div>
-                        </div>
-                        <div class="badge-prio-container">
-                            <div class="main-badge-container">
-                                <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
-                                <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
-                                <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                            <div class="badge-prio-container">
+                                <div class="main-badge-container">
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
 
+                                </div>
+                                <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
                             </div>
-                            <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
                         </div>
                     </div>
                 </div>
@@ -167,28 +176,31 @@
                         <img src="./assets/img/plus_icon.png">
                     </div>
                     <div id="empty3"></div>
-                    <div class="task-container">
-                        <h4>User Story</h4>
-                        <span>Contact Form & Imprint</span>
-                        <p>Crate a contact from and imprint page</p>
-                        <div class="subtask-progress-container">
-                            <div class="progress-bar">
-                                <div class="fill-progress-bar"></div>
-                            </div>
-                            <div>
-                                <span>
-                                    <span>1</span>/<span>2</span> Subtasks
-                                </span>
-                            </div>
-                        </div>
-                        <div class="badge-prio-container">
-                            <div class="main-badge-container">
-                                <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
-                                <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
-                                <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
 
+                    <div class="tasks-container">
+                        <div class="task-container">
+                            <h4>User Story</h4>
+                            <span>Contact Form & Imprint</span>
+                            <p>Crate a contact from and imprint page</p>
+                            <div class="subtask-progress-container">
+                                <div class="progress-bar">
+                                    <div class="fill-progress-bar"></div>
+                                </div>
+                                <div>
+                                    <span>
+                                        <span>1</span>/<span>2</span> Subtasks
+                                    </span>
+                                </div>
                             </div>
-                            <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
+                            <div class="badge-prio-container">
+                                <div class="main-badge-container">
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
+                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+
+                                </div>
+                                <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
