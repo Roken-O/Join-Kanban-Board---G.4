@@ -7,11 +7,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
-  padding: 80px 64px 64px 232px;
+  margin: 80px 64px 64px 232px;
 }
 
 .contacts-list {
+  height: 75%;
   padding: 0px 32px;
   background-color: white;
 }
@@ -41,7 +41,7 @@
 }
 
 #contacts-list-content {
-  height: 70%;
+  height: 90%;
   overflow: scroll;
   scrollbar-width: thin;
   display: flex;
@@ -66,6 +66,19 @@
   padding: 15px 24px 15px 24px;
   gap: 35px;
 }
+
+#contact-contactlist:hover {
+  cursor: pointer;
+}
+
+#contact-contactlist:active {
+  background-color: #293647;
+}
+
+#contact-contactlist:focus {
+  background-color: #293647;
+}
+
 
 .first-letters-name-contactlist-bg {
   background-color: #ffbb2a;
@@ -125,6 +138,7 @@
   border-radius: 30px 0px 0px 30px;
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
 
 .popUp-edit-add-leftside-content {
@@ -133,6 +147,8 @@
   flex-direction: column;
   gap: 12px;
 }
+
+
 
 .span-Contact {
   font-size: 61px;
@@ -210,6 +226,21 @@
 
 .container-close-icon-responsive{
   display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  display: none;
+}
+.close-icon-responsive{
+  height: 13px;
+  width: 13px;
+  margin: -23px 20px 0px 0px;
+  padding: 5px;
+}
+
+.close-icon-responsive:hover{
+  cursor: pointer;
+  background-color: #29abe2;
+  border-radius: 50%;
 }
 
 .form-add-new-contact {

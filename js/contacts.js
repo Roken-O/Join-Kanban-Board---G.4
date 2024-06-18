@@ -1,5 +1,11 @@
 let allContacts = [];
+let hexColors = ['#29abe2', '#4589ff', '#0038ff', '#ff3d00', '#ff745e', '#ffa35e', '#ff7a00', '#ffbb2b', '#ffe62b', '#ffc701', '#7ae229', '#1fd7c1', '#fc71ff', '#ff5eb3', '#9327ff', '#462f8a'];
 
+
+function getRandomColor() {
+  let randomColor = Math.floor(Math.random() * hexColors.length);
+  return hexColors[randomColor];
+}
 
 function emailFormatted(email) {
   return email.replace(".", ",").replace("@", "_");
@@ -10,11 +16,13 @@ function saveContact() {
   let name = document.getElementById("contact-trial-name").value;
   let email = document.getElementById("contact-trial-email").value;
   let phone = document.getElementById("contact-trial-phone").value;
+  let randomColor = getRandomColor();
 
   let contact = {
     name: name,
     email: email,
     phone: phone,
+    color: randomColor
   };
 
   document.getElementById("contact-trial-name").value = '';
@@ -51,7 +59,7 @@ function loadContacts() {
 
       contactsContainer.innerHTML += /*html*/ `
           <div id="contact-entry">
-            <div id="contact-trial-initial-container">${getInitials(contact.name)}</div>
+            <div style="background: ${contact.color}" id="contact-trial-initial-container">${getInitials(contact.name)}</div>
             <div id="contact-trial-name-container">Name: ${contact.name}</div>
             <div id="contact-trial-email-container">Email: ${contact.email}</div>
             <div id="contact-trial-phone-container">Telefonnummer: ${contact.phone}</div>
