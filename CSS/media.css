@@ -10,14 +10,15 @@
   /* MOBILE MENU - START */
 
   #mobile-menu {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left:0;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     height: 80px;
     background: #2a3647;
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100vw;
   }
 
