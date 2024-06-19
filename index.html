@@ -15,7 +15,7 @@
     <title>Join</title>
 </head>
 
-<body onload="animate()">
+<body onload="init()">
     <section id="login-site" class="login-site w-100">
         <div id="signUp-Container" class="signUp-container">
             <span>Not a Join user?</span>
@@ -25,14 +25,14 @@
             <img id="logo" src="./assets/img/join_logo_DARK.svg">
         </div>
         <div id="login-container" class="login-container">
-            <form onsubmit="logIn()">
+            <form onsubmit="logIn(); return false;">
                 <div class="h1-container">
                     <h1>Log in</h1>
                     <div class="line"></div>
                 </div>
                 <div class="inputs-container flex-col-just-center">
-                    <input type="email" required placeholder="Email" class="input1">
-                    <input type="text" required placeholder="Password" class="input2">
+                    <input id="email" type="email" required placeholder="Email" class="input1">
+                    <input id="password" type="text" required placeholder="Password" class="input2">
                     <div class="checkbox">
                         <input type="checkbox">
                         <span>Remember me</span>
@@ -52,8 +52,9 @@
         </div>
     </section>
 
-    <script src="/js/index.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/index.js"></script>
+    
 </body>
 
 </html>

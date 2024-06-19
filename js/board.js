@@ -1,3 +1,9 @@
+// function updateHTML(){
+
+// }
+
+
+
 function openTaskDetails() {
   let taskDetails = document.getElementById('task');
   taskDetails.style.display = 'flex';

@@ -1,4 +1,9 @@
+let allUsers = [];
 
+function init(){
+    animate();
+    loadUsers();
+}
 function animate(){
 
 if (window.innerWidth > 550) {
@@ -34,7 +39,7 @@ function goToSignupSite() {
     let signupSite = document.getElementById('signup-site-container');
     signupSite.style.opacity = "1";
     signupSite.innerHTML = `
-     <form onsubmit="signupNeuUser()">
+     <form action="" onsubmit="return false" id="signupForm">
         <div onclick="goToLoginSite()" class="arrow-left-container">
           <img src="./assets/img/back_icon.svg">
           <div class="h1-container">
@@ -44,17 +49,17 @@ function goToSignupSite() {
         </div>
 
         <div class="inputs-container flex-col-just-center">
-            <input type="text" required placeholder="Name" class="input0">
-            <input type="email" required placeholder="Email" class="input1">
-            <input type="text" required placeholder="Password" class="input2">
-            <input type="text" required placeholder="Confirm Password" class="input2">
+            <input id="username" type="text" required placeholder="Name" class="input0">
+            <input id="email" type="email" required placeholder="Email" class="input1">
+            <input id="password" type="text" required placeholder="Password" class="input2">
+            <input id="password" type="text" required placeholder="Confirm Password" class="input2">
             <div class="checkbox-signup-site">
                 <input type="checkbox">
                 <span>I accept <a href="#">Privacy Policy</a></span>
             </div>
         </div>
         <div class="login-buttons-container">
-            <button class="login-button">Sign up</button>
+            <button type="submit" class="login-button" onclick="signupNeuUser()">Sign up</button>
         </div>
     </form>`;
 }
@@ -64,3 +69,47 @@ function goToLoginSite() {
     document.getElementById('login-container').style.display = "flex";
     document.getElementById('signup-site-container').style.display = "none";
 }
+
+
+
+function loadUsers() {
+    let database = firebase.database();
+    let usersEntries = database.ref("users");
+  
+    usersEntries.on("value", function (snapshot) {
+   
+      allUsers = [];
+      snapshot.forEach(function (childSnapshot) {
+        let user = childSnapshot.val();
+        allUsers.push(user);
+  
+      });
+    });
+  }
+function logIn(){
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+}
+
+// function signupNeuUser(){
+//     let loginForm = document.getElementById("loginForm");
+//     loginForm.addEventListener("submit", (e) => {
+//         e.preventDefault();
+      
+//         let username = document.getElementById("username");
+//         let password = document.getElementById("password");
+
+//   if (username.value == "" || password.value == "") {
+//     alert("Ensure you input a value in both fields!");
+//   } else {
+//     // perform operation with form input
+//     alert("This form has been successfully submitted!");
+//     console.log(
+//       `This form has a username of ${username.value} and password of ${password.value}`
+//     );
+
+//     username.value = "";
+//     password.value = "";
+//   }
+// });
+// }
