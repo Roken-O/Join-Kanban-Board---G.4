@@ -7,13 +7,19 @@
   left: 0;
   width: 100%;
   height: 100%;
-  margin: 80px 64px 64px 232px;
+  margin: 87px 64px 64px 232px;
+}
+
+.contacts-list-container{
+  display: flex;
+  justify-content: center;
 }
 
 .contacts-list {
   height: 75%;
   padding: 0px 32px;
   background-color: white;
+  margin-top: -6px;
 }
 
 #add-new-contact-btn {
@@ -41,8 +47,7 @@
 }
 
 #contacts-list-content {
-  height: 90%;
-  overflow: scroll;
+  overflow: auto;
   scrollbar-width: thin;
   display: flex;
   flex-direction: column;
@@ -65,20 +70,17 @@
 #contact-contactlist {
   padding: 15px 24px 15px 24px;
   gap: 35px;
+  border-radius: 10px;
 }
 
 #contact-contactlist:hover {
   cursor: pointer;
+  background-color: #f1efef;
 }
 
 #contact-contactlist:active {
   background-color: #293647;
 }
-
-#contact-contactlist:focus {
-  background-color: #293647;
-}
-
 
 .first-letters-name-contactlist-bg {
   background-color: #ffbb2a;
@@ -147,8 +149,6 @@
   flex-direction: column;
   gap: 12px;
 }
-
-
 
 .span-Contact {
   font-size: 61px;
@@ -297,6 +297,12 @@
   cursor: pointer;
 }
 
+/* Contact-info-responisve */
+
+.margin-left-0{
+  margin-left: 0 !important;
+}
+
 /* contacts-container */
 .contacts-container {
   padding: 64px 32px;
@@ -336,10 +342,16 @@
   font-weight: 400;
 }
 
-#contact {
+.contact {
   display: flex;
   flex-direction: column;
   gap: 21px;
+  transform: translateX(1200px);
+  transition: 200ms ease-in-out;
+}
+
+.show-contact{
+  transform: translateX(0);
 }
 
 .contact-pic-name-container {
@@ -424,5 +436,70 @@
   text-decoration: none;
   color: black;
 }
+
+/* contacts-container-responsive */
+.contacts-container-responsive {
+  padding: 64px 32px;
+  background-color: #f6f7f8;
+  width: 100%;
+  display: none;
+}
+
+.contact-responsive{
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+.first-letters-name-bg-mobil {
+  background-color: #ffbb2a;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  font-size: 47px;
+}
+
+.headline-div-contacts-mobil{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.contact-pic-name-container-mobil{
+  gap: 20px;
+}
+
+.h1-and-backimg-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.h1-mobil{
+  font-size: 61px;
+}
+
+ .d-unset{
+  display: unset !important;
+ }
+
+ .display-none{
+  display: none !important;
+ }
+
+ .back_icon{
+  height: 32px;
+  width: 32px;
+ }
+
+ .back_icon:hover{
+  cursor: pointer;
+ }
+
 
 /* main-container-contacts End */

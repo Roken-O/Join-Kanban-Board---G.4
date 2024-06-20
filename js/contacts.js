@@ -114,3 +114,20 @@ function editContactPopUp() {
     .getElementById("edit-contact-popUp-bg")
     .classList.add("add-new-or-edit-contact-popUp-bg");
 }
+
+function showContact(){
+  document.getElementById("contact").classList.add("show-contact");
+}
+
+function showContactResponsive (){
+  let width = window.innerWidth;
+  if (width <= 1050) {
+    document.getElementById("contacts-list").classList.add("display-none");
+    document.getElementById("contacts-container-responsive").classList.add("d-unset");
+  }
+}
+
+function closeContact(){
+  document.getElementById("contacts-list").classList.remove("display-none");
+  document.getElementById("contacts-container-responsive").classList.remove("d-unset");
+}
