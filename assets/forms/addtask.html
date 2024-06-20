@@ -280,29 +280,18 @@ x.style.display = "block";
 
         // Farbe für den angeklickten Button ändern und Schrift weiß machen
         if (buttonId === 'btn1') {
-            document.getElementById(path1Id).classList.remove('cls-1');
-            document.getElementById(path2Id).classList.remove('cls-1');
             document.getElementById('btn1').style.backgroundColor = 'red';
             document.getElementById('btn1').style.color = 'white';
-            document.getElementById(path1Id).classList.add('cls-13');
-            document.getElementById(path2Id).classList.add('cls-13');
+           
         } else if (buttonId === 'btn2') {
-
-            
-            document.getElementById(path1Id).classList.remove('cls-8');
-            document.getElementById(path2Id).classList.remove('cls-8');
             document.getElementById('btn2').style.backgroundColor = 'orange';
             document.getElementById('btn2').style.color = 'white';
-            document.getElementById(path1Id).classList.add('cls-13');
-            document.getElementById(path2Id).classList.add('cls-13');
         } else if (buttonId === 'btn3') {
-            document.getElementById(path1Id).classList.remove('cls-11');
-            document.getElementById(path2Id).classList.remove('cls-11');
             document.getElementById('btn3').style.backgroundColor = 'green';
             document.getElementById('btn3').style.color = 'white';
-            document.getElementById(path1Id).classList.add('cls-13');
-            document.getElementById(path2Id).classList.add('cls-13');
         }
+        document.getElementById(path1Id).classList.add('cls-13');
+        document.getElementById(path2Id).classList.add('cls-13');
     }
 
     function resetButtons() {
@@ -310,12 +299,16 @@ x.style.display = "block";
         document.getElementById('btn1').style.backgroundColor = 'white';
         document.getElementById('btn1').style.color = 'black';
         
-
         document.getElementById('btn2').style.backgroundColor = 'white';
         document.getElementById('btn2').style.color = 'black';
 
         document.getElementById('btn3').style.backgroundColor = 'white';
         document.getElementById('btn3').style.color = 'black';
+
+        let paths = ['urgent-path1', 'urgent-path2','medium-path1', 'medium-path2','low-path1', 'low-path2'];
+        for (let i = 0; i < paths.length; i++) {
+            document.getElementById(paths[i]).classList.remove('cls-13');
+        }
     }
 
     //         function changeSvgColor(svgId, path) {
