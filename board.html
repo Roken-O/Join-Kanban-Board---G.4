@@ -22,42 +22,42 @@
             <div class="board-search-container">
                 <h1>Board</h1>
                 <div class="input-search-container">
-                    <input type="text" placeholder="Find Task">
-                    <div>
-                        <button>Add task
-                            <svg id="plus_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 90 90">
-                                <defs>
-                                    <style>
-                                        .cls-1 {
-                                            fill: white;
-                                            stroke: white;
-                                            stroke-linecap: round;
-                                            stroke-width: 10px;
-                                        }
-                                    </style>
-                                </defs>
-                                <path class="cls-1" d="M45,5v80" />
-                                <path class="cls-1" d="M85,45.75H5" />
-                            </svg></button>
+                    <input oninput="filterTask()" id="search" type="text" placeholder="Find Task">
+                    <div><a href="/assets/forms/add_task.html">
+                            <button>Add task
+                                <svg id="plus_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 90 90">
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: white;
+                                                stroke: white;
+                                                stroke-linecap: round;
+                                                stroke-width: 10px;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <path class="cls-1" d="M45,5v80" />
+                                    <path class="cls-1" d="M85,45.75H5" />
+                                </svg></button></a>
                     </div>
                 </div>
             </div>
 
             <div id="task" onclick="closePopup()"></div>
 
-            <div class="column-container">
+            <div id="content" class="column-container">
                 <div class="sub-column-container">
                     <div class="column-head">
                         <span>To do</span>
                         <img src="./assets/img/plus_icon.png">
                     </div>
-                    <div id="empty0">No tasks To do</div>
-                    <div class="tasks-container">
+                    <div id="empty0" class="d-none">No tasks To do</div>
+                    <div id="to-do" class="tasks-container">
                         <div onclick="openTaskDetails()" class="task-container">
                             <h4>User Story</h4>
                             <span>Contact Form & Imprint</span>
-                            <p>Crate a contact from and imprint page..jjj</p>
+                            <p>Crate a contact from and imprint page..jjfggfgfgggggggggggggggggggggggggggggggjdfrgrgthgththhhhhhhhhhhhjjdddddddddddddddddddddddddddjjjjjjjjjjjjjjjjjjj</p>
                             <div class="subtask-progress-container">
                                 <div class="progress-bar">
                                     <div class="fill-progress-bar"></div>
@@ -70,9 +70,15 @@
                             </div>
                             <div class="badge-prio-container">
                                 <div class="main-badge-container">
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-kt">KT</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-bt">BT</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-fk">FK</div>
+                                    </div>
 
                                 </div>
                                 <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
@@ -86,7 +92,7 @@
                         <img src="./assets/img/plus_icon.png">
                     </div>
                     <div id="empty1"></div>
-                    <div class="tasks-container">
+                    <div id="in-progress" class="tasks-container">
                         <div class="task-container">
                             <h4>User Story</h4>
                             <span>Contact Form & Imprint</span>
@@ -103,9 +109,15 @@
                             </div>
                             <div class="badge-prio-container">
                                 <div class="main-badge-container">
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-bl">BL</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-ca">CA</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-ro">RO</div>
+                                    </div>
 
                                 </div>
                                 <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
@@ -127,9 +139,45 @@
                             </div>
                             <div class="badge-prio-container">
                                 <div class="main-badge-container">
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-kt">KT</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-bt">BT</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-fk">FK</div>
+                                    </div>
+
+                                </div>
+                                <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
+                            </div>
+                        </div>
+                        <div class="task-container">
+                            <h4>User Story</h4>
+                            <span>Contact Form & Imprint</span>
+                            <p>Crate a contact from and imprint page</p>
+                            <div class="subtask-progress-container">
+                                <div class="progress-bar">
+                                    <div class="fill-progress-bar"></div>
+                                </div>
+                                <div>
+                                    <span>
+                                        <span>1</span>/<span>2</span> Subtasks
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="badge-prio-container">
+                                <div class="main-badge-container">
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-bl">BL</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-ca">CA</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-ro">RO</div>
+                                    </div>
 
                                 </div>
                                 <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
@@ -143,9 +191,9 @@
                         <img src="./assets/img/plus_icon.png">
                     </div>
                     <div id="empty2"></div>
-                    <div class="tasks-container">
+                    <div id="await-feedback" class="tasks-container">
                         <div class="task-container">
-                            <h4>User Story</h4>
+                            <h4 class="technical-task-h4">Technical Task</h4>
                             <span>Contact Form & Imprint</span>
                             <p>Crate a contact from and imprint page</p>
                             <div class="subtask-progress-container">
@@ -160,9 +208,15 @@
                             </div>
                             <div class="badge-prio-container">
                                 <div class="main-badge-container">
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-bl">BL</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-ca">CA</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-ro">RO</div>
+                                    </div>
 
                                 </div>
                                 <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>
@@ -177,7 +231,7 @@
                     </div>
                     <div id="empty3"></div>
 
-                    <div class="tasks-container">
+                    <div id="done" class="tasks-container">
                         <div class="task-container">
                             <h4>User Story</h4>
                             <span>Contact Form & Imprint</span>
@@ -194,9 +248,15 @@
                             </div>
                             <div class="badge-prio-container">
                                 <div class="main-badge-container">
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_yellow.png"></div>
-                                    <div class="badge-container"><img src="./assets/img/badge_dark_purple.png"></div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-bl">BL</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-ca">CA</div>
+                                    </div>
+                                    <div class="badge-container">
+                                        <div class="sub-badge-container badge-ro">RO</div>
+                                    </div>
 
                                 </div>
                                 <div class="priorität-img-container"><img src="./assets/img/urgent_icon.png"></div>

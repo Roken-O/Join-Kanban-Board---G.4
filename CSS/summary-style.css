@@ -144,6 +144,13 @@ span {
 
 .urgent-container h3 {
   margin-bottom: 12px;
+  color: rgba(42, 54, 71, 1);
+  font-weight: 700;
+
+}
+
+.urgent-container:hover h3{
+  color: white;
 }
 
 .sub-urgent-container {

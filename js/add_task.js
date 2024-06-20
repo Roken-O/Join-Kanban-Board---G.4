@@ -117,13 +117,14 @@ function loadTasks() {
     snapshot.forEach(function (childSnapshot) {
       let task = childSnapshot.val();
       let assignedContacts = task.taskAssignment ? task.taskAssignment.map(contact => contact.name).join(', ') : 'No contacts assigned';
-
+      let dateParts = task.taskDate.split('-');
+      let formDate = dateParts[2] + '.' + dateParts[1] + '.' + dateParts[0];
       taskContainer.innerHTML += /*html*/ `
             <div id="task-trial-board-container">
                 <div id="task-trial-category-container">${task.taskCategory}</div>
                 <div id="task-trial-title-container">${task.taskTitle}</div>
                 <div id="task-trial-description-container">${task.taskDescription}</div>
-                <div id="task-trial-date-container">Due date: ${task.taskDate}</div>
+                <div id="formatted-date-display">Due date: ${formDate}</div>
                 <div id="task-trial-priority-container"><img src="${task.taskPriority}" id="task-trial-priority-icon-task" alt="Priority Icon"/></div>
                 <div id="task-trial-assignment-container">Assigned to: ${assignedContacts}</div>
                 <div id="task-trial-subtask-container">Subtasks: ${task.taskSubTask}</div>
@@ -173,8 +174,8 @@ function toggleContactAssignment(checkbox) {
 
 
 function updateSelectedContactsDisplay() {
-  let selectedContactsDiv = document.getElementById('selected-contacts');
-  selectedContactsDiv.innerText = "Selected Contacts: " + selectedContacts.map(contact => contact.name).join(', ');
+  let selectedContactsContainer = document.getElementById('selected-contacts');
+  selectedContactsContainer.innerText = "Selected Contacts: " + selectedContacts.map(contact => contact.name).join(', ');
 }
 
 
@@ -214,12 +215,6 @@ function selectCategory(event, category) {
 }
 
 
-// window.onload = function() {
-
-  
-// }
-
-
 function createCategoryIconUrgent() {
   priority = '/assets/img/urgent_icon.svg';
 }
@@ -238,34 +233,10 @@ function createCategoryIconLow() {
 function setMinDateDatepicker() {
   let today = new Date();
   let tt = String(today.getDate()).padStart(2, '0');
-  let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let mm = String(today.getMonth() + 1).padStart(2, '0');
   let jjjj = today.getFullYear();
 
-  today = jjjj + '-' + mm + '-' + tt;
-  document.getElementById('task-trial-date-picker').min = today;
-  document.getElementById('task-trial-date-picker').value = today;
+  let unformDate = jjjj + '-' + mm + '-' + tt;
+  document.getElementById('task-trial-date-picker').min = unformDate;
+  document.getElementById('task-trial-date-picker').value = unformDate;
 }
-
-// set actual date-function
-//         function getDate() {
-//   var today = new Date();
-//   var dd = today.getDate();
-//   var mm = today.getMonth()+1; //January is 0!
-//   var yyyy = today.getFullYear();
-
-//   if(dd<10) {
-//       dd = '0'+dd
-//   }
-
-//   if(mm<10) {
-//       mm = '0'+mm
-//   }
-
-//   today = yyyy + '/' + mm + '/' + dd;
-//   console.log(today);
-//   document.getElementById("date").value = today;
-// }
-
-// window.onload = function() {
-//   getDate();
-// };

@@ -18,83 +18,151 @@
 <body onload="includeHTML()">
     <section id="main-container" class="background-grey">
         <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+
+
+
         <h2 class="task-headline mb-48">Add Task</h2>
-        <form class="form-height w-50 " onsubmit="addTask()">
+        <form class="form-height w-50" onsubmit="addTask()">
             <div class="flex-evenly-start padding-bottom-24">
                 <div class="left-container">
                     <div class="padding-bottom-24">
                         <div class="mb-8 flex field-headline">Title<div class="asterisk-color">*</div>
                         </div>
-                        <input class="field-325" type="text" placeholder="Enter a title">
+                        <input required minlength="2" class="field-325" type="text" placeholder="Enter a title">
                     </div>
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Description</div>
-                        <textarea class="description-input" name="w3review" rows="4" cols="50"
-                            placeholder="Enter a Description"></textarea>
+                        <textarea required pattern="[A-Za-z0-9]+" maxlength="450" class="description-input"
+                            name="w3review" rows="4" cols="50"
+                            placeholder="Enter a description in english please!"></textarea>
                     </div>
-                    <div class="assigned-flex">
+
+                    <!-- <div class="assigned-flex">
                         <div class="mb-8 field-headline">Assigned to</div>
-                        <div class="select"><span class="select-span">Select contacts to assign</span></div>   
+                        <div class="select"><span class="select-span">Select contacts to assign</span></div>
+                    </div> -->
+                    <div class="mb-8 flex field-headline">Assigned to</div>
+                    <div class="dropdown">
+                        <div class="dropbtn">Select contacts to assign</div>
+                        <div class="dropdown-content">
+                            <a class="" href="#"><img class="addtask-initials" src="/assets/img/contact_initials.svg" alt="contact initials">Sofia Müller (You)<input type="checkbox" id="vehicle2" name="vehicle2" value="Car"></a>
+                            <a href="#">Anton Mayer<input type="checkbox" id="vehicle2" name="vehicle2" value="Car"></a>
+                            <a href="#">Anja Schulz<input type="checkbox" id="vehicle2" name="vehicle2" value="Car"></a>
+                        </div>
                     </div>
+
                 </div>
+
+
                 <div class="form-seperator"></div>
+
                 <div class="right-container">
                     <div class="padding-bottom-24">
+
                         <div class="mb-8 flex field-headline">Due date<div class="asterisk-color">*</div>
                         </div>
-                        <input class="field-325 date" type="date" placeholder="dd/mm/yyyy Kalenderbutton">
+                        <input required class="field-325 date" type="date" placeholder="dd/mm/yyyy Kalenderbutton">
                     </div>
+
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Prio</div>
                         <div class="flex gap-28">
-                          <button class="urgent"><span class="span-urgent">Urgent</span></button> 
-                          <button class="medium"><span class="span-medium">Medium</span></button>
-                          <button class="low"><span class="span-low">Low</span></button>
+                            <button class="urgent color-urgent"><span class="span-urgent">Urgent</span></button>
+                            <button class="medium"><span class="span-medium">Medium</span></button>
+                            <button class="low"><span class="span-low">Low</span></button>
                         </div>
                     </div>
-                    <div class="padding-bottom-24">
-                      <div class="mb-8">Prio</div>
-                      <div class="flex gap-28">
-                        <button class="urgent-red"><span class="span-urgent-red">Urgent</span></button> 
-                        <button class="medium-orange"><span class="span-medium-orange">Medium</span></button>
-                        <button class="low-green"><span class="span-low-green">Low</span></button> 
-                            
-                      </div>
-                  </div>
+
+
                     <div class="padding-bottom-24">
                         <div class="mb-8 flex field-headline">Category<div class="asterisk-color">*</div>
                         </div>
-                        <div class="assigned-flex">
-                          <div class="select"><span class="select-span">Select task category</span></div>   
-                      </div>
+                        <div class="dropdown">
+                            <div class="dropbtn">Select task category</div>
+                            <div class="dropdown-content">
+                                <a href="#">Technical Task</a>
+                                <a href="#">User Story</a>
+                            </div>
+                        </div>
+                        <div class="assigned-flex padding-top-24">
+                            <div class="mb-8 field-headline">Subtasks</div>
+                            <div class="select-subtask"><span class="select-subtask-span">Add new subtask</span></div>
+                        </div>
                     </div>
-                    <div class="assigned-flex">
-                      <div class="mb-8 field-headline">Subtasks</div>
-                      <div class="select-subtask"><span class="select-subtask-span">Add new subtask</span></div>   
-                  </div>
                 </div>
             </div>
+
             <div class="flex-evenly-start">
-                    <div class="flex">
-                        <div class="asterisk-color">*</div>
-                        <div class="required-text">This field is required</div>
-                    </div>
-                    <div class="flex gap-16">
-                            <button class="cleaning"><span class="cleaning-text">Clear</span></button>
-                            <button class="create-task"><span class="create-text">Create Task</span></button>     
-                    </div>
+                <div class="flex">
+                    <div class="asterisk-color">*</div>
+                    <div class="required-text">This field is required</div>
+                </div>
+                <div class="flex gap-16">
+                    <button class="cleaning"><span class="cleaning-text">Clear</span></button>
+                    <button required class="create-task"><span class="create-text">Create Task</span></button>
                 </div>
             </div>
+
         </form>
+        <!-- <div class="padding-bottom-24">
+                <div class="mb-8">Prio</div>
+                <div class="flex gap-28">
+                    <button class="urgent-red"><span class="span-urgent-red">Urgent</span></button>
+                    <button class="medium-orange"><span class="span-medium-orange">Medium</span></button>
+                    <button class="low-green"><span class="span-low-green">Low</span></button>
+                </div>
+            </div> -->
 
-        <!-- placeholder; text; number, email; alt und leertaste; <form onsubmit="meineFunktion()"> wird nur onsubmittet, wenn
-        es komplett ausgefüllt ist. Vor "type" sollte required verlangt werden -->
- 
 
-        
-        
-    <script src="/js/script.js"></script>
-    <script src="/js/add_task.js"></script>
+        <!-- <script>
+            function categoryDropdown() {
+                let x = document.getElementById('task-trial-category-dropdown');
+                if (x.style.display === "block") {
+                    x.style.display = "none";
+                } else {
+                    x.style.display = "block";
+                }
+            }
+
+        </script> -->
+
+
+
+        <script src="/js/script.js"></script>
+        <script src="/js/add_task.js"></script>
 </body>
 
 </html>
+
+
+<!-- <section class="task-trial-category-dropdown-container">
+    <div id="task-trial-category-selection-container">
+        <div id="task-trial-category-selection">Category</div>    
+        <div class="icon-dropdown-arrow" onclick="categoryDropdown()"><img id="icon-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"></div>
+    </div>
+    <div class="task-trial-category-dropdown-links d-none" id="task-trial-category-dropdown">
+        <div class="category-selection" id="category-technical-task">Technical Task</div>
+        <div class="category-selection" id="category-user-story">User Story</div>
+    </div>
+</section>
+
+
+function categoryDropdown() {
+let x = document.getElementById('task-trial-category-dropdown');
+if (x.style.display === "block") {
+x.style.display = "none";
+} else {
+x.style.display = "block";
+}
+}
+
+#icon-dropdown-arrow-image {
+    height: 8px;
+    cursor: pointer;
+}
+
+#task-trial-category-selection-container {
+    display: flex;
+    gap: 16px;
+    cursor: pointer;
+} -->
