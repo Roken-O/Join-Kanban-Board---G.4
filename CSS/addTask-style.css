@@ -679,14 +679,10 @@ input[type="date"]:before {
 width: 16px;
 height: 16px;
 margin-left:6px;
+/* background-color: white; */
 
 }
 
-
-
-
-
-
-
-
-
+.cls-13 {
+  fill: white !important;
+}
