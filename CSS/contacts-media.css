@@ -61,11 +61,6 @@
 }
 
 @media(max-width:1050px){
-    .main-container-contacts{
-        /* justify-content: center; */
-        /* margin: 80px 64px 64px 115px; */
-    }
-
     .contacts-container{
         display: none;
     }
