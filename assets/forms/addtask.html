@@ -20,16 +20,23 @@
         <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
 
 
-
+        <!-- headline -->
         <h2 class="task-headline mb-48">Add Task</h2>
-        <form class="form-height w-50" onsubmit="addTask()">
+
+        <!-- form-start -->
+        <form class="form-height w-50" onsubmit="addTask(); return false;">
+
             <div class="flex-evenly-start padding-bottom-24">
                 <div class="left-container">
+
+                    <!-- title -->
                     <div class="padding-bottom-24">
                         <div class="mb-8 flex field-headline">Title<div class="asterisk-color">*</div>
                         </div>
                         <input required minlength="2" class="field-325" type="text" placeholder="Enter a title">
                     </div>
+
+                    <!-- description -->
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Description</div>
                         <textarea required pattern="[A-Za-z0-9]+" maxlength="450" class="description-input"
@@ -37,15 +44,12 @@
                             placeholder="Enter a description in english please!"></textarea>
                     </div>
 
-                    <!-- <div class="assigned-flex">
-                        <div class="mb-8 field-headline">Assigned to</div>
-                        <div class="select"><span class="select-span">Select contacts to assign</span></div>
-                    </div> -->
+                    <!-- drop-down-contacts -->
                     <div class="mb-8 flex field-headline">Assigned to</div>
                     <div class="dropdown">
                         <div class="dropbtn">Select contacts to assign</div>
                         <div class="dropdown-content">
-                            <a class="" href="#"><img class="addtask-initials" src="/assets/img/contact_initials.svg" alt="contact initials">Sofia Müller (You)<input type="checkbox" id="vehicle2" name="vehicle2" value="Car"></a>
+                            <a href="#"><img class="addtask-initials" src="/assets/img/contact_initials.svg" alt="contact initials">Sofia Müller (You)<input type="checkbox" id="vehicle2" name="vehicle2" value="Car"></a>
                             <a href="#">Anton Mayer<input type="checkbox" id="vehicle2" name="vehicle2" value="Car"></a>
                             <a href="#">Anja Schulz<input type="checkbox" id="vehicle2" name="vehicle2" value="Car"></a>
                         </div>
@@ -58,22 +62,22 @@
 
                 <div class="right-container">
                     <div class="padding-bottom-24">
-
+                        <!-- date -->
                         <div class="mb-8 flex field-headline">Due date<div class="asterisk-color">*</div>
                         </div>
-                        <input required class="field-325 date" type="date" placeholder="dd/mm/yyyy Kalenderbutton">
+                        <input required class="field-325 date" type="date" placeholder="dd/mm/yyyy Kalenderbutton">      
                     </div>
-
+                    <!-- prio -->
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Prio</div>
                         <div class="flex gap-28">
                             <button class="urgent color-urgent"><span class="span-urgent">Urgent</span></button>
-                            <button class="medium"><span class="span-medium">Medium</span></button>
-                            <button class="low"><span class="span-low">Low</span></button>
+                            <button class="medium color-medium"><span class="span-medium">Medium</span></button>
+                            <button class="low color-low"><span class="span-low">Low</span></button>
                         </div>
                     </div>
 
-
+                    <!-- category -->
                     <div class="padding-bottom-24">
                         <div class="mb-8 flex field-headline">Category<div class="asterisk-color">*</div>
                         </div>
@@ -84,6 +88,8 @@
                                 <a href="#">User Story</a>
                             </div>
                         </div>
+
+                        <!-- subtask -->
                         <div class="assigned-flex padding-top-24">
                             <div class="mb-8 field-headline">Subtasks</div>
                             <div class="select-subtask"><span class="select-subtask-span">Add new subtask</span></div>
@@ -97,13 +103,21 @@
                     <div class="asterisk-color">*</div>
                     <div class="required-text">This field is required</div>
                 </div>
+
+                <!-- cleaning -->
                 <div class="flex gap-16">
                     <button class="cleaning"><span class="cleaning-text">Clear</span></button>
+
+                    <!-- create task -->
                     <button required class="create-task"><span class="create-text">Create Task</span></button>
                 </div>
             </div>
 
         </form>
+
+
+
+
         <!-- <div class="padding-bottom-24">
                 <div class="mb-8">Prio</div>
                 <div class="flex gap-28">
@@ -125,7 +139,16 @@
             }
 
         </script> -->
+<script>
+// function changebackgroundColor() {
+//     //ids der 3 Buttons
+//     //3Buttons
+//     //if urgend geklickt, dann background color rot; 3*hintereinander if
+//     //else dass was geklickt ist behält die Farbe und die anderen bleiben weiß
+    
+// }
 
+</script>
 
 
         <script src="/js/script.js"></script>
