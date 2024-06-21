@@ -19,21 +19,25 @@ function signup() {
         if (checkUser) {
             checkEmailSignupFunk(checkUser['email']);
         } else {
-            showMessageAlert();
-            setTimeout(() => {
-                allUsers.push({ email: emailSignup, password: passwordSignup, registered: true });
-                saveNewUser(emailSignup, passwordSignup);
-                loadUsers();
-                window.location.href = 'index.html';
-            }, 2250);
+            if (passwordSignup.length > 5) {
+                showMessageAlert();
+                setTimeout(() => {
+                    allUsers.push({ email: emailSignup, password: passwordSignup, registered: true });
+                    saveNewUser(emailSignup, passwordSignup);
+                    loadUsers();
+                    window.location.href = 'index.html';
+                }, 2250);
+            }
+            else {
+                document.getElementById('wrong-password').innerHTML = `Password must be at least 6 characters!`;
+                document.getElementById('wrong-password').style.display = (passwordSignup.length <= 5) ? "flex" : "none";
+            }
         }
     }
 }
 
-
 function checkEmailSignupFunk(checkEmail) {
     let emailSignup = document.getElementById("email-signup").value;
-
     document.getElementById('existing-email').style.display = (emailSignup == checkEmail) ? "flex" : "none";
     // if (emailSignup == checkEmail) {
     //     document.getElementById('existing-email').style.display = "flex";
@@ -42,19 +46,10 @@ function checkEmailSignupFunk(checkEmail) {
     // }
 }
 
-
-
 function checkPassword() {
     let passwordSignup = document.getElementById("password-signup").value;
     let confirmPasswordSignup = document.getElementById("confirmPassword-signup").value;
-
     document.getElementById('wrong-password').style.display = (passwordSignup != confirmPasswordSignup) ? "flex" : "none";
-
-    // if (passwordSignup != confirmPasswordSignup) {
-    //     document.getElementById('wrong-password').style.display = "flex";
-    // } else {
-    //     document.getElementById('wrong-password').style.display = "none";
-    // }
 }
 
 function loadUsers() {
@@ -96,20 +91,44 @@ function showMessageAlert() {
 
 function login(event) {
     event.preventDefault();
+    document.getElementById('wrong-email').classList.add('d-none');
+    document.getElementById('wrong-password-login').style.display = "none";
     let email = document.getElementById("email");
     let password = document.getElementById("password");
-    let user = allUsers.find(u => u.email == email.value && u.password == password.value);
+    let user = allUsers.find(u => u.email == email.value);
     console.log(user);
     if (user) {
-        user['registered'] = true;
-        window.location.href = 'summary.html';
+        if (user['password'] == password.value) {
+            user['registered'] = true;
+            window.location.href = 'summary.html';
+        }
+        else {
+            checkPasswordLogin(user['password'], password.value);
+            document.getElementById('password').value = '';
+        }
+    }
+    else {
+        document.getElementById('wrong-email').classList.remove('d-none');
+    }
+}
+
+function checkPasswordLogin(userPassword, loginPassword) {
+    document.getElementById('wrong-password-login').style.display = (userPassword == loginPassword) ? "none" : "flex";
+}
+
+function togglePasswordVisibility(password) {
+    let passwordInput = document.getElementById(password);
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
     }
 }
 
 function goToSummarySite() {
     let email = document.getElementById("email");
     let password = document.getElementById("password");
-    email.value = "Guest";
+    email.value = "guest@gmai.com";
     password.value = "123456";
     window.location.href = 'summary.html';
 }
@@ -138,6 +157,12 @@ function animate() {
             }, 500);
         }, 500);
     }
+}
+
+function goToLoginSite() {
+    document.getElementById('signUp-Container').style.opacity = "1";
+    document.getElementById('login-container').style.display = "flex";
+    document.getElementById('signup-site-container').style.display = "none";
 }
 
 function goToSignupSite() {
@@ -173,10 +198,4 @@ function goToSignupSite() {
             <button id="signup-button">signup</button>
         </div>
     </form>`;
-}
-
-function goToLoginSite() {
-    document.getElementById('signUp-Container').style.opacity = "1";
-    document.getElementById('login-container').style.display = "flex";
-    document.getElementById('signup-site-container').style.display = "none";
 }
