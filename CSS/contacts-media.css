@@ -74,7 +74,7 @@
     }
 
     .contacts-list-container{
-        width: 73%;
+        width: 78%;
     }
 
     /* PopUp */
@@ -175,6 +175,11 @@
     }
 }
 
+@media(max-width:975px){
+    .contacts-list-container{
+        width: 76%;
+    }
+}
 
 @media(max-width:950px){
     #breakline-contactlist{
@@ -185,6 +190,10 @@
 @media(max-width:880px){
     #breakline-contactlist {
         width: 530px;
+    }
+
+    .contacts-list-container{
+        width: 74%;
     }
 }
 
@@ -215,6 +224,7 @@
 
     .contacts-container-responsive{
         margin-top: 7px;
+        padding: 57px 32px;
     }
 
     #contact-edit-delete{
@@ -307,9 +317,9 @@
         height: 70%;
     }
 
-    .contacts-container-responsive {
-        padding: 10px 32px;
-    }
+    /* .contacts-container-responsive {
+        padding: 57px 32px;
+    } */
 
     .h1-mobil{
         font-size: 40px;
@@ -415,60 +425,12 @@
     }
 }
   
-    /* max-height-670px
+    /* max-height-670px */
 
-@media(max-width:840px){
-    .add-new-or-edit-contact-popUp{
-        margin-bottom: 80px;
-    }
-
-    .popUp-edit-add-leftside{
-        height: 225px;
-    }
-
-    .span-Contact{
-        font-size: 35px;
-    }
-
-    .popUp-edit-add-rightside {
-        padding-top: 10px;
-    }
-
-    .add-new-or-edit-contact-popUp{
-        height: 500px;
-    }
-
-    .contacts-list {
-        height: 70%;
-    }
-
-    .bg-contact_icon{
-        width: 60px;
-        height: 60px;
-    }
-
-    .contacts-container-responsive {
+@media(max-height:670px){
+    .contacts-container-responsive{
         padding: 10px 32px;
     }
+}
 
-    .h1-mobil{
-        font-size: 40px;
-    }
-
-    #contact-name h2{
-        font-size: 32px;
-    }
-
-    .first-letters-name-bg-mobil{
-        width: 60px;
-        height: 60px;
-    }
-
-    #email-telefon-contact{
-        gap: 10px;
-    }
-
-    .contact-responsive{
-        gap: 15;
-    }
-} */
+   
