@@ -108,7 +108,7 @@ function loadTasks() {
                 <div class="task-item-output" id="formatted-date-display" contenteditable="true">Due date: ${formDate}</div>
                 <div class="task-item-output" id="task-trial-priority-container" contenteditable="true"><img src="${task.taskPriority}" id="task-trial-priority-icon-task" alt="Priority Icon"/></div>
                 <div class="task-item-output" id="task-trial-assignment-container" contenteditable="true">Assigned to: ${assignedContacts}</div>
-                <div class="task-item-output" id="task-trial-subtask-container" contenteditable="true">Subtasks: ${task.taskSubTask}</div>
+                <div class="task-item-output" id="task-trial-subtask-container" contenteditable="true">Subtasks: <ul>${subtasksHTML}</ul></div>
                 <div id="task-trial-button-container">
                     <div id="task-trial-delete-button"><img style="height: 16px;" src="/assets/img/delete_icon.svg" alt="" /><button onclick="deleteTask('${childSnapshot.key}')">Delete</button></div>
                     <div id="task-trial-edit-button"><img style="height: 16px;" src="/assets/img/pen_DARK.svg" alt="" /><button onclick="editTask('${childSnapshot.key}')">Edit</button></div>

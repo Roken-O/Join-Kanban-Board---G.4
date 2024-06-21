@@ -171,7 +171,7 @@
 }
 
 .progress-bar {
-  width: 100px;
+  width: 100%;
   height: 8px;
   border-radius: 8px;
   background-color: rgba(244, 244, 244, 1);
@@ -179,7 +179,7 @@
 }
 
 .fill-progress-bar {
-  width: 50px;
+  width: 50%;
   height: 8px;
   border-radius: 8px;
   background-color: #4589ff;
@@ -449,4 +449,14 @@
 .input-search-container svg {
    margin-left: 0px;
 }
+}
+
+@media screen and (max-width: 1000px) {
+  #sidebar-menu {
+    display: none !important; 
+  }
+
+  #main-container {
+    padding: 144px 64px 64px 32px !important;
+  }
 }
