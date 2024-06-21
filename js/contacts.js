@@ -1,7 +1,5 @@
 let allContacts = [];
 let hexColors = ['#29abe2', '#4589ff', '#0038ff', '#ff3d00', '#ff745e', '#ffa35e', '#ff7a00', '#ffbb2b', '#ffe62b', '#ffc701', '#7ae229', '#1fd7c1', '#fc71ff', '#ff5eb3', '#9327ff', '#462f8a'];
-
-
 function getRandomColor() {
   let randomColor = Math.floor(Math.random() * hexColors.length);
   return hexColors[randomColor];
@@ -64,11 +62,81 @@ function loadContacts() {
             <div id="contact-trial-email-container">Email: ${contact.email}</div>
             <div id="contact-trial-phone-container">Telefonnummer: ${contact.phone}</div>
             <button onclick="deleteContact('${contact.email}')">Löschen</button>
+            <button onclick="editContact('${contact.email}')">edit</button>
+           
           </div>`;
     });
   });
 }
 
+function editContact(email) {
+  let editContactTrial1 = document.getElementById('edit-contactt');
+  let currentColor;
+  let currentName;
+  let currentEmail;
+  let currentPhone;
+
+  for (let i = 0; i < allContacts.length; i++) {
+    if (email == allContacts[i]['email']) {
+      currentColor = allContacts[i]['color'];
+      currentEmail = allContacts[i]['email'];
+      currentPhone = allContacts[i]['phone'];
+      currentName = allContacts[i]['name'];
+      break;
+    }
+  }
+
+  editContactTrial1.innerHTML = `
+      <input type="text" id="edit-contact-trial-name-container">
+      <input type="email" id="edit-contact-trial-email-container" >
+      <input type="text" id="edit-contact-trial-phone-container" >
+      <button onclick="saveEditedContact('${email}')">Save</button>
+    `;
+
+  document.getElementById('edit-contact-trial-name-container').value = currentName;
+  document.getElementById('edit-contact-trial-email-container').value = currentEmail;
+  document.getElementById('edit-contact-trial-phone-container').value = currentPhone;
+  document.getElementById('edit-contact-trial-phone-container').style.backgroundColor = currentColor;
+}
+
+function saveEditedContact(currentEmail) {
+  let editName = document.getElementById('edit-contact-trial-name-container').value;
+  let editEmail = document.getElementById('edit-contact-trial-email-container').value;
+  let editTel = document.getElementById('edit-contact-trial-phone-container').value;
+  let editColor = document.getElementById('edit-contact-trial-phone-container').style.backgroundColor;
+
+  let emailForm = emailFormatted(currentEmail);
+  let newEmailForm = emailFormatted(editEmail);
+
+  if (emailForm != newEmailForm) {
+
+    deleteContact(emailForm);
+  }
+
+  let contact = {
+    name: editName,
+    email: editEmail,
+    phone: editTel,
+    color: editColor
+  };
+
+  let database = firebase.database();
+
+  // let contactEntryColor = database.ref("contacts/" + emailForm + "/color");
+  // let contactEntryName = database.ref("contacts/" + emailForm + "/name");
+  // let contactEntryEmail = database.ref("contacts/" + emailForm + "/email");
+  // let contactEntryTel = database.ref("contacts/" + emailForm + "/phone");
+
+  let newContactEntry = database.ref("contacts/" + newEmailForm);
+  newContactEntry.set(contact);
+
+  // contactEntryColor.set(editColor)
+  // contactEntryName.set(editName);
+  // contactEntryEmail.set(editEmail);
+  // contactEntryTel.set(editTel);
+
+  loadContacts();
+}
 
 let getInitials = function (string) {
   let name = string.split(" "),
@@ -81,8 +149,8 @@ let getInitials = function (string) {
 };
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadContacts();
+document.addEventListener('DOMContentLoaded', function () {
+  loadContacts();
 });
 
 
@@ -116,11 +184,11 @@ function editContactPopUp() {
     .classList.add("add-new-or-edit-contact-popUp-bg");
 }
 
-function showContactInfo(){
+function showContactInfo() {
   document.getElementById("contact").classList.add("show-contact");
 }
 
-function showContactResponsive (){
+function showContactResponsive() {
   let width = window.innerWidth;
   if (width <= 1050) {
     document.getElementById("contacts-list").classList.add("display-none");
@@ -130,16 +198,16 @@ function showContactResponsive (){
   }
 }
 
-function closeContact(){
+function closeContact() {
   document.getElementById("contacts-list").classList.remove("display-none");
   document.getElementById("contacts-container-responsive").classList.remove("d-unset");
   document.getElementById("back-icon").classList.remove("d-unset");
 }
 
-function closePopUpEditDelete(){
+function closePopUpEditDelete() {
   document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
 }
 
-function openPopUpEditDelete(){
+function openPopUpEditDelete() {
   document.getElementById("PopUp-edit-delete-bg").classList.remove("display-none");
 }
