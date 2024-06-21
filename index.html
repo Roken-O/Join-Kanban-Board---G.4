@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/CSS/index-media.css">
     <link rel="stylesheet" href="/CSS/media.css">
     <link rel="icon" href="/assets/img/join_favicon.svg">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <title>Join</title>
 </head>
 
@@ -25,32 +27,39 @@
             <img id="logo" src="./assets/img/join_logo_DARK.svg">
         </div>
         <div id="login-container" class="login-container">
-            <form onsubmit="logIn(); return false;">
+            <form onsubmit="login(event); return false;" id="loginForm">
                 <div class="h1-container">
                     <h1>Log in</h1>
                     <div class="line"></div>
                 </div>
                 <div class="inputs-container flex-col-just-center">
                     <input id="email" type="email" required placeholder="Email" class="input1">
-                    <input id="password" type="text" required placeholder="Password" class="input2">
+                    <div id="wrong-email" class="wrong-password-container d-none">you are not registered, please sign up!</div>
+                    <input onclick="togglePasswordVisibility('password')" id="password" type="password" required placeholder="Password" class="input2">
+                    <div oninput="checkPasswordLogin()" id="wrong-password-login" class="wrong-password-container d-none">Wrong password Ups! Try again.</div>
                     <div class="checkbox">
                         <input type="checkbox">
                         <span>Remember me</span>
                     </div>
                 </div>
                 <div class="login-buttons-container">
-                    <button class="login-button">Log in</button>
-                    <button>Guest Log in</button>
+                    <button type="submit" class="login-button">Login</button>
+                    <button onclick="goToSummarySite()">Guest Log in</button>
                 </div>
             </form>
         </div>
         <div id="signup-site-container" class="login-container" style="opacity: 0;"></div>
+        <div id="alertMessage" class="alert-message">
+            <div id="popup-message" class="popup-message">You Signed Up successfully!</div>
+        </div>
        
         <div id="imprint-container" class="imprint-container">
             <a href="privacy.html">Privacy Policy</a>
             <a href="imprint.html">Legal notice</a>
         </div>
     </section>
+
+    <div id="msgBox"></div>
 
     <script src="/js/script.js"></script>
     <script src="/js/index.js"></script>

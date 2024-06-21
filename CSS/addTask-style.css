@@ -73,9 +73,8 @@ textarea {
   resize: none;
 }
 
-/* Big-Container */
+
 .left-container {
-  /* background-color: yellow; */
   padding-right: 24px;
 }
 
@@ -87,7 +86,6 @@ textarea {
 }
 
 .right-container {
-  /* background-color: gold; */
   padding-left: 24px;
 }
 
@@ -95,6 +93,10 @@ textarea {
 .task-headline {
   font-size: 28px;
   font-weight: 700;
+}
+
+.tasks {
+padding: 8px;
 }
 
 /* title */
@@ -126,7 +128,7 @@ textarea {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* assigned */
+/* contacts */
 .select {
   font-weight: 500;
   font-size: 17px;
@@ -136,7 +138,7 @@ textarea {
   align-items: center;
   width: 315px;
   height: 24px;
-  border-radius: 10px;
+  border-radius: 10px; 
   outline: none;
   border: 1px solid lightgray;
   background: url("/assets/img/dropdown_down.svg"); 
@@ -144,6 +146,7 @@ textarea {
   background-size: 12px;
   background-position: 300px; 
   background-color: white;
+  /* transition: all 300ms ease-in-out; */
 }
 
 .select-span {
@@ -153,6 +156,10 @@ textarea {
 
 .select:hover {
   cursor: pointer;
+}
+
+.contacts-dropdown {
+  padding: 8px;
 }
 
 .addtask-initials {
@@ -180,7 +187,28 @@ textarea {
   cursor: pointer;
 }
 
-/* select */
+input[type="date"] {
+  position: relative;
+  padding: 8px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: transparent;
+  background: none;
+  z-index: 1;
+}
+
+input[type="date"]:before {
+  background: none;
+  display: block;
+  content: url("/assets/img/date_icon.svg");
+  width: 16px;
+  height: 16px;
+  position: absolute; 
+  right: 16px;
+  bottom:20px;
+}
+
 .select-category {
   font-weight: 500;
   font-size: 17px;
@@ -209,7 +237,7 @@ textarea {
 .subtask-field {
   width: 325px !important;
   height: 36px !important;
-  border-radius: 10px;
+  border-radius: 10px; 
   outline: none;
   border: 1px solid lightgray;
 }
@@ -264,6 +292,7 @@ textarea {
   background:url("/assets/img/close_icon.svg") no-repeat;
   background-size: 13px;
   background-position: 48px;
+  transition: all 300ms ease-in-out;
 }
 
 .cleaning-text {
@@ -277,6 +306,8 @@ textarea {
   opacity: 85%;
   transform: scale(1.05);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+  color:#00bee8;
+  border-color:#00bee8;
 }
 
 .create-task {
@@ -292,6 +323,7 @@ textarea {
   background-size: 18px;
   background-position: 108px;  
   background-color:  #091931; 
+  transition: all 300ms ease-in-out;
 }
 
 .create-text {
@@ -304,6 +336,8 @@ textarea {
   opacity: 85%;
   transform: scale(1.05);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+  background-color: #00bee8;
+  border: 1px solid #00bee8;
 }
 
 /* prio-buttons */
@@ -319,6 +353,7 @@ textarea {
   background-size: 16px;
   background-position: 64px;
   padding: 0 8px 0 8px;
+  transition: all 300ms ease-in-out;
 }
 
 .span-urgent {
@@ -353,13 +388,14 @@ textarea {
   border-radius: 10px;
   outline: none;
   border: 2px solid rgb(211, 211, 211, 0.3);
-  background-color: white;
+  /* background-color: white; */
   font-size: 17px;
   background:url("/assets/img/medium_icon.svg") no-repeat;
   background-size: 16px;
   background-position: 75px;
   padding: 0 8px 0 8px;
   background-color: white;
+  transition: all 300ms ease-in-out;
 }
 
 .span-medium {
@@ -394,13 +430,13 @@ textarea {
   border-radius: 10px;
   outline: none;
   border: 2px solid rgb(211, 211, 211, 0.3);
-  background-color: white;
+  /* background-color: white; */
   font-size: 17px;
   background:url("/assets/img/low_icon.svg") no-repeat;
   background-size: 16px;
   background-position: 45px;
   padding: 0 8px 0 8px;
-  background-color: white;
+  transition: all 300ms ease-in-out;
 
 }
 
@@ -432,7 +468,27 @@ textarea {
 }
 
 .color-urgent:focus {     
-  background-color:#ff3d00;    
+  background-color:#ff3d00; 
+  color:white;  
+}
+
+.color-medium  {
+  background-color: white;
+}
+
+.color-medium:focus {     
+  background-color: #ff7a00;  
+  color:white; 
+  
+}
+
+.color-low  {
+  background-color: white;
+}
+
+.color-low:focus {     
+  background-color: #7ae229; 
+  color:white;   
 }
 
 /* prio-buttons-color */
@@ -545,13 +601,6 @@ textarea {
   cursor: pointer;
 }
 
-/* test */
-.test {
-display:flex;
-justify-content:space-between;
-align-items: center;
-}
-
 /* dropdown-Button W3-Schools */
 /* Dropdown Button */
 .dropbtn {
@@ -563,7 +612,7 @@ align-items: center;
   align-items: center;
   width: 315px;
   height: 24px;
-  border-radius: 10px;
+  border-radius: 10px; 
   outline: none;
   border: 1px solid lightgray;
   background: url("/assets/img/dropdown_down.svg"); 
@@ -582,11 +631,13 @@ align-items: center;
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
-  position: absolute;
-  background-color: #f1f1f1;
+  position: sticky;
+  background-color: white;
   min-width: 330px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  height: 80px;
+  overflow: auto;
 }
 
 /* Links inside the dropdown */
@@ -596,7 +647,7 @@ align-items: center;
   text-decoration: none;
   display: block;
   background-color: white;
-  border-radius: 10px 10px 10px 10px;
+  /* border-radius: 10px 10px 10px 10px; */
 }
 
 /* Change color of dropdown links on hover */
@@ -607,3 +658,31 @@ align-items: center;
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {cursor: pointer;}
+
+.img-test {
+  width: 80px;
+  height:36px;
+  object-fit: cover;
+}
+
+.btn {
+  width: 100px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid #000;
+  margin: 5px;
+  cursor: pointer;
+  color: black; /* Standard Schriftfarbe */
+}
+
+.btn svg {
+width: 16px;
+height: 16px;
+margin-left:6px;
+/* background-color: white; */
+
+}
+
+.cls-13 {
+  fill: white !important;
+}

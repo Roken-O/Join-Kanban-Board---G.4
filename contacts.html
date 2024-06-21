@@ -16,183 +16,200 @@
   <body onload="includeHTML();init()">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
     <section class="main-container-contacts">
-      <div class="contacts-list flex-col-align-center">
-        <button
-          onclick="addNewContactPopUp()"
-          class="dark-grey flex-just-align-center"
-          id="add-new-contact-btn"
+      <div class="contacts-list-container">
+        <div
+          id="contacts-container-responsive"
+          class="contacts-container-responsive"
         >
-          <span>Add new contact</span>
-          <img src="./assets/img/add_contact_icon.svg" alt="" />
-        </button>
-        <div id="contacts-list-content">
-          <div>
-            <div id="initial-letter">A</div>
-            <div id="breakline-contactlist"></div>
-            <div class="flex-align-center" id="contact-contactlist">
-              <div class="first-letters-name-contactlist-bg">
-                <span class="first-letters-name-contactlist">AM</span>
+          <div class="flex-align-center headline-div-contacts-mobil">
+            <div class="h1-and-backimg-container">
+              <h1 class="h1-mobil">Contacts</h1>
+              <img
+                onclick="closeContact()"
+                class="back_icon"
+                src="./assets/img/back_icon.svg"
+                alt=""
+              />
+            </div>
+            <div class="light-blue parting-line-h1"></div>
+            <span class="head-description">Better with a team</span>
+            <div class="parting-line-h1-horizontal"></div>
+          </div>
+          <div class="contact-responsive">
+            <div class="flex-align-center contact-pic-name-container-mobil">
+              <div class="first-letters-name-bg-mobil">
+                <span class="first-letters-name-mobil">AM</span>
               </div>
-              <div id="contact-name-email-contactlist">
-                <span id="contact-name-contactlist">Anton Mayer</span>
-                <a id="email-contactlist" href="">anton@gmail.com</a>
+              <div id="contact-name">
+                <h2>Anton Mayer</h2>
+                <div class="flex-align-center" id="contact-edit-delete">
+                  <div
+                    onclick="editContactPopUp()"
+                    class="flex-align-center"
+                    id="contact-edit"
+                  >
+                    <img
+                      class="contact-pen-delete-img"
+                      src="assets/img/pen_DARK.svg"
+                      alt=""
+                    />
+                    <span>Edit</span>
+                  </div>
+                  <div class="flex-align-center" id="contact-delete">
+                    <img
+                      class="contact-pen-delete-img"
+                      src="/assets/img/delete_icon.svg"
+                      alt=""
+                    />
+                    <span> Delete</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span id="span-contact-information">Contact Information</span>
+            <div class="flex-col-just-center" id="email-telefon-contact">
+              <div class="flex-col-just-center" id="email-contact">
+                <span>Email</span>
+                <a href="">anton@gmail.com</a>
+              </div>
+              <div class="flex-col-just-center" id="phone-contact">
+                <span>Phone</span>
+                <a href="">+49 1111 111 11 1</a>
+              </div>
+            </div>
+              <img onclick="openPopUpEditDelete()" class="button-more-options" src="./assets/img/button_more_options_dark_blue.svg" alt="">
+              <div onclick="closePopUpEditDelete()" id="PopUp-edit-delete-bg" class="PopUp-edit-delete-bg">
+              <div class="PopUp-edit-delete">
+                <div onclick="editContactPopUp()" class="PopUp-edit-pen">
+                  <img class="PopUp-edit-pen-img" src="./assets/img/pen_DARK.svg" alt="">
+                  <span>Edit</span>
+                </div>
+                <div class="PopUp-delete">
+                  <img class="PopUp-delete-img" src="./assets/img/delete_icon.svg" alt="">
+                  <span>Delete</span>
+                </div>
               </div>
             </div>
           </div>
-          <div>
-            <div id="initial-letter">A</div>
-            <div id="breakline-contactlist"></div>
-            <div class="flex-align-center" id="contact-contactlist">
-              <div class="first-letters-name-contactlist-bg">
-                <span class="first-letters-name-contactlist">AM</span>
+        </div>
+        <div id="contacts-list" class="contacts-list flex-col-align-center">
+          <button
+            onclick="addNewContactPopUp()"
+            class="dark-grey flex-just-align-center"
+            id="add-new-contact-btn"
+          >
+            <span>Add new contact</span>
+            <img src="./assets/img/add_contact_icon.svg" alt="" />
+          </button>
+          <div id="contacts-list-content">
+            <div>
+              <div id="initial-letter">A</div>
+              <div id="breakline-contactlist"></div>
+              <div
+                onclick="showContactInfo();showContactResponsive();"
+                class="flex-align-center"
+                id="contact-contactlist"
+              >
+                <div class="first-letters-name-contactlist-bg">
+                  <span class="first-letters-name-contactlist">AM</span>
+                </div>
+                <div id="contact-name-email-contactlist">
+                  <span id="contact-name-contactlist">Anton Mayer</span>
+                  <span id="email-contactlist">anton@gmail.com</span>
+                </div>
               </div>
-              <div id="contact-name-email-contactlist">
-                <span id="contact-name-contactlist">Anton Mayer</span>
-                <a id="email-contactlist" href="">anton@gmail.com</a>
+            </div>
+            <div>
+              <div id="initial-letter">A</div>
+              <div id="breakline-contactlist"></div>
+              <div class="flex-align-center" id="contact-contactlist">
+                <div class="first-letters-name-contactlist-bg">
+                  <span class="first-letters-name-contactlist">AM</span>
+                </div>
+                <div id="contact-name-email-contactlist">
+                  <span id="contact-name-contactlist">Anton Mayer</span>
+                  <span id="email-contactlist">anton@gmail.com</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div id="initial-letter">A</div>
+              <div id="breakline-contactlist"></div>
+              <div class="flex-align-center" id="contact-contactlist">
+                <div class="first-letters-name-contactlist-bg">
+                  <span class="first-letters-name-contactlist">AM</span>
+                </div>
+                <div id="contact-name-email-contactlist">
+                  <span id="contact-name-contactlist">Anton Mayer</span>
+                  <span id="email-contactlist">anton@gmail.com</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div id="initial-letter">A</div>
+              <div id="breakline-contactlist"></div>
+              <div class="flex-align-center" id="contact-contactlist">
+                <div class="first-letters-name-contactlist-bg">
+                  <span class="first-letters-name-contactlist">AM</span>
+                </div>
+                <div id="contact-name-email-contactlist">
+                  <span id="contact-name-contactlist">Anton Mayer</span>
+                  <span id="email-contactlist">anton@gmail.com</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div id="initial-letter">A</div>
+              <div id="breakline-contactlist"></div>
+              <div class="flex-align-center" id="contact-contactlist">
+                <div class="first-letters-name-contactlist-bg">
+                  <span class="first-letters-name-contactlist">AM</span>
+                </div>
+                <div id="contact-name-email-contactlist">
+                  <span id="contact-name-contactlist">Anton Mayer</span>
+                  <span id="email-contactlist">anton@gmail.com</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div id="initial-letter">A</div>
+              <div id="breakline-contactlist"></div>
+              <div class="flex-align-center" id="contact-contactlist">
+                <div class="first-letters-name-contactlist-bg">
+                  <span class="first-letters-name-contactlist">AM</span>
+                </div>
+                <div id="contact-name-email-contactlist">
+                  <span id="contact-name-contactlist">Anton Mayer</span>
+                  <a id="email-contactlist" href="">anton@gmail.com</a>
+                </div>
               </div>
             </div>
           </div>
-          <div>
-            <div id="initial-letter">A</div>
-            <div id="breakline-contactlist"></div>
-            <div class="flex-align-center" id="contact-contactlist">
-              <div class="first-letters-name-contactlist-bg">
-                <span class="first-letters-name-contactlist">AM</span>
-              </div>
-              <div id="contact-name-email-contactlist">
-                <span id="contact-name-contactlist">Anton Mayer</span>
-                <a id="email-contactlist" href="">anton@gmail.com</a>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div id="initial-letter">A</div>
-            <div id="breakline-contactlist"></div>
-            <div class="flex-align-center" id="contact-contactlist">
-              <div class="first-letters-name-contactlist-bg">
-                <span class="first-letters-name-contactlist">AM</span>
-              </div>
-              <div id="contact-name-email-contactlist">
-                <span id="contact-name-contactlist">Anton Mayer</span>
-                <a id="email-contactlist" href="">anton@gmail.com</a>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div id="initial-letter">A</div>
-            <div id="breakline-contactlist"></div>
-            <div class="flex-align-center" id="contact-contactlist">
-              <div class="first-letters-name-contactlist-bg">
-                <span class="first-letters-name-contactlist">AM</span>
-              </div>
-              <div id="contact-name-email-contactlist">
-                <span id="contact-name-contactlist">Anton Mayer</span>
-                <a id="email-contactlist" href="">anton@gmail.com</a>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div id="initial-letter">A</div>
-            <div id="breakline-contactlist"></div>
-            <div class="flex-align-center" id="contact-contactlist">
-              <div class="first-letters-name-contactlist-bg">
-                <span class="first-letters-name-contactlist">AM</span>
-              </div>
-              <div id="contact-name-email-contactlist">
-                <span id="contact-name-contactlist">Anton Mayer</span>
-                <a id="email-contactlist" href="">anton@gmail.com</a>
-              </div>
-            </div>
-          </div>
+          
+            <img onclick="addNewContactPopUp()" class="button_add_contact_dark_blue" src="./assets/img/button_add_contact_dark_blue.svg" alt="">
+        
         </div>
       </div>
 
-      <div id="add-new-contact-popUp-bg">
-        <div class="add-new-or-edit-contact-popUp">
-          <div class="popUp-edit-add-leftside">
-            <div class="container-close-icon-responsive">
-              <img onclick="closePupUpaddNewOrEdditContact()" class="close-icon-responsive" src="./assets/img/close_icon_white.svg" alt="">
-              </div>
-            <div class="popUp-edit-add-leftside-content">
-              <img src="./assets/img/join_logo_WHT.svg" alt="">
-              <span class="span-Contact">Add contact</span>
-              <span class="span-tasks-are-better">Tasks are better with a team!</span>
-              <div class="line-under-add-or-edit-contact-popup"></div>
-            </div>
-          </div>
-          <div class="popUp-edit-add-middle">
-            <div class="bg-contact_icon">
-              <svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
-                <defs>
-                  <style>
-                    .cls-1 {
-                      fill: #ffff;
-                      stroke-width: 0px;
-                    }
-                  </style>
-                </defs>
-                <path class="cls-1" d="M54,54c-7.42,0-13.78-2.64-19.07-7.93-5.29-5.29-7.93-11.64-7.93-19.07s2.64-13.78,7.93-19.07C40.22,2.64,46.58,0,54,0s13.78,2.64,19.07,7.93c5.29,5.29,7.93,11.64,7.93,19.07s-2.64,13.78-7.93,19.07c-5.29,5.29-11.64,7.93-19.07,7.93ZM94.5,108H13.5c-3.71,0-6.89-1.32-9.53-3.97-2.64-2.64-3.97-5.82-3.97-9.53v-5.4c0-3.83.98-7.34,2.95-10.55,1.97-3.21,4.58-5.65,7.85-7.34,6.97-3.49,14.06-6.1,21.26-7.85,7.2-1.74,14.51-2.62,21.94-2.62s14.74.87,21.94,2.62c7.2,1.74,14.29,4.36,21.26,7.85,3.26,1.69,5.88,4.13,7.85,7.34,1.97,3.21,2.95,6.72,2.95,10.55v5.4c0,3.71-1.32,6.89-3.97,9.53-2.64,2.64-5.82,3.97-9.53,3.97ZM13.5,94.5h81v-5.4c0-1.24-.31-2.36-.93-3.38-.62-1.01-1.43-1.8-2.45-2.36-6.07-3.04-12.21-5.32-18.39-6.83-6.19-1.52-12.43-2.28-18.73-2.28s-12.54.76-18.73,2.28c-6.19,1.52-12.32,3.8-18.39,6.83-1.01.56-1.83,1.35-2.45,2.36-.62,1.01-.93,2.14-.93,3.38v5.4ZM54,40.5c3.71,0,6.89-1.32,9.53-3.97,2.64-2.64,3.97-5.82,3.97-9.53s-1.32-6.89-3.97-9.53c-2.64-2.64-5.82-3.97-9.53-3.97s-6.89,1.32-9.53,3.97c-2.64,2.64-3.97,5.82-3.97,9.53s1.32,6.89,3.97,9.53c2.64,2.64,5.82,3.97,9.53,3.97Z"/>
-              </svg>
-            </div>
-          </div>
-            <div class="popUp-edit-add-rightside">
-              <div class="container-close-icon">
-              <img onclick="closePupUpaddNewOrEdditContact()" class="close-icon" src="./assets/img/close_icon.svg" alt="">
-              </div>
-              <form class="form-add-new-contact" action="">
-                <input placeholder="Name" class="input-text-email-number-contact input-text-contact" type="text">
-                <input placeholder="Email" class="input-text-email-number-contact  input-email-contact" type="email">
-                <input placeholder="Phone" class="input-text-email-number-contact input-number-contact" type="text">
-              </form>
-              <div class="button-container-add">
-                <img class="button_cancel" src="./assets/img/button_cancel.svg" alt="">
-                <img class="button_create_contact" src="./assets/img/button_create_contact.svg" alt="">
-              </div>
-            </div>
-        </div>
-      </div>
-      <div id="edit-contact-popUp-bg">
-        <div class="add-new-or-edit-contact-popUp">
-          <div class="popUp-edit-add-leftside">
-            <div class="container-close-icon-responsive">
-              <img onclick="closePupUpaddNewOrEdditContact()" class="close-icon-responsive" src="./assets/img/close_icon_white.svg" alt="">
-              </div>
-            <div class="popUp-edit-add-leftside-content">
-              <img src="./assets/img/join_logo_WHT.svg" alt="">
-              <span class="span-Contact">Edit contact</span>
-              <div class="line-under-add-or-edit-contact-popup"></div>
-            </div>
-          </div>
-          <div class="popUp-edit-add-middle">
-            <div class="first-letters-name-bg margin-top-60px">
-              <span class="first-letters-name">AM</span>
-            </div>
-          </div>
-            <div class="popUp-edit-add-rightside">
-              <div class="container-close-icon">
-              <img onclick="closePupUpaddNewOrEdditContact()" class="close-icon" src="./assets/img/close_icon.svg" alt="">
-              </div>
-              <form class="form-add-new-contact" action="">
-                <input placeholder="Name" class="input-text-email-number-contact input-text-contact" type="text">
-                <input placeholder="Email" class="input-text-email-number-contact  input-email-contact" type="email">
-                <input placeholder="Phone" class="input-text-email-number-contact input-number-contact" type="text">
-              </form>
-              <div class="button-container-edit">
-                <img class="button_cancel" src="./assets/img/button_delete.svg" alt="">
-                <img class="button_create_contact" src="./assets/img/button_save.svg" alt="">
-              </div>
-            </div>
-        </div>
-      </div>
-              <img src="" alt="">
       <div class="contacts-container">
+        <div class="contacts-container-backimage">
         <div class="flex-align-center headline-div-contacts">
           <h1>Contacts</h1>
           <div class="light-blue parting-line-h1"></div>
           <span class="head-description">Better with a team</span>
           <div class="parting-line-h1-horizontal"></div>
         </div>
-        <div id="contact">
+        <div>
+          <img
+                  onclick="closeContact()"
+                  class="back_icon"
+                  id="back-icon"
+                  src="./assets/img/back_icon.svg"
+                  alt=""
+                />
+          </div>
+        </div>
+        <div class="contact" id="contact">
           <div class="flex-align-center contact-pic-name-container">
             <div class="first-letters-name-bg">
               <span class="first-letters-name">AM</span>
@@ -200,12 +217,24 @@
             <div id="contact-name">
               <h2>Anton Mayer</h2>
               <div class="flex-align-center" id="contact-edit-delete">
-                <div onclick="editContactPopUp()"  class="flex-align-center" id="contact-edit">
-                  <img class="contact-pen-delete-img" src="assets/img/pen_DARK.svg" alt="" />
+                <div
+                  onclick="editContactPopUp()"
+                  class="flex-align-center"
+                  id="contact-edit"
+                >
+                  <img
+                    class="contact-pen-delete-img"
+                    src="assets/img/pen_DARK.svg"
+                    alt=""
+                  />
                   <span>Edit</span>
                 </div>
                 <div class="flex-align-center" id="contact-delete">
-                  <img class="contact-pen-delete-img"src="/assets/img/delete_icon.svg" alt="" />
+                  <img
+                    class="contact-pen-delete-img"
+                    src="/assets/img/delete_icon.svg"
+                    alt=""
+                  />
                   <span> Delete</span>
                 </div>
               </div>
@@ -220,6 +249,154 @@
             <div class="flex-col-just-center" id="phone-contact">
               <span>Phone</span>
               <a href="">+49 1111 111 11 1</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="add-new-contact-popUp-bg">
+        <div class="add-new-or-edit-contact-popUp">
+          <div class="popUp-edit-add-leftside">
+            <div class="container-close-icon-responsive">
+              <img
+                onclick="closePupUpaddNewOrEdditContact()"
+                class="close-icon-responsive"
+                src="./assets/img/close_icon_white.svg"
+                alt=""
+              />
+            </div>
+            <div class="popUp-edit-add-leftside-content">
+              <img src="./assets/img/join_logo_WHT.svg" alt="" />
+              <span class="span-Contact">Add contact</span>
+              <span class="span-tasks-are-better"
+                >Tasks are better with a team!</span
+              >
+              <div class="line-under-add-or-edit-contact-popup"></div>
+            </div>
+          </div>
+          <div class="popUp-edit-add-middle">
+            <div class="bg-contact_icon">
+              <svg
+                id="Ebene_1"
+                data-name="Ebene 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 108 108"
+              >
+                <defs>
+                  <style>
+                    .cls-1 {
+                      fill: #ffff;
+                      stroke-width: 0px;
+                    }
+                  </style>
+                </defs>
+                <path
+                  class="cls-1"
+                  d="M54,54c-7.42,0-13.78-2.64-19.07-7.93-5.29-5.29-7.93-11.64-7.93-19.07s2.64-13.78,7.93-19.07C40.22,2.64,46.58,0,54,0s13.78,2.64,19.07,7.93c5.29,5.29,7.93,11.64,7.93,19.07s-2.64,13.78-7.93,19.07c-5.29,5.29-11.64,7.93-19.07,7.93ZM94.5,108H13.5c-3.71,0-6.89-1.32-9.53-3.97-2.64-2.64-3.97-5.82-3.97-9.53v-5.4c0-3.83.98-7.34,2.95-10.55,1.97-3.21,4.58-5.65,7.85-7.34,6.97-3.49,14.06-6.1,21.26-7.85,7.2-1.74,14.51-2.62,21.94-2.62s14.74.87,21.94,2.62c7.2,1.74,14.29,4.36,21.26,7.85,3.26,1.69,5.88,4.13,7.85,7.34,1.97,3.21,2.95,6.72,2.95,10.55v5.4c0,3.71-1.32,6.89-3.97,9.53-2.64,2.64-5.82,3.97-9.53,3.97ZM13.5,94.5h81v-5.4c0-1.24-.31-2.36-.93-3.38-.62-1.01-1.43-1.8-2.45-2.36-6.07-3.04-12.21-5.32-18.39-6.83-6.19-1.52-12.43-2.28-18.73-2.28s-12.54.76-18.73,2.28c-6.19,1.52-12.32,3.8-18.39,6.83-1.01.56-1.83,1.35-2.45,2.36-.62,1.01-.93,2.14-.93,3.38v5.4ZM54,40.5c3.71,0,6.89-1.32,9.53-3.97,2.64-2.64,3.97-5.82,3.97-9.53s-1.32-6.89-3.97-9.53c-2.64-2.64-5.82-3.97-9.53-3.97s-6.89,1.32-9.53,3.97c-2.64,2.64-3.97,5.82-3.97,9.53s1.32,6.89,3.97,9.53c2.64,2.64,5.82,3.97,9.53,3.97Z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="popUp-edit-add-rightside">
+            <div class="container-close-icon">
+              <img
+                onclick="closePupUpaddNewOrEdditContact()"
+                class="close-icon"
+                src="./assets/img/close_icon.svg"
+                alt=""
+              />
+            </div>
+            <form class="form-add-new-contact" action="">
+              <input
+                placeholder="Name"
+                class="input-text-email-number-contact input-text-contact"
+                type="text"
+              />
+              <input
+                placeholder="Email"
+                class="input-text-email-number-contact input-email-contact"
+                type="email"
+              />
+              <input
+                placeholder="Phone"
+                class="input-text-email-number-contact input-number-contact"
+                type="text"
+              />
+            </form>
+            <div class="button-container-add">
+              <img
+                class="button_cancel"
+                src="./assets/img/button_cancel.svg"
+                alt=""
+              />
+              <img
+                class="button_create_contact"
+                src="./assets/img/button_create_contact.svg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="edit-contact-popUp-bg">
+        <div class="add-new-or-edit-contact-popUp">
+          <div class="popUp-edit-add-leftside">
+            <div class="container-close-icon-responsive">
+              <img
+                onclick="closePupUpaddNewOrEdditContact()"
+                class="close-icon-responsive"
+                src="./assets/img/close_icon_white.svg"
+                alt=""
+              />
+            </div>
+            <div class="popUp-edit-add-leftside-content">
+              <img src="./assets/img/join_logo_WHT.svg" alt="" />
+              <span class="span-Contact">Edit contact</span>
+              <div class="line-under-add-or-edit-contact-popup"></div>
+            </div>
+          </div>
+          <div class="popUp-edit-add-middle">
+            <div class="first-letters-name-bg margin-top-60px">
+              <span class="first-letters-name">AM</span>
+            </div>
+          </div>
+          <div class="popUp-edit-add-rightside">
+            <div class="container-close-icon">
+              <img
+                onclick="closePupUpaddNewOrEdditContact()"
+                class="close-icon"
+                src="./assets/img/close_icon.svg"
+                alt=""
+              />
+            </div>
+            <form class="form-add-new-contact" action="">
+              <input
+                placeholder="Name"
+                class="input-text-email-number-contact input-text-contact"
+                type="text"
+              />
+              <input
+                placeholder="Email"
+                class="input-text-email-number-contact input-email-contact"
+                type="email"
+              />
+              <input
+                placeholder="Phone"
+                class="input-text-email-number-contact input-number-contact"
+                type="text"
+              />
+            </form>
+            <div class="button-container-edit">
+              <img
+                class="button_cancel"
+                src="./assets/img/button_delete.svg"
+                alt=""
+              />
+              <img
+                class="button_create_contact"
+                src="./assets/img/button_save.svg"
+                alt=""
+              />
             </div>
           </div>
         </div>
