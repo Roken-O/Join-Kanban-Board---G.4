@@ -4,6 +4,28 @@ function init(){
     animate();
     loadUsers();
 }
+
+function loadUsers() {
+    let database = firebase.database();
+    let usersEntries = database.ref("users");
+  
+    usersEntries.on("value", function (snapshot) {
+   
+      allUsers = [];
+      snapshot.forEach(function (childSnapshot) {
+        let user = childSnapshot.val();
+        allUsers.push(user);
+  
+      });
+    });
+  }
+
+  
+function logIn(){
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+}
+
 function animate(){
 
 if (window.innerWidth > 550) {

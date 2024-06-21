@@ -1,203 +1,278 @@
 <!DOCTYPE html>
 <html lang="de-DE">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/colors.css">
-    <link rel="stylesheet" href="/CSS/fonts.css">
-    <link rel="stylesheet" href="/CSS/global_style.css">
-    <link rel="stylesheet" href="/CSS/media.css">
-    <link rel="stylesheet" href="/CSS/style.css">
-    <link rel="icon" href="/assets/img/join_favicon.svg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/CSS/colors.css" />
+    <link rel="stylesheet" href="/CSS/fonts.css" />
+    <link rel="stylesheet" href="/CSS/global_style.css" />
+    <link rel="stylesheet" href="/CSS/media.css" />
+    <link rel="stylesheet" href="/CSS/style.css" />
+    <link rel="icon" href="/assets/img/join_favicon.svg" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Join</title>
     <style>
-        #task-trial-task-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 32px;
-            margin-top: 100px;
-        }
+      #task-trial-task-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        margin-top: 100px;
+      }
 
-        #icon-dropdown-arrow-image {
-            height: 8px;
-            cursor: pointer;
-        }
+      #icon-dropdown-arrow-image {
+        height: 8px;
+        cursor: pointer;
+      }
 
-        #task-trial-category-selection-container {
-            display: flex;
-            gap: 16px;
-            cursor: pointer;
-        }
+      #task-trial-category-selection-container {
+        display: flex;
+        gap: 16px;
+        cursor: pointer;
+      }
 
-        .trial-task-priority-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            cursor: pointer;
-        }
+      .trial-task-priority-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        cursor: pointer;
+      }
 
-        .trial-task-priority-item img {
-            height: 8px;
-            cursor: pointer;
-        }
+      .trial-task-priority-item img {
+        height: 8px;
+        cursor: pointer;
+      }
 
-        #task-trial-medium-icon {
-            height: 12px;
-            width: 12px;
-            cursor: pointer;
-        }
+      #task-trial-medium-icon {
+        height: 12px;
+        width: 12px;
+        cursor: pointer;
+      }
 
-        #task-trial-priority-container {
-            display: flex;
-            gap: 16px;
-        }
+      #task-trial-priority-container {
+        display: flex;
+        gap: 16px;
+      }
 
-        #category-technical-task {
-            cursor: pointer;
-        }
+      #category-technical-task {
+        cursor: pointer;
+      }
 
-        #category-user-story {
-            cursor: pointer;
-        }
+      #category-user-story {
+        cursor: pointer;
+      }
 
-        #category-technical-task:hover {
-            background: #091931;
-            color: white;
-            padding: 8px;
-        }
+      #category-technical-task:hover {
+        background: #091931;
+        color: white;
+        padding: 8px;
+      }
 
-        #category-user-story:hover {
-            background: #091931;
-            color: white;
-            padding: 8px;
-        }
-        .dropdown {
-          position: relative;
-          display: inline-block;
-        }
+      #category-user-story:hover {
+        background: #091931;
+        color: white;
+        padding: 8px;
+      }
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
 
-        .dropdown-selection {
-          padding: 10px;
-          border: 1px solid #ccc;
-          cursor: pointer;
-        }
+      .dropdown-selection {
+        padding: 10px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+      }
 
-        .dropdown-list {
-          position: absolute;
-          background-color: #f9f9f9;
-          min-width: 160px;
-          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-          z-index: 1;
-          border: 1px solid #ccc;
+      .dropdown-list {
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border: 1px solid #ccc;
         max-height: 200px; /* Falls erforderlich, um die Dropdown-Höhe zu begrenzen */
         overflow-y: auto; /* Falls erforderlich, um scrollbare Liste zu ermöglichen */
-        }
+      }
 
-        .task-trial-category-dropdown-links {
-          position: absolute;
-          background-color: #f9f9f9;
-          min-width: 160px;
-          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-          z-index: 1;
-          border: 1px solid #ccc;
+      .task-trial-category-dropdown-links {
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border: 1px solid #ccc;
         max-height: 200px; /* Falls erforderlich, um die Dropdown-Höhe zu begrenzen */
         overflow-y: auto; /* Falls erforderlich, um scrollbare Liste zu ermöglichen */
-        }
+      }
 
-        .dropdown-list .dropdown-item {
-          padding: 8px 16px;
-          cursor: pointer;
-        }
+      .dropdown-list .dropdown-item {
+        padding: 8px 16px;
+        cursor: pointer;
+      }
 
-        .dropdown-list .dropdown-item:hover {
-          background-color: #f1f1f1;
-        }
+      .dropdown-list .dropdown-item:hover {
+        background-color: #f1f1f1;
+      }
 
-        .d-none {
-          display: none;
-        }
+      .d-none {
+        display: none;
+      }
 
-        #contacts-trial-contacts-dropdown-headline {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
+      #contacts-trial-contacts-dropdown-headline {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
 
-        #icon-contacts-dropdown-arrow-image{
-            height: 8px;
-            cursor: pointer;
-        }
+      #icon-contacts-dropdown-arrow-image {
+        height: 8px;
+        cursor: pointer;
+      }
 
-        #task-trial-priority-icon-task {
-            height: 16px;
-            width: 16px;
-        }
+      #task-trial-priority-icon-task {
+        height: 16px;
+        width: 16px;
+      }
 
-        #task-trial-container{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+      #task-trial-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      input[type="date"] {
+        position: relative;
+        padding: 8px;
+      }
+
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        color: transparent;
+        background: none;
+        z-index: 1;
+      }
+
+      input[type="date"]:before {
+        background: none;
+        display: block;
+        content: url("/assets/img/date_icon.svg");
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        right: 6px;
+      }
     </style>
-</head>
-<body onload="includeHTML(); init();">
+  </head>
+  <body onload="includeHTML(); init();">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
     <form id="task-trial-task-form" onsubmit="saveTask(); return false;">
-        <input id="task-trial-title" type="text" placeholder="Title" required>
-        <input id="task-trial-description" type="text" placeholder="Description" required>
-        <input type="date" id="task-trial-date-picker" required>
-        <section class="task-trial-category-dropdown-container">
-            <div id="task-trial-category-selection-container">
-                <div id="task-trial-category-selection" onclick="toggleCategoryDropdown()">Category</div>
-                <div class="icon-dropdown-arrow" onclick="toggleCategoryDropdown()">
-                    <img id="icon-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon">
-                </div>
-            </div>
-            <div class="task-trial-category-dropdown-links d-none" id="task-trial-category-dropdown">
-                <div class="category-selection" onclick="selectCategory(event, 'Technical Task')">Technical Task</div>
-                <div class="category-selection" onclick="selectCategory(event, 'User Story')">User Story</div>
-            </div>
-        </section>
-        <section id="task-trial-priority-container">
-          <div class="trial-task-priority-item" onclick="createCategoryIconUrgent()">
-            <span class="trial-task-priority-item-span">Urgent</span>
-            <img class="trial-task-priority-item-image" id="task-trial-urgent-icon" src="/assets/img/urgent_icon.png" alt="">
+      <input id="task-trial-title" type="text" placeholder="Title" required />
+      <input
+        id="task-trial-description"
+        type="text"
+        placeholder="Description"
+        required
+      />
+      <input type="date" id="task-trial-date-picker" required />
+      <section class="task-trial-category-dropdown-container">
+        <div id="task-trial-category-selection-container">
+          <div
+            id="task-trial-category-selection"
+            onclick="toggleCategoryDropdown()"
+          >
+            Category
           </div>
-          <div class="trial-task-priority-item" onclick="createCategoryIconMedium()">
-            <span class="trial-task-priority-item-span">Medium</span>
-            <img class="trial-task-priority-item-image" id="task-trial-medium-icon" src="/assets/img/medium_icon.svg" alt="">
+          <div class="icon-dropdown-arrow" onclick="toggleCategoryDropdown()">
+            <img
+              id="icon-dropdown-arrow-image"
+              src="/assets/img/dropdown_down.svg"
+              alt="Dropdown Arrow Icon"
+            />
           </div>
-          <div class="trial-task-priority-item" onclick="createCategoryIconLow()">
-            <span class="trial-task-priority-item-span">Low</span>
-            <img class="trial-task-priority-item-image" id="task-trial-low-icon" src="/assets/img/low_icon.svg" alt="">
+        </div>
+        <div
+          class="task-trial-category-dropdown-links d-none"
+          id="task-trial-category-dropdown"
+        >
+          <div
+            class="category-selection"
+            onclick="selectCategory(event, 'Technical Task')"
+          >
+            Technical Task
           </div>
-        </section>
-        <section id="contacts-trial-contact-assignment-container">
-            <div id="contacts-trial-contacts-dropdown-headline" onclick="toggleContactDropdown()">
-                <span>Assign Contacts</span>
-                <div class="icon-dropdown-arrow">
-                    <img id="icon-contacts-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon">
-                </div>
-            </div>
-            <div id="contacts-trial-contacts-list" class="dropdown-list d-none">
-                <!-- Hier werden die Kontakte dynamisch hinzugefügt -->
-            </div>
-        </section>
-        <div id="selected-contacts" class="d-none">Selected Contacts: None</div>
-        <input id="task-trial-subtask-input" type="text" placeholder="Subtask">
-        <button type="button" onclick="addSubTask()">Add Subtask</button>
-        <div id="subtask-list"></div>
-        <button>Speichern</button>
-      </form>
-      <div id="task-trial-container"></div>
-    
+          <div
+            class="category-selection"
+            onclick="selectCategory(event, 'User Story')"
+          >
+            User Story
+          </div>
+        </div>
+      </section>
+      <section id="task-trial-priority-container">
+        <div
+          class="trial-task-priority-item"
+          onclick="createCategoryIconUrgent()"
+        >
+          <span class="trial-task-priority-item-span">Urgent</span>
+          <img
+            class="trial-task-priority-item-image"
+            id="task-trial-urgent-icon"
+            src="/assets/img/urgent_icon.png"
+            alt=""
+          />
+        </div>
+        <div
+          class="trial-task-priority-item"
+          onclick="createCategoryIconMedium()"
+        >
+          <span class="trial-task-priority-item-span">Medium</span>
+          <img
+            class="trial-task-priority-item-image"
+            id="task-trial-medium-icon"
+            src="/assets/img/medium_icon.svg"
+            alt=""
+          />
+        </div>
+        <div class="trial-task-priority-item" onclick="createCategoryIconLow()">
+          <span class="trial-task-priority-item-span">Low</span>
+          <img
+            class="trial-task-priority-item-image"
+            id="task-trial-low-icon"
+            src="/assets/img/low_icon.svg"
+            alt=""
+          />
+        </div>
+      </section>
+      <section id="contacts-trial-contact-assignment-container">
+        <div
+          id="contacts-trial-contacts-dropdown-headline"
+          onclick="toggleContactDropdown()"
+        >
+          <span>Assign Contacts</span>
+          <div class="icon-dropdown-arrow">
+            <img
+              id="icon-contacts-dropdown-arrow-image"
+              src="/assets/img/dropdown_down.svg"
+              alt="Dropdown Arrow Icon"
+            />
+          </div>
+        </div>
+        <div id="contacts-trial-contacts-list" class="dropdown-list d-none">
+          <!-- Hier werden die Kontakte dynamisch hinzugefügt -->
+        </div>
+      </section>
+      <div id="selected-contacts" class="d-none">Selected Contacts: None</div>
+      <input id="task-trial-subtask-input" type="text" placeholder="Subtask" />
+      <button type="button" onclick="addSubTask()">Add Subtask</button>
+      <div id="subtask-list"></div>
+      <button>Speichern</button>
+    </form>
+    <div id="task-trial-container"></div>
 
-    
     <script src="/js/script.js"></script>
+    <script src="/js/firebase.js"></script>
     <script src="/js/add_task.js"></script>
-</body>
+  </body>
 </html>
