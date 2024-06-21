@@ -77,6 +77,19 @@
                 <a href="">+49 1111 111 11 1</a>
               </div>
             </div>
+              <img onclick="openPopUpEditDelete()" class="button-more-options" src="./assets/img/button_more_options_dark_blue.svg" alt="">
+              <div onclick="closePopUpEditDelete()" id="PopUp-edit-delete-bg" class="PopUp-edit-delete-bg">
+              <div class="PopUp-edit-delete">
+                <div onclick="editContactPopUp()" class="PopUp-edit-pen">
+                  <img class="PopUp-edit-pen-img" src="./assets/img/pen_DARK.svg" alt="">
+                  <span>Edit</span>
+                </div>
+                <div class="PopUp-delete">
+                  <img class="PopUp-delete-img" src="./assets/img/delete_icon.svg" alt="">
+                  <span>Delete</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div id="contacts-list" class="contacts-list flex-col-align-center">
@@ -93,7 +106,7 @@
               <div id="initial-letter">A</div>
               <div id="breakline-contactlist"></div>
               <div
-                onclick="showContact();showContactResponsive();"
+                onclick="showContactInfo();showContactResponsive();"
                 class="flex-align-center"
                 id="contact-contactlist"
               >
@@ -172,15 +185,29 @@
               </div>
             </div>
           </div>
+          
+            <img onclick="addNewContactPopUp()" class="button_add_contact_dark_blue" src="./assets/img/button_add_contact_dark_blue.svg" alt="">
+        
         </div>
       </div>
 
       <div class="contacts-container">
+        <div class="contacts-container-backimage">
         <div class="flex-align-center headline-div-contacts">
           <h1>Contacts</h1>
           <div class="light-blue parting-line-h1"></div>
           <span class="head-description">Better with a team</span>
           <div class="parting-line-h1-horizontal"></div>
+        </div>
+        <div>
+          <img
+                  onclick="closeContact()"
+                  class="back_icon"
+                  id="back-icon"
+                  src="./assets/img/back_icon.svg"
+                  alt=""
+                />
+          </div>
         </div>
         <div class="contact" id="contact">
           <div class="flex-align-center contact-pic-name-container">

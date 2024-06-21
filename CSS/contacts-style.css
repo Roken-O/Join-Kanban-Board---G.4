@@ -16,7 +16,7 @@
 }
 
 .contacts-list {
-  height: 75%;
+  height: 85%;
   padding: 0px 32px;
   background-color: white;
   margin-top: -6px;
@@ -437,6 +437,17 @@
   color: black;
 }
 
+.contacts-container-backimage{
+  display: flex;
+  justify-content: space-between;
+  width: 78%;
+  gap: 40px;
+}
+
+#back-icon{
+  display: none;
+}
+
 /* contacts-container-responsive */
 .contacts-container-responsive {
   padding: 64px 32px;
@@ -499,6 +510,95 @@
 
  .back_icon:hover{
   cursor: pointer;
+ }
+
+ /* small-buttons */
+
+ .button_add_contact_dark_blue{
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  right: 20px;
+  bottom: 205px;
+ }
+
+ .button_add_contact_dark_blue:hover{
+  cursor: pointer;
+ }
+
+ .button-more-options{
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  right: 20px;
+  bottom: 205px;
+ }
+
+ .button-more-options:hover{
+  cursor: pointer;
+ }
+
+ .PopUp-edit-delete-bg{
+  z-index: 998;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+ }
+
+ .PopUp-edit-delete{
+  background-color: white;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.312);
+  width: 106px;
+  height: 90px;
+  border-radius: 20px 20px 0px 20px;
+  padding: 10px;
+  position: absolute;
+  right: 20px;
+  bottom: 125px;
+ }
+ 
+ .PopUp-edit-pen{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+ }
+
+ .PopUp-edit-pen:hover{
+  cursor: pointer;
+  background-color: #f1efef;
+  border-radius: 10px;
+ }
+ 
+ .PopUp-edit-pen:hover{
+  cursor: pointer;
+ }
+
+ .PopUp-edit-pen-img{
+  height: 24px;
+ }
+
+ .PopUp-delete{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+ }
+
+ .PopUp-delete:hover{
+  cursor: pointer;
+  background-color: #f1efef;
+  border-radius: 10px;
+ }
+
+ .PopUp-delete:hover{
+  cursor: pointer;
+ }
+
+ .PopUp-delete-img{
+  height: 24px;
  }
 
 /* main-container-contacts End */

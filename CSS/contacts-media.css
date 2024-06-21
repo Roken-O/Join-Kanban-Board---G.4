@@ -203,7 +203,19 @@
         font-size: 47px;
     }
 
+    #add-new-contact-btn{
+        display: none;
+    }
+
     /* mobil */
+
+    #mobile-menu {
+        z-index: 999;
+    }
+
+    .contacts-container-responsive{
+        margin-top: 7px;
+    }
 
     #contact-edit-delete{
         display: none;
@@ -218,6 +230,132 @@
         font-size: 27px;
     }
 
+    .contacts-list{
+        height: 75%;
+    }
+
+    .contacts-list-container{
+        width: 100%;
+    }
+
+    /* PopUp */
+
+    .add-new-or-edit-contact-popUp{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: 635px;
+        margin-bottom: 80px;
+    }
+
+    .popUp-edit-add-leftside{
+        width: 300px;
+        height: 225px;
+        border-radius: 30px 30px 0px 0px;
+        display: flex;
+        justify-content: center;
+       
+    }
+
+    .popUp-edit-add-leftside-content{
+        gap: 8px;
+        padding-bottom: 20px;
+    }
+
+    .span-tasks-are-better{
+        font-size: 20px;
+    }
+
+    .bg-contact_icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-top: -41px;
+    }
+
+    .popUp-edit-add-rightside{
+        padding-top: 10px;
+    }
+
+    .input-text-email-number-contact{
+        width: 250px;
+        padding: 13px 13px 13px 13px;
+    }
+
+    .input-text-contact{
+        background-position: 245px;
+    }
+
+    .input-email-contact{
+        background-position: 245px;
+    }
+
+    .input-number-contact{
+        background-position: 245px;
+    }
+    
+
+    .span-Contact{
+        font-size: 35px;
+    }
+
+    .add-new-or-edit-contact-popUp{
+        height: 500px;
+    }
+
+    .contacts-list {
+        height: 70%;
+    }
+
+    .contacts-container-responsive {
+        padding: 10px 32px;
+    }
+
+    .h1-mobil{
+        font-size: 40px;
+    }
+
+    #contact-name h2{
+        font-size: 32px;
+    }
+
+    .first-letters-name-bg-mobil{
+        width: 60px;
+        height: 60px;
+    }
+
+    .first-letters-name-bg{
+        width: 60px;
+        height: 60px;
+        font-size: 25px;
+        margin-top: -32px;
+    }
+
+    #email-telefon-contact{
+        gap: 10px;
+    }
+
+    .contact-responsive{
+        gap: 15;
+    }
+}
+
+@media(min-width:840px){
+    .button-addcontact-round img{
+        display: none;
+    }
+
+    .button-more-options-container{
+        display: none;
+    }
+
+    .PopUp-edit-delete{
+        display: none;
+    }
+
+    .PopUp-edit-delete-bg{
+        display: none;
+    }
 }
 
 @media(max-width:700px){
@@ -251,59 +389,7 @@
 
      /* PopUp */
 
-     .add-new-or-edit-contact-popUp{
-        display: flex;
-        flex-direction: column;
-        width: 300px;
-        height: 635px;
-    }
-
-    .popUp-edit-add-leftside{
-        width: 300px;
-        height: 300px;
-        border-radius: 30px 30px 0px 0px;
-        display: flex;
-        justify-content: center;
-       
-    }
-
-    .popUp-edit-add-leftside-content{
-        gap: 8px;
-        padding-bottom: 20px;
-    }
-
-    .span-tasks-are-better{
-        font-size: 20px;
-    }
-
-    .bg-contact_icon {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        margin-top: -41px;
-    }
-
-    .popUp-edit-add-rightside{
-        padding-top: 35px;
-        padding: 35px 0px 0px 0px;
-    }
-
-    .input-text-email-number-contact{
-        width: 250px;
-        padding: 13px 13px 13px 13px;
-    }
-
-    .input-text-contact{
-        background-position: 245px;
-    }
-
-    .input-email-contact{
-        background-position: 245px;
-    }
-
-    .input-number-contact{
-        background-position: 245px;
-    }
+     
      
 }
 
@@ -328,3 +414,61 @@
         display: none !important;
     }
 }
+  
+    /* max-height-670px
+
+@media(max-width:840px){
+    .add-new-or-edit-contact-popUp{
+        margin-bottom: 80px;
+    }
+
+    .popUp-edit-add-leftside{
+        height: 225px;
+    }
+
+    .span-Contact{
+        font-size: 35px;
+    }
+
+    .popUp-edit-add-rightside {
+        padding-top: 10px;
+    }
+
+    .add-new-or-edit-contact-popUp{
+        height: 500px;
+    }
+
+    .contacts-list {
+        height: 70%;
+    }
+
+    .bg-contact_icon{
+        width: 60px;
+        height: 60px;
+    }
+
+    .contacts-container-responsive {
+        padding: 10px 32px;
+    }
+
+    .h1-mobil{
+        font-size: 40px;
+    }
+
+    #contact-name h2{
+        font-size: 32px;
+    }
+
+    .first-letters-name-bg-mobil{
+        width: 60px;
+        height: 60px;
+    }
+
+    #email-telefon-contact{
+        gap: 10px;
+    }
+
+    .contact-responsive{
+        gap: 15;
+    }
+} */
