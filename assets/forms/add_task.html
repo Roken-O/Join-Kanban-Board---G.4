@@ -22,6 +22,14 @@
         margin-top: 100px;
       }
 
+      #task-trial-task-edit-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        margin-top: 100px;
+      }
+
       #icon-dropdown-arrow-image {
         height: 8px;
         cursor: pointer;
@@ -163,11 +171,17 @@
         position: absolute;
         right: 6px;
       }
+
+      .form-flexbox {
+        display: flex;
+        justify-content: center;
+      }
     </style>
   </head>
   <body onload="includeHTML(); init();">
-    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
-    <form id="task-trial-task-form" onsubmit="saveTask(); return false;">
+    <!-- <div w3-include-html="/assets/templates/sidebar_menu.html"></div> -->
+    <div class="form-flexbox">
+      <form id="task-trial-task-form" onsubmit="saveTask(); return false;">
       <input id="task-trial-title" type="text" placeholder="Title" required />
       <input
         id="task-trial-description"
@@ -260,17 +274,20 @@
           </div>
         </div>
         <div id="contacts-trial-contacts-list" class="dropdown-list d-none">
-          <!-- Hier werden die Kontakte dynamisch hinzugefügt -->
+          
         </div>
       </section>
-      <div id="selected-contacts" class="d-none">Selected Contacts: None</div>
+      
       <input id="task-trial-subtask-input" type="text" placeholder="Subtask" />
       <button type="button" onclick="addSubTask()">Add Subtask</button>
       <div id="subtask-list"></div>
       <button>Speichern</button>
-    </form>
-    <div id="task-trial-container"></div>
+      </form>
 
+    </div>
+    <div id="task-trial-container"></div>
+    <div id="task-edit-container"></div>
+    
     <script src="/js/script.js"></script>
     <script src="/js/firebase.js"></script>
     <script src="/js/add_task.js"></script>

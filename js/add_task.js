@@ -1,7 +1,10 @@
 let selectedCategory = '';
 let selectedContacts = [];
+let selectedContactsEdit = [];
 let allContacts = [];
 let subtasks = [];
+let subtasksEdit = [];
+let allTasks = [];
 
 
 function init() {
@@ -22,7 +25,6 @@ function saveTask() {
   let title = document.getElementById('task-trial-title').value;
   let description = document.getElementById('task-trial-description').value;
   let dueDate = document.getElementById('task-trial-date-picker').value;
-  // let subTask = document.getElementById('task-trial-subtask-input').value;
 
   let task = {
     'taskCategory': selectedCategory,
@@ -41,7 +43,6 @@ function saveTask() {
   subtasks = [];
   displaySubTasks();
   selectedContacts = [];
-  updateSelectedContactsDisplay();
   selectedCategory = '';
   document.getElementById('task-trial-category-selection').innerText = "Category";
   priority = '';
@@ -74,7 +75,7 @@ function displaySubTasks() {
 
   subtasks.forEach((subtask, index) => {
       let subtaskItem = document.createElement('li');
-      subtaskItem.innerHTML = `${subtask} <button type="button" onclick="removeSubTask(${index})">X</button>`;
+      subtaskItem.innerHTML = /*html*/ `${subtask} <button type="button" onclick="removeSubTask(${index})">X</button>`;
       subtaskList.appendChild(subtaskItem);
   });
 }
@@ -90,32 +91,164 @@ function loadTasks() {
   let database = firebase.database();
   let tasks = database.ref('tasks');
 
-  tasks.on('value', function (snapshot) {
+  tasks.on('value', function(snapshot) {
     let taskContainer = document.getElementById('task-trial-container');
     taskContainer.innerHTML = "";
-
-    snapshot.forEach(function (childSnapshot) {
+    allTasks = [];
+    
+    snapshot.forEach(function(childSnapshot) {
       let task = childSnapshot.val();
+      task.taskId = childSnapshot.key;  
+      allTasks.push(task);
+
       let assignedContacts = task.taskAssignment ? task.taskAssignment.map(contact => contact.name).join(', ') : 'No contacts assigned';
-      let subtasksHTML = task.taskSubTask.map(subtask => `<li contenteditable="true">${subtask}</li>`).join('');
       let dateParts = task.taskDate.split('-');
-      let formDate = dateParts[2] + '.' + dateParts[1] + '.' + dateParts[0];
+      let formDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
+      let subtasks = task.taskSubTask ? task.taskSubTask.join(', ') : 'No subtasks';
+
       taskContainer.innerHTML += /*html*/ `
             <div id="task-trial-board-container">
-                <div class="task-item-output" id="task-trial-category-container" contenteditable="true">${task.taskCategory}</div>
-                <div class="task-item-output" id="task-trial-title-container" contenteditable="true">${task.taskTitle}</div>
-                <div class="task-item-output" id="task-trial-description-container" contenteditable="true">${task.taskDescription}</div>
-                <div class="task-item-output" id="formatted-date-display" contenteditable="true">Due date: ${formDate}</div>
-                <div class="task-item-output" id="task-trial-priority-container" contenteditable="true"><img src="${task.taskPriority}" id="task-trial-priority-icon-task" alt="Priority Icon"/></div>
-                <div class="task-item-output" id="task-trial-assignment-container" contenteditable="true">Assigned to: ${assignedContacts}</div>
-                <div class="task-item-output" id="task-trial-subtask-container" contenteditable="true">Subtasks: <ul>${subtasksHTML}</ul></div>
+                <div class="task-item-output" id="task-trial-category-container">${task.taskCategory}</div>
+                <div class="task-item-output" id="task-trial-title-container">${task.taskTitle}</div>
+                <div class="task-item-output" id="task-trial-description-container">${task.taskDescription}</div>
+                <div class="task-item-output" id="formatted-date-display">Due date: ${formDate}</div>
+                <div class="task-item-output" id="task-trial-priority-container"><img src="${task.taskPriority}" id="task-trial-priority-icon-task" alt="Priority Icon"/></div>
+                <div class="task-item-output" id="task-trial-assignment-container">Assigned to: ${assignedContacts}</div>
+                <div class="task-item-output" id="task-trial-subtask-container">Subtasks: ${subtasks}</div>
                 <div id="task-trial-button-container">
-                    <div id="task-trial-delete-button"><img style="height: 16px;" src="/assets/img/delete_icon.svg" alt="" /><button onclick="deleteTask('${childSnapshot.key}')">Delete</button></div>
-                    <div id="task-trial-edit-button"><img style="height: 16px;" src="/assets/img/pen_DARK.svg" alt="" /><button onclick="editTask('${childSnapshot.key}')">Edit</button></div>
+                    <div id="task-trial-delete-button"><img style="height: 16px;" src="/assets/img/delete_icon.svg" alt="" /><button onclick="deleteTask('${task.taskId}')">Delete</button></div>
+                    <div id="task-trial-edit-button"><img style="height: 16px;" src="/assets/img/pen_DARK.svg" alt="" /><button onclick="editTask('${task.taskId}')">Edit</button></div>
                 </div>
             </div>`;
     });
   });
+}
+
+
+function editTask(taskId) {
+  let editTask = document.getElementById('task-edit-container');
+  let currentTitle;
+  let currentDescription;
+  let currentDate;
+  let currentSubTask;
+  let currentCategory;
+  let currentPriority;
+  let currentSelection;
+
+  for (let i = 0; i < allTasks.length; i++) {
+    if (taskId === allTasks[i]['taskId']) {
+      currentTitle = allTasks[i]['taskTitle'];
+      currentDescription = allTasks[i]['taskDescription'];
+      currentDate = allTasks[i]['taskDate'];
+      currentSubTask = allTasks[i]['taskSubTask'] || [];
+      currentCategory = allTasks[i]['taskCategory'] || '';
+      currentPriority = allTasks[i]['taskPriority'] || '';
+      currentSelection = allTasks[i]['taskAssignment'] || [];
+      break;
+    }
+  }
+
+  let contactsList = '';
+  allContacts.forEach(contact => {
+    let isChecked = currentSelection.some(selectedContact => selectedContact.email === contact.email);
+    contactsList += /*html*/ `
+      <div class="dropdown-item">
+        <input type="checkbox" id="${contact.email}-edit" value="${contact.email}" onclick="toggleContactEdit(this)" ${isChecked ? 'checked' : ''}>
+        <label for="${contact['email']}-edit">${contact['name']}</label>
+      </div>
+    `;
+  });
+
+  editTask.innerHTML = /*html*/ `
+    <input type="text" id="edit-task-title-container" value="${currentTitle}">
+    <input type="text" id="edit-task-description-container" value="${currentDescription}">
+    <input type="date" id="edit-task-date-container" value="${currentDate}">
+    <input type="text" id="edit-task-subtask-container" value="${currentSubTask.join(', ')}">
+    <input type="text" id="edit-task-subtask-input" placeholder="Subtask">
+    <button type="button" onclick="addSubTaskEdit()">Add Subtask</button>
+    <ul id="subtask-list-edit"></ul>
+    <div id="edit-task-category-container" class="dropdown">
+      <div class="dropbtn">${currentCategory}</div>
+      <div id="categoryDropdown" class="dropdown-content">
+        <div onclick="selectCategoryEdit('Technical Task')">Technical Task</div>
+        <div onclick="selectCategoryEdit('User Story')">User Story</div>
+      </div>
+    </div>
+    <div id="edit-task-priority-container" class="dropdown">
+      <div class="dropbtn"><img src="${currentPriority}" alt="Priority Icon"/></div>
+      <div id="priorityDropdown" class="dropdown-content">
+        <div onclick="selectPriorityEdit('/assets/img/urgent_icon.png')">Urgent</div>
+        <div onclick="selectPriorityEdit('/assets/img/medium_icon.svg')">Medium</div>
+        <div onclick="selectPriorityEdit('/assets/img/low_icon.svg')">Low</div>
+      </div>
+    </div>
+    <div id="edit-task-assignment-container" class="dropdown">
+      <button class="dropbtn">Assign Contacts</button>
+      <div id="contactsDropdown" class="dropdown-content">
+        ${contactsList}
+      </div>
+    </div>
+    <button onclick="saveEditedTask('${taskId}')">Save</button>
+  `;
+
+  selectedContactsEdit = currentSelection.slice();
+  subtasksEdit = currentSubTask.slice();
+
+  displaySubTasksEdit();
+}
+
+
+function addSubTaskEdit() {
+  let subTaskInputEdit = document.getElementById('edit-task-subtask-input');
+  let subTaskValueEdit = subTaskInputEdit.value.trim();
+
+  if (subTaskValueEdit !== "") {
+    subtasksEdit.push(subTaskValueEdit);
+    subTaskInputEdit.value = "";
+    displaySubTasksEdit();
+  }
+}
+
+
+function displaySubTasksEdit() {
+  let subtaskListEdit = document.getElementById('subtask-list-edit');
+  subtaskListEdit.innerHTML = "";
+
+  subtasksEdit.forEach((subtask, index) => {
+    let subtaskItemEdit = document.createElement('li');
+    subtaskItemEdit.innerHTML = /*html*/ `${subtask} <button type="button" onclick="removeSubTaskEdit(${index})">X</button>`;
+    subtaskListEdit.appendChild(subtaskItemEdit);
+  });
+}
+
+
+function removeSubTaskEdit(index) {
+  subtasksEdit.splice(index, 1);
+  displaySubTasksEdit();
+}
+
+
+function saveEditedTask(taskId) {
+  let editTitle = document.getElementById('edit-task-title-container').value;
+  let editDescription = document.getElementById('edit-task-description-container').value;
+  let editDate = document.getElementById('edit-task-date-container').value;
+  let editCategory = document.querySelector('#edit-task-category-container .dropbtn').innerText;
+  let editPriority = document.querySelector('#edit-task-priority-container .dropbtn img').src;
+
+  let task = {
+    'taskTitle': editTitle,
+    'taskDescription': editDescription,
+    'taskDate': editDate,
+    'taskSubTask': subtasksEdit,
+    'taskCategory': editCategory,
+    'taskPriority': editPriority,
+    'taskAssignment': selectedContactsEdit
+  };
+
+  let database = firebase.database();
+  let newTaskEntry = database.ref("tasks/" + taskId);
+  newTaskEntry.set(task)
+  loadTasks();
 }
 
 
@@ -132,13 +265,24 @@ function loadContactList() {
           let contact = childSnapshot.val();
           allContacts.push(contact);
 
-          contactsList.innerHTML += `
+          contactsList.innerHTML += /*html*/ `
               <div class="dropdown-item">
-                  <input type="checkbox" id="${contact.email}" value="${contact.email}" onclick="toggleContactAssignment(this)">
-                  <label for="${contact.email}">${contact.name}</label>
+                  <input type="checkbox" id="${contact['email']}" value="${contact.email}" onclick="toggleContactAssignment(this)">
+                  <label for="${contact['email']}">${contact['name']}</label>
               </div>`;
       });
   });
+}
+
+
+function toggleContactEdit(checkbox) {
+  let contactEmail = checkbox.value;
+  if (checkbox.checked) {
+    let contact = allContacts.find(contact => contact['email'] === contactEmail);
+    selectedContactsEdit.push(contact);
+  } else {
+    selectedContactsEdit = selectedContactsEdit.filter(contact => contact['email'] !== contactEmail);
+  }
 }
 
 
@@ -190,6 +334,16 @@ function createCategoryIconMedium() {
 
 function createCategoryIconLow() {
   priority = '/assets/img/low_icon.svg';
+}
+
+
+function selectCategoryEdit(category) {
+  document.querySelector('#edit-task-category-container .dropbtn').innerText = category;
+}
+
+
+function selectPriorityEdit(priorityIcon) {
+  document.querySelector('#edit-task-priority-container .dropbtn img').src = priorityIcon;
 }
 
 
