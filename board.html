@@ -25,7 +25,7 @@
                 <h1>Board</h1>
                 <div class="input-search-container">
                     <input oninput="filterTask()" id="search" type="text" placeholder="Find Task">
-                    <div><a href="/assets/forms/add_task.html">
+                    <div class="button-container"><a href="/assets/forms/add_task.html">
                             <button>Add task
                                 <svg id="plus_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 90 90">
@@ -35,7 +35,7 @@
                                                 fill: white;
                                                 stroke: white;
                                                 stroke-linecap: round;
-                                                stroke-width: 10px;
+                                                stroke-width: 12px;
                                             }
                                         </style>
                                     </defs>
@@ -54,7 +54,7 @@
                         <span>To do</span>
                         <img src="./assets/img/plus_icon.png">
                     </div>
-                    <div id="empty0" class="d-none">No tasks To do</div>
+                    <div id="empty0" class="empty" >No tasks To do</div>
                     <div id="to-do" class="tasks-container">
                         <div onclick="openTaskDetails()" class="task-container">
                             <h4>User Story</h4>
@@ -93,7 +93,7 @@
                         <span>In progress</span>
                         <img src="./assets/img/plus_icon.png">
                     </div>
-                    <div id="empty1"></div>
+                    <div id="empty1" class="empty">No tasks To do</div>
                     <div id="in-progress" class="tasks-container">
                         <div class="task-container">
                             <h4>User Story</h4>
@@ -192,7 +192,7 @@
                         <span>Await feedback</span>
                         <img src="./assets/img/plus_icon.png">
                     </div>
-                    <div id="empty2"></div>
+                    <div id="empty2" class="empty">No tasks To do</div>
                     <div id="await-feedback" class="tasks-container">
                         <div class="task-container">
                             <h4 class="technical-task-h4">Technical Task</h4>
@@ -231,7 +231,7 @@
                         <span>Done</span>
                         <img src="./assets/img/plus_icon.png">
                     </div>
-                    <div id="empty3"></div>
+                    <div id="empty3" class="empty">No tasks To do</div>
 
                     <div id="done" class="tasks-container">
                         <div class="task-container">
@@ -275,6 +275,7 @@
     <script src="/js/script.js"></script>
     <script src="/js/firebase.js"></script>
     <script src="/js/board.js"></script>
+    
 </body>
 
 </html>

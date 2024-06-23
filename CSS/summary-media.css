@@ -16,18 +16,19 @@
     }
 
     #main-container {
-        padding: 144px 64px 64px 32px !important;
+        padding: 100px 64px 64px 32px !important;
     }
 }
 
-@media (max-width: 621px) {
+@media (max-width: 650px) {
     body {
         font-size: 14px;
     }
 
-    #main-container {
+    /* #main-container {
         padding: 100px 32px 32px 0px !important;
-    }
+       
+    } */
 
     .headline-div-join360 {
         flex-direction: column;
@@ -125,10 +126,10 @@
         width: 80px;
     }
 
-    .greet-top {
+    /* .greet-top {
         top: 200px;
         left: 50px;
-    }
+    } */
 
 }
 
@@ -142,7 +143,7 @@
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 380px) {
     .todo-done-container {
         width: 300px;
     }
@@ -159,4 +160,17 @@
         font-size: 12px;
     }
 
+}
+@media (max-width: 340px) {
+    .todo-done-container {
+        width: 286px;
+    }
+
+    .urgent-container {
+        width: 210px;
+    }
+
+    .tasks-container {
+        width: 286px;
+    }
 }

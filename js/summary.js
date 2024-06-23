@@ -1,4 +1,7 @@
+let registeredUser;
+
 function init() {
+    loadLocalStorage();
     includeHTML();
     showGreeting();
     greetAnimate();
@@ -6,19 +9,34 @@ function init() {
 }
 
 function showGreeting() {
+    checkTrueRegistered();
     let hours = new Date().getHours();
     let greeting = document.getElementById('greeting');
     let topGreeting = document.getElementById('top-greeting');
+    let greetingName = document.getElementById('greeting-name');
+    let greetingNameTop = document.getElementById('greeting-name-top');
+    
+    greetingName.innerHTML = greetingNameTop.innerHTML = registeredUser;
 
     if (hours >= 6 && hours < 12) {
-        greeting.innerHTML = 'Good Morning';
-        topGreeting.innerHTML = 'Good Morning';
+        greeting.innerHTML = topGreeting.innerHTML  = 'Good Morning';
+
     } else if (hours >= 12 && hours < 18) {
-        greeting.innerHTML = 'Good Afternoon';
-        topGreeting.innerHTML = 'Good Afternoon';
+        greeting.innerHTML = topGreeting.innerHTML= 'Good Afternoon';
     } else {
-        greeting.innerHTML = 'Good Evening';
-        topGreeting.innerHTML = 'Good Evening';
+        greeting.innerHTML = topGreeting.innerHTML = 'Good Evening';
+    }
+}
+
+function checkTrueRegistered(){
+    for (let index = 0; index < allUsers.length; index++) {
+        let user = allUsers[index];
+        if(user['registered'] == true){
+            registeredUser = user['name'];
+            user['registered'] = false;
+            saveLocalStorage;
+            break;
+        }
     }
 }
 

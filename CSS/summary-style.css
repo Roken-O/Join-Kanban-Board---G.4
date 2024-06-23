@@ -1,3 +1,7 @@
+#main-container{
+  height: 73.5vh;
+}
+
 span {
   color: rgba(42, 54, 71, 1);
 }
@@ -231,6 +235,7 @@ span {
 }
 
 .greet h1 {
+  white-space: nowrap;
   color: rgba(41, 171, 226, 1);
   font-weight: 700;
   font-size: 48px;
@@ -245,8 +250,8 @@ span {
   transition: all 300ms ease-in-out;
   position: relative;
   top: 200px;
-  left: 100px;
-
+  /* left: 30px; */
+  text-align: center;
 }
 
 .greet-top h2 {
@@ -255,7 +260,8 @@ span {
 }
 
 .greet-top h1 {
+  white-space: nowrap;
   color: rgba(41, 171, 226, 1);
   font-weight: 700;
-  font-size: 48px;
+  font-size: 40px;
 }

@@ -3,10 +3,10 @@ let allUsers = [];
 function init() {
     animate();
     loadUsers();
+    // loadLocalStorage();
 }
 
 function signup() {
-    let checkEmailSignup = true;
     let emailSignup = document.getElementById("email-signup").value;
     let passwordSignup = document.getElementById("password-signup").value;
     let confirmPasswordSignup = document.getElementById("confirmPassword-signup").value;
@@ -39,11 +39,6 @@ function signup() {
 function checkEmailSignupFunk(checkEmail) {
     let emailSignup = document.getElementById("email-signup").value;
     document.getElementById('existing-email').style.display = (emailSignup == checkEmail) ? "flex" : "none";
-    // if (emailSignup == checkEmail) {
-    //     document.getElementById('existing-email').style.display = "flex";
-    // } else {
-    //     document.getElementById('existing-email').style.display = "none";
-    // }
 }
 
 function checkPassword() {
@@ -100,6 +95,8 @@ function login(event) {
     if (user) {
         if (user['password'] == password.value) {
             user['registered'] = true;
+            // userRegisterd(user);
+            saveLocalStorage();
             window.location.href = 'summary.html';
         }
         else {
@@ -112,6 +109,26 @@ function login(event) {
     }
 }
 
+function userRegisterd(user){
+    for (let i = 0; i < allUsers.length; i++) {
+        if (user['email'] == users[i]['email']) {
+          currentColor = allContacts[i]['color'];
+          currentEmail = allContacts[i]['email'];
+          currentPhone = allContacts[i]['phone'];
+          currentName = allContacts[i]['name'];
+          break;
+        }
+      }
+
+   
+      let database = firebase.database();
+      let contactEntry = database.ref("contacts/" + emailForm);
+      contactEntry.set(contact);
+
+      let newContactEntry = database.ref("users/" + ne);
+      newContactEntry.set(contact);
+
+}
 function checkPasswordLogin(userPassword, loginPassword) {
     document.getElementById('wrong-password-login').style.display = (userPassword == loginPassword) ? "none" : "flex";
 }
@@ -199,3 +216,15 @@ function goToSignupSite() {
         </div>
     </form>`;
 }
+
+function saveLocalStorage() {
+    let allUsersAsText = JSON.stringify(allUsers);
+    localStorage.setItem("Users", allUsersAsText);
+  }
+  
+  function loadLocalStorage() {
+    let allUsersAsText = localStorage.getItem("Users");
+    if (allUsersAsText) {
+        allUsers = JSON.parse(allUsersAsText);
+    }
+  }
