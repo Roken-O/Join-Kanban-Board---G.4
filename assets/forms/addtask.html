@@ -114,20 +114,13 @@
                         </div>
                         <input required class="field-325 date" type="date" placeholder="dd/mm/yyyy Kalenderbutton">
                     </div>
+
                     <!-- prio -->
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Prio</div>
                         <div class="flex gap-28">
-                            <button class="urgent color-urgent"><span class="span-urgent">Urgent</span></button>
-                            <button class="medium color-medium"><span class="span-medium">Medium</span></button>
-                            <button class="low color-low"><span class="span-low">Low</span></button>
-                        </div>
-                    </div>
 
-                    <div class="padding-bottom-24">
-                        <div class="mb-8 field-headline">Prio</div>
-                        <div class="flex gap-28">
-                            <button class="btn" id="btn1"
+                            <button class="btn urgent flex-just-align-center" id="btn1"
                                 onclick="changeColor('btn1','urgent-path1','urgent-path2')">Urgent
                                 <svg id="urgent_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 133 97.72">
@@ -137,10 +130,6 @@
                                                 fill: #ff7a00;
                                                 stroke-width: 0px;
                                             }
-
-                                            <!-- .cls-13 {
-                                                fill: white !important;
-                                            } -->
                                         </style>
                                     </defs>
                                     <path id="urgent-path1" class="cls-1"
@@ -148,7 +137,8 @@
                                     <path id="urgent-path2" class="cls-1"
                                         d="M125.7,59c-1.56,0-3.08-.5-4.34-1.44l-54.87-40.96L11.63,57.56c-1.56,1.16-3.5,1.65-5.42,1.36-1.91-.29-3.63-1.34-4.78-2.91-1.15-1.57-1.63-3.55-1.35-5.48.29-1.94,1.32-3.68,2.88-4.84L62.16,1.45c1.25-.94,2.77-1.45,4.34-1.45s3.08.51,4.34,1.45l59.2,44.24c1.24.92,2.15,2.22,2.62,3.7.47,1.48.46,3.07-.02,4.55-.48,1.48-1.41,2.76-2.66,3.67-1.24.91-2.74,1.4-4.28,1.4Z" />
                                 </svg></button>
-                            <button class="btn" id="btn2"
+
+                            <button class="btn urgent flex-just-align-center" id="btn2"
                                 onclick="changeColor('btn2','medium-path1','medium-path2')">Medium
                                 <svg id="medium_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 134 49.92">
@@ -158,8 +148,6 @@
                                                 fill: #ffa800;
                                                 stroke-width: 0px;
                                             }
-
-                
                                         </style>
                                     </defs>
                                     <path id="medium-path1" class="cls-8"
@@ -167,7 +155,8 @@
                                     <path id="medium-path2" class="cls-8"
                                         d="M126.66,14.79H7.34c-1.95,0-3.81-.78-5.19-2.17-1.38-1.39-2.15-3.27-2.15-5.23S.77,3.55,2.15,2.17C3.53.78,5.4,0,7.34,0h119.32c1.95,0,3.82.78,5.19,2.17,1.38,1.39,2.15,3.27,2.15,5.23s-.77,3.84-2.15,5.23c-1.38,1.39-3.25,2.17-5.19,2.17Z" />
                                 </svg></button>
-                            <button class="btn" id="btn3"
+
+                            <button class="btn low flex-just-align-center" id="btn3"
                                 onclick="changeColor('btn3','low-path1','low-path2')">Low
                                 <svg id="low_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 133.32 94.11">
@@ -177,7 +166,6 @@
                                                 fill: #7ae229;
                                                 stroke-width: 0px;
                                             }
-                                        
                                         </style>
                                     </defs>
                                     <path id="low-path1" class="cls-11"
@@ -219,7 +207,15 @@
 
                 <!-- cleaning -->
                 <div class="flex gap-16">
-                    <button class="cleaning"><span class="cleaning-text">Clear</span></button>
+                    <button class="cleaning low flex-just-align-center">
+                        <span class="cleaning-text">Clear</span>
+                        <svg onmouseover="changeCleaningColor()" onmouseleave="changeCleaningColorToStandard()"
+                            class="cleaning-svg" id="close_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 80 80">
+                            <path class="cls-20"
+                                d="M40,48.52l-29.81,29.81c-1.12,1.12-2.53,1.67-4.26,1.67s-3.14-.56-4.26-1.67c-1.12-1.12-1.67-2.54-1.67-4.26s.56-3.14,1.67-4.26l29.81-29.81L1.67,10.19c-1.12-1.12-1.67-2.53-1.67-4.26S.56,2.79,1.67,1.67C2.79.56,4.21,0,5.93,0s3.14.56,4.26,1.67l29.81,29.81L69.81,1.67c1.12-1.12,2.54-1.67,4.26-1.67s3.14.56,4.26,1.67c1.12,1.12,1.67,2.53,1.67,4.26s-.56,3.14-1.67,4.26l-29.81,29.81,29.81,29.81c1.12,1.12,1.67,2.54,1.67,4.26s-.56,3.14-1.67,4.26-2.54,1.67-4.26,1.67-3.14-.56-4.26-1.67l-29.81-29.81Z" />
+                        </svg>
+                    </button>
 
                     <!-- create task -->
                     <button required class="create-task"><span class="create-text">Create Task</span></button>
@@ -227,11 +223,6 @@
             </div>
 
         </form>
-
-
-
-
-
 
 
         <script src="/js/script.js"></script>
@@ -242,86 +233,36 @@
 
 <script>
     function changeColor(buttonId, path1Id, path2Id) {
-        // Alle Buttons zurücksetzen
         resetButtons();
-
-        // Farbe für den angeklickten Button ändern und Schrift weiß machen
-        if (buttonId === 'btn1') {
-            document.getElementById('btn1').style.backgroundColor = 'red';
-            document.getElementById('btn1').style.color = 'white';
-           
-        } else if (buttonId === 'btn2') {
-            document.getElementById('btn2').style.backgroundColor = 'orange';
-            document.getElementById('btn2').style.color = 'white';
-        } else if (buttonId === 'btn3') {
-            document.getElementById('btn3').style.backgroundColor = 'green';
-            document.getElementById('btn3').style.color = 'white';
+        const buttons = [
+            { id: 'btn1', color: '#ff3d00' },
+            { id: 'btn2', color: '#ff7a00' },
+            { id: 'btn3', color: '#7ae229' }
+        ];
+        for (const button of buttons) { //button Schleifenvariable; buttons = Array
+            if (button.id === buttonId) {
+                document.getElementById(button.id).style.backgroundColor = button.color;
+                document.getElementById(button.id).style.color = 'white';
+            }
         }
         document.getElementById(path1Id).classList.add('cls-13');
         document.getElementById(path2Id).classList.add('cls-13');
     }
 
     function resetButtons() {
-        // Buttons zurücksetzen
-        document.getElementById('btn1').style.backgroundColor = 'white';
-        document.getElementById('btn1').style.color = 'black';
-        
-        document.getElementById('btn2').style.backgroundColor = 'white';
-        document.getElementById('btn2').style.color = 'black';
-
-        document.getElementById('btn3').style.backgroundColor = 'white';
-        document.getElementById('btn3').style.color = 'black';
-
-        let paths = ['urgent-path1', 'urgent-path2','medium-path1', 'medium-path2','low-path1', 'low-path2'];
-        for (let i = 0; i < paths.length; i++) {
-            document.getElementById(paths[i]).classList.remove('cls-13');
+        const buttons = ['btn1', 'btn2', 'btn3'];
+        for (const id of buttons) {
+            document.getElementById(id).style.backgroundColor = 'white';
+            document.getElementById(id).style.color = 'black';
         }
     }
 
-    //         function changeSvgColor(svgId, path) {
-    //     let svgElement = document.getElementById(svgId);
-    //     if (svgElement) {
-    //         document.getElementById(path).classList.add('cls-4');
-    //     }
-    // }
+    function changeCleaningColor() {
+        document.querySelector('#close_icon .cls-20').style.fill = '#00bee8';
+    }
 
-    // function resetSvgColor(svgId, path) {
-    //     let svgElement = document.getElementById(svgId);
-    //     if (svgElement) {
-    //         document.getElementById(path).classList.remove('cls-4');
-    //     }
-    // }
+    function changeCleaningColorToStandard() {
+        document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
+    }
 
 </script>
-
-<!-- <section class="task-trial-category-dropdown-container">
-    <div id="task-trial-category-selection-container">
-        <div id="task-trial-category-selection">Category</div>    
-        <div class="icon-dropdown-arrow" onclick="categoryDropdown()"><img id="icon-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"></div>
-    </div>
-    <div class="task-trial-category-dropdown-links d-none" id="task-trial-category-dropdown">
-        <div class="category-selection" id="category-technical-task">Technical Task</div>
-        <div class="category-selection" id="category-user-story">User Story</div>
-    </div>
-</section>
-
-
-function categoryDropdown() {
-let x = document.getElementById('task-trial-category-dropdown');
-if (x.style.display === "block") {
-x.style.display = "none";
-} else {
-x.style.display = "block";
-}
-}
-
-#icon-dropdown-arrow-image {
-    height: 8px;
-    cursor: pointer;
-}
-
-#task-trial-category-selection-container {
-    display: flex;
-    gap: 16px;
-    cursor: pointer;
-} -->
