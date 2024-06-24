@@ -185,7 +185,7 @@ function editContactPopUp() {
 }
 
 function showContactInfo() {
-  document.getElementById("contact").classList.add("show-contact");
+  document.getElementById("contact").classList.add("translateX-null");
 }
 
 function showContactResponsive() {
@@ -211,3 +211,63 @@ function closePopUpEditDelete() {
 function openPopUpEditDelete() {
   document.getElementById("PopUp-edit-delete-bg").classList.remove("display-none");
 }
+
+
+// function init() {
+//   // document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
+//   // document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
+//   // document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
+// }
+
+
+// function addNewContactPopUp() {
+//   document
+//     .getElementById("add-new-contact-popUp-bg")
+//     .classList.add("translateX-null");
+// }
+
+
+// function closePupUpaddNewOrEdditContact() {
+//   document
+//     .getElementById("add-new-contact-popUp-bg")
+//     .classList.remove("translateX-null");
+//   document
+//     .getElementById("edit-contact-popUp-bg")
+//     .classList.remove("translateX-null");
+// }
+
+
+// function editContactPopUp() {
+//   document
+//     // .getElementById("edit-contact-popUp-bg")
+//     // .classList.add("add-new-or-edit-contact-popUp-bg");
+//   document.getElementById("edit-contact-popUp-bg").classList.add("translateX-null");
+// }
+
+// function showContactInfo() {
+//   document.getElementById("contact").classList.add("translateX-null");
+// }
+
+// function showContactResponsive() {
+//   let width = window.innerWidth;
+//   if (width <= 1050) {
+//     document.getElementById("contacts-list").classList.add("display-none");
+//     document.getElementById("contacts-container-responsive").classList.add("d-unset");
+//     document.getElementById("back-icon").classList.add("d-unset");
+
+//   }
+// }
+
+// function closeContact() {
+//   document.getElementById("contacts-list").classList.remove("display-none");
+//   document.getElementById("contacts-container-responsive").classList.remove("d-unset");
+//   document.getElementById("back-icon").classList.remove("d-unset");
+// }
+
+// function closePopUpEditDelete() {
+//   document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
+// }
+
+// function openPopUpEditDelete() {
+//   document.getElementById("PopUp-edit-delete-bg").classList.remove("display-none");
+// }
