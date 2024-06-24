@@ -332,32 +332,44 @@
             <form class="form-add-new-contact" action="">
               <input
                 placeholder="Name"
+                id="contact-trial-name"
                 class="input-text-email-number-contact input-text-contact"
                 type="text"
+                required
               />
               <input
                 placeholder="Email"
+                id="contact-trial-email"
                 class="input-text-email-number-contact input-email-contact"
                 type="email"
+                required
               />
               <input
                 placeholder="Phone"
+                id="contact-trial-phone"
                 class="input-text-email-number-contact input-number-contact"
                 type="text"
+                required
               />
+              
+              <div class="button-container-add">
+                <button>
+                  <img
+                  class="button_cancel"
+                  src="./assets/img/button_cancel.svg"
+                  alt=""
+                />
+                </button>
+                <button onclick="saveContact()" >
+                <img
+                  class="button_create_contact"
+                  src="./assets/img/button_create_contact.svg"
+                  alt=""
+                />
+              </button>
+              </div>
             </form>
-            <div class="button-container-add">
-              <img
-                class="button_cancel"
-                src="./assets/img/button_cancel.svg"
-                alt=""
-              />
-              <img
-                class="button_create_contact"
-                src="./assets/img/button_create_contact.svg"
-                alt=""
-              />
-            </div>
+            
           </div>
         </div>
       </div>
