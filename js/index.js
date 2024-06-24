@@ -3,10 +3,23 @@ let allUsers = [];
 function init() {
     animate();
     loadUsers();
-    // loadLocalStorage();
+}
+
+function loadUsers() {
+    let database = firebase.database();
+    let usersEntries = database.ref("users");
+    usersEntries.on("value", function (snapshot) {
+        allUsers = [];
+        snapshot.forEach(function (childSnapshot) {
+            let user = childSnapshot.val();
+            user.id = childSnapshot.key;  
+            allUsers.push(user);
+        });
+    });
 }
 
 function signup() {
+    let nameSignup = document.getElementById("username").value;
     let emailSignup = document.getElementById("email-signup").value;
     let passwordSignup = document.getElementById("password-signup").value;
     let confirmPasswordSignup = document.getElementById("confirmPassword-signup").value;
@@ -22,8 +35,8 @@ function signup() {
             if (passwordSignup.length > 5) {
                 showMessageAlert();
                 setTimeout(() => {
-                    allUsers.push({ email: emailSignup, password: passwordSignup, registered: true });
-                    saveNewUser(emailSignup, passwordSignup);
+                    allUsers.push({ email: emailSignup, password: passwordSignup, name : nameSignup});
+                    saveNewUser(emailSignup, passwordSignup, nameSignup );
                     loadUsers();
                     window.location.href = 'index.html';
                 }, 2250);
@@ -47,22 +60,11 @@ function checkPassword() {
     document.getElementById('wrong-password').style.display = (passwordSignup != confirmPasswordSignup) ? "flex" : "none";
 }
 
-function loadUsers() {
-    let database = firebase.database();
-    let usersEntries = database.ref("users");
-    usersEntries.on("value", function (snapshot) {
-        allUsers = [];
-        snapshot.forEach(function (childSnapshot) {
-            let user = childSnapshot.val();
-            allUsers.push(user);
-        });
-    });
-}
-
-function saveNewUser(emailSignup, passwordSignup) {
+function saveNewUser(emailSignup, passwordSignup, nameSignup) {
     let user = {
         email: emailSignup,
         password: passwordSignup,
+        name : nameSignup,
         registered: false
     };
     let database = firebase.database();
@@ -94,8 +96,8 @@ function login(event) {
     console.log(user);
     if (user) {
         if (user['password'] == password.value) {
-            user['registered'] = true;
-            // userRegisterd(user);
+             let userID = user['id'];
+            userRegisterd(userID);
             saveLocalStorage();
             window.location.href = 'summary.html';
         }
@@ -109,26 +111,12 @@ function login(event) {
     }
 }
 
-function userRegisterd(user){
-    for (let i = 0; i < allUsers.length; i++) {
-        if (user['email'] == users[i]['email']) {
-          currentColor = allContacts[i]['color'];
-          currentEmail = allContacts[i]['email'];
-          currentPhone = allContacts[i]['phone'];
-          currentName = allContacts[i]['name'];
-          break;
-        }
-      }
-
-   
+function userRegisterd(userID){
       let database = firebase.database();
-      let contactEntry = database.ref("contacts/" + emailForm);
-      contactEntry.set(contact);
-
-      let newContactEntry = database.ref("users/" + ne);
-      newContactEntry.set(contact);
-
+      let userEntry = database.ref("users/" + userID + "/registered/");
+      userEntry.set(true);
 }
+
 function checkPasswordLogin(userPassword, loginPassword) {
     document.getElementById('wrong-password-login').style.display = (userPassword == loginPassword) ? "none" : "flex";
 }

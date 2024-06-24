@@ -1,26 +1,54 @@
-let registeredUser;
+let registeredUserName;
+let registeredUserInitials;
+let registeredID;
 
-function init() {
-    loadLocalStorage();
+function initSummary() {
     includeHTML();
-    showGreeting();
-    greetAnimate();
-    urgentDate();
+    setTimeout(() => {
+        loadLocalStorage();
+        // loadUserssumaary();
+        checkTrueRegistered();
+        getInitialsName()
+        showGreeting();
+        greetAnimate();
+        urgentDate();
+    }, 10);
 }
 
+// function loadUserssumaary() {
+//     let database = firebase.database();
+//     let usersEntries = database.ref("users");
+//     usersEntries.on("value", function (snapshot) {
+//         allUsers = [];
+//         snapshot.forEach(function (childSnapshot) {
+//             let user = childSnapshot.val();
+//             user.id = childSnapshot.key;  
+//             allUsers.push(user);
+//         });
+//     });
+// }
+
+function getInitialsName(){
+    if(registeredUserInitials){
+    document.getElementById('sub-contact-initial-container').innerHTML = registeredUserInitials;
+    }
+}
+
+
 function showGreeting() {
-    checkTrueRegistered();
     let hours = new Date().getHours();
     let greeting = document.getElementById('greeting');
     let topGreeting = document.getElementById('top-greeting');
     let greetingName = document.getElementById('greeting-name');
     let greetingNameTop = document.getElementById('greeting-name-top');
-    
-    greetingName.innerHTML = greetingNameTop.innerHTML = registeredUser;
+    if(registeredUserName){
+    greetingName.innerHTML = greetingNameTop.innerHTML = registeredUserName;
+    }else{
+        greetingName.innerHTML = greetingNameTop.innerHTML ='';
+    }
 
     if (hours >= 6 && hours < 12) {
         greeting.innerHTML = topGreeting.innerHTML  = 'Good Morning';
-
     } else if (hours >= 12 && hours < 18) {
         greeting.innerHTML = topGreeting.innerHTML= 'Good Afternoon';
     } else {
@@ -32,12 +60,25 @@ function checkTrueRegistered(){
     for (let index = 0; index < allUsers.length; index++) {
         let user = allUsers[index];
         if(user['registered'] == true){
-            registeredUser = user['name'];
-            user['registered'] = false;
-            saveLocalStorage;
+            registeredUserName = user['name'];
+            registeredID = user['id'];
+            registeredUserInitials = getInitials(registeredUserName);
             break;
         }
     }
+}
+
+function loadUsers() {
+    let database = firebase.database();
+    let usersEntries = database.ref("users");
+    usersEntries.on("value", function (snapshot) {
+        allUsers = [];
+        snapshot.forEach(function (childSnapshot) {
+            let user = childSnapshot.val();
+            user.id = childSnapshot.key;  
+            allUsers.push(user);
+        });
+    });
 }
 
 function greetAnimate() {
@@ -77,3 +118,39 @@ function urgentDate() {
     let upcomingDate = `${month} ${day}, ${year}`;
     document.getElementById('urgent-date').innerHTML = upcomingDate;
 }
+
+// let getInitials = function (string) {
+//     let name = string.split(" "),
+//       initials = name[0].substring(0, 1).toUpperCase();
+  
+//     if (name.length > 1) {
+//       initials += name[name.length - 1].substring(0, 1).toUpperCase();
+//     }
+//     return initials;
+//   };
+
+
+function toggleShowLogout(){
+    let logoutContainer = document.getElementById('showLogout');
+    logoutContainer.innerHTML = `
+     <div class="popout-showlogout">
+        <a href="privacy.html">Legal Notice</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a onclick="logout('${registeredID}')" href="#">Log Out</a>
+      </div>`;
+    if(logoutContainer.style.display == 'none'){
+      logoutContainer.style.display = 'flex';
+    }else{
+      logoutContainer.style.display = 'none';
+    }
+    }
+
+    function logout(registeredID){
+        let database = firebase.database();
+        let userEntry = database.ref("users/" + registeredID + "/registered/");
+        userEntry.set(false);
+        loadUsers();
+        saveLocalStorage();
+        window.location.href = 'index.html';
+    }
+    
