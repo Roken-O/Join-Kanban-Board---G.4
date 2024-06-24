@@ -1,13 +1,78 @@
-/* ADD TASK-START */
-@media (max-width: 1600px) {
+
+@media (max-width: 1250px) {
 
   .parent-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  } 
+
+  .form-seperator {
+    display: none;
   }
 
-  .clear {
+  .left-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .right-container {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0 0 0;
+  }
+
+  .required-text {
+    font-weight: 400;
+    font-size: 14px;
+    display:flex;
+    flex-direction: column;
+    padding-left:24px;
+  }
+
+  .asterisk-color {
+    display: none;
+   }
+}
+
+  @media (max-width: 1030px) {
+ .prio-container {
+  gap: 8px;
+ }
+
+ .execution-responsive {
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+ }
+
+ .asterisk-color {
+  display: none;
+ }
+
+ .create-task {
+  width: 100px !important;
+  height: 44px;
+}
+
+.cleaning {
+  width:34px;
+  font-size: 17px;
+}
+
+.cleaning-svg {
+  display: none;
+}
+  }
+
+  /* @media (max-width: 980px) */
+
+
+
+
+
+  
+  /* .clear {
     display: none;
   }
 
@@ -27,11 +92,11 @@
 
   .assigned-flex {
     padding-bottom: 24px;;
-  }
+  } */
 
-}
 
-@media (max-width: 1200px) {
+
+/* @media (max-width: 1200px) {
   .form-seperator {
     display: none;
   }
@@ -163,4 +228,4 @@
   .gap-16 {
     gap: 5px;
   }
-}
+} 
