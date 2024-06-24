@@ -602,3 +602,9 @@
  }
 
 /* main-container-contacts End */
+
+
+#subtask-list li {
+  display: flex;
+  align-items: center;
+}

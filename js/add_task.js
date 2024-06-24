@@ -75,7 +75,7 @@ function displaySubTasks() {
 
   subtasks.forEach((subtask, index) => {
       let subtaskItem = document.createElement('li');
-      subtaskItem.innerHTML = /*html*/ `${subtask} <button type="button" onclick="removeSubTask(${index})">X</button>`;
+      subtaskItem.innerHTML = /*html*/ `${subtask} <button style="background: transparent; border: none; cursor: pointer;" type="button" onclick="removeSubTask(${index})"><img style="width: 12px; height: 12px;" src="/assets/img/delete_icon.svg"/></button>`;
       subtaskList.appendChild(subtaskItem);
   });
 }
@@ -101,23 +101,23 @@ function loadTasks() {
       task.taskId = childSnapshot.key;  
       allTasks.push(task);
 
-      let assignedContacts = task.taskAssignment ? task.taskAssignment.map(contact => contact.name).join(', ') : 'No contacts assigned';
-      let dateParts = task.taskDate.split('-');
+      let assignedContacts = task['taskAssignment'] ? task['taskAssignment'].map(contact => contact['name']).join(', ') : 'No contacts assigned';
+      let dateParts = task['taskDate'].split('-');
       let formDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
-      let subtasks = task.taskSubTask ? task.taskSubTask.join(', ') : 'No subtasks';
+      let subtasks = task['taskSubTask'] ? task['taskSubTask'].join(', ') : 'No subtasks';
 
       taskContainer.innerHTML += /*html*/ `
             <div id="task-trial-board-container">
-                <div class="task-item-output" id="task-trial-category-container">${task.taskCategory}</div>
-                <div class="task-item-output" id="task-trial-title-container">${task.taskTitle}</div>
-                <div class="task-item-output" id="task-trial-description-container">${task.taskDescription}</div>
+                <div class="task-item-output" id="task-trial-category-container">${task['taskCategory']}</div>
+                <div class="task-item-output" id="task-trial-title-container">${task['taskTitle']}</div>
+                <div class="task-item-output" id="task-trial-description-container">${task['taskDescription']}</div>
                 <div class="task-item-output" id="formatted-date-display">Due date: ${formDate}</div>
-                <div class="task-item-output" id="task-trial-priority-container"><img src="${task.taskPriority}" id="task-trial-priority-icon-task" alt="Priority Icon"/></div>
+                <div class="task-item-output" id="task-trial-priority-container"><img src="${task['taskPriority']}" id="task-trial-priority-icon-task" alt="Priority Icon"/></div>
                 <div class="task-item-output" id="task-trial-assignment-container">Assigned to: ${assignedContacts}</div>
                 <div class="task-item-output" id="task-trial-subtask-container">Subtasks: ${subtasks}</div>
                 <div id="task-trial-button-container">
-                    <div id="task-trial-delete-button"><img style="height: 16px;" src="/assets/img/delete_icon.svg" alt="" /><button onclick="deleteTask('${task.taskId}')">Delete</button></div>
-                    <div id="task-trial-edit-button"><img style="height: 16px;" src="/assets/img/pen_DARK.svg" alt="" /><button onclick="editTask('${task.taskId}')">Edit</button></div>
+                    <div style="display: flex; align-items: center; cursor: pointer;" id="task-trial-delete-button"><img style="height: 12px; width: 12px; cursor: pointer;" src="/assets/img/delete_icon.svg" alt="" /><button style="background: transparent; border: none; cursor: pointer;" onclick="deleteTask('${task['taskId']}')">Delete</button></div>
+                    <div style="display: flex; align-items: center; cursor: pointer;" id="task-trial-edit-button"><img style="height: 12px; width: 12px; cursor: pointer;" src="/assets/img/pen_DARK.svg" alt="" /><button style="background: transparent; border: none; cursor: pointer;" onclick="editTask('${task['taskId']}')">Edit</button></div>
                 </div>
             </div>`;
     });
@@ -153,8 +153,9 @@ function editTask(taskId) {
     let isChecked = currentSelection.some(selectedContact => selectedContact.email === contact.email);
     contactsList += /*html*/ `
       <div class="dropdown-item">
-        <input type="checkbox" id="${contact.email}-edit" value="${contact.email}" onclick="toggleContactEdit(this)" ${isChecked ? 'checked' : ''}>
+        <div style="display: flex; align-items:center; justify-content: center; background: ${contact['color']}; height: 40px; width: 40px; border-radius: 40px; cursor: pointer;" id="contact-badge-list">${getInitials(contact['name'])}</div>
         <label for="${contact['email']}-edit">${contact['name']}</label>
+        <input type="checkbox" id="${contact['email']}-edit" value="${contact['email']}" onclick="toggleContactEdit(this)" ${isChecked ? 'checked' : ''}>
       </div>
     `;
   });
@@ -163,9 +164,8 @@ function editTask(taskId) {
     <input type="text" id="edit-task-title-container" value="${currentTitle}">
     <input type="text" id="edit-task-description-container" value="${currentDescription}">
     <input type="date" id="edit-task-date-container" value="${currentDate}">
-    <input type="text" id="edit-task-subtask-container" value="${currentSubTask.join(', ')}">
     <input type="text" id="edit-task-subtask-input" placeholder="Subtask">
-    <button type="button" onclick="addSubTaskEdit()">Add Subtask</button>
+    <button style="background: transparent; border: 1px solid #2a3647; border-radius: 4px; cursor: pointer;" type="button" onclick="addSubTaskEdit()"><img style="heigth: 12px; width: 12px; padding: 4px 0px; cursor: pointer;" src="/assets/img/plus_icon.svg"/></button>
     <ul id="subtask-list-edit"></ul>
     <div id="edit-task-category-container" class="dropdown">
       <div class="dropbtn">${currentCategory}</div>
@@ -177,9 +177,9 @@ function editTask(taskId) {
     <div id="edit-task-priority-container" class="dropdown">
       <div class="dropbtn"><img src="${currentPriority}" alt="Priority Icon"/></div>
       <div id="priorityDropdown" class="dropdown-content">
-        <div onclick="selectPriorityEdit('/assets/img/urgent_icon.png')">Urgent</div>
-        <div onclick="selectPriorityEdit('/assets/img/medium_icon.svg')">Medium</div>
-        <div onclick="selectPriorityEdit('/assets/img/low_icon.svg')">Low</div>
+        <div style="width: 16px; height: 16px; cursor: pointer;" onclick="selectPriorityEdit('/assets/img/urgent_icon.png')">Urgent</div>
+        <div style="width: 16px; height: 16px; cursor: pointer;" onclick="selectPriorityEdit('/assets/img/medium_icon.svg')">Medium</div>
+        <div style="width: 16px; height: 16px; cursor: pointer;" onclick="selectPriorityEdit('/assets/img/low_icon.svg')">Low</div>
       </div>
     </div>
     <div id="edit-task-assignment-container" class="dropdown">
@@ -188,7 +188,7 @@ function editTask(taskId) {
         ${contactsList}
       </div>
     </div>
-    <button onclick="saveEditedTask('${taskId}')">Save</button>
+    <button style="cursor: pointer;" onclick="saveEditedTask('${taskId}')">Save</button>
   `;
 
   selectedContactsEdit = currentSelection.slice();
@@ -216,7 +216,7 @@ function displaySubTasksEdit() {
 
   subtasksEdit.forEach((subtask, index) => {
     let subtaskItemEdit = document.createElement('li');
-    subtaskItemEdit.innerHTML = /*html*/ `${subtask} <button type="button" onclick="removeSubTaskEdit(${index})">X</button>`;
+    subtaskItemEdit.innerHTML = /*html*/ `${subtask} <button style="background: transparent; border: none; cursor: pointer;" type="button" onclick="removeSubTaskEdit(${index})"><img style="height: 12px; width: 12px;" src="/assets/img/delete_icon.svg"/></button>`;
     subtaskListEdit.appendChild(subtaskItemEdit);
   });
 }
@@ -267,12 +267,24 @@ function loadContactList() {
 
           contactsList.innerHTML += /*html*/ `
               <div class="dropdown-item">
-                  <input type="checkbox" id="${contact['email']}" value="${contact.email}" onclick="toggleContactAssignment(this)">
+                  <div style="display: flex; align-items:center; justify-content: center; background: ${contact['color']}; height: 40px; width: 40px; border-radius: 40px; cursor: pointer;" id="contact-badge-list">${getInitials(contact['name'])}</div>
                   <label for="${contact['email']}">${contact['name']}</label>
+                  <input type="checkbox" id="${contact['email']}" value="${contact['email']}" onclick="toggleContactAssignment(this)">
               </div>`;
       });
   });
 }
+
+
+let getInitials = function (string) {
+  let name = string.split(" "),
+    initials = name[0].substring(0, 1).toUpperCase();
+
+  if (name.length > 1) {
+    initials += name[name.length - 1].substring(0, 1).toUpperCase();
+  }
+  return initials;
+};
 
 
 function toggleContactEdit(checkbox) {
