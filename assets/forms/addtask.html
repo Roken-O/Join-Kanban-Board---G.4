@@ -219,11 +219,12 @@
 
                     <!-- create task -->
                     <button required class="create-task"><span class="create-text">Create Task</span></button>
+                    <div class="animation" id="animation">Hallo</div>
                 </div>
             </div>
 
         </form>
-
+        <button onclick="animate()">Animation</button>
 
         <script src="/js/script.js"></script>
         <script src="/js/add_task.js"></script>
@@ -264,5 +265,11 @@
     function changeCleaningColorToStandard() {
         document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
     }
+
+    function animate() {
+        document.getElementById('animate').classList.add('translateNull');
+    }
+
+
 
 </script>
