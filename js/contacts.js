@@ -42,32 +42,32 @@ function deleteContact(email) {
 }
 
 
-function loadContacts() {
-  let database = firebase.database();
-  let contactEntries = database.ref("contacts");
+// function loadContacts() {
+//   let database = firebase.database();
+//   let contactEntries = database.ref("contacts");
 
-  contactEntries.on("value", function (snapshot) {
-    let contactsContainer = document.getElementById("contacts-trial-container");
-    contactsContainer.innerHTML = "";
+//   contactEntries.on("value", function (snapshot) {
+//     let contactsContainer = document.getElementById("contacts-trial-container");
+//     contactsContainer.innerHTML = "";
 
-    allContacts = [];
-    snapshot.forEach(function (childSnapshot) {
-      let contact = childSnapshot.val();
-      allContacts.push(contact);
+//     allContacts = [];
+//     snapshot.forEach(function (childSnapshot) {
+//       let contact = childSnapshot.val();
+//       allContacts.push(contact);
 
-      contactsContainer.innerHTML += /*html*/ `
-          <div id="contact-entry">
-            <div style="background: ${contact.color}" id="contact-trial-initial-container">${getInitials(contact.name)}</div>
-            <div id="contact-trial-name-container">Name: ${contact.name}</div>
-            <div id="contact-trial-email-container">Email: ${contact.email}</div>
-            <div id="contact-trial-phone-container">Telefonnummer: ${contact.phone}</div>
-            <button onclick="deleteContact('${contact.email}')">Löschen</button>
-            <button onclick="editContact('${contact.email}')">edit</button>
+//       contactsContainer.innerHTML += /*html*/ `
+//           <div id="contact-entry">
+//             <div style="background: ${contact.color}" id="contact-trial-initial-container">${getInitials(contact.name)}</div>
+//             <div id="contact-trial-name-container">Name: ${contact.name}</div>
+//             <div id="contact-trial-email-container">Email: ${contact.email}</div>
+//             <div id="contact-trial-phone-container">Telefonnummer: ${contact.phone}</div>
+//             <button onclick="deleteContact('${contact.email}')">Löschen</button>
+//             <button onclick="editContact('${contact.email}')">edit</button>
            
-          </div>`;
-    });
-  });
-}
+//           </div>`;
+//     });
+//   });
+// }
 
 function editContact(email) {
   let editContactTrial1 = document.getElementById('edit-contactt');
@@ -186,7 +186,6 @@ function editContactPopUp() {
 
 function showContactInfo() {
   document.getElementById("contact").classList.add("translateX-null");
-  
 }
 
 function showContactResponsive() {
@@ -220,15 +219,15 @@ function loadContacts() {
   let contactEntries = database.ref("contacts");
 
   contactEntries.on("value", function (snapshot) {
-    let contactsContainer = document.getElementById("contacts-list-content");
-    contactsContainer.innerHTML = "";
+    let contactsListContent = document.getElementById("contacts-list-content");
+    contactsListContent.innerHTML = "";
 
     allContacts = [];
     snapshot.forEach(function (childSnapshot) {
       let contact = childSnapshot.val();
       allContacts.push(contact);
 
-      contactsContainer.innerHTML += /*html*/ `
+      contactsListContent.innerHTML += /*html*/ `
           <div>
               <div id="initial-letter">A</div>
               <div id="breakline-contactlist"></div>
