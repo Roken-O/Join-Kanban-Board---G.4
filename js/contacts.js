@@ -186,6 +186,7 @@ function editContactPopUp() {
 
 function showContactInfo() {
   document.getElementById("contact").classList.add("translateX-null");
+  
 }
 
 function showContactResponsive() {
@@ -210,6 +211,44 @@ function closePopUpEditDelete() {
 
 function openPopUpEditDelete() {
   document.getElementById("PopUp-edit-delete-bg").classList.remove("display-none");
+}
+
+// new
+
+function loadContacts() {
+  let database = firebase.database();
+  let contactEntries = database.ref("contacts");
+
+  contactEntries.on("value", function (snapshot) {
+    let contactsContainer = document.getElementById("contacts-list-content");
+    contactsContainer.innerHTML = "";
+
+    allContacts = [];
+    snapshot.forEach(function (childSnapshot) {
+      let contact = childSnapshot.val();
+      allContacts.push(contact);
+
+      contactsContainer.innerHTML += /*html*/ `
+          <div>
+              <div id="initial-letter">A</div>
+              <div id="breakline-contactlist"></div>
+              <div
+                onclick="showContactInfo();showContactResponsive();"
+                class="flex-align-center"
+                id="contact-contactlist"
+              >
+                <div class="first-letters-name-contactlist-bg">
+                  <span class="first-letters-name-contactlist">AM</span>
+                </div>
+                <div id="contact-name-email-contactlist">
+                  <span id="contact-name-contactlist">${contact.name}</span>
+                  <span id="email-contactlist">${contact.email}</span>
+                </div>
+              </div>
+            </div>
+            `;
+    });
+  });
 }
 
 
