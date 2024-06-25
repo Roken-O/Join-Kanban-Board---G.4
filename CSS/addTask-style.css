@@ -73,6 +73,14 @@ textarea {
   resize: none;
 }
 
+.form-height {
+  /* background-color: #00bee8;   */
+  width: 50%;
+}
+
+/* .parent-container {
+  /* background-color: aqua; */
+
 
 .left-container {
   padding-right: 24px;
@@ -270,6 +278,10 @@ input[type="date"]:before {
 }
 
 /* execution-buttons */
+.execution-parent {
+  width:720px;
+}
+
 .position-execution {
   display: flex;
   justify-content: space-between;
@@ -289,10 +301,6 @@ input[type="date"]:before {
   outline: none;
   font-size: 22px;
   color: #2c2c2c;  
-  /* background:url("/assets/img/close_icon.svg") no-repeat; */
-  /* background-size: 13px; */
-  /* background-position: 48px; */
-  /* transition: all 300ms ease-in-out; */
   gap: 8px;
   border-color:#2c2c2c !important;
 }
@@ -489,33 +497,12 @@ input[type='checkbox'] {
   border:black !important;
 }
 
-/* animation */
-/* .animate-added-board {
-animation: 3s fadeIn ease-in-out;
-}
-  @keyframes fadeIn {
-    from {
-      height: 0;
-opacity: 0;
-    }
-
-    to {
-opacity: 1;
-height: 100px;
-    }
-  } */
-
   .animation { 
     background-color: green;
     transform: translateY(100%);
     transition: all 400ms ease-in-out;
     opacity: 0;
   }
-
-  .translateNull {
-    transform: translateY(0) !important;
-    opacity: 1;
-  } 
 
   .alert-message {
     position: fixed;
@@ -531,10 +518,11 @@ height: 100px;
   }
   
   .popup-message {
-    width:300px;
-    padding: 30px 8px;
-    padding-right: 20px;
-    gap: 24px;
+    width:250px;
+    padding: 0px 10px 30px 10px;
+    /* padding-right: 20px; */
+    /* margin-bottom: 100px; */
+    gap: 12px;
     border-radius: 30px;
     background-color: rgba(42, 54, 71, 1);
     color: white;
@@ -546,4 +534,21 @@ height: 100px;
     transition: all 200ms ease-in-out;
   }
   
+  .translateNull {
+    transform: translateY(0) !important;
+    opacity: 1;
+  } 
 
+  .animate-text {
+    font-weight: 50 !important;
+    font-size: 20px;
+    /* margin-bottom:40px !important; */
+  }
+
+  .animate-svg {
+  height: 24px;
+  width: 24px;
+  margin-left:24px;
+  margin-right:8px;
+  margin-top:20px;
+  }

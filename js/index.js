@@ -1,11 +1,11 @@
 let allUsers = [];
 
-function init() {
-    animate();
-    loadUsers();
+async function initIndex() {
+   await loadUsers();
+   animate();
 }
 
-function loadUsers() {
+async function loadUsers() {
     let database = firebase.database();
     let usersEntries = database.ref("users");
     usersEntries.on("value", function (snapshot) {
@@ -61,10 +61,12 @@ function checkPassword() {
 }
 
 function saveNewUser(emailSignup, passwordSignup, nameSignup) {
+   let initialName = getInitials(nameSignup);
     let user = {
         email: emailSignup,
         password: passwordSignup,
         name : nameSignup,
+        initial : initialName,
         registered: false
     };
     let database = firebase.database();
@@ -72,6 +74,16 @@ function saveNewUser(emailSignup, passwordSignup, nameSignup) {
     let userEntry = database.ref("users/" + usersLength);
     userEntry.set(user);
 }
+
+let getInitials = function (string) {
+    let name = string.split(" "),
+      initials = name[0].substring(0, 1).toUpperCase();
+  
+    if (name.length > 1) {
+      initials += name[name.length - 1].substring(0, 1).toUpperCase();
+    }
+    return initials;
+  };
 
 function showMessageAlert() {
     document.getElementById('alertMessage').style.display = "flex";
@@ -98,7 +110,7 @@ function login(event) {
         if (user['password'] == password.value) {
              let userID = user['id'];
             userRegisterd(userID);
-            saveLocalStorage();
+            // saveLocalStorage();
             window.location.href = 'summary.html';
         }
         else {
@@ -124,9 +136,9 @@ function checkPasswordLogin(userPassword, loginPassword) {
 function togglePasswordVisibility(password) {
     let passwordInput = document.getElementById(password);
     if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-    } else {
         passwordInput.type = 'password';
+    } else {
+        passwordInput.type = 'text';
     }
 }
 
@@ -204,15 +216,3 @@ function goToSignupSite() {
         </div>
     </form>`;
 }
-
-function saveLocalStorage() {
-    let allUsersAsText = JSON.stringify(allUsers);
-    localStorage.setItem("Users", allUsersAsText);
-  }
-  
-  function loadLocalStorage() {
-    let allUsersAsText = localStorage.getItem("Users");
-    if (allUsersAsText) {
-        allUsers = JSON.parse(allUsersAsText);
-    }
-  }
