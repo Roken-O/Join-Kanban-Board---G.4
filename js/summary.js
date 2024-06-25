@@ -2,38 +2,20 @@ let registeredUserName;
 let registeredUserInitials;
 let registeredID;
 
-function initSummary() {
+document.addEventListener('DOMContentLoaded', function () {
+    initSummary();
+});
+
+async function initSummary() {
     includeHTML();
-    setTimeout(() => {
-        loadLocalStorage();
-        // loadUserssumaary();
-        checkTrueRegistered();
-        getInitialsName()
-        showGreeting();
-        greetAnimate();
-        urgentDate();
-    }, 10);
+    await loadUsers();
+    loadLocalStorage();
+    checkTrueRegistered();
+     getInitialsName();
+    showGreeting();
+    greetAnimate();
+    urgentDate();
 }
-
-// function loadUserssumaary() {
-//     let database = firebase.database();
-//     let usersEntries = database.ref("users");
-//     usersEntries.on("value", function (snapshot) {
-//         allUsers = [];
-//         snapshot.forEach(function (childSnapshot) {
-//             let user = childSnapshot.val();
-//             user.id = childSnapshot.key;  
-//             allUsers.push(user);
-//         });
-//     });
-// }
-
-function getInitialsName(){
-    if(registeredUserInitials){
-    document.getElementById('sub-contact-initial-container').innerHTML = registeredUserInitials;
-    }
-}
-
 
 function showGreeting() {
     let hours = new Date().getHours();
@@ -41,28 +23,27 @@ function showGreeting() {
     let topGreeting = document.getElementById('top-greeting');
     let greetingName = document.getElementById('greeting-name');
     let greetingNameTop = document.getElementById('greeting-name-top');
-    if(registeredUserName){
-    greetingName.innerHTML = greetingNameTop.innerHTML = registeredUserName;
-    }else{
-        greetingName.innerHTML = greetingNameTop.innerHTML ='';
+    if (registeredUserName) {
+        greetingName.innerHTML = greetingNameTop.innerHTML = registeredUserName;
+    } else {
+        greetingName.innerHTML = greetingNameTop.innerHTML = '';
     }
-
     if (hours >= 6 && hours < 12) {
-        greeting.innerHTML = topGreeting.innerHTML  = 'Good Morning';
+        greeting.innerHTML = topGreeting.innerHTML = 'Good Morning';
     } else if (hours >= 12 && hours < 18) {
-        greeting.innerHTML = topGreeting.innerHTML= 'Good Afternoon';
+        greeting.innerHTML = topGreeting.innerHTML = 'Good Afternoon';
     } else {
         greeting.innerHTML = topGreeting.innerHTML = 'Good Evening';
     }
 }
 
-function checkTrueRegistered(){
+function checkTrueRegistered() {
     for (let index = 0; index < allUsers.length; index++) {
         let user = allUsers[index];
-        if(user['registered'] == true){
+        if (user['registered'] == true) {
             registeredUserName = user['name'];
             registeredID = user['id'];
-            registeredUserInitials = getInitials(registeredUserName);
+            registeredUserInitials = user['initial'];
             break;
         }
     }
@@ -75,7 +56,7 @@ function loadUsers() {
         allUsers = [];
         snapshot.forEach(function (childSnapshot) {
             let user = childSnapshot.val();
-            user.id = childSnapshot.key;  
+            user.id = childSnapshot.key;
             allUsers.push(user);
         });
     });
@@ -104,7 +85,7 @@ function changeSvgColor(path) {
 }
 
 function resetSvgColor(path) {
-        document.getElementById(path).classList.remove('cls-4');
+    document.getElementById(path).classList.remove('cls-4');
 }
 
 function urgentDate() {
@@ -122,7 +103,7 @@ function urgentDate() {
 // let getInitials = function (string) {
 //     let name = string.split(" "),
 //       initials = name[0].substring(0, 1).toUpperCase();
-  
+
 //     if (name.length > 1) {
 //       initials += name[name.length - 1].substring(0, 1).toUpperCase();
 //     }
@@ -130,7 +111,7 @@ function urgentDate() {
 //   };
 
 
-function toggleShowLogout(){
+function toggleShowLogout() {
     let logoutContainer = document.getElementById('showLogout');
     logoutContainer.innerHTML = `
      <div class="popout-showlogout">
@@ -138,19 +119,42 @@ function toggleShowLogout(){
         <a href="privacy.html">Privacy Policy</a>
         <a onclick="logout('${registeredID}')" href="#">Log Out</a>
       </div>`;
-    if(logoutContainer.style.display == 'none'){
-      logoutContainer.style.display = 'flex';
-    }else{
-      logoutContainer.style.display = 'none';
+    if (logoutContainer.style.display == 'flex') {
+        logoutContainer.style.display = 'none';
+    } else {
+        logoutContainer.style.display = 'flex';
     }
-    }
+}
 
-    function logout(registeredID){
-        let database = firebase.database();
+function getInitialsName() {
+  if (registeredUserInitials) {
+      document.getElementById('sub-contact-initial-container').innerHTML = registeredUserInitials;
+  }
+}
+
+function logout(registeredID) {
+
+    let database = firebase.database();
+  
+    if (registeredID) {
         let userEntry = database.ref("users/" + registeredID + "/registered/");
         userEntry.set(false);
         loadUsers();
         saveLocalStorage();
-        window.location.href = 'index.html';
     }
-    
+    window.location.href = 'index.html';
+  }
+  
+  function saveLocalStorage() {
+    let allUsersAsText = JSON.stringify(allUsers);
+    localStorage.setItem("Users", allUsersAsText);
+  }
+  
+  function loadLocalStorage() {
+    let allUsersAsText = localStorage.getItem("Users");
+    if (allUsersAsText) {
+        allUsers = JSON.parse(allUsersAsText);
+    }
+  }
+
+
