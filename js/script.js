@@ -35,7 +35,3 @@ function includeHTML() {
 
 
 
-
-
-
-

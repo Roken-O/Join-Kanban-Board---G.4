@@ -1,6 +1,11 @@
-// function updateHTML(){
-
-// }
+function initBoard(){
+  includeHTML();
+  setTimeout(() => {
+  loadLocalStorage();
+  checkTrueRegistered();
+  getInitialsName();
+}, 10);
+}
 
 
 

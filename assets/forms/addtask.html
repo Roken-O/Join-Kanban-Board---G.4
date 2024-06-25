@@ -219,12 +219,15 @@
 
                     <!-- create task -->
                     <button required class="create-task"><span class="create-text">Create Task</span></button>
-                    <div class="animation" id="animation">Hallo</div>
+                   
                 </div>
             </div>
 
         </form>
-        <button onclick="animate()">Animation</button>
+        
+        <button onclick="animateButton()">Animation</button>
+        <div class="alert-message" id="alertMessage"><div class="popup-message" id="popup-message">Hallo</div></div>
+
 
         <script src="/js/script.js"></script>
         <script src="/js/add_task.js"></script>
@@ -266,9 +269,24 @@
         document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
     }
 
-    function animate() {
-        document.getElementById('animate').classList.add('translateNull');
-    }
+    // function animate() {
+    //      document.getElementById('animate').classList.add('translateNull');
+    //  }
+
+    function animateButton() {
+    document.getElementById('alertMessage').style.display = "flex";
+    let alertMessage = document.getElementById("popup-message");
+
+    setTimeout(() => {
+        alertMessage.classList.add('translateNull');
+        setTimeout(() => {
+            alertMessage.classList.remove('translateNull');
+            document.getElementById('alertMessage').style.display = "none";
+        }, 2000);
+    }, 250);
+}
+    
+
 
 
 

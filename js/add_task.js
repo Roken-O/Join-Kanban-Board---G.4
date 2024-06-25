@@ -103,7 +103,7 @@ function loadTasks() {
 
       let assignedContacts = task['taskAssignment'] ? task['taskAssignment'].map(contact => contact['name']).join(', ') : 'No contacts assigned';
       let dateParts = task['taskDate'].split('-');
-      let formDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
+      let formDate = dateParts[2] + '.' + dateParts[1] + '.' + dateParts[0];
       let subtasks = task['taskSubTask'] ? task['taskSubTask'].join(', ') : 'No subtasks';
 
       taskContainer.innerHTML += /*html*/ `
@@ -294,6 +294,16 @@ function toggleContactEdit(checkbox) {
     selectedContactsEdit.push(contact);
   } else {
     selectedContactsEdit = selectedContactsEdit.filter(contact => contact['email'] !== contactEmail);
+  }
+}
+
+function toggleContactAssignment(checkbox) {
+  let contactEmail = checkbox.value;
+  if (checkbox.checked) {
+    let contact = allContacts.find(contact => contact['email'] === contactEmail);
+    selectedContacts.push(contact);
+  } else {
+    selectedContacts = selectedContacts.filter(contact => contact['email'] !== contactEmail);
   }
 }
 
