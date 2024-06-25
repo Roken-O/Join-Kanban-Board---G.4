@@ -124,6 +124,40 @@
   align-items: center;
 }
 
+/* #add-new-contact-popUp-bg{
+  background: rgba(35, 36, 35, 0.3);
+  z-index: 998;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(1750px);
+  transition: 200ms ease-in-out;
+}
+
+#edit-contact-popUp-bg{
+  background: rgba(35, 36, 35, 0.3);
+  z-index: 998;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(1750px);
+  transition: 200ms ease-in-out;
+} */
+
+.translateX-null{
+  transform: translateX(0) !important;
+}
+
 .add-new-or-edit-contact-popUp {
   background-color: white;
   height: 592px;
@@ -347,11 +381,7 @@
   flex-direction: column;
   gap: 21px;
   transform: translateX(1200px);
-  transition: 200ms ease-in-out;
-}
-
-.show-contact{
-  transform: translateX(0);
+  transition: 400ms ease-in-out;
 }
 
 .contact-pic-name-container {

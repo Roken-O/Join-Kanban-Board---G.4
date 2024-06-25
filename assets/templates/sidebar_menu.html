@@ -3,7 +3,9 @@
     <div id="mobile-logo-container" class="d-none"><a href="/index.html"><img src="/assets/img/join_logo_DARK.svg" alt="" id="mobile-logo"></a></div>
     <section id="header-icons-container">
         <div id="help-icon-container"><img id="help-icon-container-image" src="/assets/img/help_icon.svg" alt=""></div>
-        <div id="contact-initial-container"></div>
+        <div id="contact-initial-container" class="badge-container" onclick="toggleShowLogout()">
+                <div id="sub-contact-initial-container" class="sub-badge-container">G</div>
+        </div>
     </section>    
 </section>
 <section id="sidebar-menu" class="dark-grey">
@@ -29,3 +31,4 @@
     <div class="mobile-menu-item" id="mobile-menu-icon-board"><a class="mobile-menu-link" href="/board.html"><div class="mobile-menu-entry">Board</div></a></div>
     <div class="mobile-menu-item" id="mobile-menu-icon-contacts"><a class="mobile-menu-link" href="/contacts.html"><div class="mobile-menu-entry">Contacts</div></a></div>
 </section>
+<div id="showLogout" class="showLogout"></div>

@@ -26,7 +26,7 @@
         <!-- form-start -->
         <form class="form-height w-50" onsubmit="addTask(); return false;">
 
-            <div class="flex-evenly-start padding-bottom-24">
+            <div class="flex-evenly-start padding-bottom-24 parent-container">
                 <div class="left-container">
 
                     <!-- title -->
@@ -118,7 +118,7 @@
                     <!-- prio -->
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Prio</div>
-                        <div class="flex gap-28">
+                        <div class="flex gap-28 prio-container">
 
                             <button class="btn urgent flex-just-align-center" id="btn1"
                                 onclick="changeColor('btn1','urgent-path1','urgent-path2')">Urgent
@@ -199,7 +199,7 @@
                 </div>
             </div>
             </div>
-            <div class="flex-evenly-start">
+            <div class="flex-evenly-start execution-responsive">
                 <div class="flex">
                     <div class="asterisk-color">*</div>
                     <div class="required-text">This field is required</div>
@@ -219,10 +219,14 @@
 
                     <!-- create task -->
                     <button required class="create-task"><span class="create-text">Create Task</span></button>
+                   
                 </div>
             </div>
 
         </form>
+        
+        <button onclick="animateButton()">Animation</button>
+        <div class="alert-message" id="alertMessage"><div class="popup-message" id="popup-message">Hallo</div></div>
 
 
         <script src="/js/script.js"></script>
@@ -264,5 +268,26 @@
     function changeCleaningColorToStandard() {
         document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
     }
+
+    // function animate() {
+    //      document.getElementById('animate').classList.add('translateNull');
+    //  }
+
+    function animateButton() {
+    document.getElementById('alertMessage').style.display = "flex";
+    let alertMessage = document.getElementById("popup-message");
+
+    setTimeout(() => {
+        alertMessage.classList.add('translateNull');
+        setTimeout(() => {
+            alertMessage.classList.remove('translateNull');
+            document.getElementById('alertMessage').style.display = "none";
+        }, 2000);
+    }, 250);
+}
+    
+
+
+
 
 </script>

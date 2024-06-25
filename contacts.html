@@ -79,15 +79,32 @@
                 <a href="">+49 1111 111 11 1</a>
               </div>
             </div>
-              <img onclick="openPopUpEditDelete()" class="button-more-options" src="./assets/img/button_more_options_dark_blue.svg" alt="">
-              <div onclick="closePopUpEditDelete()" id="PopUp-edit-delete-bg" class="PopUp-edit-delete-bg">
+            <img
+              onclick="openPopUpEditDelete()"
+              class="button-more-options"
+              src="./assets/img/button_more_options_dark_blue.svg"
+              alt=""
+            />
+            <div
+              onclick="closePopUpEditDelete()"
+              id="PopUp-edit-delete-bg"
+              class="PopUp-edit-delete-bg"
+            >
               <div class="PopUp-edit-delete">
                 <div onclick="editContactPopUp()" class="PopUp-edit-pen">
-                  <img class="PopUp-edit-pen-img" src="./assets/img/pen_DARK.svg" alt="">
+                  <img
+                    class="PopUp-edit-pen-img"
+                    src="./assets/img/pen_DARK.svg"
+                    alt=""
+                  />
                   <span>Edit</span>
                 </div>
                 <div class="PopUp-delete">
-                  <img class="PopUp-delete-img" src="./assets/img/delete_icon.svg" alt="">
+                  <img
+                    class="PopUp-delete-img"
+                    src="./assets/img/delete_icon.svg"
+                    alt=""
+                  />
                   <span>Delete</span>
                 </div>
               </div>
@@ -104,7 +121,7 @@
             <img src="./assets/img/add_contact_icon.svg" alt="" />
           </button>
           <div id="contacts-list-content">
-            <div>
+            <!-- <div>
               <div id="initial-letter">A</div>
               <div id="breakline-contactlist"></div>
               <div
@@ -120,7 +137,7 @@
                   <span id="email-contactlist">anton@gmail.com</span>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- <div>
               <div id="initial-letter">A</div>
@@ -187,32 +204,36 @@
                 </div>
               </div>
             </div> -->
-
           </div>
-            <img onclick="addNewContactPopUp()" class="button_add_contact_dark_blue" src="./assets/img/button_add_contact_dark_blue.svg" alt="">
+          <img
+            onclick="addNewContactPopUp()"
+            class="button_add_contact_dark_blue"
+            src="./assets/img/button_add_contact_dark_blue.svg"
+            alt=""
+          />
         </div>
       </div>
 
       <div class="contacts-container">
         <div class="contacts-container-backimage">
-        <div class="flex-align-center headline-div-contacts">
-          <h1>Contacts</h1>
-          <div class="light-blue parting-line-h1"></div>
-          <span class="head-description">Better with a team</span>
-          <div class="parting-line-h1-horizontal"></div>
-        </div>
-        <div>
-          <img
-                  onclick="closeContact()"
-                  class="back_icon"
-                  id="back-icon"
-                  src="./assets/img/back_icon.svg"
-                  alt=""
-                />
+          <div class="flex-align-center headline-div-contacts">
+            <h1>Contacts</h1>
+            <div class="light-blue parting-line-h1"></div>
+            <span class="head-description">Better with a team</span>
+            <div class="parting-line-h1-horizontal"></div>
+          </div>
+          <div>
+            <img
+              onclick="closeContact()"
+              class="back_icon"
+              id="back-icon"
+              src="./assets/img/back_icon.svg"
+              alt=""
+            />
           </div>
         </div>
         <div class="contact" id="contact">
-          <div class="flex-align-center contact-pic-name-container">
+          <!-- <div class="flex-align-center contact-pic-name-container">
             <div class="first-letters-name-bg">
               <span class="first-letters-name">AM</span>
             </div>
@@ -252,7 +273,7 @@
               <span>Phone</span>
               <a href="">+49 1111 111 11 1</a>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -311,32 +332,44 @@
             <form class="form-add-new-contact" action="">
               <input
                 placeholder="Name"
+                id="contact-trial-name"
                 class="input-text-email-number-contact input-text-contact"
                 type="text"
+                required
               />
               <input
                 placeholder="Email"
+                id="contact-trial-email"
                 class="input-text-email-number-contact input-email-contact"
                 type="email"
+                required
               />
               <input
                 placeholder="Phone"
+                id="contact-trial-phone"
                 class="input-text-email-number-contact input-number-contact"
                 type="text"
+                required
               />
+              
+              <div class="button-container-add">
+                <button style="background: transparent; border: none;">
+                  <img
+                  class="button_cancel"
+                  src="./assets/img/button_cancel.svg"
+                  alt=""
+                />
+                </button>
+                <button onclick="saveContact()" style="background: transparent; border: none;">
+                <img
+                  class="button_create_contact"
+                  src="./assets/img/button_create_contact.svg"
+                  alt=""
+                />
+              </button>
+              </div>
             </form>
-            <div class="button-container-add">
-              <img
-                class="button_cancel"
-                src="./assets/img/button_cancel.svg"
-                alt=""
-              />
-              <img
-                class="button_create_contact"
-                src="./assets/img/button_create_contact.svg"
-                alt=""
-              />
-            </div>
+            
           </div>
         </div>
       </div>
@@ -407,6 +440,8 @@
 
     <script src="/js/script.js"></script>
     <script src="/js/firebase.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/summary.js"></script>
     <script src="/js/contacts.js"></script>
   </body>
 </html>
