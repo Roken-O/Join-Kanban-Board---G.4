@@ -5,6 +5,8 @@ let allContacts = [];
 let subtasks = [];
 let subtasksEdit = [];
 let allTasks = [];
+let boardCategory = ['toDo', 'awaitFeedback', 'inProgress', 'done'];
+let currentDraggedElement;
 
 
 function init() {
@@ -33,7 +35,8 @@ function saveTask() {
     'taskDate': dueDate,
     'taskPriority': priority,
     'taskAssignment': selectedContacts,
-    'taskSubTask': subtasks
+    'taskSubTask': subtasks,
+    'taskBoardCategory': boardCategory[0]
   };
 
   let database = firebase.database();
@@ -103,11 +106,11 @@ function loadTasks() {
 
       let assignedContacts = task['taskAssignment'] ? task['taskAssignment'].map(contact => contact['name']).join(', ') : 'No contacts assigned';
       let dateParts = task['taskDate'].split('-');
-      let formDate = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
+      let formDate = dateParts[2] + '.' + dateParts[1] + '.' + dateParts[0];
       let subtasks = task['taskSubTask'] ? task['taskSubTask'].join(', ') : 'No subtasks';
 
       taskContainer.innerHTML += /*html*/ `
-            <div id="task-trial-board-container">
+            <div id="task-trial-board-container" draggable="true">
                 <div class="task-item-output" id="task-trial-category-container">${task['taskCategory']}</div>
                 <div class="task-item-output" id="task-trial-title-container">${task['taskTitle']}</div>
                 <div class="task-item-output" id="task-trial-description-container">${task['taskDescription']}</div>
@@ -150,7 +153,7 @@ function editTask(taskId) {
 
   let contactsList = '';
   allContacts.forEach(contact => {
-    let isChecked = currentSelection.some(selectedContact => selectedContact.email === contact.email);
+    let isChecked = currentSelection.find(selectedContact => selectedContact['email'] === contact['email']);
     contactsList += /*html*/ `
       <div class="dropdown-item">
         <div style="display: flex; align-items:center; justify-content: center; background: ${contact['color']}; height: 40px; width: 40px; border-radius: 40px; cursor: pointer;" id="contact-badge-list">${getInitials(contact['name'])}</div>
@@ -294,6 +297,16 @@ function toggleContactEdit(checkbox) {
     selectedContactsEdit.push(contact);
   } else {
     selectedContactsEdit = selectedContactsEdit.filter(contact => contact['email'] !== contactEmail);
+  }
+}
+
+function toggleContactAssignment(checkbox) {
+  let contactEmail = checkbox.value;
+  if (checkbox.checked) {
+    let contact = allContacts.find(contact => contact['email'] === contactEmail);
+    selectedContacts.push(contact);
+  } else {
+    selectedContacts = selectedContacts.filter(contact => contact['email'] !== contactEmail);
   }
 }
 
