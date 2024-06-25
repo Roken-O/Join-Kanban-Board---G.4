@@ -41,7 +41,7 @@
                     <!-- description -->
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Description</div>
-                        <textarea required pattern="[A-Za-z0-9]+" maxlength="450" class="description-input"
+                        <textarea id="input-description" required pattern="[A-Za-z0-9]+" maxlength="450" class="description-input"
                             name="w3review" rows="4" cols="50"
                             placeholder="Enter a description in english please!"></textarea>
                     </div>
@@ -121,7 +121,7 @@
                     <!-- prio -->
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Prio</div>
-                        <div class="flex gap-28 prio-container">
+                        <div class="flex gap-16 prio-container">
 
                             <button class="btn urgent flex-just-align-center" id="btn1"
                                 onclick="changeColor('btn1','urgent-path1','urgent-path2')">Urgent
@@ -250,7 +250,8 @@
             </div>
         </div>
 
-
+        <div id="title-content" class="title-content">Hallo</div>
+        
         <script src="/js/script.js"></script>
         <script src="/js/add_task.js"></script>
 </body>
@@ -258,28 +259,53 @@
 </html>
 
 <script>
+// titles and description
+let titles = [];
+let descriptions = [];
+let titlesTrash = [];
+let descriptionsTrash = [];
 
-    //title:   1.Title value muss aus inputfeld heraus geholt werden;
-                // 2.Title muss in Datenbank gepusht werden
-                //3. Title muss warten bis alles ausgefüllt
-                //4. Title muss auf Board-Seite generiert werden
+   
+function addTitle() {
+  let title = document.getElementById("input-title").value;
+  titles.push(title);
+ showTitles();
+  document.getElementById("input-title").value ="";
+}
 
+function showTitles() {
+  document.getElementById("title-content").innerHTML = "";
+  for (let i = 0; i < titles.length; i++) {
+    document.getElementById("title-content").innerHTML += `<div class="title-content"><textarea class=titles-area maxlength="40">${titles[i]}
+  </textarea><textarea maxlength="200" class="notes-area">${titles[i]}</textarea>`
+  ;
+  }
+}
 
-    //description siehe Title
+// function addDescription(){
+//     let description = document.getElementById("input-description").value;
+//     descriptions.push(description);
+//     showDescriptions();
+//     document.getElementById("input-description").value = "";
+// }
 
-    //select contacts
+// function showDescriptions() {
+//   document.getElementById("mynotes").innerHTML = "";
+//   for (let i = 0; i < notes.length; i++) {
+//     document.getElementById("mynotes"
+//     ).innerHTML += `<div class="mynotes"><textarea class=titles-area maxlength="40">${titles[i]}
+//   </textarea><textarea maxlength="200" class="notes-area">${notes[i]}</textarea>
+//   <a class="delete" href="#" onclick="deleteNote(${i})">Delete</div>`;
+//   }
+// }
 
-    // date; Wenn der Name der Funktion verändert wird, verändert sich Farbe-wo wird diese Funktion aufgerufen???
-    // function setMinDateDatepicker() {
-    //     let today = new Date();
-    //     let tt = String(today.getDate()).padStart(2, '0');
-    //     let mm = String(today.getMonth() + 1).padStart(2, '0');
-    //     let jjjj = today.getFullYear();
-
-    //     let unformDate = jjjj + '-' + mm + '-' + tt;
-    //     document.getElementById('date-picker').min = unformDate;
-    //     document.getElementById('date-picker').value = unformDate;
-    // }
+// function deleteNote(i) {
+//   titlesTrash.push(titles[i]);
+//   notesTrash.push(notes[i]);
+//   titles.splice(i, 1);
+//   notes.splice(i, 1);
+//   showNotes();
+// }
 
     // prio-buttons
     function changeColor(buttonId, path1Id, path2Id) {
