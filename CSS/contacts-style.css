@@ -83,7 +83,7 @@
 }
 
 .first-letters-name-contactlist-bg {
-  background-color: #ffbb2a;
+  /* background-color: #ffbb2a; */
   width: 42px;
   height: 42px;
   display: flex;
@@ -389,13 +389,13 @@
 }
 
 .first-letters-name-bg {
-  background-color: #ffbb2a;
+  /* background-color: #ffbb2a; */
   width: 120px;
   height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
+  border-radius: 50% !important;
   color: white;
   font-size: 47px;
 }

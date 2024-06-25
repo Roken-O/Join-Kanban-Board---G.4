@@ -15,7 +15,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <title>Join</title>
   </head>
-  <body onload="includeHTML();init()">
+  <body onload="includeHTML();initContact()">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
     <section class="main-container-contacts">
       <div class="contacts-list-container">
@@ -404,35 +404,40 @@
                 alt=""
               />
             </div>
-            <form class="form-add-new-contact" action="">
-              <input
+            <form class="form-add-new-contact" id="form-edit-contact" action="">
+              <!-- <input
                 placeholder="Name"
                 class="input-text-email-number-contact input-text-contact"
                 type="text"
+                required
               />
               <input
                 placeholder="Email"
                 class="input-text-email-number-contact input-email-contact"
                 type="email"
+                required
               />
               <input
                 placeholder="Phone"
                 class="input-text-email-number-contact input-number-contact"
                 type="text"
+                required
               />
+              <div class="button-container-edit">
+                <button style="background: transparent; border: none;">
+                <img
+                  class="button_cancel"
+                  src="./assets/img/button_delete.svg"
+                  alt=""
+                />
+              </button>
+              <button style="background: transparent; border: none;">
+                <img
+                  class="button_create_contact"
+                  src="./assets/img/button_save.svg"
+                  alt=""
+                /> -->
             </form>
-            <div class="button-container-edit">
-              <img
-                class="button_cancel"
-                src="./assets/img/button_delete.svg"
-                alt=""
-              />
-              <img
-                class="button_create_contact"
-                src="./assets/img/button_save.svg"
-                alt=""
-              />
-            </div>
           </div>
         </div>
       </div>

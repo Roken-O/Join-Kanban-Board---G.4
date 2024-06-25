@@ -39,6 +39,7 @@ function deleteContact(email) {
   let database = firebase.database();
   let contactEntry = database.ref("contacts/" + emailForm);
   contactEntry.remove();
+  document.getElementById("contact").classList.remove("translateX-null");
 }
 
 
@@ -69,35 +70,67 @@ function deleteContact(email) {
 //   });
 // }
 
-function editContact(email) {
-  let editContactTrial1 = document.getElementById('edit-contactt');
-  let currentColor;
-  let currentName;
-  let currentEmail;
-  let currentPhone;
+// function editContact(email) {
+//   let formEditContact = document.getElementById('form-edit-contact');
+//   let currentColor;
+//   let currentName;
+//   let currentEmail;
+//   let currentPhone;
 
-  for (let i = 0; i < allContacts.length; i++) {
-    if (email == allContacts[i]['email']) {
-      currentColor = allContacts[i]['color'];
-      currentEmail = allContacts[i]['email'];
-      currentPhone = allContacts[i]['phone'];
-      currentName = allContacts[i]['name'];
-      break;
-    }
-  }
+//   for (let i = 0; i < allContacts.length; i++) {
+//     if (email == allContacts[i]['email']) {
+//       currentColor = allContacts[i]['color'];
+//       currentEmail = allContacts[i]['email'];
+//       currentPhone = allContacts[i]['phone'];
+//       currentName = allContacts[i]['name'];
+//       break;
+//     }
+//   }
 
-  editContactTrial1.innerHTML = `
-      <input type="text" id="edit-contact-trial-name-container">
-      <input type="email" id="edit-contact-trial-email-container" >
-      <input type="text" id="edit-contact-trial-phone-container" >
-      <button onclick="saveEditedContact('${email}')">Save</button>
-    `;
+//   formEditContact.innerHTML = `
+//   <input
+//   placeholder="Name"
+//   class="input-text-email-number-contact input-text-contact"
+//   id="input-edit-name-contact"
+//   type="text"
+//   required
+//   />
+//   <input
+//   placeholder="Email"
+//   class="input-text-email-number-contact input-email-contact"
+//   id="input-edit-email-contact"
+//   type="email"
+//   required
+//   />
+//   <input
+//   placeholder="Phone"
+//   class="input-text-email-number-contact input-number-contact"
+//   id="input-edit-phone-contact"
+//   type="text"
+//   required
+//   />
+//   <div class="button-container-edit">
+//   <button style="background: transparent; border: none;">
+//   <img
+//     class="button_cancel"
+//     src="./assets/img/button_delete.svg"
+//     alt=""
+//   />
+//   </button>
+//   <button style="background: transparent; border: none;">
+//   <img
+//     class="button_create_contact"
+//     src="./assets/img/button_save.svg"
+//     alt=""
+//   />
+//     `;
 
-  document.getElementById('edit-contact-trial-name-container').value = currentName;
-  document.getElementById('edit-contact-trial-email-container').value = currentEmail;
-  document.getElementById('edit-contact-trial-phone-container').value = currentPhone;
-  document.getElementById('edit-contact-trial-phone-container').style.backgroundColor = currentColor;
-}
+//   document.getElementById('input-edit-name-contact').value = currentName;
+//   document.getElementById('input-edit-email-contac').value = currentEmail;
+//   document.getElementById('input-edit-phone-contact').value = currentPhone;
+//   document.getElementById('edit-contact-trial-phone-container').style.backgroundColor = currentColor;
+//   // document.getElementById('edit-contact-trial-phone-container').style.backgroundColor = currentColor;
+// }
 
 function saveEditedContact(currentEmail) {
   let editName = document.getElementById('edit-contact-trial-name-container').value;
@@ -154,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function init() {
+function initContact() {
   document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
   document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
   document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
@@ -216,14 +249,14 @@ function showContactInfo(email) {
 
   contact.innerHTML = /*html*/ `
       <div class="flex-align-center contact-pic-name-container">
-            <div class="first-letters-name-bg">
-              <span class="first-letters-name">AM</span>
+            <div style="background-color: ${currentColor}"  class="first-letters-name-bg">
+              <span class="first-letters-name">${getInitials(currentName)}</span>
             </div>
             <div id="contact-name">
               <h2>${currentName}</h2>
               <div class="flex-align-center" id="contact-edit-delete">
                 <div
-                  onclick="editContactPopUp()"
+                  onclick="editContactPopUp();editContact('${currentEmail}')"
                   class="flex-align-center"
                   id="contact-edit"
                 >
@@ -234,7 +267,7 @@ function showContactInfo(email) {
                   />
                   <span>Edit</span>
                 </div>
-                <div class="flex-align-center" id="contact-delete">
+                <div onclick="deleteContact('${currentEmail}')" class="flex-align-center" id="contact-delete">
                   <img
                     class="contact-pen-delete-img"
                     src="/assets/img/delete_icon.svg"
@@ -302,15 +335,15 @@ function loadContacts() {
 
       contactsListContent.innerHTML += /*html*/ `
           <div>
-              <div id="initial-letter">A</div>
+              <div id="initial-letter">${contact.name.substring(0, 1)}</div>
               <div id="breakline-contactlist"></div>
               <div
                 onclick="showContactInfo('${contact.email}');showContactResponsive();"
                 class="flex-align-center"
                 id="contact-contactlist"
               >
-                <div class="first-letters-name-contactlist-bg">
-                  <span class="first-letters-name-contactlist">AM</span>
+                <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
+                  <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
                 </div>
                 <div id="contact-name-email-contactlist">
                   <span id="contact-name-contactlist">${contact.name}</span>
