@@ -11,7 +11,6 @@
     <link rel="icon" href="/assets/img/join_favicon.svg" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Join</title>
     <style>
       #task-trial-task-form {
@@ -182,7 +181,7 @@
       }
     </style>
   </head>
-  <body onload="includeHTML(); init();">
+  <body onload="includeHTML(); initTask();">
     <!-- <div w3-include-html="/assets/templates/sidebar_menu.html"></div> -->
     <div class="form-flexbox">
       <form id="task-trial-task-form" onsubmit="saveTask(); return false;">
@@ -292,8 +291,9 @@
     <div style="background: red;" draggable="true" id="task-trial-container"></div>
     <div id="task-edit-container"></div>
     
-    <script src="/js/script.js"></script>
     <script src="/js/firebase.js"></script>
+    <script src="/js/script.js"></script>
     <script src="/js/add_task.js"></script>
+    <script src="/js/load_tasks.js"></script>
   </body>
 </html>
