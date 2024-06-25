@@ -73,6 +73,14 @@ textarea {
   resize: none;
 }
 
+.form-height {
+  /* background-color: #00bee8;   */
+  width: 50%;
+}
+
+/* .parent-container {
+  /* background-color: aqua; */
+
 
 .left-container {
   padding-right: 24px;
@@ -270,6 +278,10 @@ input[type="date"]:before {
 }
 
 /* execution-buttons */
+.execution-parent {
+  width:720px;
+}
+
 .position-execution {
   display: flex;
   justify-content: space-between;
@@ -289,10 +301,6 @@ input[type="date"]:before {
   outline: none;
   font-size: 22px;
   color: #2c2c2c;  
-  /* background:url("/assets/img/close_icon.svg") no-repeat; */
-  /* background-size: 13px; */
-  /* background-position: 48px; */
-  /* transition: all 300ms ease-in-out; */
   gap: 8px;
   border-color:#2c2c2c !important;
 }
@@ -488,22 +496,6 @@ input[type='checkbox'] {
   accent-color: white;
   border:black !important;
 }
-
-/* animation */
-/* .animate-added-board {
-animation: 3s fadeIn ease-in-out;
-}
-  @keyframes fadeIn {
-    from {
-      height: 0;
-opacity: 0;
-    }
-
-    to {
-opacity: 1;
-height: 100px;
-    }
-  } */
 
   .animation { 
     background-color: green;

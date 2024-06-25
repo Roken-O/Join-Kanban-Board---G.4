@@ -16,6 +16,8 @@
 </head>
 
 <body onload="includeHTML()">
+    <!-- Funktion "init" muss noch eingefügt werden; es funktioniert mit dieser Funktion die Animation nicht mehr,
+     das svg in clear färbt sich nicht mehr azurblau-->
     <section id="main-container" class="background-grey">
         <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
 
@@ -24,7 +26,7 @@
         <h2 class="task-headline mb-48">Add Task</h2>
 
         <!-- form-start -->
-        <form class="form-height w-50" onsubmit="addTask(); return false;">
+        <form class="form-height w-50" onsubmit="saveTask(); return false;">
 
             <div class="flex-evenly-start padding-bottom-24 parent-container">
                 <div class="left-container">
@@ -33,7 +35,7 @@
                     <div class="padding-bottom-24">
                         <div class="mb-8 flex field-headline">Title<div class="asterisk-color">*</div>
                         </div>
-                        <input required minlength="2" class="field-325" type="text" placeholder="Enter a title">
+                        <input id="input-title" required minlength="2" class="field-325" type="text" placeholder="Enter a title">
                     </div>
 
                     <!-- description -->
@@ -112,7 +114,8 @@
                         <!-- date -->
                         <div class="mb-8 flex field-headline">Due date<div class="asterisk-color">*</div>
                         </div>
-                        <input required class="field-325 date" type="date" placeholder="dd/mm/yyyy Kalenderbutton">
+                        <input id="date-picker" type="date" class="field-325 date"
+                            placeholder="dd/mm/yyyy Kalenderbutton" required>
                     </div>
 
                     <!-- prio -->
@@ -179,7 +182,7 @@
 
 
                     <!-- category -->
-                    <div class="padding-bottom-24">
+                    <div class="padding-bottom-24 padding-responsive980">
                         <div class="mb-8 flex field-headline">Category<div class="asterisk-color">*</div>
                         </div>
                         <div class="dropdown">
@@ -192,21 +195,22 @@
                         <!-- subtask -->
                         <div class="assigned-flex padding-top-24">
                             <div class="mb-8 field-headline">Subtasks</div>
-                            <div class="select-subtask"><span class="select-subtask-span">Add new subtask</span>
+                            <div class="select-subtask"><span class="select-subtask-span">Add new
+                                    subtask</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             </div>
-            <div class="flex-evenly-start execution-responsive">
+            <div class="flex-evenly-start execution-parent">
                 <div class="flex">
                     <div class="asterisk-color">*</div>
                     <div class="required-text">This field is required</div>
                 </div>
 
                 <!-- cleaning -->
-                <div class="flex gap-16">
+                <div class="flex gap-16 execution-responsive">
                     <button class="cleaning low flex-just-align-center">
                         <span class="cleaning-text">Clear</span>
                         <svg onmouseover="changeCleaningColor()" onmouseleave="changeCleaningColorToStandard()"
@@ -218,29 +222,29 @@
                     </button>
 
                     <!-- create task -->
-                    <button required class="create-task"><span class="create-text">Create Task</span></button>
+                    <button onclick="animateButton()" required class="create-task"><span class="create-text">Create
+                            Task</span></button>
 
                 </div>
             </div>
 
         </form>
 
-        <button onclick="animateButton()">Animation</button>
         <div class="alert-message" id="alertMessage">
             <div class="popup-message" id="popup-message"><span class="animate-text">Task added to board</span>
                 <svg class="animate-svg" id="board_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 114.4 96.8">
                     <defs>
                         <style>
-                            .cls-1 {
-                                fill: white;
+                            .cls-55 {
+                                fill: ghostwhite;
                                 stroke-width: 0px;
                             }
                         </style>
                     </defs>
-                    <path class="cls-1"
+                    <path class="cls-55"
                         d="M88,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58h-17.6c-2.33,0-4.57-.93-6.22-2.58-1.65-1.65-2.58-3.89-2.58-6.22V8.8c0-2.33.93-4.57,2.58-6.22C57.03.93,59.27,0,61.6,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM61.6,88h17.6V8.8h-17.6v79.2ZM61.6,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58h-17.6c-2.33,0-4.57-.93-6.22-2.58-1.65-1.65-2.58-3.89-2.58-6.22V8.8c0-2.33.93-4.57,2.58-6.22C30.63.93,32.87,0,35.2,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM35.2,88h17.6s0-79.2,0-79.2h-17.6s0,79.2,0,79.2ZM35.2,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58H8.8c-2.33,0-4.57-.93-6.22-2.58C.93,92.57,0,90.33,0,88V8.8c0-2.33.93-4.57,2.58-6.22C4.23.93,6.47,0,8.8,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM8.8,88h17.6V8.8H8.8v79.2Z" />
-                    <path class="cls-1"
+                    <path class="cls-55"
                         d="M114.4,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58h-17.6c-2.33,0-4.57-.93-6.22-2.58-1.65-1.65-2.58-3.89-2.58-6.22V8.8c0-2.33.93-4.57,2.58-6.22C83.43.93,85.67,0,88,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM88,88h17.6s0-79.2,0-79.2h-17.6s0,79.2,0,79.2Z" />
                 </svg>
             </div>
@@ -254,6 +258,30 @@
 </html>
 
 <script>
+
+    //title:   1.Title value muss aus inputfeld heraus geholt werden;
+                // 2.Title muss in Datenbank gepusht werden
+                //3. Title muss warten bis alles ausgefüllt
+                //4. Title muss auf Board-Seite generiert werden
+
+
+    //description siehe Title
+
+    //select contacts
+
+    // date; Wenn der Name der Funktion verändert wird, verändert sich Farbe-wo wird diese Funktion aufgerufen???
+    // function setMinDateDatepicker() {
+    //     let today = new Date();
+    //     let tt = String(today.getDate()).padStart(2, '0');
+    //     let mm = String(today.getMonth() + 1).padStart(2, '0');
+    //     let jjjj = today.getFullYear();
+
+    //     let unformDate = jjjj + '-' + mm + '-' + tt;
+    //     document.getElementById('date-picker').min = unformDate;
+    //     document.getElementById('date-picker').value = unformDate;
+    // }
+
+    // prio-buttons
     function changeColor(buttonId, path1Id, path2Id) {
         resetButtons();
         const buttons = [
@@ -279,6 +307,7 @@
         }
     }
 
+    // clear-button
     function changeCleaningColor() {
         document.querySelector('#close_icon .cls-20').style.fill = '#00bee8';
     }
@@ -287,6 +316,7 @@
         document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
     }
 
+    // animation
     function animateButton() {
         document.getElementById('alertMessage').style.display = "flex";
         let alertMessage = document.getElementById("popup-message");
@@ -301,6 +331,9 @@
     }
 
 
+    //category
+
+    //subtask
 
 
 
