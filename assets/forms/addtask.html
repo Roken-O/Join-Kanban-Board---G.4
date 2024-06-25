@@ -219,14 +219,32 @@
 
                     <!-- create task -->
                     <button required class="create-task"><span class="create-text">Create Task</span></button>
-                   
+
                 </div>
             </div>
 
         </form>
-        
+
         <button onclick="animateButton()">Animation</button>
-        <div class="alert-message" id="alertMessage"><div class="popup-message" id="popup-message">Hallo</div></div>
+        <div class="alert-message" id="alertMessage">
+            <div class="popup-message" id="popup-message"><span class="animate-text">Task added to board</span>
+                <svg class="animate-svg" id="board_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 114.4 96.8">
+                    <defs>
+                        <style>
+                            .cls-1 {
+                                fill: white;
+                                stroke-width: 0px;
+                            }
+                        </style>
+                    </defs>
+                    <path class="cls-1"
+                        d="M88,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58h-17.6c-2.33,0-4.57-.93-6.22-2.58-1.65-1.65-2.58-3.89-2.58-6.22V8.8c0-2.33.93-4.57,2.58-6.22C57.03.93,59.27,0,61.6,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM61.6,88h17.6V8.8h-17.6v79.2ZM61.6,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58h-17.6c-2.33,0-4.57-.93-6.22-2.58-1.65-1.65-2.58-3.89-2.58-6.22V8.8c0-2.33.93-4.57,2.58-6.22C30.63.93,32.87,0,35.2,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM35.2,88h17.6s0-79.2,0-79.2h-17.6s0,79.2,0,79.2ZM35.2,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58H8.8c-2.33,0-4.57-.93-6.22-2.58C.93,92.57,0,90.33,0,88V8.8c0-2.33.93-4.57,2.58-6.22C4.23.93,6.47,0,8.8,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM8.8,88h17.6V8.8H8.8v79.2Z" />
+                    <path class="cls-1"
+                        d="M114.4,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58h-17.6c-2.33,0-4.57-.93-6.22-2.58-1.65-1.65-2.58-3.89-2.58-6.22V8.8c0-2.33.93-4.57,2.58-6.22C83.43.93,85.67,0,88,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM88,88h17.6s0-79.2,0-79.2h-17.6s0,79.2,0,79.2Z" />
+                </svg>
+            </div>
+        </div>
 
 
         <script src="/js/script.js"></script>
@@ -269,23 +287,19 @@
         document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
     }
 
-    // function animate() {
-    //      document.getElementById('animate').classList.add('translateNull');
-    //  }
-
     function animateButton() {
-    document.getElementById('alertMessage').style.display = "flex";
-    let alertMessage = document.getElementById("popup-message");
+        document.getElementById('alertMessage').style.display = "flex";
+        let alertMessage = document.getElementById("popup-message");
 
-    setTimeout(() => {
-        alertMessage.classList.add('translateNull');
         setTimeout(() => {
-            alertMessage.classList.remove('translateNull');
-            document.getElementById('alertMessage').style.display = "none";
-        }, 2000);
-    }, 250);
-}
-    
+            alertMessage.classList.add('translateNull');
+            setTimeout(() => {
+                alertMessage.classList.remove('translateNull');
+                document.getElementById('alertMessage').style.display = "none";
+            }, 2000);
+        }, 250);
+    }
+
 
 
 
