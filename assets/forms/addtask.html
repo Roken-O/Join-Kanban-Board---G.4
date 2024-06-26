@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -310,31 +311,7 @@ function showTitles() {
 // }
 
     // prio-buttons
-    function changeColor(buttonId, path1Id, path2Id) {
-        resetButtons();
-        const buttons = [
-            { id: 'btn1', color: '#ff3d00' },
-            { id: 'btn2', color: '#ff7a00' },
-            { id: 'btn3', color: '#7ae229' }
-        ];
-        for (const button of buttons) { //button Schleifenvariable; buttons = Array
-            if (button.id === buttonId) {
-                document.getElementById(button.id).style.backgroundColor = button.color;
-                document.getElementById(button.id).style.color = 'white';
-            }
-        }
-        document.getElementById(path1Id).classList.add('cls-13');
-        document.getElementById(path2Id).classList.add('cls-13');
-    }
-
-    function resetButtons() {
-        const buttons = ['btn1', 'btn2', 'btn3'];
-        for (const id of buttons) {
-            document.getElementById(id).style.backgroundColor = 'white';
-            document.getElementById(id).style.color = 'black';
-        }
-    }
-
+    
     // clear-button
     function changeCleaningColor() {
         document.querySelector('#close_icon .cls-20').style.fill = '#00bee8';
