@@ -70,73 +70,73 @@ function deleteContact(email) {
 //   });
 // }
 
-// function editContact(email) {
-//   let formEditContact = document.getElementById('form-edit-contact');
-//   let currentColor;
-//   let currentName;
-//   let currentEmail;
-//   let currentPhone;
+function editContact(email) {
+  let formEditContact = document.getElementById('form-edit-contact');
+  let currentColor;
+  let currentName;
+  let currentEmail;
+  let currentPhone;
 
-//   for (let i = 0; i < allContacts.length; i++) {
-//     if (email == allContacts[i]['email']) {
-//       currentColor = allContacts[i]['color'];
-//       currentEmail = allContacts[i]['email'];
-//       currentPhone = allContacts[i]['phone'];
-//       currentName = allContacts[i]['name'];
-//       break;
-//     }
-//   }
+  for (let i = 0; i < allContacts.length; i++) {
+    if (email == allContacts[i]['email']) {
+      currentColor = allContacts[i]['color'];
+      currentEmail = allContacts[i]['email'];
+      currentPhone = allContacts[i]['phone'];
+      currentName = allContacts[i]['name'];
+      break;
+    }
+  }
 
-//   formEditContact.innerHTML = `
-//   <input
-//   placeholder="Name"
-//   class="input-text-email-number-contact input-text-contact"
-//   id="input-edit-name-contact"
-//   type="text"
-//   required
-//   />
-//   <input
-//   placeholder="Email"
-//   class="input-text-email-number-contact input-email-contact"
-//   id="input-edit-email-contact"
-//   type="email"
-//   required
-//   />
-//   <input
-//   placeholder="Phone"
-//   class="input-text-email-number-contact input-number-contact"
-//   id="input-edit-phone-contact"
-//   type="text"
-//   required
-//   />
-//   <div class="button-container-edit">
-//   <button style="background: transparent; border: none;">
-//   <img
-//     class="button_cancel"
-//     src="./assets/img/button_delete.svg"
-//     alt=""
-//   />
-//   </button>
-//   <button style="background: transparent; border: none;">
-//   <img
-//     class="button_create_contact"
-//     src="./assets/img/button_save.svg"
-//     alt=""
-//   />
-//     `;
+  formEditContact.innerHTML = /*html*/ `
+  <input
+  placeholder="Name"
+  class="input-text-email-number-contact input-text-contact"
+  id="input-edit-name-contact"
+  type="text"
+  required
+  />
+  <input
+  placeholder="Email"
+  class="input-text-email-number-contact input-email-contact"
+  id="input-edit-email-contact"
+  type="email"
+  required
+  />
+  <input
+  placeholder="Phone"
+  class="input-text-email-number-contact input-number-contact"
+  id="input-edit-phone-contact"
+  type="text"
+  required
+  />
+  <div class="button-container-edit">
+  <button style="background: transparent; border: none;">
+  <img
+    class="button_delete"
+    src="./assets/img/button_delete.svg"
+    alt=""
+  />
+  </button>
+  <button onclick="saveEditedContact('${email}')" style="background: transparent; border: none;">
+  <img
+    class="button_save_contact"
+    src="./assets/img/button_save.svg"
+    alt=""
+  />
+    `;
 
-//   document.getElementById('input-edit-name-contact').value = currentName;
-//   document.getElementById('input-edit-email-contac').value = currentEmail;
-//   document.getElementById('input-edit-phone-contact').value = currentPhone;
-//   document.getElementById('edit-contact-trial-phone-container').style.backgroundColor = currentColor;
-//   // document.getElementById('edit-contact-trial-phone-container').style.backgroundColor = currentColor;
-// }
+  document.getElementById('input-edit-name-contact').value = currentName;
+  document.getElementById('input-edit-email-contact').value = currentEmail;
+  document.getElementById('input-edit-phone-contact').value = currentPhone;
+  // document.getElementById('edit-contact-trial-phone-container').style.backgroundColor = currentColor;
+  // document.getElementById('edit-contact-trial-phone-container').style.backgroundColor = currentColor;
+}
 
 function saveEditedContact(currentEmail) {
-  let editName = document.getElementById('edit-contact-trial-name-container').value;
-  let editEmail = document.getElementById('edit-contact-trial-email-container').value;
-  let editTel = document.getElementById('edit-contact-trial-phone-container').value;
-  let editColor = document.getElementById('edit-contact-trial-phone-container').style.backgroundColor;
+  let editName = document.getElementById('input-edit-name-contact').value;
+  let editEmail = document.getElementById('input-edit-email-contact').value;
+  let editTel = document.getElementById('nput-edit-phone-contact').value;
+  // let editColor = document.getElementById('edit-contact-trial-phone-container').style.backgroundColor;
 
   let emailForm = emailFormatted(currentEmail);
   let newEmailForm = emailFormatted(editEmail);

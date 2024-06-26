@@ -331,6 +331,13 @@
   cursor: pointer;
 }
 
+.button_save_contact{
+  cursor: pointer;
+}
+
+.button_delete{
+  cursor: pointer;
+}
 /* Contact-info-responisve */
 
 .margin-left-0{
