@@ -11,7 +11,7 @@ async function initSummary() {
     await loadUsers();
     loadLocalStorage();
     checkTrueRegistered();
-     getInitialsName();
+    getInitialsName();
     showGreeting();
     greetAnimate();
     urgentDate();
@@ -133,9 +133,7 @@ function getInitialsName() {
 }
 
 function logout(registeredID) {
-
     let database = firebase.database();
-  
     if (registeredID) {
         let userEntry = database.ref("users/" + registeredID + "/registered/");
         userEntry.set(false);

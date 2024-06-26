@@ -214,10 +214,14 @@ form {
   width: 100%;
 }
 
+.back-icon{
+  width:30px;
+  height: 30px;
+  margin-right: 135px;
+}
 .arrow-left-container img {
   width: 30px;
   height: 30px;
-  margin-right: 135px;
   cursor: pointer;
 }
 

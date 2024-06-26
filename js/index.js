@@ -3,6 +3,7 @@ let allUsers = [];
 async function initIndex() {
    await loadUsers();
    animate();
+   checkInputs();
 }
 
 async function loadUsers() {
@@ -16,6 +17,11 @@ async function loadUsers() {
             allUsers.push(user);
         });
     });
+}
+
+function checkInputs(){
+    document.getElementById("email").value = '';
+    document.getElementById("password").value = '';
 }
 
 function signup() {
@@ -70,7 +76,7 @@ function saveNewUser(emailSignup, passwordSignup, nameSignup) {
         registered: false
     };
     let database = firebase.database();
-    let usersLength = allUsers.length - 1;
+    let usersLength = allUsers.length;
     let userEntry = database.ref("users/" + usersLength);
     userEntry.set(user);
 }
@@ -105,12 +111,11 @@ function login(event) {
     let email = document.getElementById("email");
     let password = document.getElementById("password");
     let user = allUsers.find(u => u.email == email.value);
-    console.log(user);
     if (user) {
         if (user['password'] == password.value) {
              let userID = user['id'];
             userRegisterd(userID);
-            // saveLocalStorage();
+            saveLocalStorage();
             window.location.href = 'summary.html';
         }
         else {
@@ -125,6 +130,13 @@ function login(event) {
 
 function userRegisterd(userID){
       let database = firebase.database();
+      for (let i = 0; i < allUsers.length; i++) {
+        let notLoged = allUsers[i]['id'];
+        if(userID != notLoged ){
+        let userEntry = database.ref("users/" + notLoged + "/registered/");
+        userEntry.set(false);
+        } 
+      }
       let userEntry = database.ref("users/" + userID + "/registered/");
       userEntry.set(true);
 }
@@ -136,17 +148,21 @@ function checkPasswordLogin(userPassword, loginPassword) {
 function togglePasswordVisibility(password) {
     let passwordInput = document.getElementById(password);
     if (passwordInput.type === 'password') {
-        passwordInput.type = 'password';
-    } else {
         passwordInput.type = 'text';
+    } else {
+        passwordInput.type = 'password';
     }
 }
 
 function goToSummarySite() {
     let email = document.getElementById("email");
     let password = document.getElementById("password");
-    email.value = "guest@gmai.com";
+    email.value = "guest@gmail.com";
     password.value = "123456";
+    let user = allUsers.find(u => u.email == email.value);
+             let userID = user['id'];
+    userRegisterd(userID);
+    saveLocalStorage();
     window.location.href = 'summary.html';
 }
 
@@ -191,8 +207,8 @@ function goToSignupSite() {
     signupSite.style.opacity = "1";
     signupSite.innerHTML = `
      <form onsubmit="signup(); return false;">
-        <div onclick="goToLoginSite()" class="arrow-left-container">
-          <img src="./assets/img/back_icon.svg">
+        <div class="arrow-left-container">
+          <div onclick="goToLoginSite()" class="back-icon"> <img src="./assets/img/back_icon.svg"> </div>
           <div class="h1-container">
             <h1>Sign up</h1>
             <div class="line"></div>
