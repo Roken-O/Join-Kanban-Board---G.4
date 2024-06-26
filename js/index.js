@@ -232,3 +232,15 @@ function goToSignupSite() {
         </div>
     </form>`;
 }
+
+function saveLocalStorage() {
+    let allUsersAsText = JSON.stringify(allUsers);
+    localStorage.setItem("Users", allUsersAsText);
+  }
+  
+  function loadLocalStorage() {
+    let allUsersAsText = localStorage.getItem("Users");
+    if (allUsersAsText) {
+        allUsers = JSON.parse(allUsersAsText);
+    }
+  }

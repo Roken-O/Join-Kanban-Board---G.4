@@ -7,14 +7,30 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 async function initSummary() {
-    includeHTML();
     await loadUsers();
+    loadLocalStorage();
+    checkRegisteredUser();
+    includeHTML();
     loadLocalStorage();
     checkTrueRegistered();
     getInitialsName();
     showGreeting();
     greetAnimate();
     urgentDate();
+}
+
+//checkRegisteredUser() muss auf jeder Seite eingebunden werden, um zu verhindern, dass der Nutzer auf andere Seiten zugreift, ohne eingeloggt zu sein oder als Gast eingeloggt ist.
+function checkRegisteredUser() {
+    let loged = false;
+    for (let i = 0; i < allUsers.length; i++) {
+        if (allUsers[i]['registered'] == true) {
+            loged = true;
+            break;
+        }
+    }
+    if (loged == false) {
+        window.location.href = 'index.html';
+    }
 }
 
 function showGreeting() {
@@ -127,9 +143,9 @@ function toggleShowLogout() {
 }
 
 function getInitialsName() {
-  if (registeredUserInitials) {
-      document.getElementById('sub-contact-initial-container').innerHTML = registeredUserInitials;
-  }
+    if (registeredUserInitials) {
+        document.getElementById('sub-contact-initial-container').innerHTML = registeredUserInitials;
+    }
 }
 
 function logout(registeredID) {
@@ -141,18 +157,10 @@ function logout(registeredID) {
         saveLocalStorage();
     }
     window.location.href = 'index.html';
-  }
-  
-  function saveLocalStorage() {
-    let allUsersAsText = JSON.stringify(allUsers);
-    localStorage.setItem("Users", allUsersAsText);
-  }
-  
-  function loadLocalStorage() {
-    let allUsersAsText = localStorage.getItem("Users");
-    if (allUsersAsText) {
-        allUsers = JSON.parse(allUsersAsText);
-    }
-  }
+}
+
+function goToBoardSite() {
+    window.location.href = 'board.html';
+}
 
 

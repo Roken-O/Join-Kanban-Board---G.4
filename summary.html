@@ -18,7 +18,6 @@
 
 <body onload="initSummary()">
 
-
   <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
   <section id="main-container" class="background-grey">
     <div id="greet" class="greet-top">
@@ -35,7 +34,7 @@
           <div class="light-blue d-none media-parting-line-h1"></div>
         </div>
         <div class="todo-done-container">
-          <div class="flex-align-center-evenly to-do-container"
+          <div onclick="goToBoardSite()" class="flex-align-center-evenly to-do-container"
             onmouseover="changeSvgColor('pen-path')"
             onmouseleave="resetSvgColor('pen-path')">
             <div class="svg-to-do-container">
@@ -81,7 +80,7 @@
               <span>To-do</span>
             </div>
           </div>
-          <div class="flex-align-center-evenly to-do-container"
+          <div onclick="goToBoardSite()" class="flex-align-center-evenly to-do-container"
             onmouseover="changeSvgColor('check-small-path')"
             onmouseleave="resetSvgColor('check-small-path')">
             <div class="svg-check-to-do-container">
@@ -111,7 +110,7 @@
             </div>
           </div>
         </div>
-        <div class="urgent-container">
+        <div onclick="goToBoardSite()" class="urgent-container">
           <div class="flex-align-center-evenly sub-urgent-container">
             <div class="svg-urgent-container">
               <svg id="urgent_icon_WHT" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 133 97.72">
@@ -141,15 +140,15 @@
           </div>
         </div>
         <div class="tasks-container">
-          <div class="sub-tasks-container">
+          <div onclick="goToBoardSite()" class="sub-tasks-container">
             <h2>5</h2>
             <span>Tasks in<br> Board</span>
           </div>
-          <div class="sub-tasks-container">
+          <div onclick="goToBoardSite()" class="sub-tasks-container">
             <h2>2</h2>
             <span>Tasks in Progress</span>
           </div>
-          <div class="sub-tasks-container">
+          <div onclick="goToBoardSite()" class="sub-tasks-container">
             <h2>2</h2>
             <span>Awaiting Feedback</span>
           </div>
