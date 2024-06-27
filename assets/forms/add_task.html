@@ -13,7 +13,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <title>Join</title>
     <style>
-      #task-trial-task-form {
+      #task-task-form {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -21,7 +21,7 @@
         margin-top: 100px;
       }
 
-      #task-trial-task-edit-form {
+      #task-task-edit-form {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -34,31 +34,31 @@
         cursor: pointer;
       }
 
-      #task-trial-category-selection-container {
+      #task-category-selection-container {
         display: flex;
         gap: 16px;
         cursor: pointer;
       }
 
-      .trial-task-priority-item {
+      .task-priority-item {
         display: flex;
         align-items: center;
         gap: 16px;
         cursor: pointer;
       }
 
-      .trial-task-priority-item img {
+      .task-priority-item img {
         height: 8px;
         cursor: pointer;
       }
 
-      #task-trial-medium-icon {
+      #task-medium-icon {
         height: 12px;
         width: 12px;
         cursor: pointer;
       }
 
-      #task-trial-priority-container {
+      #task-priority-container {
         display: flex;
         gap: 16px;
       }
@@ -104,7 +104,7 @@
         overflow-y: auto; /* Falls erforderlich, um scrollbare Liste zu ermöglichen */
       }
 
-      .task-trial-category-dropdown-links {
+      .task-category-dropdown-links {
         position: absolute;
         background-color: #f9f9f9;
         min-width: 160px;
@@ -128,7 +128,7 @@
         display: none;
       }
 
-      #contacts-trial-contacts-dropdown-headline {
+      #contacts-contacts-dropdown-headline {
         display: flex;
         align-items: center;
         gap: 16px;
@@ -139,14 +139,13 @@
         cursor: pointer;
       }
 
-      #task-trial-priority-icon-task {
+      #task-priority-icon-task {
         height: 16px;
         width: 16px;
       }
 
-      #task-trial-container {
+      #task-container {
         display: flex;
-        /* align-items: center; */
         justify-content: center;
       }
 
@@ -176,7 +175,7 @@
         justify-content: center;
       }
 
-      #task-trial-button-container{
+      #task-button-container{
         display: flex;
       }
     </style>
@@ -184,19 +183,19 @@
   <body onload="includeHTML(); initTask();">
     <!-- <div w3-include-html="/assets/templates/sidebar_menu.html"></div> -->
     <div class="form-flexbox">
-      <form id="task-trial-task-form" onsubmit="saveTask(); return false;">
-      <input id="task-trial-title" type="text" placeholder="Title" required />
+      <form id="task-task-form" onsubmit="saveTask(); return false;">
+      <input id="task-title" type="text" placeholder="Title" required />
       <input
-        id="task-trial-description"
+        id="task-description"
         type="text"
         placeholder="Description"
         required
       />
-      <input type="date" id="task-trial-date-picker" required />
-      <section class="task-trial-category-dropdown-container">
-        <div id="task-trial-category-selection-container">
+      <input type="date" id="task-date-picker" required />
+      <section class="task-category-dropdown-container">
+        <div id="task-category-selection-container">
           <div
-            id="task-trial-category-selection"
+            id="task-category-selection"
             onclick="toggleCategoryDropdown()"
           >
             Category
@@ -210,8 +209,8 @@
           </div>
         </div>
         <div
-          class="task-trial-category-dropdown-links d-none"
-          id="task-trial-category-dropdown"
+          class="task-category-dropdown-links d-none"
+          id="task-category-dropdown"
         >
           <div
             class="category-selection"
@@ -227,44 +226,44 @@
           </div>
         </div>
       </section>
-      <section id="task-trial-priority-container">
+      <section id="task-priority-container">
         <div
-          class="trial-task-priority-item"
+          class="task-priority-item"
           onclick="createCategoryIconUrgent()"
         >
-          <span class="trial-task-priority-item-span">Urgent</span>
+          <span class="task-priority-item-span" id="priority-urgent-text">Urgent</span>
           <img
-            class="trial-task-priority-item-image"
-            id="task-trial-urgent-icon"
+            class="task-priority-item-image"
+            id="task-urgent-icon"
             src="/assets/img/urgent_icon.png"
             alt=""
           />
         </div>
         <div
-          class="trial-task-priority-item"
+          class="task-priority-item"
           onclick="createCategoryIconMedium()"
         >
-          <span class="trial-task-priority-item-span">Medium</span>
+          <span class="task-priority-item-span" id="priority-medium-text">Medium</span>
           <img
-            class="trial-task-priority-item-image"
-            id="task-trial-medium-icon"
+            class="task-priority-item-image"
+            id="task-medium-icon"
             src="/assets/img/medium_icon.svg"
             alt=""
           />
         </div>
-        <div class="trial-task-priority-item" onclick="createCategoryIconLow()">
-          <span class="trial-task-priority-item-span">Low</span>
+        <div class="task-priority-item" onclick="createCategoryIconLow()">
+          <span class="task-priority-item-span" id="priority-low-text">Low</span>
           <img
-            class="trial-task-priority-item-image"
-            id="task-trial-low-icon"
+            class="task-priority-item-image"
+            id="task-low-icon"
             src="/assets/img/low_icon.svg"
             alt=""
           />
         </div>
       </section>
-      <section id="contacts-trial-contact-assignment-container">
+      <section id="contacts-assignment-container">
         <div
-          id="contacts-trial-contacts-dropdown-headline"
+          id="contacts-dropdown-headline"
           onclick="toggleContactDropdown()"
         >
           <span>Assign Contacts</span>
@@ -276,19 +275,19 @@
             />
           </div>
         </div>
-        <div id="contacts-trial-contacts-list" class="dropdown-list d-none">
+        <div id="contacts-list" class="dropdown-list d-none">
           
         </div>
       </section>
       
-      <input id="task-trial-subtask-input" type="text" placeholder="Subtask" />
+      <input id="task-subtask-input" type="text" placeholder="Subtask" />
       <button type="button" onclick="addSubTask()">Add Subtask</button>
       <div id="subtask-list"></div>
       <button>Speichern</button>
       </form>
 
     </div>
-    <div style="background: red;" draggable="true" id="task-trial-container"></div>
+    <div style="background: red;" draggable="true" id="task-container"></div>
     <div id="task-edit-container"></div>
     
     <script src="/js/firebase.js"></script>
