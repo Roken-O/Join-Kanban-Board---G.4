@@ -98,7 +98,7 @@
                 alt=""
               />
             </div>
-            <div class="popUp-edit-add-leftside-content">
+            <div id="popUp-edit-leftside-content" class="popUp-edit-add-leftside-content">
               <img src="./assets/img/join_logo_WHT.svg" alt="" />
               <span class="span-Contact">Add contact</span>
               <span class="span-tasks-are-better"
@@ -165,7 +165,6 @@
               <div class="button-container-add">
                 
                   <img
-                  onclick="closePupUpaddNewOrEdditContact()"
                   class="button_cancel"
                   src="./assets/img/button_cancel.svg"
                   alt=""
@@ -173,6 +172,7 @@
                
                 <button type="submit" style="background: transparent; border: none;">
                 <img
+                onclick="closePupUpaddNewOrEdditContact()"
                   class="button_create_contact"
                   src="./assets/img/button_create_contact.svg"
                   alt=""
@@ -189,6 +189,7 @@
           <div class="popUp-edit-add-leftside">
             <div class="container-close-icon-responsive">
               <img
+               id="close-icon-edit"
                 onclick="closePupUpaddNewOrEdditContact()"
                 class="close-icon-responsive"
                 src="./assets/img/close_icon_white.svg"

@@ -6,6 +6,7 @@ let hexColors = ['#29abe2', '#4589ff', '#0038ff', '#ff3d00', '#ff745e', '#ffa35e
   document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
   document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
   document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
+  // document.getElementById("PopUp-edit-delete").classList.add("display-none");
 }
 
 
@@ -51,33 +52,6 @@ function deleteContact(email) {
   document.getElementById("contact").classList.remove("translateX-null");
 }
 
-
-// function loadContacts() {
-//   let database = firebase.database();
-//   let contactEntries = database.ref("contacts");
-
-//   contactEntries.on("value", function (snapshot) {
-//     let contactsContainer = document.getElementById("contacts-trial-container");
-//     contactsContainer.innerHTML = "";
-
-//     allContacts = [];
-//     snapshot.forEach(function (childSnapshot) {
-//       let contact = childSnapshot.val();
-//       allContacts.push(contact);
-
-//       contactsContainer.innerHTML += /*html*/ `
-//           <div id="contact-entry">
-//             <div style="background: ${contact.color}" id="contact-trial-initial-container">${getInitials(contact.name)}</div>
-//             <div id="contact-trial-name-container">Name: ${contact.name}</div>
-//             <div id="contact-trial-email-container">Email: ${contact.email}</div>
-//             <div id="contact-trial-phone-container">Telefonnummer: ${contact.phone}</div>
-//             <button onclick="deleteContact('${contact.email}')">Löschen</button>
-//             <button onclick="editContact('${contact.email}')">edit</button>
-           
-//           </div>`;
-//     });
-//   });
-// }
 
 function editContact(email) {
   let formEditContact = document.getElementById('form-container');
@@ -409,7 +383,7 @@ function showContactResponsive(email) {
               id="PopUp-edit-delete-bg"
               class="PopUp-edit-delete-bg"
             >
-              <div class="PopUp-edit-delete">
+              <div id="PopUp-edit-delete" class="PopUp-edit-delete">
                 <div onclick="editContactPopUp();editContact('${currentEmail}')" class="PopUp-edit-pen">
                   <img
                     class="PopUp-edit-pen-img"
@@ -445,6 +419,7 @@ function closePopUpEditDelete() {
 
 function openPopUpEditDelete() {
   document.getElementById("PopUp-edit-delete-bg").classList.remove("display-none");
+  // document.getElementById("PopUp-edit-delete").classList.remove("d-none");
 }
 
 // new
@@ -468,7 +443,7 @@ function loadContacts() {
               <div id="breakline-contactlist"></div>
               <div id="testcontacts"></div>
               <div
-                onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');"
+                onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
                 class="flex-align-center"
                 id="contact-contactlist"
               >
