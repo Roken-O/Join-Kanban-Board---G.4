@@ -1,10 +1,13 @@
 let allUsers = [];
 let clickState = 0;
 
+// document.addEventListener("DOMContentLoaded", initIndex);
+
 async function initIndex() {
-   await checkLoadUsers();
-   animate();
-   checkInputs();
+    await checkLoadUsers();
+    animate();
+    checkInputs();
+    usersSettoFalse();
 }
 
 function loadUsers() {
@@ -16,7 +19,7 @@ function loadUsers() {
                 allUsers = [];
                 snapshot.forEach(function (childSnapshot) {
                     let user = childSnapshot.val();
-                    user.id = childSnapshot.key;  
+                    user.id = childSnapshot.key;
                     allUsers.push(user);
                 });
                 resolve('hat geklappt!');
@@ -32,7 +35,7 @@ async function checkLoadUsers() {
     console.log(prom);
 }
 
-function checkInputs(){
+function checkInputs() {
     document.getElementById("email").value = '';
     document.getElementById("password").value = '';
 
@@ -41,7 +44,6 @@ function checkInputs(){
     if (rememberedEmail) {
         document.getElementById("email").value = rememberedEmail;
         document.getElementById("password").value = rememberedPassword;
-
         document.getElementById("rememberMe").checked = true;
     }
 }
@@ -63,9 +65,9 @@ async function signup() {
             if (passwordSignup.length > 5) {
                 showMessageAlert();
                 setTimeout(() => {
-                    allUsers.push({ email: emailSignup, password: passwordSignup, name : nameSignup});
-                    saveNewUser(emailSignup, passwordSignup, nameSignup );
-                   checkLoadUsers();
+                    allUsers.push({ email: emailSignup, password: passwordSignup, name: nameSignup });
+                    saveNewUser(emailSignup, passwordSignup, nameSignup);
+                    checkLoadUsers();
                     window.location.href = 'index.html';
                 }, 2250);
             }
@@ -89,12 +91,12 @@ function checkPassword() {
 }
 
 function saveNewUser(emailSignup, passwordSignup, nameSignup) {
-   let initialName = getInitials(nameSignup);
+    let initialName = getInitials(nameSignup);
     let user = {
         email: emailSignup,
         password: passwordSignup,
-        name : nameSignup,
-        initial : initialName,
+        name: nameSignup,
+        initial: initialName,
         registered: false
     };
     let database = firebase.database();
@@ -105,13 +107,13 @@ function saveNewUser(emailSignup, passwordSignup, nameSignup) {
 
 let getInitials = function (string) {
     let name = string.split(" "),
-      initials = name[0].substring(0, 1).toUpperCase();
-  
+        initials = name[0].substring(0, 1).toUpperCase();
+
     if (name.length > 1) {
-      initials += name[name.length - 1].substring(0, 1).toUpperCase();
+        initials += name[name.length - 1].substring(0, 1).toUpperCase();
     }
     return initials;
-  };
+};
 
 function showMessageAlert() {
     document.getElementById('alertMessage').style.display = "flex";
@@ -136,7 +138,7 @@ function login(event) {
     let user = allUsers.find(u => u.email == email.value);
     if (user) {
         if (user['password'] == password.value) {
-             let userID = user['id'];
+            let userID = user['id'];
             userRegisterd(userID);
             if (rememberMe) {
                 localStorage.setItem('rememberedEmail', email.value);
@@ -157,17 +159,17 @@ function login(event) {
     }
 }
 
-function userRegisterd(userID){
-      let database = firebase.database();
-      for (let i = 0; i < allUsers.length; i++) {
+function userRegisterd(userID) {
+    let database = firebase.database();
+    for (let i = 0; i < allUsers.length; i++) {
         let notLoged = allUsers[i]['id'];
-        if(userID != notLoged ){
-        let userEntry = database.ref("users/" + notLoged + "/registered/");
-        userEntry.set(false);
-        } 
-      }
-      let userEntry = database.ref("users/" + userID + "/registered/");
-      userEntry.set(true);
+        if (userID != notLoged) {
+            let userEntry = database.ref("users/" + notLoged + "/registered/");
+            userEntry.set(false);
+        }
+    }
+    let userEntry = database.ref("users/" + userID + "/registered/");
+    userEntry.set(true);
 }
 
 function checkPasswordLogin(userPassword, loginPassword) {
@@ -176,10 +178,10 @@ function checkPasswordLogin(userPassword, loginPassword) {
 
 function togglePasswordVisibility(password) {
     let passwordInput = document.getElementById(password);
-    if(clickState > 0){
+    if (clickState > 0) {
         passwordInput.type = (passwordInput.type == 'password') ? 'text' : 'password';
-}
-clickState++;
+    }
+    clickState++;
 }
 
 function goToSummarySite() {
@@ -188,7 +190,7 @@ function goToSummarySite() {
     email.value = "guest@gmail.com";
     password.value = "123456";
     let user = allUsers.find(u => u.email == email.value);
-             let userID = user['id'];
+    let userID = user['id'];
     userRegisterd(userID);
     window.location.href = 'summary.html';
 }
@@ -258,4 +260,13 @@ function goToSignupSite() {
             <button id="signup-button">signup</button>
         </div>
     </form>`;
+}
+
+async function usersSettoFalse() {
+    let database = firebase.database();
+    for (let i = 0; i < allUsers.length; i++) {
+        let registeredID = allUsers[i]['id'];
+        let userEntry = database.ref("users/" + registeredID + "/registered/");
+        await userEntry.set(false);
+    }
 }

@@ -12,20 +12,23 @@
   <link rel="stylesheet" href="/CSS/summary-style.css">
   <link rel="stylesheet" href="/CSS/summary-media.css">
   <link rel="icon" href="/assets/img/join_favicon.svg">
-  
+
   <title>Join</title>
 </head>
 
 <body onload="initSummary()">
 
   <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+  <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
+    <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
+  </div>
   <section id="main-container" class="background-grey">
     <div id="greet" class="greet-top">
       <h2 id="top-greeting">Good morning, </h2>
       <h1 id="greeting-name-top"></h1>
     </div>
     <div class="flex-align-center main-content">
-      
+
       <div id="left-main-container" class="left-main-container">
         <div class="headline-div-join360">
           <h1>Join 360</h1>
@@ -35,8 +38,7 @@
         </div>
         <div class="todo-done-container">
           <div onclick="goToBoardSite()" class="flex-align-center-evenly to-do-container"
-            onmouseover="changeSvgColor('pen-path')"
-            onmouseleave="resetSvgColor('pen-path')">
+            onmouseover="changeSvgColor('pen-path')" onmouseleave="resetSvgColor('pen-path')">
             <div class="svg-to-do-container">
               <svg id="pen_DARK_OPAC" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 108.15 108">
@@ -81,8 +83,7 @@
             </div>
           </div>
           <div onclick="goToBoardSite()" class="flex-align-center-evenly to-do-container"
-            onmouseover="changeSvgColor('check-small-path')"
-            onmouseleave="resetSvgColor('check-small-path')">
+            onmouseover="changeSvgColor('check-small-path')" onmouseleave="resetSvgColor('check-small-path')">
             <div class="svg-check-to-do-container">
               <svg id="check_small_DARK" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 81.54 62.88">
@@ -135,7 +136,7 @@
           </div>
           <div class="line-urgent-container"></div>
           <div>
-            <h3 id="urgent-date"></h3>
+            <h3 id="urgent-date">No urgent tasks</h3>
             <span>Upcoming Deadline</span>
           </div>
         </div>

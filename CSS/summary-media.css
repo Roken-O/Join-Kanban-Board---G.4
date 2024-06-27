@@ -161,16 +161,24 @@
     }
 
 }
-@media (max-width: 340px) {
+@media (max-width: 350px) {
     .todo-done-container {
         width: 286px;
+        padding: 6px 6px 6px 6px;
     }
 
     .urgent-container {
         width: 210px;
+        /* padding: 6px 6px 6px 6px; */
     }
 
     .tasks-container {
         width: 286px;
+        padding: 6px 6px 6px 6px;
     }
+
+    #main-container {
+        padding: 80px 40px 40px 20px !important;
+    }
+
 }

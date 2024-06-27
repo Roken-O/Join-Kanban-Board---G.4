@@ -14,7 +14,7 @@ async function initSummary() {
     checkRegisteredUser();
     includeHTML();
     checkTrueRegistered();
-    // getInitialsName();
+    getInitialsName();
     showGreeting();
     greetAnimate();
     await getNumOfTasks();
@@ -117,7 +117,7 @@ async function getNumOfTasks() {
     document.getElementById('to-do-h2').innerHTML = numOfToDO();
     document.getElementById('done-h2').innerHTML = numOfDone();
     document.getElementById('urgent-h2').innerHTML = numOfUrgent();
-    document.getElementById('urgent-date').innerHTML = upcomingDate;
+    document.getElementById('urgent-date').innerHTML = (upcomingDate) ? upcomingDate : 'no deadline';
     document.getElementById('num-of-board-tasks-h2').innerHTML = allTasksSummary.length;
     document.getElementById('num-of-progress-tasks-h2').innerHTML = numOfInProgress();
     document.getElementById('num-of-awaiting-tasks-h2').innerHTML = numOfAwaiting();
@@ -188,19 +188,17 @@ function toggleShowLogout() {
     }
 }
 
-// function getInitialsName() {
-//     if (registeredUserInitials) {
-//         document.getElementById('sub-contact-initial-container').innerHTML = registeredUserInitials;
-//     }
-// }
+function getInitialsName() {
+    if (registeredUserInitials) {
+        document.getElementById('sub-contact-initial-container').innerHTML = registeredUserInitials;
+    }
+}
 
 function logout(registeredID) {
     let database = firebase.database();
     if (registeredID) {
         let userEntry = database.ref("users/" + registeredID + "/registered/");
         userEntry.set(false);
-        // allUsers[registeredID]['registered']=false;
-        // saveLocalStorage();
     }
     window.location.href = 'index.html';
 }
