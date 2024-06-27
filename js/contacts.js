@@ -110,14 +110,14 @@ function editContact(email) {
   required
   />
   <div class="button-container-edit">
-  <button style="background: transparent; border: none;">
+  <button onclick="deleteContact('${currentEmail}')" style="background: transparent; border: none;">
   <img
     class="button_delete"
     src="./assets/img/button_delete.svg"
     alt=""
   />
   </button>
-  <button onclick="saveEditedContact('${email}')" style="background: transparent; border: none;">
+  <button type="submit" style="background: transparent; border: none;">
   <img
     class="button_save_contact"
     src="./assets/img/button_save.svg"
@@ -135,7 +135,7 @@ function editContact(email) {
 function saveEditedContact(currentEmail) {
   let editName = document.getElementById('input-edit-name-contact').value;
   let editEmail = document.getElementById('input-edit-email-contact').value;
-  let editTel = document.getElementById('nput-edit-phone-contact').value;
+  let editTel = document.getElementById('input-edit-phone-contact').value;
   // let editColor = document.getElementById('edit-contact-trial-phone-container').style.backgroundColor;
 
   let emailForm = emailFormatted(currentEmail);
