@@ -441,7 +441,7 @@ function loadContacts() {
           <div>
               <div id="initial-letter">${contact.name.substring(0, 1)}</div>
               <div id="breakline-contactlist"></div>
-              <div id="testcontacts"></div>
+              <div id="contacts-without-breakline"></div>
               <div
                 onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
                 class="flex-align-center"
@@ -461,6 +461,39 @@ function loadContacts() {
   });
 }
 
+// function loadContactsWhitoutBreakline() {
+//   let database = firebase.database();
+//   let contactEntries = database.ref("contacts");
+
+//   contactEntries.on("value", function (snapshot) {
+//     let contactsWithoutBreakline = document.getElementById("contacts-without-breakline");
+//     contactsListContent.innerHTML = "";
+
+//     allContacts = [];
+//     snapshot.forEach(function (childSnapshot) {
+//       let contact = childSnapshot.val();
+//       allContacts.push(contact);
+
+//       contactsWithoutBreakline.innerHTML += /*html*/ `
+          
+//               <div
+//                 onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
+//                 class="flex-align-center"
+//                 id="contact-contactlist"
+//               >
+//                 <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
+//                   <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
+//                 </div>
+//                 <div id="contact-name-email-contactlist">
+//                   <span id="contact-name-contactlist">${contact.name}</span>
+//                   <span id="email-contactlist">${contact.email}</span>
+//                 </div>
+//               </div>
+            
+//             `;
+//     });
+//   });
+// }
 
 // function init() {
 //   // document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
