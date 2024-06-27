@@ -1,30 +1,52 @@
 let allUsers = [];
+let clickState = 0;
 
 async function initIndex() {
-   await loadUsers();
+   await checkLoadUsers();
    animate();
    checkInputs();
 }
 
-async function loadUsers() {
-    let database = firebase.database();
-    let usersEntries = database.ref("users");
-    usersEntries.on("value", function (snapshot) {
-        allUsers = [];
-        snapshot.forEach(function (childSnapshot) {
-            let user = childSnapshot.val();
-            user.id = childSnapshot.key;  
-            allUsers.push(user);
-        });
+function loadUsers() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let database = firebase.database();
+            let usersEntries = database.ref("users");
+            usersEntries.on("value", function (snapshot) {
+                allUsers = [];
+                snapshot.forEach(function (childSnapshot) {
+                    let user = childSnapshot.val();
+                    user.id = childSnapshot.key;  
+                    allUsers.push(user);
+                });
+                resolve('hat geklappt!');
+            }, () => {
+                reject('hat nicht geklappt!');
+            });
+        }, 10);
     });
+}
+
+async function checkLoadUsers() {
+    let prom = await loadUsers();
+    console.log(prom);
 }
 
 function checkInputs(){
     document.getElementById("email").value = '';
     document.getElementById("password").value = '';
+
+    let rememberedEmail = localStorage.getItem('rememberedEmail');
+    let rememberedPassword = localStorage.getItem('rememberedPassword');
+    if (rememberedEmail) {
+        document.getElementById("email").value = rememberedEmail;
+        document.getElementById("password").value = rememberedPassword;
+
+        document.getElementById("rememberMe").checked = true;
+    }
 }
 
-function signup() {
+async function signup() {
     let nameSignup = document.getElementById("username").value;
     let emailSignup = document.getElementById("email-signup").value;
     let passwordSignup = document.getElementById("password-signup").value;
@@ -43,7 +65,7 @@ function signup() {
                 setTimeout(() => {
                     allUsers.push({ email: emailSignup, password: passwordSignup, name : nameSignup});
                     saveNewUser(emailSignup, passwordSignup, nameSignup );
-                    loadUsers();
+                   checkLoadUsers();
                     window.location.href = 'index.html';
                 }, 2250);
             }
@@ -110,12 +132,19 @@ function login(event) {
     document.getElementById('wrong-password-login').style.display = "none";
     let email = document.getElementById("email");
     let password = document.getElementById("password");
+    let rememberMe = document.getElementById("rememberMe").checked;
     let user = allUsers.find(u => u.email == email.value);
     if (user) {
         if (user['password'] == password.value) {
              let userID = user['id'];
             userRegisterd(userID);
-            saveLocalStorage();
+            if (rememberMe) {
+                localStorage.setItem('rememberedEmail', email.value);
+                localStorage.setItem('rememberedPassword', password.value);
+            } else {
+                localStorage.removeItem('rememberedEmail');
+                localStorage.removeItem('rememberedPassword');
+            }
             window.location.href = 'summary.html';
         }
         else {
@@ -147,11 +176,10 @@ function checkPasswordLogin(userPassword, loginPassword) {
 
 function togglePasswordVisibility(password) {
     let passwordInput = document.getElementById(password);
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-    } else {
-        passwordInput.type = 'password';
-    }
+    if(clickState > 0){
+        passwordInput.type = (passwordInput.type == 'password') ? 'text' : 'password';
+}
+clickState++;
 }
 
 function goToSummarySite() {
@@ -162,7 +190,6 @@ function goToSummarySite() {
     let user = allUsers.find(u => u.email == email.value);
              let userID = user['id'];
     userRegisterd(userID);
-    saveLocalStorage();
     window.location.href = 'summary.html';
 }
 
@@ -232,15 +259,3 @@ function goToSignupSite() {
         </div>
     </form>`;
 }
-
-function saveLocalStorage() {
-    let allUsersAsText = JSON.stringify(allUsers);
-    localStorage.setItem("Users", allUsersAsText);
-  }
-  
-  function loadLocalStorage() {
-    let allUsersAsText = localStorage.getItem("Users");
-    if (allUsersAsText) {
-        allUsers = JSON.parse(allUsersAsText);
-    }
-  }

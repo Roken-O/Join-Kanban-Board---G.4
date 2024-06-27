@@ -1,22 +1,23 @@
+let allTasksSummary = [];
 let registeredUserName;
 let registeredUserInitials;
 let registeredID;
+let upcomingDate;
 
 document.addEventListener('DOMContentLoaded', function () {
     initSummary();
 });
 
 async function initSummary() {
-    await loadUsers();
-    loadLocalStorage();
+    await checkLoadUsers();
+    // loadLocalStorage();
     checkRegisteredUser();
     includeHTML();
-    loadLocalStorage();
     checkTrueRegistered();
-    getInitialsName();
+    // getInitialsName();
     showGreeting();
     greetAnimate();
-    urgentDate();
+    await getNumOfTasks();
 }
 
 //checkRegisteredUser() muss auf jeder Seite eingebunden werden, um zu verhindern, dass der Nutzer auf andere Seiten zugreift, ohne eingeloggt zu sein oder als Gast eingeloggt ist.
@@ -65,19 +66,6 @@ function checkTrueRegistered() {
     }
 }
 
-function loadUsers() {
-    let database = firebase.database();
-    let usersEntries = database.ref("users");
-    usersEntries.on("value", function (snapshot) {
-        allUsers = [];
-        snapshot.forEach(function (childSnapshot) {
-            let user = childSnapshot.val();
-            user.id = childSnapshot.key;
-            allUsers.push(user);
-        });
-    });
-}
-
 function greetAnimate() {
     if (window.innerWidth < 1100) {
         setTimeout(() => {
@@ -104,28 +92,86 @@ function resetSvgColor(path) {
     document.getElementById(path).classList.remove('cls-4');
 }
 
-function urgentDate() {
-    let months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
-    let urgentDate = new Date();
-    urgentDate.setDate(urgentDate.getDate() + 4);
-
-    let year = urgentDate.getFullYear();
-    let month = months[urgentDate.getMonth()];
-    let day = urgentDate.getDate();
-    let upcomingDate = `${month} ${day}, ${year}`;
-    document.getElementById('urgent-date').innerHTML = upcomingDate;
+function loadTasksSummary() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let tasks = database.ref('tasks');
+            tasks.on('value', function (snapshot) {
+                allTasksSummary = [];
+                snapshot.forEach(function (childSnapshot) {
+                    let task = childSnapshot.val();
+                    task.taskId = childSnapshot.key;
+                    allTasksSummary.push(task);
+                });
+                resolve('hat geklappt!');
+            }, () => {
+                reject('hat nicht geklappt!');
+            });
+        }, 300);
+    });
 }
 
-// let getInitials = function (string) {
-//     let name = string.split(" "),
-//       initials = name[0].substring(0, 1).toUpperCase();
+async function getNumOfTasks() {
+    let prom = await loadTasksSummary();
+    console.log(prom);
+    document.getElementById('to-do-h2').innerHTML = numOfToDO();
+    document.getElementById('done-h2').innerHTML = numOfDone();
+    document.getElementById('urgent-h2').innerHTML = numOfUrgent();
+    document.getElementById('urgent-date').innerHTML = upcomingDate;
+    document.getElementById('num-of-board-tasks-h2').innerHTML = allTasksSummary.length;
+    document.getElementById('num-of-progress-tasks-h2').innerHTML = numOfInProgress();
+    document.getElementById('num-of-awaiting-tasks-h2').innerHTML = numOfAwaiting();
+}
 
-//     if (name.length > 1) {
-//       initials += name[name.length - 1].substring(0, 1).toUpperCase();
-//     }
-//     return initials;
-//   };
+function numOfToDO(){
+    let numOfToDoTasks = 0;
+    for (let index = 0; index < allTasksSummary.length; index++) {
+        if(allTasksSummary[index]['taskBoardCategory'] == 'toDo'){
+            numOfToDoTasks++;
+        } 
+    }
+    return numOfToDoTasks;
+}
+function numOfDone(){
+    let numOfDoneTasks = 0;
+    for (let index = 0; index < allTasksSummary.length; index++) {
+        if(allTasksSummary[index]['taskBoardCategory'] == 'done'){
+            numOfDoneTasks++;
+        } 
+    }
+    return numOfDoneTasks;
+}
+function numOfUrgent(){
+    let numOfUrgentTasks = 0;
+    for (let index = 0; index < allTasksSummary.length; index++) {
+        if(allTasksSummary[index]['taskPriority'] == '/assets/img/urgent_icon.svg'){
+            numOfUrgentTasks++;
+            upcomingDate = allTasksSummary[index]['taskDate'];
+        } 
+    }
+    return numOfUrgentTasks;
+}
 
+
+function numOfInProgress(){
+    let numOfProgrssTask = 0;
+    for (let index = 0; index < allTasksSummary.length; index++) {
+        if(allTasksSummary[index]['taskBoardCategory'] == 'inProgress'){
+        numOfProgrssTask++;
+        } 
+    }
+    return numOfProgrssTask;
+}
+
+function numOfAwaiting(){
+    let numOfAwaitingTask = 0;
+    for (let index = 0; index < allTasksSummary.length; index++) {
+        if(allTasksSummary[index]['taskBoardCategory'] == 'awaitFeedback'){
+            numOfAwaitingTask++;
+        } 
+    }
+    return numOfAwaitingTask ;
+}
 
 function toggleShowLogout() {
     let logoutContainer = document.getElementById('showLogout');
@@ -142,19 +188,19 @@ function toggleShowLogout() {
     }
 }
 
-function getInitialsName() {
-    if (registeredUserInitials) {
-        document.getElementById('sub-contact-initial-container').innerHTML = registeredUserInitials;
-    }
-}
+// function getInitialsName() {
+//     if (registeredUserInitials) {
+//         document.getElementById('sub-contact-initial-container').innerHTML = registeredUserInitials;
+//     }
+// }
 
 function logout(registeredID) {
     let database = firebase.database();
     if (registeredID) {
         let userEntry = database.ref("users/" + registeredID + "/registered/");
         userEntry.set(false);
-        loadUsers();
-        saveLocalStorage();
+        // allUsers[registeredID]['registered']=false;
+        // saveLocalStorage();
     }
     window.location.href = 'index.html';
 }
