@@ -1,5 +1,6 @@
 body{
   background: #f6f7f8;
+  padding-bottom: 30px;
 }
 /* SIDEBAR MENU - START */
 #sidebar-menu {
@@ -352,7 +353,7 @@ animation-duration: 0ms;
 }
 
 .sub-initial-container {
-  position: absolute;
+  position: fixed;
   top: 21px;
   right: 43px;
   z-index: 999;
