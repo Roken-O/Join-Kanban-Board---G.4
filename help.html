@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/colors.css">
+    <link rel="stylesheet" href="/CSS/fonts.css">
+    <link rel="stylesheet" href="/CSS/global_style.css">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="stylesheet" href="/CSS/media.css">
+    <link rel="icon" href="/assets/img/Join_favicon.svg">
+    <title>Join</title>
+    <style>
+        body {
+            background: #f6f7f8;
+        }
+
+        .help-container {
+            padding: 144px 64px 64px 296px;
+            background: #f6f7f8;
+            height: 100vh;
+            color: #2a3647;
+            margin-bottom: 30px;
+        }
+
+        .help-container h1 {
+            color: #29abe2;
+            font-size: 47px;
+            margin-bottom: 16px;
+        }
+
+        .help-container p,
+        .help-container ol {
+            margin-bottom: 24px;
+        }
+
+        .help-container strong {
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .help-container a {
+            color: #29abe2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .help-container a:hover {
+            text-decoration: underline;
+        }
+
+        .help-container .step {
+            margin-bottom: 24px;
+        }
+
+        .help-container .step strong {
+            margin-top: 12px;
+            display: block;
+        }
+
+        .help-container .step a {
+            margin-right: 8px;
+        }
+
+        @media screen and (max-width: 840px) {
+            .help-container {
+                padding: 80px 64px 64px 32px !important;
+            }
+        }
+        @media screen and (max-width: 550px) {
+            .help-container {
+        padding: 80px 16px 64px 16px !important;
+    }
+}
+        
+    </style>
+</head>
+
+<body onload="includeHTML()">
+    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+    <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
+        <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
+    </div>
+    <div class="help-container">
+        <h1>Help</h1>
+        <p>Welcome to the Help Page for <a href='index.html'>Join</a>, your guide to using our project management tool.
+        </p>
+        <div class="step">
+            <strong>What is <a href='index.html'>Join</a>?</strong>
+            <p><a href='index.html'>Join</a> is a project management tool designed and built by a group of dedicated
+                students as part of their web development bootcamp at the Developer Akademie.</p>
+        </div>
+        <div class="step">
+            <strong>How to Use It</strong>
+            <ol>
+                <li>
+                    <strong>Exploring the Board</strong>
+                    <p>When you log in to <a href='index.html'>Join</a>, you'll find a default board. This board
+                        represents your project and contains four default lists: "To Do," "In Progress," “Await
+                        Feedback,” and "Done."</p>
+                </li>
+                <li>
+                    <strong>Creating Contacts</strong>
+                    <p>In <a href='index.html'>Join</a>, you can add contacts to collaborate on your projects. Go to the
+                        "Contacts" section, click on "New Contact," and fill in the required information. Once added,
+                        these contacts can be assigned tasks and interact with the tasks on the board.</p>
+                </li>
+                <li>
+                    <strong>Adding Cards</strong>
+                    <p>Now that you've added your contacts, you can start adding cards. Cards represent individual
+                        tasks. Click the "+" button under the appropriate list to create a new card. Fill in the task
+                        details in the card, such as the task name, description, due date, and assignees.</p>
+                </li>
+                <li>
+                    <strong>Moving Cards</strong>
+                    <p>As the task moves from one stage to another, you can reflect that on the board by dragging and
+                        dropping the card from one list to another.</p>
+                </li>
+                <li>
+                    <strong>Deleting Cards</strong>
+                    <p>Once a task is completed, you can either move it to the "Done" list or delete it. Deleting a card
+                        will permanently remove it from the board. Please exercise caution when deleting cards, as this
+                        action is irreversible.</p>
+                </li>
+            </ol>
+        </div>
+        <p>Remember that using <a href='index.html'>Join</a> effectively requires consistent updates from you and your
+            team to ensure the board reflects the current state of your project.</p>
+        <p>Enjoy using <a href='index.html'>Join</a>!</p>
+    </div>
+    </section>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="/js/firebase.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/summary.js"></script>
+</body>
+
+</html>

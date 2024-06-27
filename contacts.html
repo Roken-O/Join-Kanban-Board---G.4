@@ -16,6 +16,9 @@
   </head>
   <body onload="includeHTML();initContact()">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+    <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
+      <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
+    </div>
     <section class="main-container-contacts">
       <div class="contacts-list-container">
         <div
@@ -36,78 +39,8 @@
             <span class="head-description">Better with a team</span>
             <div class="parting-line-h1-horizontal"></div>
           </div>
-          <div class="contact-responsive">
-            <div class="flex-align-center contact-pic-name-container-mobil">
-              <div class="first-letters-name-bg-mobil">
-                <span class="first-letters-name-mobil">AM</span>
-              </div>
-              <div id="contact-name">
-                <h2>Anton Mayer</h2>
-                <div class="flex-align-center" id="contact-edit-delete">
-                  <div
-                    onclick="editContactPopUp()"
-                    class="flex-align-center"
-                    id="contact-edit"
-                  >
-                    <img
-                      class="contact-pen-delete-img"
-                      src="assets/img/pen_DARK.svg"
-                      alt=""
-                    />
-                    <span>Edit</span>
-                  </div>
-                  <div class="flex-align-center" id="contact-delete">
-                    <img
-                      class="contact-pen-delete-img"
-                      src="/assets/img/delete_icon.svg"
-                      alt=""
-                    />
-                    <span> Delete</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <span id="span-contact-information">Contact Information</span>
-            <div class="flex-col-just-center" id="email-telefon-contact">
-              <div class="flex-col-just-center" id="email-contact">
-                <span>Email</span>
-                <a href="">anton@gmail.com</a>
-              </div>
-              <div class="flex-col-just-center" id="phone-contact">
-                <span>Phone</span>
-                <a href="">+49 1111 111 11 1</a>
-              </div>
-            </div>
-            <img
-              onclick="openPopUpEditDelete()"
-              class="button-more-options"
-              src="./assets/img/button_more_options_dark_blue.svg"
-              alt=""
-            />
-            <div
-              onclick="closePopUpEditDelete()"
-              id="PopUp-edit-delete-bg"
-              class="PopUp-edit-delete-bg"
-            >
-              <div class="PopUp-edit-delete">
-                <div onclick="editContactPopUp()" class="PopUp-edit-pen">
-                  <img
-                    class="PopUp-edit-pen-img"
-                    src="./assets/img/pen_DARK.svg"
-                    alt=""
-                  />
-                  <span>Edit</span>
-                </div>
-                <div class="PopUp-delete">
-                  <img
-                    class="PopUp-delete-img"
-                    src="./assets/img/delete_icon.svg"
-                    alt=""
-                  />
-                  <span>Delete</span>
-                </div>
-              </div>
-            </div>
+          <div id="contact-responsive" class="contact-responsive">
+           <!-- render -->
           </div>
         </div>
         <div id="contacts-list" class="contacts-list flex-col-align-center">
@@ -120,89 +53,7 @@
             <img src="./assets/img/add_contact_icon.svg" alt="" />
           </button>
           <div id="contacts-list-content">
-            <!-- <div>
-              <div id="initial-letter">A</div>
-              <div id="breakline-contactlist"></div>
-              <div
-                onclick="showContactInfo();showContactResponsive();"
-                class="flex-align-center"
-                id="contact-contactlist"
-              >
-                <div class="first-letters-name-contactlist-bg">
-                  <span class="first-letters-name-contactlist">AM</span>
-                </div>
-                <div id="contact-name-email-contactlist">
-                  <span id="contact-name-contactlist">Anton Mayer</span>
-                  <span id="email-contactlist">anton@gmail.com</span>
-                </div>
-              </div>
-            </div> -->
-
-            <!-- <div>
-              <div id="initial-letter">A</div>
-              <div id="breakline-contactlist"></div>
-              <div class="flex-align-center" id="contact-contactlist">
-                <div class="first-letters-name-contactlist-bg">
-                  <span class="first-letters-name-contactlist">AM</span>
-                </div>
-                <div id="contact-name-email-contactlist">
-                  <span id="contact-name-contactlist">Anton Mayer</span>
-                  <span id="email-contactlist">anton@gmail.com</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div id="initial-letter">A</div>
-              <div id="breakline-contactlist"></div>
-              <div class="flex-align-center" id="contact-contactlist">
-                <div class="first-letters-name-contactlist-bg">
-                  <span class="first-letters-name-contactlist">AM</span>
-                </div>
-                <div id="contact-name-email-contactlist">
-                  <span id="contact-name-contactlist">Anton Mayer</span>
-                  <span id="email-contactlist">anton@gmail.com</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div id="initial-letter">A</div>
-              <div id="breakline-contactlist"></div>
-              <div class="flex-align-center" id="contact-contactlist">
-                <div class="first-letters-name-contactlist-bg">
-                  <span class="first-letters-name-contactlist">AM</span>
-                </div>
-                <div id="contact-name-email-contactlist">
-                  <span id="contact-name-contactlist">Anton Mayer</span>
-                  <span id="email-contactlist">anton@gmail.com</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div id="initial-letter">A</div>
-              <div id="breakline-contactlist"></div>
-              <div class="flex-align-center" id="contact-contactlist">
-                <div class="first-letters-name-contactlist-bg">
-                  <span class="first-letters-name-contactlist">AM</span>
-                </div>
-                <div id="contact-name-email-contactlist">
-                  <span id="contact-name-contactlist">Anton Mayer</span>
-                  <span id="email-contactlist">anton@gmail.com</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div id="initial-letter">A</div>
-              <div id="breakline-contactlist"></div>
-              <div class="flex-align-center" id="contact-contactlist">
-                <div class="first-letters-name-contactlist-bg">
-                  <span class="first-letters-name-contactlist">AM</span>
-                </div>
-                <div id="contact-name-email-contactlist">
-                  <span id="contact-name-contactlist">Anton Mayer</span>
-                  <a id="email-contactlist" href="">anton@gmail.com</a>
-                </div>
-              </div>
-            </div> -->
+           
           </div>
           <img
             onclick="addNewContactPopUp()"
@@ -232,47 +83,7 @@
           </div>
         </div>
         <div class="contact" id="contact">
-          <!-- <div class="flex-align-center contact-pic-name-container">
-            <div class="first-letters-name-bg">
-              <span class="first-letters-name">AM</span>
-            </div>
-            <div id="contact-name">
-              <h2>Anton Mayer</h2>
-              <div class="flex-align-center" id="contact-edit-delete">
-                <div
-                  onclick="editContactPopUp()"
-                  class="flex-align-center"
-                  id="contact-edit"
-                >
-                  <img
-                    class="contact-pen-delete-img"
-                    src="assets/img/pen_DARK.svg"
-                    alt=""
-                  />
-                  <span>Edit</span>
-                </div>
-                <div class="flex-align-center" id="contact-delete">
-                  <img
-                    class="contact-pen-delete-img"
-                    src="/assets/img/delete_icon.svg"
-                    alt=""
-                  />
-                  <span> Delete</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <span id="span-contact-information">Contact Information</span>
-          <div class="flex-col-just-center" id="email-telefon-contact">
-            <div class="flex-col-just-center" id="email-contact">
-              <span>Email</span>
-              <a href="">anton@gmail.com</a>
-            </div>
-            <div class="flex-col-just-center" id="phone-contact">
-              <span>Phone</span>
-              <a href="">+49 1111 111 11 1</a>
-            </div>
-          </div> -->
+          <!-- render -->
         </div>
       </div>
 
@@ -287,7 +98,7 @@
                 alt=""
               />
             </div>
-            <div class="popUp-edit-add-leftside-content">
+            <div id="popUp-edit-leftside-content" class="popUp-edit-add-leftside-content">
               <img src="./assets/img/join_logo_WHT.svg" alt="" />
               <span class="span-Contact">Add contact</span>
               <span class="span-tasks-are-better"
@@ -354,7 +165,6 @@
               <div class="button-container-add">
                 
                   <img
-                  onclick="closePupUpaddNewOrEdditContact()"
                   class="button_cancel"
                   src="./assets/img/button_cancel.svg"
                   alt=""
@@ -362,6 +172,7 @@
                
                 <button type="submit" style="background: transparent; border: none;">
                 <img
+                onclick="closePupUpaddNewOrEdditContact()"
                   class="button_create_contact"
                   src="./assets/img/button_create_contact.svg"
                   alt=""
@@ -378,6 +189,7 @@
           <div class="popUp-edit-add-leftside">
             <div class="container-close-icon-responsive">
               <img
+               id="close-icon-edit"
                 onclick="closePupUpaddNewOrEdditContact()"
                 class="close-icon-responsive"
                 src="./assets/img/close_icon_white.svg"
@@ -390,10 +202,10 @@
               <div class="line-under-add-or-edit-contact-popup"></div>
             </div>
           </div>
-          <div class="popUp-edit-add-middle">
-            <div class="first-letters-name-bg margin-top-60px">
+          <div id="popUp-edit-add-middle" class="popUp-edit-add-middle">
+            <!-- <div class="first-letters-name-bg margin-top-60px">
               <span class="first-letters-name">AM</span>
-            </div>
+            </div> -->
           </div>
           <div class="popUp-edit-add-rightside">
             <div class="container-close-icon">
@@ -404,40 +216,9 @@
                 alt=""
               />
             </div>
-            <form class="form-add-new-contact" id="form-edit-contact" action="">
-              <!-- <input
-                placeholder="Name"
-                class="input-text-email-number-contact input-text-contact"
-                type="text"
-                required
-              />
-              <input
-                placeholder="Email"
-                class="input-text-email-number-contact input-email-contact"
-                type="email"
-                required
-              />
-              <input
-                placeholder="Phone"
-                class="input-text-email-number-contact input-number-contact"
-                type="text"
-                required
-              />
-              <div class="button-container-edit">
-                <button style="background: transparent; border: none;">
-                <img
-                  class="button_cancel"
-                  src="./assets/img/button_delete.svg"
-                  alt=""
-                />
-              </button>
-              <button style="background: transparent; border: none;">
-                <img
-                  class="button_create_contact"
-                  src="./assets/img/button_save.svg"
-                  alt=""
-                /> -->
-            </form>
+            <div id="form-container">
+            <!-- render -->
+          </div>
           </div>
         </div>
       </div>
@@ -447,8 +228,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="/js/firebase.js"></script>
     <script src="/js/script.js"></script>
-    <!-- <script src="/js/index.js"></script>
-    <script src="/js/summary.js"></script> -->
+    <!-- <script src="/js/index.js"></script> -->
+    <script src="/js/summary.js"></script>
     <script src="/js/contacts.js"></script>
   </body>
 </html>

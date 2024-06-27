@@ -173,6 +173,11 @@
         display: flex;
         justify-content: center;
     }
+
+    #close-icon-edit{
+        margin-top: -45px;
+    }
+
 }
 
 @media(max-width:975px){
@@ -250,6 +255,10 @@
 
     /* PopUp */
 
+    #close-icon-edit{
+        margin-top: -41px;
+    }
+
     .add-new-or-edit-contact-popUp{
         display: flex;
         flex-direction: column;
@@ -270,6 +279,10 @@
     .popUp-edit-add-leftside-content{
         gap: 8px;
         padding-bottom: 20px;
+    }
+
+    #popUp-edit-leftside-content{
+        padding-top: 0px;
     }
 
     .span-tasks-are-better{
@@ -306,7 +319,7 @@
     
 
     .span-Contact{
-        font-size: 35px;
+        font-size: 34px;
     }
 
     .add-new-or-edit-contact-popUp{

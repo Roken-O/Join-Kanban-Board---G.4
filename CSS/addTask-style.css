@@ -1,3 +1,7 @@
+
+#main-container {
+  padding: 70px 64px 64px 296px;
+}
 /*Flex-Box*/
 .flex-evenly-start {
   display: flex;
@@ -99,7 +103,7 @@ textarea {
 
 /* headline */
 .task-headline {
-  font-size: 28px;
+  font-size: 47px;
   font-weight: 700;
 }
 

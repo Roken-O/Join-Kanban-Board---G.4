@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/CSS/addTask-style.css">
     <link rel="stylesheet" href="/CSS/addTask-media.css">
     <link rel="stylesheet" href="/CSS/media.css">
+    <link rel="stylesheet" href="/CSS/addTask-style.css">
+    <link rel="stylesheet" href="/CSS/addTask-media.css">
     <link rel="icon" href="/assets/img/join_favicon.svg">
     <title>Join</title>
 </head>
@@ -19,10 +21,11 @@
 <body onload="includeHTML()">
     <!-- Funktion "init" muss noch eingefügt werden; es funktioniert mit dieser Funktion die Animation nicht mehr,
      das svg in clear färbt sich nicht mehr azurblau-->
+     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+     <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
+        <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
+      </div>
     <section id="main-container" class="background-grey">
-        <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
-
-
         <!-- headline -->
         <h2 class="task-headline mb-48">Add Task</h2>
 
@@ -205,7 +208,7 @@
             </div>
             </div>
             <div class="flex-evenly-start execution-parent">
-                <div class="flex">
+                <div class="flex required-container">
                     <div class="asterisk-color">*</div>
                     <div class="required-text">This field is required</div>
                 </div>
@@ -250,12 +253,15 @@
                 </svg>
             </div>
         </div>
+        <!-- Katastrophe -->
 
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
         <script src="/js/firebase.js"></script>
         <script src="/js/script.js"></script>
         <script src="/js/load_tasks.js"></script>
+        <script src="/js/index.js"></script>
+        <script src="/js/summary.js"></script>
         <script src="/js/add_task.js"></script>
 </body>
 

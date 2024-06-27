@@ -61,6 +61,9 @@
   <body onload="includeHTML()">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
     <section id="main-container" class="background-grey">
+      <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
+        <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
+    </div>
       <div class="privacy-container">
         <h2>Datenschutz&shy;erkl&auml;rung</h2>
         <br />
@@ -477,7 +480,11 @@
         </p>
       </div>
     </section>
-
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="/js/firebase.js"></script>
     <script src="/js/script.js"></script>
+    <script src="/js/summary.js"></script>
+
   </body>
 </html>
