@@ -520,3 +520,50 @@ function loadContacts() {
 // function openPopUpEditDelete() {
 //   document.getElementById("PopUp-edit-delete-bg").classList.remove("display-none");
 // }
+
+
+
+let contacts = [
+  "Alice", "Anne", "Bob", "Charlie", "David", "Eve", "Frank",
+  "George", "Hannah", "Isaac", "Jack", "Kelly", "Liam",
+  "Mary", "Nancy", "Olivia", "Paul", "Quincy", "Olga", "Rachel",
+  "Steve", "Tom", "Ursula", "Victor", "Wendy", "Xavier",
+  "Yvonne", "Zack"
+];
+
+
+function renderContacts(contacts) {
+
+  contacts.sort();
+
+
+  let groupedContacts = {};
+
+
+  contacts.forEach(contact => {
+    let firstLetter = contact.charAt(0).toUpperCase();
+    if (!groupedContacts[firstLetter]) {
+      groupedContacts[firstLetter] = [];
+    }
+    groupedContacts[firstLetter].push(contact);
+  });
+
+
+  let container = document.getElementById('contacts-container');
+
+
+  let html = '';
+  for (let letter in groupedContacts) {
+    html += `<div><h2>${letter}</h2><ul>`;
+    groupedContacts[letter].forEach(contact => {
+      html += `<li>${contact}</li>`;
+    });
+    html += `</ul></div>`;
+  }
+
+
+  container.innerHTML = html;
+}
+
+
+renderContacts(contacts);
