@@ -1,5 +1,14 @@
 let allContacts = [];
 let hexColors = ['#29abe2', '#4589ff', '#0038ff', '#ff3d00', '#ff745e', '#ffa35e', '#ff7a00', '#ffbb2b', '#ffe62b', '#ffc701', '#7ae229', '#1fd7c1', '#fc71ff', '#ff5eb3', '#9327ff', '#462f8a'];
+
+
+ function initContact() {
+  document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
+  document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
+  document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
+}
+
+
 function getRandomColor() {
   let randomColor = Math.floor(Math.random() * hexColors.length);
   return hexColors[randomColor];
@@ -71,7 +80,7 @@ function deleteContact(email) {
 // }
 
 function editContact(email) {
-  let formEditContact = document.getElementById('form-edit-contact');
+  let formEditContact = document.getElementById('form-container');
   let currentColor;
   let currentName;
   let currentEmail;
@@ -88,6 +97,7 @@ function editContact(email) {
   }
 
   formEditContact.innerHTML = /*html*/ `
+  <form onsubmit="saveEditedContact('${currentEmail}');return false;" class="form-add-new-contact" id="form-edit-contact" action="">
   <input
   placeholder="Name"
   class="input-text-email-number-contact input-text-contact"
@@ -123,6 +133,7 @@ function editContact(email) {
     src="./assets/img/button_save.svg"
     alt=""
   />
+  </form>
     `;
 
   document.getElementById('input-edit-name-contact').value = currentName;
@@ -186,12 +197,6 @@ document.addEventListener('DOMContentLoaded', function () {
   loadContacts();
 });
 
-
-function initContact() {
-  document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
-  document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
-  document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
-}
 
 
 function addNewContactPopUp() {
@@ -337,6 +342,7 @@ function loadContacts() {
           <div>
               <div id="initial-letter">${contact.name.substring(0, 1)}</div>
               <div id="breakline-contactlist"></div>
+              <div id="testcontacts"></div>
               <div
                 onclick="showContactInfo('${contact.email}');showContactResponsive();"
                 class="flex-align-center"

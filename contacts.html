@@ -16,6 +16,9 @@
   </head>
   <body onload="includeHTML();initContact()">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+    <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
+      <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
+    </div>
     <section class="main-container-contacts">
       <div class="contacts-list-container">
         <div
@@ -404,8 +407,9 @@
                 alt=""
               />
             </div>
-            <form onsubmit="saveEditedContact(email);return false;" class="form-add-new-contact" id="form-edit-contact" action="">
-              <!-- <input
+            <div id="form-container">
+            <!-- <form onsubmit="saveEditedContact(email)" class="form-add-new-contact" id="form-edit-contact" action="">
+              <input
                 placeholder="Name"
                 class="input-text-email-number-contact input-text-contact"
                 type="text"
@@ -436,8 +440,9 @@
                   class="button_create_contact"
                   src="./assets/img/button_save.svg"
                   alt=""
-                /> -->
-            </form>
+                />
+            </form> -->
+          </div>
           </div>
         </div>
       </div>
@@ -447,8 +452,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="/js/firebase.js"></script>
     <script src="/js/script.js"></script>
-    <!-- <script src="/js/index.js"></script>
-    <script src="/js/summary.js"></script> -->
+    <!-- <script src="/js/index.js"></script> -->
+    <script src="/js/summary.js"></script>
     <script src="/js/contacts.js"></script>
   </body>
 </html>
