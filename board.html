@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="/CSS/board-media.css">
     <link rel="stylesheet" href="/CSS/media.css">
     <link rel="icon" href="/assets/img/join_favicon.svg">
-    <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script> -->
 
     <title>Join</title>
     <style>
@@ -25,11 +23,10 @@
 </head>
 
 <body>
-    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
-    <!-- <div style="background: grey; height:150px; margin-bottom: 64px;" id="open" ondrop="moveTo('open')" ondragover="allowDrop(event)"></div>
-    <div style="background: grey; height:150px;" id="closed" ondrop="moveTo('closed')" ondragover="allowDrop(event)"></div> -->
-    
-    
+    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>    
+    <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
+        <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
+    </div>
     <section id="board-main-container" class="background-grey">
         <div class="main-content">
             <div class="board-search-container">
@@ -58,38 +55,46 @@
             </div>
 
             <div id="task" onclick="closePopup()"></div>
-
-            <div id="content" class="column-container">
-                <div style="background: green;" class="sub-column-container" id="toDo" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
+            
+            <section id="content" class="column-container">
+                <section id="to-do-column-container">
                     <div class="column-head">
                         <span>To do</span>
                         <img src="./assets/img/plus_icon.png">
                     </div>
-                    <!-- <div style="background: red; " id="task-trial-container"></div>
-                    <div id="task-edit-container"></div> -->
-                    
-                </div>
-                <div style="background: green;" class="sub-column-container" id="awaitFeedback" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
-                    <div class="column-head">
-                        <span>In progress</span>
-                        <img src="./assets/img/plus_icon.png">
-                    </div>
-                    
-                </div>
-                <div style="background: green;" class="sub-column-container" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
-                    <div class="column-head">
-                        <span>Await feedback</span>
-                        <img src="./assets/img/plus_icon.png">
-                    </div>
-                </div>
-                <div style="background: green;" class="sub-column-container" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)">
-                    <div class="column-head">
-                        <span>Done</span>
-                        <img src="./assets/img/plus_icon.png">
-                    </div>
-                </div>
+                    <div class="sub-column-container" id="toDo" ondrop="moveTo('toDo')" ondragleave="removeHighlight('toDo')" ondragover="allowDrop(event); highlight('toDo')">
 
-            </div>
+                    </div>
+                </section>
+                <section id="in-progress-column-container">
+                <div class="column-head">
+                    <span>In progress</span>
+                    <img src="./assets/img/plus_icon.png">
+                </div>
+                <div class="sub-column-container" id="inProgress" ondrop="moveTo('inProgress')" ondragleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')">
+                    
+                </div>
+                
+                </section>
+                <section id="await-feedback-column-container">
+                <div class="column-head">
+                    <span>Await feedback</span>
+                    <img src="./assets/img/plus_icon.png">
+                </div>
+                <div class="sub-column-container" id="awaitFeedback" ondrop="moveTo('awaitFeedback')" ondragleave="removeHighlight('awaitFeedback')" ondragover="allowDrop(event); highlight('awaitFeedback')">
+                    
+                </div>
+                </section>
+                <section id="done-column-container">
+                <div class="column-head">
+                    <span>Done</span>
+                    <img src="./assets/img/plus_icon.png">
+                </div>
+                <div class="sub-column-container" id="done" ondrop="moveTo('done')" ondragleave="removeHighlight('done')" ondragover="allowDrop(event); highlight('done')">
+                    
+                </div>
+                </section>
+            </section>
         </div>
 
     </section>
@@ -100,7 +105,6 @@
     <script src="/js/script.js"></script>
     <script src="/js/add_task.js"></script>
     <script src="/js/board.js"></script>
-    <!-- <script src="/js/load_tasks.js"></script> -->
     
 </body>
 
