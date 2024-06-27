@@ -141,6 +141,27 @@ function editContact(email) {
   document.getElementById('input-edit-phone-contact').value = currentPhone;
   // document.getElementById('edit-contact-trial-phone-container').style.backgroundColor = currentColor;
   // document.getElementById('edit-contact-trial-phone-container').style.backgroundColor = currentColor;
+  renderPopupEditAddMiddle(email);
+}
+
+function renderPopupEditAddMiddle(email){
+  let popUpEditAddMiddle = document.getElementById('popUp-edit-add-middle');
+  let currentColor;
+
+  for (let i = 0; i < allContacts.length; i++) {
+    if (email == allContacts[i]['email']) {
+      currentColor = allContacts[i]['color'];
+      currentName = allContacts[i]['name'];
+      break;
+    }
+  }
+  popUpEditAddMiddle.innerHTML = /*html*/ `
+    <div  style="background-color: ${currentColor}" class="first-letters-name-bg margin-top-60px">
+              <span class="first-letters-name">${getInitials(currentName)}</span>
+            </div>
+    `;
+
+  
 }
 
 function saveEditedContact(currentEmail) {
@@ -161,7 +182,7 @@ function saveEditedContact(currentEmail) {
     name: editName,
     email: editEmail,
     phone: editTel,
-    color: editColor
+    // color: editColor
   };
 
   let database = firebase.database();
@@ -227,8 +248,9 @@ function showContactInfo(email) {
   let database = firebase.database();
   // let contactEntries = database.ref("contacts");
 
+  
   let contact = document.getElementById("contact");
-  let currentColor;
+  // let currentColor;
   let currentName;
   let currentEmail;
   let currentPhone;
