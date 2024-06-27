@@ -120,13 +120,14 @@ function editContact(email) {
   required
   />
   <div class="button-container-edit">
-  <button onclick="deleteContact('${currentEmail}')" style="background: transparent; border: none;">
+  
   <img
+    onclick="deleteContact('${currentEmail}');closePupUpaddNewOrEdditContact();"
     class="button_delete"
     src="./assets/img/button_delete.svg"
     alt=""
   />
-  </button>
+  
   <button type="submit" style="background: transparent; border: none;">
   <img
     class="button_save_contact"
