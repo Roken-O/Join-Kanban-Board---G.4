@@ -159,10 +159,18 @@
 }
 
 @media (max-width: 455px) {
-  .task-headline {
-    padding-left: 42px;
-  }
 
+  #main-container{
+    padding: 40px 64px 64px 8px !important;
+    margin-bottom: 40px;
+  }
+  .task-headline {
+    padding-left: 12px;
+    margin-bottom: 20px;
+  }
+  .padding-bottom-24 {
+    padding-bottom: 20px;
+}
   .required-container {
     margin-right: 14px;
   }
@@ -245,3 +253,61 @@
   }
 }
  
+@media (max-width: 405px) {
+  #main-container {
+    padding: 40px 16px 64px 8px !important;
+  }
+  .form-height {
+    margin-left: 8px;
+  }
+.task-headline{
+  margin-bottom: 16px;
+}
+
+.field-headline {
+  margin-bottom: 4px;
+}
+}
+
+@media (max-width: 360px) {
+  .field-325 {
+    width: 260px;
+  }
+
+  .description-input {
+    width: 260px;
+}
+.dropbtn{
+  width: 260px !important;
+  background-position: 250px !important;
+}
+.urgent{
+  font-size: 14px;
+
+  width: 85px;
+
+}
+.low {
+  width: 60px;
+  font-size: 14px;
+
+}
+
+.prio-container {
+  justify-content: unset;
+}
+.select-subtask {
+  width: 260px !important;
+  background-position: 250px !important;
+}
+.dropdown-content {
+  min-width: 270px;
+}
+}
+
+@media (max-width: 340px) {
+  .required-text {
+    font-size: 12px;
+  }
+
+}
