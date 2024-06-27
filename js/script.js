@@ -32,6 +32,9 @@ function includeHTML() {
   }
 }
 
+function goToHelp(){
+  window.location.href = 'help.html';
+}
 
 
 

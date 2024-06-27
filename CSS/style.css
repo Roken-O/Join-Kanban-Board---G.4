@@ -1,3 +1,6 @@
+body{
+  background: #f6f7f8;
+}
 /* SIDEBAR MENU - START */
 #sidebar-menu {
   position: fixed;

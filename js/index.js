@@ -1,8 +1,6 @@
 let allUsers = [];
 let clickState = 0;
 
-// document.addEventListener("DOMContentLoaded", initIndex);
-
 async function initIndex() {
     await checkLoadUsers();
     animate();
