@@ -53,9 +53,8 @@
                     </div>
                 </div>
             </div>
-
-            <div id="task" onclick="closePopup()"></div>
             
+                  
             <section id="content" class="column-container">
                 <section id="to-do-column-container">
                     <div class="column-head">
@@ -98,14 +97,20 @@
         </div>
 
     </section>
+    <div style="display: none; flex-direction:column;" id="task-popup-edit-container"></div>
+    <div style="display: none; flex-direction:column;" id="task" onclick="closePopup()">
+    
+                
+    </div>
     
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="/js/firebase.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/add_task.js"></script>
+    <script src="/js/load_tasks.js"></script>
     <script src="/js/board.js"></script>
     
 </body>
 
-</html>
+</html> 
