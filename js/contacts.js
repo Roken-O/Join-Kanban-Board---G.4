@@ -43,6 +43,21 @@ function saveContact() {
   contactEntry.set(contact);
 }
 
+function validateAndSubmit(event) {
+  event.preventDefault(); // Verhindert das automatische Absenden des Formulars
+
+ 
+  let name = document.getElementById('contact-trial-name').value.trim();
+  let email = document.getElementById('contact-trial-email').value.trim();
+  let phone = document.getElementById('contact-trial-phone').value.trim();
+
+  if (name && email && phone) {
+    saveContact(); 
+    closePupUpaddNewOrEdditContact(); 
+    saveEditedContact();
+  } 
+}
+
 
 function deleteContact(email) {
   let emailForm = emailFormatted(email);
@@ -73,48 +88,60 @@ function editContact(email) {
   formEditContact.innerHTML = /*html*/ `
   <form onsubmit="saveEditedContact('${currentEmail}');return false;" class="form-add-new-contact" id="form-edit-contact" action="">
   <input
-  placeholder="Name"
-  class="input-text-email-number-contact input-text-contact"
-  id="input-edit-name-contact"
-  type="text"
-  required
+    placeholder="Name"
+    class="input-text-email-number-contact input-text-contact"
+    id="input-edit-name-contact"
+    type="text"
+    required
   />
   <input
-  placeholder="Email"
-  class="input-text-email-number-contact input-email-contact"
-  id="input-edit-email-contact"
-  type="email"
-  required
+    placeholder="Email"
+    class="input-text-email-number-contact input-email-contact"
+    id="input-edit-email-contact"
+    type="email"
+    required
   />
   <input
-  placeholder="Phone"
-  class="input-text-email-number-contact input-number-contact"
-  id="input-edit-phone-contact"
-  type="text"
-  required
+    placeholder="Phone"
+    class="input-text-email-number-contact input-number-contact"
+    id="input-edit-phone-contact"
+    type="text"
+    required
   />
   <div class="button-container-edit">
-  
-  <img
-    onclick="deleteContact('${currentEmail}');closePupUpaddNewOrEdditContact();"
-    class="button_delete"
-    src="./assets/img/button_delete.svg"
-    alt=""
-  />
-  
-  <button type="submit" style="background: transparent; border: none;">
-  <img
-    class="button_save_contact"
-    src="./assets/img/button_save.svg"
-    alt=""
-  />
-  </form>
+    <img
+      onclick="deleteContact('${currentEmail}'); closePupUpaddNewOrEdditContact();"
+      class="button_delete"
+      src="./assets/img/button_delete.svg"
+      alt=""
+    />
+    <button type="submit" style="background: transparent; border: none;">
+      <img
+        onclick="validateAndClosePopup()"
+        class="button_save_contact"
+        src="./assets/img/button_save.svg"
+        alt=""
+      />
+    </button>
+  </div>
+</form>
     `;
 
   document.getElementById('input-edit-name-contact').value = currentName;
   document.getElementById('input-edit-email-contact').value = currentEmail;
   document.getElementById('input-edit-phone-contact').value = currentPhone;
   renderPopupEditAddMiddle(email);
+}
+
+function validateAndClosePopup() {
+ 
+  const name = document.getElementById('input-edit-name-contact').value.trim();
+  const email = document.getElementById('input-edit-email-contact').value.trim();
+  const phone = document.getElementById('input-edit-phone-contact').value.trim();
+
+  if (name && email && phone) {
+    closePupUpaddNewOrEdditContact(); 
+  } 
 }
 
 function renderPopupEditAddMiddle(email){
@@ -174,6 +201,8 @@ function saveEditedContact(currentEmail) {
   // contactEntryTel.set(editTel);
 
   loadContacts();
+  showContactInfo(currentEmail);
+  showContactResponsive(currentEmail);
 }
 
 let getInitials = function (string) {
@@ -339,7 +368,7 @@ function showContactResponsive(email) {
                 <h2>${currentName}</h2>
                 <div class="flex-align-center" id="contact-edit-delete">
                   <div
-                    onclick="editContactPopUp()"
+                    onclick="editContactPopUp();editContact('${currentEmail}')"
                     class="flex-align-center"
                     id="contact-edit"
                   >
