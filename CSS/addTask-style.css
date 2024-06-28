@@ -643,6 +643,7 @@ input[type='checkbox'] {
   .sub-task-container img{
     width:12px;
     margin-left: 240px;
+    cursor: pointer;
   }
 
   /* test */
@@ -670,4 +671,10 @@ input[type='checkbox'] {
 
 .style3:focus {     
   background-color:green;    
+}
+
+.prio-container img{
+width:16px;
+height:12px;
+margin-left:4px;
 }
