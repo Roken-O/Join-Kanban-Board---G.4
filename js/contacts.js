@@ -6,7 +6,6 @@ let hexColors = ['#29abe2', '#4589ff', '#0038ff', '#ff3d00', '#ff745e', '#ffa35e
   document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
   document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
   document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
-  // document.getElementById("PopUp-edit-delete").classList.add("display-none");
 }
 
 
@@ -452,43 +451,44 @@ function openPopUpEditDelete() {
 }
 
 // new
+// function loadContacts() {
+//   let database = firebase.database();
+//   let contactEntries = database.ref("contacts");
 
-function loadContacts() {
-  let database = firebase.database();
-  let contactEntries = database.ref("contacts");
+//   contactEntries.on("value", function (snapshot) {
+//     let contactsListContent = document.getElementById("contacts-list-content");
+//     contactsListContent.innerHTML = "";
 
-  contactEntries.on("value", function (snapshot) {
-    let contactsListContent = document.getElementById("contacts-list-content");
-    contactsListContent.innerHTML = "";
+//     allContacts = [];
+//     snapshot.forEach(function (childSnapshot) {
+//       let contact = childSnapshot.val();
+//       allContacts.push(contact);
 
-    allContacts = [];
-    snapshot.forEach(function (childSnapshot) {
-      let contact = childSnapshot.val();
-      allContacts.push(contact);
+//       contactsListContent.innerHTML += /*html*/ `
+//           <div>
+//               <div id="initial-letter">${contact.name.substring(0, 1)}</div>
+//               <div id="breakline-contactlist"></div>
+//               <div id="contacts-without-breakline"></div>
+//               <div
+//                 onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
+//                 class="flex-align-center"
+//                 id="contact-contactlist"
+//               >
+//                 <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
+//                   <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
+//                 </div>
+//                 <div id="contact-name-email-contactlist">
+//                   <span id="contact-name-contactlist">${contact.name}</span>
+//                   <span id="email-contactlist">${contact.email}</span>
+//                 </div>
+//               </div>
+//             </div>
+//             `;
+//     });
+//   });
+// }
 
-      contactsListContent.innerHTML += /*html*/ `
-          <div>
-              <div id="initial-letter">${contact.name.substring(0, 1)}</div>
-              <div id="breakline-contactlist"></div>
-              <div id="contacts-without-breakline"></div>
-              <div
-                onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
-                class="flex-align-center"
-                id="contact-contactlist"
-              >
-                <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
-                  <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
-                </div>
-                <div id="contact-name-email-contactlist">
-                  <span id="contact-name-contactlist">${contact.name}</span>
-                  <span id="email-contactlist">${contact.email}</span>
-                </div>
-              </div>
-            </div>
-            `;
-    });
-  });
-}
+
 
 // function loadContactsWhitoutBreakline() {
 //   let database = firebase.database();
@@ -524,64 +524,7 @@ function loadContacts() {
 //   });
 // }
 
-// function init() {
-//   // document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
-//   // document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
-//   // document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
-// }
 
-
-// function addNewContactPopUp() {
-//   document
-//     .getElementById("add-new-contact-popUp-bg")
-//     .classList.add("translateX-null");
-// }
-
-
-// function closePupUpaddNewOrEdditContact() {
-//   document
-//     .getElementById("add-new-contact-popUp-bg")
-//     .classList.remove("translateX-null");
-//   document
-//     .getElementById("edit-contact-popUp-bg")
-//     .classList.remove("translateX-null");
-// }
-
-
-// function editContactPopUp() {
-//   document
-//     // .getElementById("edit-contact-popUp-bg")
-//     // .classList.add("add-new-or-edit-contact-popUp-bg");
-//   document.getElementById("edit-contact-popUp-bg").classList.add("translateX-null");
-// }
-
-// function showContactInfo() {
-//   document.getElementById("contact").classList.add("translateX-null");
-// }
-
-// function showContactResponsive() {
-//   let width = window.innerWidth;
-//   if (width <= 1050) {
-//     document.getElementById("contacts-list").classList.add("display-none");
-//     document.getElementById("contacts-container-responsive").classList.add("d-unset");
-//     document.getElementById("back-icon").classList.add("d-unset");
-
-//   }
-// }
-
-// function closeContact() {
-//   document.getElementById("contacts-list").classList.remove("display-none");
-//   document.getElementById("contacts-container-responsive").classList.remove("d-unset");
-//   document.getElementById("back-icon").classList.remove("d-unset");
-// }
-
-// function closePopUpEditDelete() {
-//   document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
-// }
-
-// function openPopUpEditDelete() {
-//   document.getElementById("PopUp-edit-delete-bg").classList.remove("display-none");
-// }
 
 
 
@@ -629,3 +572,75 @@ function renderContacts(contacts) {
 
 
 renderContacts(contacts);
+
+function loadContacts() {
+  let database = firebase.database();
+  let contactEntries = database.ref("contacts");
+
+  contactEntries.on("value", function (snapshot) {
+    let contactsListContent = document.getElementById("contacts-list-content");
+    contactsListContent.innerHTML = "";
+
+    let allContacts = [];
+    snapshot.forEach(function (childSnapshot) {
+      let contact = childSnapshot.val();
+      allContacts.push(contact);
+    
+    
+
+    // Kontakte alphabetisch sortieren
+    allContacts.sort((a, b) => a.name.localeCompare(b.name));
+
+    // Objekt zur Gruppierung der Kontakte nach Anfangsbuchstaben
+    let groupedContacts = {};
+
+    // Kontakte durchgehen und nach Anfangsbuchstaben gruppieren
+    allContacts.forEach(contact => {
+      let firstLetter = contact.name.charAt(0).toUpperCase();
+      if (!groupedContacts[firstLetter]) {
+        groupedContacts[firstLetter] = [];
+      }
+      groupedContacts[firstLetter].push(contact);
+    });
+
+    // HTML-Inhalt für die Darstellung der Gruppen und Kontakte erstellen
+    let renderedLetters = new Set();
+    let html = '';
+    for (let letter in groupedContacts) {
+      html += `<div><h2 id="getDNone" ></h2><ul>`;
+      groupedContacts[letter].forEach(contact => {
+        if (!renderedLetters.has(letter)) {
+          html += /*html*/ `
+            <div id="initial-letter">${letter}</div>
+            <div id="breakline-contactlist"></div>
+          `;
+          renderedLetters.add(letter);
+        }
+        html += /*html*/ `
+          <div id="contacts-without-breakline">
+            <div
+              onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
+              class="flex-align-center"
+              id="contact-contactlist"
+            >
+              <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
+                <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
+              </div>
+              <div id="contact-name-email-contactlist">
+                <span id="contact-name-contactlist">${contact.name}</span>
+                <span id="email-contactlist">${contact.email}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += `</ul></div>`;
+    }
+    // HTML-Inhalt in den Container einfügen
+    contactsListContent.innerHTML = html;
+  });
+});
+}
+
+
