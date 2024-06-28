@@ -120,6 +120,7 @@
         width: 20px;
         height: 20px;
         padding: 10px;
+        flex: 0 0 auto;
     }
 
     .sub-urgent-container {
