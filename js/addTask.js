@@ -387,22 +387,22 @@ function changeColor(buttonId) {
   resetButtons();
 
   if (buttonId === 'priority-urgent-text') {
-      document.getElementById('priority-urgent-text').style.backgroundColor = 'red';
+      document.getElementById('priority-urgent-text').style.backgroundColor = '#ff3d00';
       document.getElementById('priority-urgent-text').style.color = 'white';
       document.getElementById('task-urgent-icon').src = '/assets/img/urgent_icon_WHT.png';
 
   } else if (buttonId === 'priority-medium-text') {
-      document.getElementById('priority-medium-text').style.backgroundColor = 'orange';
+      document.getElementById('priority-medium-text').style.backgroundColor = '#ffa800';
       document.getElementById('priority-medium-text').style.color = 'white';
-      document.getElementById('task-urgent-icon').src = '/assets/img/urgent_icon_WHT.png';
+      document.getElementById('task-medium-icon').src = '/assets/img/medium_icon_WHT.png';
 
   } else if (buttonId === 'priority-low-text') {
-      document.getElementById('priority-medium-text').style.backgroundColor = 'green';
-      document.getElementById('priority-medium-text').style.color = 'white';
-      document.getElementById('task-urgent-icon').src = '/assets/img/urgent_icon_WHT.png';
+      document.getElementById('priority-low-text').style.backgroundColor = '#7ae229';
+      document.getElementById('priority-low-text').style.color = 'white';
+      document.getElementById('task-low-icon').src = '/assets/img/low_icon_WHT.png';
   // const buttons = [
   //     { id: 'btn1', color: '#ff3d00' },
-  //     { id: 'btn2', color: '#ff7a00' },
+  //     { id: 'btn2', color: '#ff7a800' },l
   //     { id: 'btn3', color: '#7ae229' }
   // ];
   // for (const button of buttons) { //button Schleifenvariable; buttons = Array
@@ -420,12 +420,16 @@ function resetButtons() {
   // Buttons zurücksetzen
   document.getElementById('priority-urgent-text').style.backgroundColor = 'white';
   document.getElementById('priority-urgent-text').style.color = 'black';
+  document.getElementById('task-urgent-icon').src = '/assets/img/urgent_icon.png';
 
   document.getElementById('priority-medium-text').style.backgroundColor = 'white';
   document.getElementById('priority-medium-text').style.color = 'black';
+  document.getElementById('task-medium-icon').src = '/assets/img/medium_icon.png';
 
   document.getElementById('priority-low-text').style.backgroundColor = 'white';
   document.getElementById('priority-low-text').style.color = 'black';
+  document.getElementById('task-low-icon').src = '/assets/img/low_icon.png';
+
 
 //   let paths = ['urgent-path1', 'urgent-path2','medium-path1', 'medium-path2','low-path1', 'low-path2'];
 //   for (let i = 0; i < paths.length; i++) {
