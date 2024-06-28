@@ -23,8 +23,6 @@
 </head>
 
 <body onload="initTask()">
-    <!-- Funktion "init" muss noch eingefügt werden; es funktioniert mit dieser Funktion die Animation nicht mehr,
-     das svg in clear färbt sich nicht mehr azurblau-->
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
     <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
         <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
@@ -116,11 +114,11 @@
                             </button>
                             <button onclick="createCategoryIconMedium('priority-medium-text')" id="priority-medium-text"
                             class="btn urgent flex-just-align-center" >Medium
-                            <img id="task-medium-icon" src="/assets/img/medium_icon.svg" />
+                            <img id="task-medium-icon" class="size-medium" src="/assets/img/medium_icon.svg" />
                             </button>
                             <button onclick="createCategoryIconLow('priority-low-text')" id="priority-low-text"
                             class="btn low flex-just-align-center">Low
-                            <img  id="task-low-icon" src="/assets/img/low_icon.svg" />
+                            <img  id="task-low-icon"class="size-low" src="/assets/img/low_icon.svg" />
                             </button>
                
                         </div>
@@ -219,11 +217,7 @@
                 </svg>
             </div>
         </div>
-<div>Katastrophe</div>
-<button class="style1">Hallo 1</button>
-<button class="style2">Hallo 2</button>
-<button class="style3">Hallo 3</button>
-
+        
         <script src="/js/firebase.js"></script>
         <script src="/js/script.js"></script>
 
