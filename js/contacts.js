@@ -251,7 +251,7 @@ function showContactInfo(email) {
 
   
   let contact = document.getElementById("contact");
-  // let currentColor;
+  let currentColor;
   let currentName;
   let currentEmail;
   let currentPhone;
@@ -334,7 +334,7 @@ function showContactResponsive(email) {
 
   
   let contactResponisve = document.getElementById("contact-responsive");
-  // let currentColor;
+  let currentColor;
   let currentName;
   let currentEmail;
   let currentPhone;
@@ -451,42 +451,42 @@ function openPopUpEditDelete() {
 }
 
 // new
-// function loadContacts() {
-//   let database = firebase.database();
-//   let contactEntries = database.ref("contacts");
+function loadContacts() {
+  let database = firebase.database();
+  let contactEntries = database.ref("contacts");
 
-//   contactEntries.on("value", function (snapshot) {
-//     let contactsListContent = document.getElementById("contacts-list-content");
-//     contactsListContent.innerHTML = "";
+  contactEntries.on("value", function (snapshot) {
+    let contactsListContent = document.getElementById("contacts-list-content");
+    contactsListContent.innerHTML = "";
 
-//     allContacts = [];
-//     snapshot.forEach(function (childSnapshot) {
-//       let contact = childSnapshot.val();
-//       allContacts.push(contact);
+    allContacts = [];
+    snapshot.forEach(function (childSnapshot) {
+      let contact = childSnapshot.val();
+      allContacts.push(contact);
 
-//       contactsListContent.innerHTML += /*html*/ `
-//           <div>
-//               <div id="initial-letter">${contact.name.substring(0, 1)}</div>
-//               <div id="breakline-contactlist"></div>
-//               <div id="contacts-without-breakline"></div>
-//               <div
-//                 onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
-//                 class="flex-align-center"
-//                 id="contact-contactlist"
-//               >
-//                 <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
-//                   <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
-//                 </div>
-//                 <div id="contact-name-email-contactlist">
-//                   <span id="contact-name-contactlist">${contact.name}</span>
-//                   <span id="email-contactlist">${contact.email}</span>
-//                 </div>
-//               </div>
-//             </div>
-//             `;
-//     });
-//   });
-// }
+      contactsListContent.innerHTML += /*html*/ `
+          <div>
+              <div id="initial-letter">${contact.name.substring(0, 1)}</div>
+              <div id="breakline-contactlist"></div>
+              <div id="contacts-without-breakline"></div>
+              <div
+                onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
+                class="flex-align-center"
+                id="contact-contactlist"
+              >
+                <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
+                  <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
+                </div>
+                <div id="contact-name-email-contactlist">
+                  <span id="contact-name-contactlist">${contact.name}</span>
+                  <span id="email-contactlist">${contact.email}</span>
+                </div>
+              </div>
+            </div>
+            `;
+    });
+  });
+}
 
 
 
@@ -528,119 +528,122 @@ function openPopUpEditDelete() {
 
 
 
-let contacts = [
-  "Alice", "Anne", "Bob", "Charlie", "David", "Eve", "Frank",
-  "George", "Hannah", "Isaac", "Jack", "Kelly", "Liam",
-  "Mary", "Nancy", "Olivia", "Paul", "Quincy", "Olga", "Rachel",
-  "Steve", "Tom", "Ursula", "Victor", "Wendy", "Xavier",
-  "Yvonne", "Zack"
-];
+// let contacts = [
+//   "Alice", "Anne", "Bob", "Charlie", "David", "Eve", "Frank",
+//   "George", "Hannah", "Isaac", "Jack", "Kelly", "Liam",
+//   "Mary", "Nancy", "Olivia", "Paul", "Quincy", "Olga", "Rachel",
+//   "Steve", "Tom", "Ursula", "Victor", "Wendy", "Xavier",
+//   "Yvonne", "Zack"
+// ];
 
 
-function renderContacts(contacts) {
+// function renderContacts(contacts) {
 
-  contacts.sort();
-
-
-  let groupedContacts = {};
+//   contacts.sort();
 
 
-  contacts.forEach(contact => {
-    let firstLetter = contact.charAt(0).toUpperCase();
-    if (!groupedContacts[firstLetter]) {
-      groupedContacts[firstLetter] = [];
-    }
-    groupedContacts[firstLetter].push(contact);
-  });
+//   let groupedContacts = {};
 
 
-  let container = document.getElementById('contacts-container');
+//   contacts.forEach(contact => {
+//     let firstLetter = contact.charAt(0).toUpperCase();
+//     if (!groupedContacts[firstLetter]) {
+//       groupedContacts[firstLetter] = [];
+//     }
+//     groupedContacts[firstLetter].push(contact);
+//   });
 
 
-  let html = '';
-  for (let letter in groupedContacts) {
-    html += `<div><h2>${letter}</h2><ul>`;
-    groupedContacts[letter].forEach(contact => {
-      html += `<li>${contact}</li>`;
-    });
-    html += `</ul></div>`;
-  }
+//   let container = document.getElementById('contacts-container');
 
 
-  container.innerHTML = html;
-}
+//   let html = '';
+//   for (let letter in groupedContacts) {
+//     html += `<div><h2>${letter}</h2><ul>`;
+//     groupedContacts[letter].forEach(contact => {
+//       html += `<li>${contact}</li>`;
+//     });
+//     html += `</ul></div>`;
+//   }
 
 
-renderContacts(contacts);
+//   container.innerHTML = html;
+// }
 
-function loadContacts() {
-  let database = firebase.database();
-  let contactEntries = database.ref("contacts");
 
-  contactEntries.on("value", function (snapshot) {
-    let contactsListContent = document.getElementById("contacts-list-content");
-    contactsListContent.innerHTML = "";
+// renderContacts(contacts);
 
-    let allContacts = [];
-    snapshot.forEach(function (childSnapshot) {
-      let contact = childSnapshot.val();
-      allContacts.push(contact);
+
+
+
+// function loadContacts() {
+//   let database = firebase.database();
+//   let contactEntries = database.ref("contacts");
+
+//   contactEntries.on("value", function (snapshot) {
+//     let contactsListContent = document.getElementById("contacts-list-content");
+//     contactsListContent.innerHTML = "";
+
+//     let allContacts = [];
+//     snapshot.forEach(function (childSnapshot) {
+//       let contact = childSnapshot.val();
+//       allContacts.push(contact);
+//     });
     
     
 
-    // Kontakte alphabetisch sortieren
-    allContacts.sort((a, b) => a.name.localeCompare(b.name));
+//     // Kontakte alphabetisch sortieren
+//     allContacts.sort((a, b) => a.name.localeCompare(b.name));
 
-    // Objekt zur Gruppierung der Kontakte nach Anfangsbuchstaben
-    let groupedContacts = {};
+//     // Objekt zur Gruppierung der Kontakte nach Anfangsbuchstaben
+//     let groupedContacts = {};
 
-    // Kontakte durchgehen und nach Anfangsbuchstaben gruppieren
-    allContacts.forEach(contact => {
-      let firstLetter = contact.name.charAt(0).toUpperCase();
-      if (!groupedContacts[firstLetter]) {
-        groupedContacts[firstLetter] = [];
-      }
-      groupedContacts[firstLetter].push(contact);
-    });
+//     // Kontakte durchgehen und nach Anfangsbuchstaben gruppieren
+//     allContacts.forEach(contact => {
+//       let firstLetter = contact.name.charAt(0).toUpperCase();
+//       if (!groupedContacts[firstLetter]) {
+//         groupedContacts[firstLetter] = [];
+//       }
+//       groupedContacts[firstLetter].push(contact);
+//     });
 
-    // HTML-Inhalt für die Darstellung der Gruppen und Kontakte erstellen
-    let renderedLetters = new Set();
-    let html = '';
-    for (let letter in groupedContacts) {
-      html += `<div><h2 id="getDNone" ></h2><ul>`;
-      groupedContacts[letter].forEach(contact => {
-        if (!renderedLetters.has(letter)) {
-          html += /*html*/ `
-            <div id="initial-letter">${letter}</div>
-            <div id="breakline-contactlist"></div>
-          `;
-          renderedLetters.add(letter);
-        }
-        html += /*html*/ `
-          <div id="contacts-without-breakline">
-            <div
-              onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
-              class="flex-align-center"
-              id="contact-contactlist"
-            >
-              <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
-                <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
-              </div>
-              <div id="contact-name-email-contactlist">
-                <span id="contact-name-contactlist">${contact.name}</span>
-                <span id="email-contactlist">${contact.email}</span>
-              </div>
-            </div>
-          </div>
-        `;
-      });
+//     // HTML-Inhalt für die Darstellung der Gruppen und Kontakte erstellen
+//     let renderedLetters = new Set();
+//     let html = '';
+//     for (let letter in groupedContacts) {
+//       html += `<div><h2 id="getDNone" ></h2><ul>`;
+//       groupedContacts[letter].forEach(contact => {
+//         if (!renderedLetters.has(letter)) {
+//           html += /*html*/ `
+//             <div id="initial-letter">${letter}</div>
+//             <div id="breakline-contactlist"></div>
+//           `;
+//           renderedLetters.add(letter);
+//         }
+//         html += /*html*/ `
+//           <div id="contacts-without-breakline">
+//             <div
+//               onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
+//               class="flex-align-center"
+//               id="contact-contactlist"
+//             >
+//               <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
+//                 <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
+//               </div>
+//               <div id="contact-name-email-contactlist">
+//                 <span id="contact-name-contactlist">${contact.name}</span>
+//                 <span id="email-contactlist">${contact.email}</span>
+//               </div>
+//             </div>
+//           </div>
+//         `;
+//       });
       
-      html += `</ul></div>`;
-    }
-    // HTML-Inhalt in den Container einfügen
-    contactsListContent.innerHTML = html;
-  });
-});
-}
+//       html += `</ul></div>`;
+//     }
+//     // HTML-Inhalt in den Container einfügen
+//     contactsListContent.innerHTML = html;
+//   });
+// }
 
 
