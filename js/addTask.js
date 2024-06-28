@@ -9,9 +9,9 @@ let boardCategory = ['toDo', 'awaitFeedback', 'inProgress', 'done']
 
 
 function initTask() {
-    includeHTML();
-//   loadContactList();
-//   loadTasks();
+  includeHTML();
+  loadContactList();
+  loadTasks();
   setMinDateDatepicker();
 }
 
@@ -25,7 +25,7 @@ function deleteTask(taskId) {
 
 let getInitials = function (string) {
   if (!string || typeof string !== 'string') {
-    return ''; 
+    return '';
   }
   let name = string.split(" ");
   let initials = name[0].substring(0, 1).toUpperCase();
@@ -38,7 +38,7 @@ let getInitials = function (string) {
 
 let getInitialsList = function (names) {
   if (!Array.isArray(names)) {
-    return []; 
+    return [];
   }
   return names.map(name => getInitials(name));
 };
@@ -203,7 +203,7 @@ function editTask(taskId) {
   displaySubTasksEdit();
 }
 
-  
+
 function addSubTaskEdit() {
   let subTaskInputEdit = document.getElementById('edit-task-subtask-input');
   let subTaskValueEdit = subTaskInputEdit.value.trim();
@@ -287,22 +287,23 @@ function loadContactList() {
   let database = firebase.database();
   let contactEntries = database.ref('contacts');
 
-  contactEntries.on('value', function(snapshot) {
-      let contactsList = document.getElementById('contacts-list');
-      contactsList.innerHTML = "";
+  contactEntries.on('value', function (snapshot) {
+    let contactsList = document.getElementById('contacts-list');
+    contactsList.innerHTML = "";
 
-      allContacts = [];
-      snapshot.forEach(function(childSnapshot) {
-          let contact = childSnapshot.val();
-          allContacts.push(contact);
-
-          contactsList.innerHTML += /*html*/ `
+    allContacts = [];
+    snapshot.forEach(function (childSnapshot) {
+      let contact = childSnapshot.val();
+      allContacts.push(contact);
+      contactsList.innerHTML += /*html*/ `
               <div class="dropdown-item">
-                <div style="display: flex; align-items:center; justify-content: center; background: ${contact['color']}; height: 40px; width: 40px; border-radius: 40px; cursor: pointer;" id="contact-badge-list">${getInitials(contact['name'])}</div>
-                <label for="${contact['email']}">${contact['name']}</label>
+                <div class="sub-dropdown-item">
+                  <div style="display: flex; align-items:center; justify-content: center; background: ${contact['color']}; height: 40px; width: 40px; border-radius: 40px; cursor: pointer;" id="contact-badge-list">${getInitials(contact['name'])}</div>
+                  <label for="${contact['email']}">${contact['name']}</label>
+                </div>
                 <input type="checkbox" id="${contact['email']}" value="${contact['email']}" onclick="toggleContactAssignment(this)">
               </div>`;
-      });
+    });
   });
 }
 
@@ -315,30 +316,49 @@ function toggleContactEdit(checkbox) {
   } else {
     selectedContactsEdit = selectedContactsEdit.filter(contact => contact.email !== contactEmail);
   }
+
 }
 
 
 function toggleContactAssignment(checkbox) {
   let contactEmail = checkbox.value;
+
   if (checkbox.checked) {
     let contact = allContacts.find(contact => contact['email'] === contactEmail);
     selectedContacts.push(contact);
   } else {
     selectedContacts = selectedContacts.filter(contact => contact['email'] !== contactEmail);
+    document.getElementById('contacts-initial').innerHTML += ``;
   }
 }
 
+function showInitialColor() {
 
+  if (selectedContacts.length > 0) {
+      document.getElementById('contacts-initial').innerHTML = '';
+
+      for (let i = 0; i < selectedContacts.length; i++) {
+        let contact = selectedContacts[i];
+        document.getElementById('contacts-initial').innerHTML += `
+      <div  style="display: flex; align-items:center; justify-content: center; background: ${contact['color']}; height: 40px; width: 40px; border-radius: 40px; cursor: pointer;" id="contact-badge-list">${getInitials(contact['name'])}</div>`;
+      }
+  } else {
+    document.getElementById('contacts-initial').style.display = 'none';
+  }
+}
 function toggleContactDropdown() {
   let contactsDropdown = document.getElementById('contacts-list');
   let dropdownArrow = document.getElementById('icon-contacts-dropdown-arrow-image');
 
   if (contactsDropdown.classList.contains('d-none')) {
-      contactsDropdown.classList.remove('d-none');
-      dropdownArrow.src = "/assets/img/dropdown_up.svg";
+    document.getElementById('contacts-initial').style.display = 'd-none';
+    contactsDropdown.classList.remove('d-none');
+    dropdownArrow.src = "/assets/img/dropdown_up.svg";
   } else {
-      contactsDropdown.classList.add('d-none');
-      dropdownArrow.src = "/assets/img/dropdown_down.svg";
+    document.getElementById('contacts-initial').style.display = 'flex';
+    contactsDropdown.classList.add('d-none');
+    dropdownArrow.src = "/assets/img/dropdown_down.svg";
+    showInitialColor();
   }
 }
 
@@ -348,11 +368,11 @@ function toggleCategoryDropdown() {
   let dropdownArrow = document.getElementById('icon-dropdown-arrow-image');
 
   if (categoryDropdown.classList.contains('d-none')) {
-      categoryDropdown.classList.remove('d-none');
-      dropdownArrow.src = "/assets/img/dropdown_up.svg";
+    categoryDropdown.classList.remove('d-none');
+    dropdownArrow.src = "/assets/img/dropdown_up.svg";
   } else {
-      categoryDropdown.classList.add('d-none');
-      dropdownArrow.src = "/assets/img/dropdown_down.svg";
+    categoryDropdown.classList.add('d-none');
+    dropdownArrow.src = "/assets/img/dropdown_down.svg";
   }
 }
 
@@ -386,38 +406,46 @@ function createCategoryIconLow(buttonId) {
 function changeColor(buttonId) {
   resetButtons();
 
+  let mediumIcon = document.getElementById('task-medium-icon');
+  let lowIcon = document.getElementById('task-low-icon');
+
   if (buttonId === 'priority-urgent-text') {
-      document.getElementById('priority-urgent-text').style.backgroundColor = '#ff3d00';
-      document.getElementById('priority-urgent-text').style.color = 'white';
-      document.getElementById('task-urgent-icon').src = '/assets/img/urgent_icon_WHT.png';
+    document.getElementById('task-urgent-icon').src = '/assets/img/urgent_icon_WHT.png';
+    document.getElementById('priority-urgent-text').style.backgroundColor = '#ff3d00';
+    document.getElementById('priority-urgent-text').style.color = 'white';
+
 
   } else if (buttonId === 'priority-medium-text') {
-      document.getElementById('priority-medium-text').style.backgroundColor = '#ffa800';
-      document.getElementById('priority-medium-text').style.color = 'white';
-      document.getElementById('task-medium-icon').src = '/assets/img/medium_icon_WHT.png';
+    document.getElementById('task-medium-icon').src = '/assets/img/medium_icon_WHT.png';
+    document.getElementById('priority-medium-text').style.backgroundColor = '#ffa800';
+    document.getElementById('priority-medium-text').style.color = 'white';
 
   } else if (buttonId === 'priority-low-text') {
-      document.getElementById('priority-low-text').style.backgroundColor = '#7ae229';
-      document.getElementById('priority-low-text').style.color = 'white';
-      document.getElementById('task-low-icon').src = '/assets/img/low_icon_WHT.png';
-  // const buttons = [
-  //     { id: 'btn1', color: '#ff3d00' },
-  //     { id: 'btn2', color: '#ff7a800' },l
-  //     { id: 'btn3', color: '#7ae229' }
-  // ];
-  // for (const button of buttons) { //button Schleifenvariable; buttons = Array
-  //     if (button.id === buttonId) {
-  //         document.getElementById(button.id).style.backgroundColor = button.color;
-  //         document.getElementById(button.id).style.color = 'white';
-  //     }
-  // }
-  // document.getElementById(path1Id).classList.add('cls-13');
-  // document.getElementById(path2Id).classList.add('cls-13');
-}
+    document.getElementById('task-low-icon').src = '/assets/img/low_icon_WHT.png';
+
+    document.getElementById('priority-low-text').style.backgroundColor = '#7ae229';
+    document.getElementById('priority-low-text').style.color = 'white';
+
+    // const buttons = [
+    //     { id: 'btn1', color: '#ff3d00' },
+    //     { id: 'btn2', color: '#ff7a800' },l
+    //     { id: 'btn3', color: '#7ae229' }
+    // ];
+    // for (const button of buttons) { //button Schleifenvariable; buttons = Array
+    //     if (button.id === buttonId) {
+    //         document.getElementById(button.id).style.backgroundColor = button.color;
+    //         document.getElementById(button.id).style.color = 'white';
+    //     }
+    // }
+    // document.getElementById(path1Id).classList.add('cls-13');
+    // document.getElementById(path2Id).classList.add('cls-13');
+  }
 }
 
 function resetButtons() {
   // Buttons zurücksetzen
+
+
   document.getElementById('priority-urgent-text').style.backgroundColor = 'white';
   document.getElementById('priority-urgent-text').style.color = 'black';
   document.getElementById('task-urgent-icon').src = '/assets/img/urgent_icon.png';
@@ -429,6 +457,8 @@ function resetButtons() {
   document.getElementById('priority-low-text').style.backgroundColor = 'white';
   document.getElementById('priority-low-text').style.color = 'black';
   document.getElementById('task-low-icon').src = '/assets/img/low_icon.png';
+}
+
 
 
 //   let paths = ['urgent-path1', 'urgent-path2','medium-path1', 'medium-path2','low-path1', 'low-path2'];
@@ -440,7 +470,7 @@ function resetButtons() {
 //       document.getElementById(id).style.color = 'black';
 //   }
 // }
-}
+
 
 function selectCategoryEdit(category) {
   let categoryColor;
@@ -471,39 +501,39 @@ function setMinDateDatepicker() {
   document.getElementById('task-date-picker').value = unformDate;
 }
 
-    // animation
-    function animateButton() {
-        document.getElementById('alertMessage').style.display = "flex";
-        let alertMessage = document.getElementById("popup-message");
+// animation
+function animateButton() {
+  document.getElementById('alertMessage').style.display = "flex";
+  let alertMessage = document.getElementById("popup-message");
 
-        setTimeout(() => {
-            alertMessage.classList.add('translateNull');
-            setTimeout(() => {
-                alertMessage.classList.remove('translateNull');
-                document.getElementById('alertMessage').style.display = "none";
-            }, 2000);
-        }, 250);
-    }
+  setTimeout(() => {
+    alertMessage.classList.add('translateNull');
+    setTimeout(() => {
+      alertMessage.classList.remove('translateNull');
+      document.getElementById('alertMessage').style.display = "none";
+    }, 2000);
+  }, 250);
+}
 
-        // clear-button
-        function changeCleaningColor() {
-            document.querySelector('#close_icon .cls-20').style.fill = '#00bee8';
-        }
-    
-        function changeCleaningColorToStandard() {
-            document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
-        }
-    
+// clear-button
+function changeCleaningColor() {
+  document.querySelector('#close_icon .cls-20').style.fill = '#00bee8';
+}
 
-        function showCheckAndCloseIcons(){
-          document.getElementById('icon-plus-image').style.display = "none";
-          document.getElementById('icon-check-image').style.display = "flex";
-          document.getElementById('seperator-container').style.display = "flex";
-          document.getElementById('icon-close-image').style.display = "flex";
-        }
-        function showPlusIcon(){
-          document.getElementById('icon-plus-image').style.display = "flex";
-          document.getElementById('icon-check-image').style.display = "none";
-          document.getElementById('seperator-container').style.display = "none";
-          document.getElementById('icon-close-image').style.display = "none";
-        }
+function changeCleaningColorToStandard() {
+  document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
+}
+
+
+function showCheckAndCloseIcons() {
+  document.getElementById('icon-plus-image').style.display = "none";
+  document.getElementById('icon-check-image').style.display = "flex";
+  document.getElementById('seperator-container').style.display = "flex";
+  document.getElementById('icon-close-image').style.display = "flex";
+}
+function showPlusIcon() {
+  document.getElementById('icon-plus-image').style.display = "flex";
+  document.getElementById('icon-check-image').style.display = "none";
+  document.getElementById('seperator-container').style.display = "none";
+  document.getElementById('icon-close-image').style.display = "none";
+}

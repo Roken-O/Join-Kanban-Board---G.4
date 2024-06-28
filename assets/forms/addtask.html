@@ -41,7 +41,7 @@
                     <div class="padding-bottom-24">
                         <div class="mb-8 flex field-headline">Title<div class="asterisk-color">*</div>
                         </div>
-                        <input id="task-title" id="input-title" required minlength="2" class="field-325" type="text"
+                        <input id="task-title" required minlength="2" class="field-325" type="text"
                             placeholder="Enter a title">
                     </div>
 
@@ -53,45 +53,16 @@
                             placeholder="Enter a description in english please!"></textarea>
                     </div>
 
-                    <!-- drop-down-contacts -->
-                    <!-- <div id="contacts-assignment-container"> -->
-                    <!-- <div
-                          id="contacts-dropdown-headline"
-                          onclick="toggleContactDropdown()"
-                        > -->
                     <span class="mb-8 flex field-headline">Assigned to</span>
-                    <div id="contacts-dropdown-headline" onclick="toggleContactDropdown()" class="dropbtn"
-                        id="contacts-assignment-container">
-                        <span>Select contacts to assign</span>
-                        <img id="icon-contacts-dropdown-arrow-image" src="/assets/img/dropdown_down.svg"
-                            alt="Dropdown Arrow Icon" />
+                    <div   class="dropbtn">
+                        <span class ="contacts-assignment-container">Select contacts to assign</span>
+                        <img  onclick="toggleContactDropdown()" id="icon-contacts-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon" />
                     </div>
-                    <div id="contacts-list" class="dropdown-list d-none">
-
-                    </div>
-
-                    <!-- </div> -->
-
+                    
+                    <div id="contacts-list" class="dropdown-list d-none"></div> 
+                    <div id="contacts-initial" class="contacts-initial"></div>
                 </div>
-                <!-- <div class="mb-8 flex field-headline">Assigned to</div>
-                    <div class="dropdown">
-                        <div id="contacts-dropdown-headline" onclick="toggleContactDropdown()" class="dropbtn"
-                            id="contacts-assignment-container">Select contacts to assign</div>
-                        <div class="dropdown-content" id="contacts-dropdown-headline">
-                            <div class="icon-dropdown-arrow">
-                                <img id="icon-contacts-dropdown-arrow-image" src="/assets/img/dropdown_down.svg"
-                                    alt="Dropdown Arrow Icon" />
-                            </div>
-
-                            <div id="contacts-list" class="dropdown-list d-none">
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div> -->
-
-
+                
                 <div class="form-seperator"></div>
 
                 <div class="right-container">
@@ -118,7 +89,7 @@
                             </button>
                             <button onclick="createCategoryIconLow('priority-low-text')" id="priority-low-text"
                             class="btn low flex-just-align-center">Low
-                            <img  id="task-low-icon"class="size-low" src="/assets/img/low_icon.svg" />
+                            <img  id="task-low-icon" class="size-low" src="/assets/img/low_icon.svg" />
                             </button>
                
                         </div>
