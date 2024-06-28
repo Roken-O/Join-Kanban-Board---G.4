@@ -9,7 +9,7 @@ let boardCategory = ['toDo', 'awaitFeedback', 'inProgress', 'done']
 
 
 function initTask() {
-    includeHTML()
+    includeHTML();
 //   loadContactList();
 //   loadTasks();
   setMinDateDatepicker();
@@ -329,40 +329,40 @@ function clearInputsAndArrays() {
 // }
 
 
-// function toggleContactDropdown() {
-//   let contactsDropdown = document.getElementById('contacts-list');
-//   let dropdownArrow = document.getElementById('icon-contacts-dropdown-arrow-image');
+function toggleContactDropdown() {
+  let contactsDropdown = document.getElementById('contacts-list');
+  let dropdownArrow = document.getElementById('icon-contacts-dropdown-arrow-image');
 
-//   if (contactsDropdown.classList.contains('d-none')) {
-//       contactsDropdown.classList.remove('d-none');
-//       dropdownArrow.src = "/assets/img/dropdown_up.svg";
-//   } else {
-//       contactsDropdown.classList.add('d-none');
-//       dropdownArrow.src = "/assets/img/dropdown_down.svg";
-//   }
-// }
-
-
-// function toggleCategoryDropdown() {
-//   let categoryDropdown = document.getElementById('task-category-dropdown');
-//   let dropdownArrow = document.getElementById('icon-dropdown-arrow-image');
-
-//   if (categoryDropdown.classList.contains('d-none')) {
-//       categoryDropdown.classList.remove('d-none');
-//       dropdownArrow.src = "/assets/img/dropdown_up.svg";
-//   } else {
-//       categoryDropdown.classList.add('d-none');
-//       dropdownArrow.src = "/assets/img/dropdown_down.svg";
-//   }
-// }
+  if (contactsDropdown.classList.contains('d-none')) {
+      contactsDropdown.classList.remove('d-none');
+      dropdownArrow.src = "/assets/img/dropdown_up.svg";
+  } else {
+      contactsDropdown.classList.add('d-none');
+      dropdownArrow.src = "/assets/img/dropdown_down.svg";
+  }
+}
 
 
-// function selectCategory(event, category) {
-//   selectedCategory = category;
-//   document.getElementById('task-category-selection').innerText = selectedCategory;
-//   document.getElementById('task-category-dropdown').classList.add('d-none');
-//   document.getElementById('icon-dropdown-arrow-image').src = "/assets/img/dropdown_down.svg";
-// }
+function toggleCategoryDropdown() {
+  let categoryDropdown = document.getElementById('task-category-dropdown');
+  let dropdownArrow = document.getElementById('icon-dropdown-arrow-image');
+
+  if (categoryDropdown.classList.contains('d-none')) {
+      categoryDropdown.classList.remove('d-none');
+      dropdownArrow.src = "/assets/img/dropdown_up.svg";
+  } else {
+      categoryDropdown.classList.add('d-none');
+      dropdownArrow.src = "/assets/img/dropdown_down.svg";
+  }
+}
+
+
+function selectCategory(event, category) {
+  selectedCategory = category;
+  document.getElementById('selected-category-container').innerText = selectedCategory;
+  document.getElementById('task-category-dropdown').classList.add('d-none');
+  document.getElementById('icon-dropdown-arrow-image').src = "/assets/img/dropdown_down.svg";
+}
 
 
 // function createCategoryIconUrgent() {
@@ -382,6 +382,7 @@ function clearInputsAndArrays() {
 
 function selectCategoryEdit(category) {
   let categoryColor;
+
   if (category === 'User Story') {
     categoryColor = '#0038ff';
   } else if (category === 'Technical Task') {
