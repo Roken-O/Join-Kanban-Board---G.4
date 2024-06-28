@@ -174,12 +174,14 @@
                     <!-- category -->
                     <div class="padding-bottom-24 padding-responsive980">
                         <div id="task-category-selection-container">
-                            <div class="mb-8 flex field-headline" id="task-category-selection" onclick="toggleCategoryDropdown()">Category
+                            <div class="mb-8 flex field-headline" id="task-category-selection"
+                                onclick="toggleCategoryDropdown()">Category
                                 <div class="asterisk-color">*</div>
                             </div>
                             <div class="dropbtn" onclick="toggleCategoryDropdown()">
                                 <span id="selected-category-container">Select task category</span>
-                                <img id="icon-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon" />
+                                <img id="icon-dropdown-arrow-image" src="/assets/img/dropdown_down.svg"
+                                    alt="Dropdown Arrow Icon" />
                             </div>
                         </div>
                         <div class="dropdown-content-category d-none" id="task-category-dropdown">
@@ -191,36 +193,28 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="padding-bottom-24 padding-responsive980">
-                        <div class="mb-8 flex field-headline">Category<div class="asterisk-color">*</div>
-                        </div>
-                        <div class="dropdown">
-                            <div id="task-category-selection" onclick="toggleCategoryDropdown()" class="dropbtn">Select
-                                task category</div>
-                            <div id="task-category-selection-container" class="dropdown-content">
-                                <div class="tasks" onclick="selectCategory(event, 'Technical Task')">Technical Task
-                                </div>
-                                <div class="tasks" onclick="selectCategory(event, 'User Story')">User Story</div>
-                            </div>
-                        </div>
-                        subtask -->
+
                     <div class="assigned-flex padding-top-24">
                         <div class="mb-8 field-headline">Subtasks</div>
                         <div class="select-subtask">
-                            <input class="select-subtask-span" id="task-subtask-input" placeholder="Add new subtask">
+                            <input type="text" class="select-subtask-span" id="task-subtask-input"
+                                placeholder="Add new subtask">
+
+                            <div>
+                                <img id="icon-plus-image" src="/assets/img/plus_icon.svg"
+                                    onclick="showCheckAndCloseIcons()">
+                                <div class="close-check-icons-container">
+                                    <img onclick="showPlusIcon()" id="icon-close-image" class="d-none" src="/assets/img/close_icon.png">
+                                    <div id="seperator-container" class="mini-seperator d-none"></div>
+                                    <img id="icon-check-image" class="d-none" src="/assets/img/check_icon_DARK.png" onclick="addSubTask()">
+                                </div>
+                            </div>
+
                         </div>
-                        <div id="subtask-list"></div>
+                        <div id="subtask-list" class="sub-task-container"></div>
+
                     </div>
-
-                    <div><img class="close-icon" src="/assets/img/close_icon.png" alt=""></div>
-
-                    
-                
-                
-
-
-                </div> 
-            </div>
+                </div>
             </div>
             </div>
             <div class="flex-evenly-start execution-parent">

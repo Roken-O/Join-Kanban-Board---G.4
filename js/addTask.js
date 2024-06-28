@@ -98,36 +98,36 @@ function clearInputsAndArrays() {
 }
 
 
-// function addSubTask() {
-//   let subTaskInput = document.getElementById('task-subtask-input');
-//   let subTaskValue = subTaskInput.value.trim();
+function addSubTask() {
+  let subTaskInput = document.getElementById('task-subtask-input');
+  let subTaskValue = subTaskInput.value.trim();
 
-//   if (subTaskValue !== "") {
-//     let subTask = {
-//       name: subTaskValue,
-//       done: false
-//     };
-//     subtasks.push(subTask);
-//     subTaskInput.value = "";
-//     displaySubTasks();
-//   }
-// }
+  if (subTaskValue !== "") {
+    let subTask = {
+      name: subTaskValue,
+      done: false
+    };
+    subtasks.push(subTask);
+    subTaskInput.value = "";
+    displaySubTasks();
+  }
+}
 
 
-// function displaySubTasks() {
-//   let subtaskList = document.getElementById('subtask-list');
-//   subtaskList.innerHTML = "";
+function displaySubTasks() {
+  let subtaskList = document.getElementById('subtask-list');
+  subtaskList.innerHTML = "";
 
-//   subtasks.forEach((subtask, index) => {
-//     let subtaskItem = document.createElement('li');
-//     subtaskItem.innerHTML = /*html*/`
-//       <input type="checkbox" id="subtask-${index}" ${subtask.done ? 'checked' : ''} onclick="toggleSubtaskDone(${index})">
-//       <label for="subtask-${index}">${subtask.name}</label>
-//       <button type="button" onclick="removeSubTask(${index})">X</button>
-//     `;
-//     subtaskList.appendChild(subtaskItem);
-//   });
-// }
+  subtasks.forEach((subtask, index) => {
+    let subtaskItem = document.createElement('li');
+    subtaskItem.innerHTML = /*html*/`
+      <input class="d-none" type="checkbox" id="subtask-${index}" ${subtask.done ? 'checked' : ''} onclick="toggleSubtaskDone(${index})">
+      <label for="subtask-${index}">${subtask.name}</label>
+      <img src="/assets/img/delete_icon.png" type="button" onclick="removeSubTask(${index})">
+    `;
+    subtaskList.appendChild(subtaskItem);
+  });
+}
 
 
 // function removeSubTask(index) {
@@ -432,3 +432,16 @@ function setMinDateDatepicker() {
             document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
         }
     
+
+        function showCheckAndCloseIcons(){
+          document.getElementById('icon-plus-image').style.display = "none";
+          document.getElementById('icon-check-image').style.display = "flex";
+          document.getElementById('seperator-container').style.display = "flex";
+          document.getElementById('icon-close-image').style.display = "flex";
+        }
+        function showPlusIcon(){
+          document.getElementById('icon-plus-image').style.display = "flex";
+          document.getElementById('icon-check-image').style.display = "none";
+          document.getElementById('seperator-container').style.display = "none";
+          document.getElementById('icon-close-image').style.display = "none";
+        }
