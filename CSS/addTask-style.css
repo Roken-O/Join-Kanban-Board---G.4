@@ -112,6 +112,10 @@ padding: 8px;
 cursor: pointer;
 }
 
+/* .tasks :hover {
+  background-color: lightgray !important;
+} */
+ 
 /* title */
 .field-headline {
   font-size: 17px;
@@ -640,3 +644,30 @@ input[type='checkbox'] {
     width:12px;
     margin-left: 240px;
   }
+
+  /* test */
+  
+  .style1  {
+    background-color: white;
+    width:108px;
+}
+
+.style1:focus {     
+    background-color:red;    
+}
+
+.style2  {
+  background-color: white;
+}
+
+.style2:focus {     
+  background-color:orange;    
+}
+
+.style3  {
+  background-color: white;
+}
+
+.style3:focus {     
+  background-color:green;    
+}
