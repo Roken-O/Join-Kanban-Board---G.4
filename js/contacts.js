@@ -6,7 +6,6 @@ let hexColors = ['#29abe2', '#4589ff', '#0038ff', '#ff3d00', '#ff745e', '#ffa35e
   document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
   document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
   document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
-  // document.getElementById("PopUp-edit-delete").classList.add("display-none");
 }
 
 
@@ -43,6 +42,21 @@ function saveContact() {
   contactEntry.set(contact);
 }
 
+function validateAndSubmit(event) {
+  event.preventDefault(); // Verhindert das automatische Absenden des Formulars
+
+ 
+  let name = document.getElementById('contact-trial-name').value.trim();
+  let email = document.getElementById('contact-trial-email').value.trim();
+  let phone = document.getElementById('contact-trial-phone').value.trim();
+
+  if (name && email && phone) {
+    saveContact(); 
+    closePupUpaddNewOrEdditContact(); 
+    saveEditedContact();
+  } 
+}
+
 
 function deleteContact(email) {
   let emailForm = emailFormatted(email);
@@ -73,48 +87,60 @@ function editContact(email) {
   formEditContact.innerHTML = /*html*/ `
   <form onsubmit="saveEditedContact('${currentEmail}');return false;" class="form-add-new-contact" id="form-edit-contact" action="">
   <input
-  placeholder="Name"
-  class="input-text-email-number-contact input-text-contact"
-  id="input-edit-name-contact"
-  type="text"
-  required
+    placeholder="Name"
+    class="input-text-email-number-contact input-text-contact"
+    id="input-edit-name-contact"
+    type="text"
+    required
   />
   <input
-  placeholder="Email"
-  class="input-text-email-number-contact input-email-contact"
-  id="input-edit-email-contact"
-  type="email"
-  required
+    placeholder="Email"
+    class="input-text-email-number-contact input-email-contact"
+    id="input-edit-email-contact"
+    type="email"
+    required
   />
   <input
-  placeholder="Phone"
-  class="input-text-email-number-contact input-number-contact"
-  id="input-edit-phone-contact"
-  type="text"
-  required
+    placeholder="Phone"
+    class="input-text-email-number-contact input-number-contact"
+    id="input-edit-phone-contact"
+    type="text"
+    required
   />
   <div class="button-container-edit">
-  
-  <img
-    onclick="deleteContact('${currentEmail}');closePupUpaddNewOrEdditContact();"
-    class="button_delete"
-    src="./assets/img/button_delete.svg"
-    alt=""
-  />
-  
-  <button type="submit" style="background: transparent; border: none;">
-  <img
-    class="button_save_contact"
-    src="./assets/img/button_save.svg"
-    alt=""
-  />
-  </form>
+    <img
+      onclick="deleteContact('${currentEmail}'); closePupUpaddNewOrEdditContact();"
+      class="button_delete"
+      src="./assets/img/button_delete.svg"
+      alt=""
+    />
+    <button type="submit" style="background: transparent; border: none;">
+      <img
+        onclick="validateAndClosePopup()"
+        class="button_save_contact"
+        src="./assets/img/button_save.svg"
+        alt=""
+      />
+    </button>
+  </div>
+</form>
     `;
 
   document.getElementById('input-edit-name-contact').value = currentName;
   document.getElementById('input-edit-email-contact').value = currentEmail;
   document.getElementById('input-edit-phone-contact').value = currentPhone;
   renderPopupEditAddMiddle(email);
+}
+
+function validateAndClosePopup() {
+ 
+  const name = document.getElementById('input-edit-name-contact').value.trim();
+  const email = document.getElementById('input-edit-email-contact').value.trim();
+  const phone = document.getElementById('input-edit-phone-contact').value.trim();
+
+  if (name && email && phone) {
+    closePupUpaddNewOrEdditContact(); 
+  } 
 }
 
 function renderPopupEditAddMiddle(email){
@@ -174,6 +200,8 @@ function saveEditedContact(currentEmail) {
   // contactEntryTel.set(editTel);
 
   loadContacts();
+  showContactInfo(currentEmail);
+  showContactResponsive(currentEmail);
 }
 
 let getInitials = function (string) {
@@ -339,7 +367,7 @@ function showContactResponsive(email) {
                 <h2>${currentName}</h2>
                 <div class="flex-align-center" id="contact-edit-delete">
                   <div
-                    onclick="editContactPopUp()"
+                    onclick="editContactPopUp();editContact('${currentEmail}')"
                     class="flex-align-center"
                     id="contact-edit"
                   >
@@ -423,103 +451,80 @@ function openPopUpEditDelete() {
 }
 
 // new
+// function loadContacts() {
+//   let database = firebase.database();
+//   let contactEntries = database.ref("contacts");
 
-function loadContacts() {
-  let database = firebase.database();
-  let contactEntries = database.ref("contacts");
+//   contactEntries.on("value", function (snapshot) {
+//     let contactsListContent = document.getElementById("contacts-list-content");
+//     contactsListContent.innerHTML = "";
 
-  contactEntries.on("value", function (snapshot) {
-    let contactsListContent = document.getElementById("contacts-list-content");
-    contactsListContent.innerHTML = "";
+//     allContacts = [];
+//     snapshot.forEach(function (childSnapshot) {
+//       let contact = childSnapshot.val();
+//       allContacts.push(contact);
 
-    allContacts = [];
-    snapshot.forEach(function (childSnapshot) {
-      let contact = childSnapshot.val();
-      allContacts.push(contact);
-
-      contactsListContent.innerHTML += /*html*/ `
-          <div>
-              <div id="initial-letter">${contact.name.substring(0, 1)}</div>
-              <div id="breakline-contactlist"></div>
-              <div id="testcontacts"></div>
-              <div
-                onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
-                class="flex-align-center"
-                id="contact-contactlist"
-              >
-                <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
-                  <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
-                </div>
-                <div id="contact-name-email-contactlist">
-                  <span id="contact-name-contactlist">${contact.name}</span>
-                  <span id="email-contactlist">${contact.email}</span>
-                </div>
-              </div>
-            </div>
-            `;
-    });
-  });
-}
-
-
-// function init() {
-//   // document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
-//   // document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
-//   // document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
+//       contactsListContent.innerHTML += /*html*/ `
+//           <div>
+//               <div id="initial-letter">${contact.name.substring(0, 1)}</div>
+//               <div id="breakline-contactlist"></div>
+//               <div id="contacts-without-breakline"></div>
+//               <div
+//                 onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
+//                 class="flex-align-center"
+//                 id="contact-contactlist"
+//               >
+//                 <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
+//                   <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
+//                 </div>
+//                 <div id="contact-name-email-contactlist">
+//                   <span id="contact-name-contactlist">${contact.name}</span>
+//                   <span id="email-contactlist">${contact.email}</span>
+//                 </div>
+//               </div>
+//             </div>
+//             `;
+//     });
+//   });
 // }
 
 
-// function addNewContactPopUp() {
-//   document
-//     .getElementById("add-new-contact-popUp-bg")
-//     .classList.add("translateX-null");
+
+// function loadContactsWhitoutBreakline() {
+//   let database = firebase.database();
+//   let contactEntries = database.ref("contacts");
+
+//   contactEntries.on("value", function (snapshot) {
+//     let contactsWithoutBreakline = document.getElementById("contacts-without-breakline");
+//     contactsListContent.innerHTML = "";
+
+//     allContacts = [];
+//     snapshot.forEach(function (childSnapshot) {
+//       let contact = childSnapshot.val();
+//       allContacts.push(contact);
+
+//       contactsWithoutBreakline.innerHTML += /*html*/ `
+          
+//               <div
+//                 onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
+//                 class="flex-align-center"
+//                 id="contact-contactlist"
+//               >
+//                 <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
+//                   <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
+//                 </div>
+//                 <div id="contact-name-email-contactlist">
+//                   <span id="contact-name-contactlist">${contact.name}</span>
+//                   <span id="email-contactlist">${contact.email}</span>
+//                 </div>
+//               </div>
+            
+//             `;
+//     });
+//   });
 // }
 
 
-// function closePupUpaddNewOrEdditContact() {
-//   document
-//     .getElementById("add-new-contact-popUp-bg")
-//     .classList.remove("translateX-null");
-//   document
-//     .getElementById("edit-contact-popUp-bg")
-//     .classList.remove("translateX-null");
-// }
-
-
-// function editContactPopUp() {
-//   document
-//     // .getElementById("edit-contact-popUp-bg")
-//     // .classList.add("add-new-or-edit-contact-popUp-bg");
-//   document.getElementById("edit-contact-popUp-bg").classList.add("translateX-null");
-// }
-
-// function showContactInfo() {
-//   document.getElementById("contact").classList.add("translateX-null");
-// }
-
-// function showContactResponsive() {
-//   let width = window.innerWidth;
-//   if (width <= 1050) {
-//     document.getElementById("contacts-list").classList.add("display-none");
-//     document.getElementById("contacts-container-responsive").classList.add("d-unset");
-//     document.getElementById("back-icon").classList.add("d-unset");
-
-//   }
-// }
-
-// function closeContact() {
-//   document.getElementById("contacts-list").classList.remove("display-none");
-//   document.getElementById("contacts-container-responsive").classList.remove("d-unset");
-//   document.getElementById("back-icon").classList.remove("d-unset");
-// }
-
-// function closePopUpEditDelete() {
-//   document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
-// }
-
-// function openPopUpEditDelete() {
-//   document.getElementById("PopUp-edit-delete-bg").classList.remove("display-none");
-// }
 
 
 
@@ -567,3 +572,75 @@ function renderContacts(contacts) {
 
 
 renderContacts(contacts);
+
+function loadContacts() {
+  let database = firebase.database();
+  let contactEntries = database.ref("contacts");
+
+  contactEntries.on("value", function (snapshot) {
+    let contactsListContent = document.getElementById("contacts-list-content");
+    contactsListContent.innerHTML = "";
+
+    let allContacts = [];
+    snapshot.forEach(function (childSnapshot) {
+      let contact = childSnapshot.val();
+      allContacts.push(contact);
+    
+    
+
+    // Kontakte alphabetisch sortieren
+    allContacts.sort((a, b) => a.name.localeCompare(b.name));
+
+    // Objekt zur Gruppierung der Kontakte nach Anfangsbuchstaben
+    let groupedContacts = {};
+
+    // Kontakte durchgehen und nach Anfangsbuchstaben gruppieren
+    allContacts.forEach(contact => {
+      let firstLetter = contact.name.charAt(0).toUpperCase();
+      if (!groupedContacts[firstLetter]) {
+        groupedContacts[firstLetter] = [];
+      }
+      groupedContacts[firstLetter].push(contact);
+    });
+
+    // HTML-Inhalt für die Darstellung der Gruppen und Kontakte erstellen
+    let renderedLetters = new Set();
+    let html = '';
+    for (let letter in groupedContacts) {
+      html += `<div><h2 id="getDNone" ></h2><ul>`;
+      groupedContacts[letter].forEach(contact => {
+        if (!renderedLetters.has(letter)) {
+          html += /*html*/ `
+            <div id="initial-letter">${letter}</div>
+            <div id="breakline-contactlist"></div>
+          `;
+          renderedLetters.add(letter);
+        }
+        html += /*html*/ `
+          <div id="contacts-without-breakline">
+            <div
+              onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
+              class="flex-align-center"
+              id="contact-contactlist"
+            >
+              <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
+                <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
+              </div>
+              <div id="contact-name-email-contactlist">
+                <span id="contact-name-contactlist">${contact.name}</span>
+                <span id="email-contactlist">${contact.email}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += `</ul></div>`;
+    }
+    // HTML-Inhalt in den Container einfügen
+    contactsListContent.innerHTML = html;
+  });
+});
+}
+
+

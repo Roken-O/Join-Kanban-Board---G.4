@@ -1,6 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- https<!DOCTYPE html>
+<html lang="de-DE"> -->
 
 <head>
     <meta charset="UTF-8">
@@ -15,22 +17,24 @@
     <link rel="stylesheet" href="/CSS/addTask-style.css">
     <link rel="stylesheet" href="/CSS/addTask-media.css">
     <link rel="icon" href="/assets/img/join_favicon.svg">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <title>Join</title>
 </head>
 
-<body onload="includeHTML()">
+<body onload="initTask()">
     <!-- Funktion "init" muss noch eingefügt werden; es funktioniert mit dieser Funktion die Animation nicht mehr,
      das svg in clear färbt sich nicht mehr azurblau-->
-     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
-     <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
+    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+    <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
         <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
-      </div>
+    </div>
     <section id="main-container" class="background-grey">
         <!-- headline -->
         <h2 class="task-headline mb-48">Add Task</h2>
 
         <!-- form-start -->
-        <form class="form-height w-50" onsubmit="saveTask(); return false;">
+        <form class="form-height w-50" id="task-task-form" onsubmit="saveTask(); return false;">
 
             <div class="flex-evenly-start padding-bottom-24 parent-container">
                 <div class="left-container">
@@ -39,76 +43,55 @@
                     <div class="padding-bottom-24">
                         <div class="mb-8 flex field-headline">Title<div class="asterisk-color">*</div>
                         </div>
-                        <input id="input-title" required minlength="2" class="field-325" type="text" placeholder="Enter a title">
+                        <input id="task-title" id="input-title" required minlength="2" class="field-325" type="text"
+                            placeholder="Enter a title">
                     </div>
 
                     <!-- description -->
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Description</div>
-                        <textarea id="input-description" required pattern="[A-Za-z0-9]+" maxlength="450" class="description-input"
-                            name="w3review" rows="4" cols="50"
+                        <textarea id="task-description" required pattern="[A-Za-z0-9]+" maxlength="450"
+                            class="description-input" name="w3review" rows="4" cols="50"
                             placeholder="Enter a description in english please!"></textarea>
                     </div>
 
                     <!-- drop-down-contacts -->
-                    <div class="mb-8 flex field-headline">Assigned to</div>
-                    <div class="dropdown">
-                        <div class="dropbtn">Select contacts to assign</div>
-                        <div class="dropdown-content">
-                            <div class="contacts-dropdown flex-align-center-between">
-                                <div class="contacts-left flex-align-center gap-8"><img class="addtask-initials"
-                                        src="/assets/img/contact_initials.svg" alt="contact initials">Sofia Müller (You)
-                                </div><input type="checkbox">
-                            </div>
-                            <div class="contacts-dropdown flex-align-center-between">
-                                <div class="contacts-left flex-align-center gap-8"><img class="addtask-initials"
-                                        src="/assets/img/contact_initials.svg" alt="contact initials">Max Mustermann
-                                </div><input type="checkbox">
-                            </div>
-                            <div class="contacts-dropdown flex-align-center-between">
-                                <div class="contacts-left flex-align-center gap-8"><img class="addtask-initials"
-                                        src="/assets/img/contact_initials.svg" alt="contact initials">Max Mustermann
-                                </div><input type="checkbox">
-                            </div>
-                            <div class="contacts-dropdown flex-align-center-between">
-                                <div class="contacts-left flex-align-center gap-8"><img class="addtask-initials"
-                                        src="/assets/img/contact_initials.svg" alt="contact initials">Max Mustermann
-                                </div><input type="checkbox">
-                            </div>
-                            <div class="contacts-dropdown flex-align-center-between">
-                                <div class="contacts-left flex-align-center gap-8"><img class="addtask-initials"
-                                        src="/assets/img/contact_initials.svg" alt="contact initials">Max Mustermann
-                                </div><input type="checkbox">
-                            </div>
-                            <div class="contacts-dropdown flex-align-center-between">
-                                <div class="contacts-left flex-align-center gap-8"><img class="addtask-initials"
-                                        src="/assets/img/contact_initials.svg" alt="contact initials">Max Mustermann
-                                </div><input type="checkbox">
-                            </div>
-                            <div class="contacts-dropdown flex-align-center-between">
-                                <div class="contacts-left flex-align-center gap-8"><img class="addtask-initials"
-                                        src="/assets/img/contact_initials.svg" alt="contact initials">Max Mustermann
-                                </div><input type="checkbox">
-                            </div>
-                            <div class="contacts-dropdown flex-align-center-between">
-                                <div class="contacts-left flex-align-center gap-8"><img class="addtask-initials"
-                                        src="/assets/img/contact_initials.svg" alt="contact initials">Max Mustermann
-                                </div><input type="checkbox">
-                            </div>
-                            <div class="contacts-dropdown flex-align-center-between">
-                                <div class="contacts-left flex-align-center gap-8"><img class="addtask-initials"
-                                        src="/assets/img/contact_initials.svg" alt="contact initials">Max Mustermann
-                                </div><input type="checkbox">
-                            </div>
-                            <div class="contacts-dropdown flex-align-center-between">
-                                <div class="contacts-left flex-align-center gap-8"><img class="addtask-initials"
-                                        src="/assets/img/contact_initials.svg" alt="contact initials">Max Mustermann
-                                </div><input type="checkbox">
-                            </div>
-                        </div>
+                    <!-- <div id="contacts-assignment-container"> -->
+                    <!-- <div
+                          id="contacts-dropdown-headline"
+                          onclick="toggleContactDropdown()"
+                        > -->
+                    <span class="mb-8 flex field-headline">Assigned to</span>
+                    <div id="contacts-dropdown-headline" onclick="toggleContactDropdown()" class="dropbtn"
+                        id="contacts-assignment-container">
+                        <span>Select contacts to assign</span>
+                        <img id="icon-contacts-dropdown-arrow-image" src="/assets/img/dropdown_down.svg"
+                            alt="Dropdown Arrow Icon" />
+                    </div>
+                    <div id="contacts-list" class="dropdown-list d-none">
+
                     </div>
 
+                    <!-- </div> -->
+
                 </div>
+                <!-- <div class="mb-8 flex field-headline">Assigned to</div>
+                    <div class="dropdown">
+                        <div id="contacts-dropdown-headline" onclick="toggleContactDropdown()" class="dropbtn"
+                            id="contacts-assignment-container">Select contacts to assign</div>
+                        <div class="dropdown-content" id="contacts-dropdown-headline">
+                            <div class="icon-dropdown-arrow">
+                                <img id="icon-contacts-dropdown-arrow-image" src="/assets/img/dropdown_down.svg"
+                                    alt="Dropdown Arrow Icon" />
+                            </div>
+
+                            <div id="contacts-list" class="dropdown-list d-none">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div> -->
 
 
                 <div class="form-seperator"></div>
@@ -118,16 +101,17 @@
                         <!-- date -->
                         <div class="mb-8 flex field-headline">Due date<div class="asterisk-color">*</div>
                         </div>
-                        <input id="date-picker" type="date" class="field-325 date"
+                        <input id="task-date-picker" type="date" class="field-325 date"
                             placeholder="dd/mm/yyyy Kalenderbutton" required>
                     </div>
 
                     <!-- prio -->
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Prio</div>
-                        <div class="flex gap-16 prio-container">
+                        <div class="flex gap-16 prio-container" id="task-priority-container">
 
-                            <button class="btn urgent flex-just-align-center" id="btn1"
+                            <button onclick="createCategoryIconUrgent()" id="priority-urgent-text"
+                                class="btn urgent flex-just-align-center" id="btn1"
                                 onclick="changeColor('btn1','urgent-path1','urgent-path2')">Urgent
                                 <svg id="urgent_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 133 97.72">
@@ -145,7 +129,8 @@
                                         d="M125.7,59c-1.56,0-3.08-.5-4.34-1.44l-54.87-40.96L11.63,57.56c-1.56,1.16-3.5,1.65-5.42,1.36-1.91-.29-3.63-1.34-4.78-2.91-1.15-1.57-1.63-3.55-1.35-5.48.29-1.94,1.32-3.68,2.88-4.84L62.16,1.45c1.25-.94,2.77-1.45,4.34-1.45s3.08.51,4.34,1.45l59.2,44.24c1.24.92,2.15,2.22,2.62,3.7.47,1.48.46,3.07-.02,4.55-.48,1.48-1.41,2.76-2.66,3.67-1.24.91-2.74,1.4-4.28,1.4Z" />
                                 </svg></button>
 
-                            <button class="btn urgent flex-just-align-center" id="btn2"
+                            <button onclick="createCategoryIconMedium()" id="priority-medium-text"
+                                class="btn urgent flex-just-align-center" id="btn2"
                                 onclick="changeColor('btn2','medium-path1','medium-path2')">Medium
                                 <svg id="medium_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 134 49.92">
@@ -163,7 +148,8 @@
                                         d="M126.66,14.79H7.34c-1.95,0-3.81-.78-5.19-2.17-1.38-1.39-2.15-3.27-2.15-5.23S.77,3.55,2.15,2.17C3.53.78,5.4,0,7.34,0h119.32c1.95,0,3.82.78,5.19,2.17,1.38,1.39,2.15,3.27,2.15,5.23s-.77,3.84-2.15,5.23c-1.38,1.39-3.25,2.17-5.19,2.17Z" />
                                 </svg></button>
 
-                            <button class="btn low flex-just-align-center" id="btn3"
+                            <button onclick="createCategoryIconLow()" id="priority-low-text"
+                                class="btn low flex-just-align-center" id="btn3"
                                 onclick="changeColor('btn3','low-path1','low-path2')">Low
                                 <svg id="low_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 133.32 94.11">
@@ -187,24 +173,54 @@
 
                     <!-- category -->
                     <div class="padding-bottom-24 padding-responsive980">
-                        <div class="mb-8 flex field-headline">Category<div class="asterisk-color">*</div>
-                        </div>
-                        <div class="dropdown">
-                            <div class="dropbtn">Select task category</div>
-                            <div class="dropdown-content">
-                                <div class="tasks">Technical Task</div>
-                                <div class="tasks">User Story</div>
+                        <div id="task-category-selection-container">
+                            <div class="mb-8 flex field-headline" id="task-category-selection" onclick="toggleCategoryDropdown()">Category
+                                <div class="asterisk-color">*</div>
+                            </div>
+                            <div class="dropbtn" onclick="toggleCategoryDropdown()">
+                                <span id="selected-category-container">Select task category</span>
+                                <img id="icon-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon" />
                             </div>
                         </div>
-                        <!-- subtask -->
-                        <div class="assigned-flex padding-top-24">
-                            <div class="mb-8 field-headline">Subtasks</div>
-                            <div class="select-subtask"><span class="select-subtask-span">Add new
-                                    subtask</span>
+                        <div class="dropdown-content-category d-none" id="task-category-dropdown">
+                            <div class="tasks" onclick="selectCategory(event, 'Technical Task')">
+                                Technical Task
+                            </div>
+                            <div class="tasks" onclick="selectCategory(event, 'User Story')">
+                                User Story
                             </div>
                         </div>
                     </div>
-                </div>
+                    <!-- <div class="padding-bottom-24 padding-responsive980">
+                        <div class="mb-8 flex field-headline">Category<div class="asterisk-color">*</div>
+                        </div>
+                        <div class="dropdown">
+                            <div id="task-category-selection" onclick="toggleCategoryDropdown()" class="dropbtn">Select
+                                task category</div>
+                            <div id="task-category-selection-container" class="dropdown-content">
+                                <div class="tasks" onclick="selectCategory(event, 'Technical Task')">Technical Task
+                                </div>
+                                <div class="tasks" onclick="selectCategory(event, 'User Story')">User Story</div>
+                            </div>
+                        </div>
+                        subtask -->
+                    <div class="assigned-flex padding-top-24">
+                        <div class="mb-8 field-headline">Subtasks</div>
+                        <div class="select-subtask">
+                            <input class="select-subtask-span" id="task-subtask-input" placeholder="Add new subtask">
+                        </div>
+                        <div id="subtask-list"></div>
+                    </div>
+
+                    <div><img class="close-icon" src="/assets/img/close_icon.png" alt=""></div>
+
+                    
+                
+                
+
+
+                </div> 
+            </div>
             </div>
             </div>
             <div class="flex-evenly-start execution-parent">
@@ -215,7 +231,7 @@
 
                 <!-- cleaning -->
                 <div class="flex gap-16 execution-responsive">
-                    <button class="cleaning low flex-just-align-center">
+                    <button onclick="clearInputsAndArrays()" class="cleaning low flex-just-align-center">
                         <span class="cleaning-text">Clear</span>
                         <svg onmouseover="changeCleaningColor()" onmouseleave="changeCleaningColorToStandard()"
                             class="cleaning-svg" id="close_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
@@ -226,7 +242,8 @@
                     </button>
 
                     <!-- create task -->
-                    <button onclick="animateButton()" required class="create-task"><span class="create-text">Create
+                    <button onclick="animateButton()" required class="create-task" type="submit"><span
+                            class="create-text">Create
                             Task</span></button>
 
                 </div>
@@ -253,99 +270,15 @@
                 </svg>
             </div>
         </div>
-        <!-- Katastrophe -->
 
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
         <script src="/js/firebase.js"></script>
         <script src="/js/script.js"></script>
+
+        <script src="/js/addTask.js"></script>
         <script src="/js/load_tasks.js"></script>
         <script src="/js/index.js"></script>
         <script src="/js/summary.js"></script>
-        <script src="/js/add_task.js"></script>
 </body>
 
 </html>
-
-<script>
-// titles and description
-let titles = [];
-let descriptions = [];
-let titlesTrash = [];
-let descriptionsTrash = [];
-
-   
-function addTitle() {
-  let title = document.getElementById("input-title").value;
-  titles.push(title);
- showTitles();
-  document.getElementById("input-title").value ="";
-}
-
-function showTitles() {
-  document.getElementById("title-content").innerHTML = "";
-  for (let i = 0; i < titles.length; i++) {
-    document.getElementById("title-content").innerHTML += `<div class="title-content"><textarea class=titles-area maxlength="40">${titles[i]}
-  </textarea><textarea maxlength="200" class="notes-area">${titles[i]}</textarea>`
-  ;
-  }
-}
-
-// function addDescription(){
-//     let description = document.getElementById("input-description").value;
-//     descriptions.push(description);
-//     showDescriptions();
-//     document.getElementById("input-description").value = "";
-// }
-
-// function showDescriptions() {
-//   document.getElementById("mynotes").innerHTML = "";
-//   for (let i = 0; i < notes.length; i++) {
-//     document.getElementById("mynotes"
-//     ).innerHTML += `<div class="mynotes"><textarea class=titles-area maxlength="40">${titles[i]}
-//   </textarea><textarea maxlength="200" class="notes-area">${notes[i]}</textarea>
-//   <a class="delete" href="#" onclick="deleteNote(${i})">Delete</div>`;
-//   }
-// }
-
-// function deleteNote(i) {
-//   titlesTrash.push(titles[i]);
-//   notesTrash.push(notes[i]);
-//   titles.splice(i, 1);
-//   notes.splice(i, 1);
-//   showNotes();
-// }
-
-    // prio-buttons
-    
-    // clear-button
-    function changeCleaningColor() {
-        document.querySelector('#close_icon .cls-20').style.fill = '#00bee8';
-    }
-
-    function changeCleaningColorToStandard() {
-        document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
-    }
-
-    // animation
-    function animateButton() {
-        document.getElementById('alertMessage').style.display = "flex";
-        let alertMessage = document.getElementById("popup-message");
-
-        setTimeout(() => {
-            alertMessage.classList.add('translateNull');
-            setTimeout(() => {
-                alertMessage.classList.remove('translateNull');
-                document.getElementById('alertMessage').style.display = "none";
-            }, 2000);
-        }, 250);
-    }
-
-
-    //category
-
-    //subtask
-
-
-
-</script>

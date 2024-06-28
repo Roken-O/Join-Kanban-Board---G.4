@@ -139,7 +139,7 @@
                 alt=""
               />
             </div>
-            <form onsubmit="saveContact();return false;" class="form-add-new-contact" action="">
+            <form onsubmit="validateAndSubmit(event)" class="form-add-new-contact" action="">
               <input
                 placeholder="Name"
                 id="contact-trial-name"
@@ -148,14 +148,14 @@
                 required
               />
               <input
-                placeholder="Email"
+                placeholder="E-Mail"
                 id="contact-trial-email"
                 class="input-text-email-number-contact input-email-contact"
                 type="email"
                 required
               />
               <input
-                placeholder="Phone"
+                placeholder="Telefon"
                 id="contact-trial-phone"
                 class="input-text-email-number-contact input-number-contact"
                 type="text"
@@ -163,21 +163,19 @@
               />
               
               <div class="button-container-add">
-                
-                  <img
+                <img
+                  onclick="closePupUpaddNewOrEdditContact()"
                   class="button_cancel"
                   src="./assets/img/button_cancel.svg"
-                  alt=""
+                  alt="Abbrechen"
                 />
-               
                 <button type="submit" style="background: transparent; border: none;">
-                <img
-                onclick="closePupUpaddNewOrEdditContact()"
-                  class="button_create_contact"
-                  src="./assets/img/button_create_contact.svg"
-                  alt=""
-                />
-              </button>
+                  <img
+                    class="button_create_contact"
+                    src="./assets/img/button_create_contact.svg"
+                    alt="Erstellen"
+                  />
+                </button>
               </div>
             </form>
             
@@ -203,9 +201,7 @@
             </div>
           </div>
           <div id="popUp-edit-add-middle" class="popUp-edit-add-middle">
-            <!-- <div class="first-letters-name-bg margin-top-60px">
-              <span class="first-letters-name">AM</span>
-            </div> -->
+            <!-- render -->
           </div>
           <div class="popUp-edit-add-rightside">
             <div class="container-close-icon">
