@@ -1,3 +1,6 @@
+body {
+  scroll-behavior: smooth;
+}
 
 #main-container {
   padding: 70px 64px 64px 296px;
@@ -436,6 +439,8 @@ margin-left:6px;
   font-size: 17px;
   padding: 0 8px 0 8px; 
   transition: all 300ms ease-in-out; 
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.1);
+    
 }
 
 .urgent :hover {
@@ -453,6 +458,7 @@ margin-left:6px;
   font-size: 17px;
   padding: 0 8px 0 8px; 
   transition: all 300ms ease-in-out;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.1);
 }
 
 .medium :hover {
@@ -470,6 +476,7 @@ margin-left:6px;
   font-size: 17px;
   padding: 0 8px 0 8px; 
   transition: all 300ms ease-in-out;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.1);
 }
 
 .low :hover {
@@ -559,7 +566,7 @@ input[type='checkbox'] {
 }
 
   .animation { 
-    background-color: green;
+    /* background-color: green; */
     transform: translateY(100%);
     transition: all 400ms ease-in-out;
     opacity: 0;
@@ -593,6 +600,9 @@ input[type='checkbox'] {
     opacity: 0;
     transform: translateY(100%);
     transition: all 200ms ease-in-out;
+    /* display: flex !important;
+    /* justify-content: center !important; */
+    /* align-items: center !important; */ 
   }
   
   .translateNull {
@@ -601,9 +611,10 @@ input[type='checkbox'] {
   } 
 
   .animate-text {
-    font-weight: 50 !important;
-    font-size: 20px;
+    font-weight: 50px !important;
+    font-size: 16px;
     /* margin-bottom:40px !important; */
+    padding:0px;
   }
 
   .animate-svg {
@@ -646,35 +657,20 @@ input[type='checkbox'] {
     cursor: pointer;
   }
 
-  /* test */
-  
-  .style1  {
-    background-color: white;
-    width:108px;
-}
-
-.style1:focus {     
-    background-color:red;    
-}
-
-.style2  {
-  background-color: white;
-}
-
-.style2:focus {     
-  background-color:orange;    
-}
-
-.style3  {
-  background-color: white;
-}
-
-.style3:focus {     
-  background-color:green;    
-}
-
 .prio-container img{
 width:16px;
 height:12px;
 margin-left:4px;
 }
+
+/* .size-medium {
+  width: 20px !important;
+  height: 16px !important;
+  margin-left:4px;
+}
+
+.size-low {
+  width: 47px;
+  height: 17px;
+  margin-left:4px;
+} */
