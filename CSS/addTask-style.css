@@ -274,12 +274,30 @@ input[type="date"]:before {
   background-color: white;
 }
 
+/* .select-subtask svg:hover {
+  cursor:pointer;
+} */
+
 .select-subtask-span {
   color: lightgrey;
 }
 
 .select-subtask:hover {
   cursor:pointer;
+}
+
+.close-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.close-icon:hover  {
+  cursor: pointer;
+  background-color: lightgray;
+  border-radius: 50%;
+  opacity: 85%;
+  transform: scale(1.05);
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4); 
 }
 
 /* execution-buttons */
