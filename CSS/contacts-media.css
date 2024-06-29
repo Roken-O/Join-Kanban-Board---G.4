@@ -70,11 +70,12 @@
     }
 
     .contacts-list{
-        margin-top: 8px;
+        margin-top: -8px;
     }
 
     .contacts-list-container{
         width: 78%;
+        background-color: white;
     }
 
     /* PopUp */
@@ -204,6 +205,10 @@
 
 @media(max-width:840px){
 
+    .contacts-list{
+        margin-top: 8px;
+    }
+    
     .main-container-contacts{
         margin: 80px 32px 32px 0px;
         justify-content: center;

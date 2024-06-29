@@ -1,4 +1,6 @@
 @media (max-width: 1080px) {
+ 
+
   #main-container {
     height: auto;
     padding: 70px 64px 64px 296px;
@@ -115,6 +117,7 @@
 } */
 
 @media (max-width: 840px) {
+
   #main-container {
     padding: 70px 64px 64px 32px !important;
   }
@@ -159,6 +162,7 @@
 }
 
 @media (max-width: 455px) {
+
 
   #main-container{
     padding: 40px 64px 64px 8px !important;
@@ -226,6 +230,20 @@
 }
 
 @media (max-width: 430px) {
+  .sub-task-container img{
+    margin-left: 224px;
+  }
+  .close-check-icons-container{
+    justify-content: space-evenly;
+  }
+
+  .close-check-icons-container img {
+    margin-left: 8px !important;
+  }
+
+  .select-subtask input{
+    width:250px;
+  }
   .field-325 {
     width: 300px;
   }
@@ -251,9 +269,13 @@
   .create-task {
     margin-right: 0px;
   }
+  .select-subtask img{
+    margin-left:44px;
+  }
 }
  
 @media (max-width: 405px) {
+
   #main-container {
     padding: 40px 16px 64px 8px !important;
   }
@@ -270,6 +292,17 @@
 }
 
 @media (max-width: 360px) {
+
+  .sub-task-container img{
+    margin-left: 180px;
+  }
+  .close-check-icons-container img {
+    margin-left: 4px !important;
+  }
+
+  .select-subtask input{
+    width:180px;
+  }
   .field-325 {
     width: 260px;
   }
@@ -302,6 +335,9 @@
 }
 .dropdown-content {
   min-width: 270px;
+}
+.select-subtask img{
+  margin-left:8px;
 }
 }
 
