@@ -1,13 +1,10 @@
 let currentDraggedElement;
 
-// function initBoard(){
-//   includeHTML();
-//   setTimeout(() => {
-//   loadLocalStorage();
-//   checkTrueRegistered();
-//   getInitialsName();
-// }, 10);
-// }
+window.onload = function() {
+  loadContactListPopup();
+  loadTasksBoard();
+  includeHTML();
+}
 
 function openTaskDetails(taskId) {
   let taskDetails = document.getElementById('task');
@@ -59,7 +56,7 @@ function openTaskDetails(taskId) {
         <div class="popup-modify-delete-container">
           <div class="popup-del-edit">
             <img src="/assets/img/delete_icon.png">
-            <span onclick="deleteTask('${task['taskId']}')"> Delete </span>
+            <span onclick="deleteTask('${task['taskId']}'); closePopup()"> Delete </span>
           </div>
           <div class="popup-del-edit">
             <img src="/assets/img/pen_DARK.png">
@@ -76,38 +73,28 @@ function openTaskDetails(taskId) {
   
 }
 
+
 function loadContactListPopup() {
   let database = firebase.database();
   let contactEntries = database.ref('contacts');
 
   contactEntries.on('value', function(snapshot) {
-      // let contactsList = document.getElementById('contacts-list-popup-detail');
-      // contactsList.innerHTML = "";
-
       allContacts = [];
       snapshot.forEach(function(childSnapshot) {
           let contact = childSnapshot.val();
           allContacts.push(contact);
-
-          // contactsList.innerHTML += /*html*/ `
-          //     <div class="dropdown-item">
-          //       <div style="display: flex; align-items:center; justify-content: center; background: ${contact['color']}; height: 40px; width: 40px; border-radius: 40px; cursor: pointer;" id="contact-badge-list">${getInitials(contact['name'])}</div>
-          //       <label for="${contact['email']}">${contact['name']}</label>
-          //       <input type="checkbox" id="${contact['email']}" value="${contact['email']}" onclick="toggleContactAssignment(this)">
-          //     </div>`;
       });
   });
 }
 
-function editPopupTask(taskId) {
-  
-  let task = allTasks.find(t => t.taskId === taskId);
 
+function editPopupTask(taskId) {
+  let task = allTasks.find(t => t.taskId === taskId);
   if (task) {
     
     let editTask = document.getElementById('task-popup-edit-container');
     let currentTitle, currentDescription, currentDate, currentSubTask, currentCategory, currentPriority, currentPriorityText, currentSelection, currentCategoryColor;
-  
+
     for (let i = 0; i < allTasks.length; i++) {
       if (taskId === allTasks[i]['taskId']) {
         currentTitle = allTasks[i]['taskTitle'];
@@ -122,13 +109,13 @@ function editPopupTask(taskId) {
         break;
       }
     }
-  
+
     let contactsList = '';
     allContacts.forEach(contact => {
       let isChecked = currentSelection.some(selectedContact => selectedContact.email === contact.email);
       contactsList += /*html*/ `
         <div class="dropdown-item">
-          <div style="display: flex; align-items:center; justify-content: center; background: ${contact['color']}; height: 40px; width: 40px; border-radius: 40px; cursor: pointer;" id="contact-badge-list">${getInitials(contact['name'])}</div>
+          <div style="display: flex; align-items:center; justify-content: center; background: ${contact['color']}; color: white; height: 32px; width: 32px; border: 1px solid white; border-radius: 40px; cursor: pointer;" id="contact-badge-list">${getInitials(contact['name'])}</div>
           <label for="${contact['email']}">${contact['name']}</label>
           <input type="checkbox" id="${contact['email']}" value="${contact['email']}" onclick="toggleContactEditPopup(this)" ${isChecked ? 'checked' : ''}>
         </div>
@@ -140,23 +127,33 @@ function editPopupTask(taskId) {
       <input type="text" id="edit-task-description-container-popup" value="${currentDescription}">
       <input type="date" id="edit-task-date-container-popup" value="${currentDate}">
       <input type="text" id="edit-task-subtask-input-popup" placeholder="Subtask">
-      <button type="button" onclick="addSubTaskEditPopup()">Add Subtask</button>
+      <button id="add-subtask-popup-button" type="button" onclick="addSubTaskEditPopup()">Add Subtask</button>
       <ul id="subtask-list-edit-popup"></ul>
-      <div id="edit-task-category-container-popup">
-        <div class="dropbtn-popup" id="categorydropbtn-popup" style="background: ${currentCategoryColor}">${currentCategory}</div>
-        <div id="categoryDropdown" >
-          <a href="#" onclick="selectCategoryEditPopup('Technical Task')">Technical Task</a>
-          <a href="#" onclick="selectCategoryEditPopup('User Story')">User Story</a>
+      <section id="edit-task-category-container-popup">
+      <div id="edit-category-dropdown-container-popup" onclick="toggleCategoryDropdownPopup()">  
+        <div class="dropdown-popup" id="category-dropdown-popup" style="background: ${currentCategoryColor}; color: white;">${currentCategory}</div>
+        <div>
+          <img id="icon-category-dropdown-arrow-image-popup" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"/>
         </div>
       </div>
-      <div id="edit-task-priority-container-popup">
-        <div class="dropbtn-popup">${currentPriorityText} <img src="${currentPriority}" alt="Priority Icon"/></div>
-        <div id="priorityDropdown-popup" >
-          <a href="#" onclick="selectPriorityEditPopup('/assets/img/urgent_icon.svg', 'Urgent')">Urgent</a>
-          <a href="#" onclick="selectPriorityEditPopup('/assets/img/medium_icon.svg', 'Medium')">Medium</a>
-          <a href="#" onclick="selectPriorityEditPopup('/assets/img/low_icon.svg', 'Low')">Low</a>
+        <div id="category-dropdown-popup-container" class="category-dropdown-popup-container d-none">
+          <div class="dropdown-item-category" style="cursor: pointer;" onclick="selectCategoryEditPopup('Technical Task')">Technical Task</div>
+          <div class="dropdown-item-category" style="cursor: pointer;" onclick="selectCategoryEditPopup('User Story')">User Story</div>
+        </div>
+      </section>
+      <section id="edit-task-priority-container-popup">
+      <div id="edit-priority-container-popup" onclick="togglePriorityDropdownPopup()">        
+        <div class="dropdown-popup">${currentPriorityText} <img src="${currentPriority}" alt="Priority Icon"/></div>
+        <div>
+          <img id="icon-priority-dropdown-arrow-image-popup" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"/>
         </div>
       </div>
+        <div id="priority-dropdown-popup" class="priority-dropdown-popup d-none">
+          <div class="dropdown-item-priority" style="cursor: pointer;" onclick="selectPriorityEditPopup('/assets/img/urgent_icon.svg', 'Urgent')">Urgent</div>
+          <div class="dropdown-item-priority" style="cursor: pointer;" onclick="selectPriorityEditPopup('/assets/img/medium_icon.svg', 'Medium')">Medium</div>
+          <div class="dropdown-item-priority" style="cursor: pointer;" onclick="selectPriorityEditPopup('/assets/img/low_icon.svg', 'Low')">Low</div>
+        </div>
+      </section>
       <section id="edit-task-assignment-container-popup">
           <div id="contact-list-selection-popup" onclick="toggleContactDropdownPopup()">
             <span>Assign Contacts</span>
@@ -169,7 +166,7 @@ function editPopupTask(taskId) {
           </div>
         
       </section>
-      <button onclick="saveEditedPopupTask('${taskId}'); openTaskDetails('${taskId}'); hidePopupEditContainer()">Save</button>
+      <button id="save-popup-button" onclick="saveEditedPopupTask('${taskId}'); openTaskDetails('${taskId}'); hidePopupEditContainer()">Save</button>
     `;
   
     selectedContactsEdit = currentSelection.slice();
@@ -179,14 +176,18 @@ function editPopupTask(taskId) {
   }
 }
 
+editPopupTask(taskId);
+
 function toggleContactsDropdown() {
   const dropdown = document.getElementById('contactsDropdown');
   dropdown.classList.toggle('show');
 }
 
+
 function showPopupEditContainer() {
   document.getElementById('task-popup-edit-container').style.display = 'flex';
 }
+
 
 function hidePopupEditContainer() {
   document.getElementById('task-popup-edit-container').style.display = 'none';
@@ -202,6 +203,7 @@ function toggleContactEditPopup(checkbox) {
     selectedContactsEdit = selectedContactsEdit.filter(contact => contact.email !== contactEmail);
   }
 }
+
 
 function toggleContactAssignmentPopup(checkbox) {
   let contactEmail = checkbox.value;
@@ -223,6 +225,34 @@ function toggleContactDropdownPopup() {
       dropdownArrow.src = "/assets/img/dropdown_up.svg";
   } else {
       contactsDropdown.classList.add('d-none');
+      dropdownArrow.src = "/assets/img/dropdown_down.svg";
+  }
+}
+
+
+function toggleCategoryDropdownPopup() {
+  let categoryDropdownEdit = document.getElementById('category-dropdown-popup-container');
+  let dropdownArrow = document.getElementById('icon-category-dropdown-arrow-image-popup');
+
+  if (categoryDropdownEdit.classList.contains('d-none')) {
+      categoryDropdownEdit.classList.remove('d-none');
+      dropdownArrow.src = "/assets/img/dropdown_up.svg";
+  } else {
+      categoryDropdownEdit.classList.add('d-none');
+      dropdownArrow.src = "/assets/img/dropdown_down.svg";
+  }
+}
+
+
+function togglePriorityDropdownPopup() {
+  let categoryDropdownEdit = document.getElementById('priority-dropdown-popup');
+  let dropdownArrow = document.getElementById('icon-priority-dropdown-arrow-image-popup');
+
+  if (categoryDropdownEdit.classList.contains('d-none')) {
+      categoryDropdownEdit.classList.remove('d-none');
+      dropdownArrow.src = "/assets/img/dropdown_up.svg";
+  } else {
+      categoryDropdownEdit.classList.add('d-none');
       dropdownArrow.src = "/assets/img/dropdown_down.svg";
   }
 }
@@ -252,8 +282,10 @@ function displaySubTasksEditPopup() {
     let subtaskItemEdit = document.createElement('li');
     subtaskItemEdit.innerHTML = /*html*/`
       <input type="checkbox" id="subtask-edit-${index}" ${subtask.done ? 'checked' : ''} onclick="toggleSubtaskDoneEdit(${index})">
-      <label for="subtask-edit-${index}">${subtask.name}</label>
-      <button type="button" onclick="removeSubTaskEditPopup(${index})">X</button>
+      <div style="display: flex; justify-content: space-between; width: 80%;">
+        <label for="subtask-edit-${index}">${subtask.name}</label>
+        <button style="background: transparent; border: none; cursor: pointer;" type="button" onclick="removeSubTaskEditPopup(${index})"><img style="height: 12px; width: 12px;" src="assets/img/delete_icon.svg" alt=""></button>
+      </div>
     `;
     subtaskListEdit.appendChild(subtaskItemEdit);
   });
@@ -265,19 +297,6 @@ function removeSubTaskEditPopup(index) {
   displaySubTasksEditPopup();
 }
 
-function toggleCategoryDropdownPopup() {
-  let categoryDropdown = document.getElementById('task-category-dropdown');
-  let dropdownArrow = document.getElementById('icon-dropdown-arrow-image');
-
-  if (categoryDropdown.classList.contains('d-none')) {
-      categoryDropdown.classList.remove('d-none');
-      dropdownArrow.src = "/assets/img/dropdown_up.svg";
-  } else {
-      categoryDropdown.classList.add('d-none');
-      dropdownArrow.src = "/assets/img/dropdown_down.svg";
-  }
-}
-
 
 function selectCategoryPopup(event, category) {
   selectedCategory = category;
@@ -285,6 +304,7 @@ function selectCategoryPopup(event, category) {
   document.getElementById('task-category-dropdown').classList.add('d-none');
   document.getElementById('icon-dropdown-arrow-image').src = "/assets/img/dropdown_down.svg";
 }
+
 
 function selectCategoryEditPopup(category) {
   let categoryColor;
@@ -294,13 +314,14 @@ function selectCategoryEditPopup(category) {
     categoryColor = '#1fd7c1';
   }
 
-  document.getElementById('categorydropbtn-popup').innerText = category;
-  document.getElementById('categorydropbtn-popup').style.background = categoryColor;
+  document.getElementById('category-dropdown-popup').innerText = category;
+  document.getElementById('category-dropdown-popup').style.background = categoryColor;
 }
 
 
-function selectPriorityEditPopup(priorityIcon) {
-  document.querySelector('#edit-task-priority-container-popup .dropbtn-popup img').src = priorityIcon;
+function selectPriorityEditPopup(priorityIcon, priorityText) {
+  let dropdown = document.querySelector('#edit-task-priority-container-popup .dropdown-popup');
+  dropdown.innerHTML = `${priorityText} <img src="${priorityIcon}" alt="Priority Icon"/>`;
 }
 
 
@@ -309,8 +330,10 @@ function saveEditedPopupTask(taskId) {
   let editTitle = document.getElementById('edit-task-title-container-popup').value;
   let editDescription = document.getElementById('edit-task-description-container-popup').value;
   let editDate = document.getElementById('edit-task-date-container-popup').value;
-  let editCategory = document.querySelector('#edit-task-category-container-popup .dropbtn-popup').innerText;
-
+  let editCategory = document.querySelector('#edit-task-category-container-popup .dropdown-popup').innerText;
+  let editPriority = document.querySelector('#edit-task-priority-container-popup .dropdown-popup img').src;
+  let editPriorityText = document.querySelector('#edit-task-priority-container-popup .dropdown-popup').innerText.split(' ')[0];
+  
   let editCategoryColor;
   if (editCategory === 'User Story') {
     editCategoryColor = '#0038ff';
@@ -319,9 +342,6 @@ function saveEditedPopupTask(taskId) {
   } else {
     editCategoryColor = '#ffffff';
   }
-
-  let editPriority = document.querySelector('#edit-task-priority-container-popup .dropbtn-popup img').src;
-  let editPriorityText = document.querySelector('#edit-task-priority-container-popup .dropbtn-popup').innerText.split(' ')[0];
 
   let task = {
     taskTitle: editTitle,
@@ -343,7 +363,6 @@ function saveEditedPopupTask(taskId) {
   document.getElementById('task-popup-edit-container').innerHTML = "";
   selectedContactsEdit = [];
   subtasksEdit = [];
-  
 }
 
 
@@ -377,31 +396,6 @@ function closePopup() {
 
 function doNotClose(event) {
   event.stopPropagation();
-}
-
-
-function filterTask() {
-  let search = document.getElementById("search").value;
-  search = search.toLowerCase();
-  if (search.length > 2) {
-    let content = document.getElementById("content");
-    content.innerHTML = "";
-    // for (let i = 0; i < data.length; i++) {
-    //   const pokemonName = data[i]["name"];
-    //   if (pokemonName.toLowerCase().includes(search)) {
-    //     let pokemonData = data[i];
-    //     content.innerHTML += renderCards(i, pokemonData);
-    //     rendertypes(i, pokemonData);
-    //   }
-    // } 
-  }
-}
-
-
-window.onload = function() {
-  loadContactListPopup();
-    loadTasksBoard();
-    includeHTML();
 }
 
 
@@ -512,4 +506,22 @@ function removeHighlight(category) {
   setTimeout(() => {
   document.getElementById(category).classList.remove('drag-area-highlight');
   }, 1000);
+}
+
+
+function filterTask() {
+  let filterValue = document.getElementById('filterTaskInput').value.toUpperCase();
+  let tasks = document.querySelectorAll('.task-board-container');
+
+  tasks.forEach(task => {
+      let title = task.querySelector('#task-title-container span').textContent.toUpperCase();
+      let description = task.querySelector('#task-description-container span').textContent.toUpperCase();
+      let category = task.querySelector('#task-category-container').textContent.toUpperCase();
+
+      if (title.includes(filterValue) || description.includes(filterValue) || category.includes(filterValue)) {
+          task.style.display = '';
+      } else {
+          task.style.display = 'none';
+      }
+  });
 }
