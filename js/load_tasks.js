@@ -38,7 +38,7 @@ function loadTasks() {
           <div class="task-item-output" id="task-subtask-container">${subtasksHTML}</div>
           <div id="task-button-container">
             <div style="display: flex; align-items: center; cursor: pointer;" id="task-delete-button"><img style="height: 12px; width: 12px; cursor: pointer;" src="/assets/img/delete_icon.svg" alt="" /><button style="background: transparent; border: none; cursor: pointer;" onclick="deleteTask('${task['taskId']}')">Delete</button></div>
-            <div style="display: flex; align-items: center; cursor: pointer;" id="task-edit-button"><img style="height: 12px; width: 12px; cursor: pointer;" src="/assets/img/edit_icon.svg" alt="" /><button style="background: transparent; border: none; cursor: pointer;" onclick="editTask('${task['taskId']}')">Edit</button></div>
+            <div style="display: flex; align-items: center; cursor: pointer;" id="task-edit-button"><img style="height: 12px; width: 12px; cursor: pointer;" src="/assets/img/pen_DARK.svg" alt="" /><button style="background: transparent; border: none; cursor: pointer;" onclick="editTask('${task['taskId']}')">Edit</button></div>
           </div>
         </div>`;
     });

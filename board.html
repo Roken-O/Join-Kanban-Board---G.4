@@ -32,7 +32,7 @@
             <div class="board-search-container">
                 <h1>Board</h1>
                 <div class="input-search-container">
-                    <input oninput="filterTask()" id="search" type="text" placeholder="Find Task">
+                    <input id="filterTaskInput" type="text" onkeyup="filterTask()" placeholder="Search for tasks..">
                     <div class="button-container"><a href="/assets/forms/add_task.html">
                             <button>Add task
                                 <svg id="plus_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            
+
                   
             <section id="content" class="column-container">
                 <section id="to-do-column-container">
@@ -87,7 +87,6 @@
                 <section id="done-column-container">
                 <div class="column-head">
                     <span>Done</span>
-                    <img src="./assets/img/plus_icon.png">
                 </div>
                 <div class="sub-column-container" id="done" ondrop="moveTo('done')" ondragleave="removeHighlight('done')" ondragover="allowDrop(event); highlight('done')">
                     
