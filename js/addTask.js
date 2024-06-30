@@ -334,14 +334,13 @@ function toggleContactAssignment(checkbox) {
 
 
 function showInitialColor() {
-
   if (selectedContacts.length > 0) {
       document.getElementById('contacts-initial').innerHTML = '';
 
       for (let i = 0; i < selectedContacts.length; i++) {
         let contact = selectedContacts[i];
         document.getElementById('contacts-initial').innerHTML += `
-      <div  style="display: flex; align-items:center; justify-content: center; background: ${contact['color']}; height: 40px; width: 40px; border-radius: 40px; cursor: pointer;" id="contact-badge-list">${getInitials(contact['name'])}</div>`;
+      <div class="initial-container"  style="display: flex; align-items:center; justify-content: center; background: ${contact['color']}; height: 40px; width: 40px; border-radius: 40px; cursor: pointer;" id="contact-badge-list">${getInitials(contact['name'])}</div>`;
       }
   } else {
     document.getElementById('contacts-initial').style.display = 'none';
@@ -509,7 +508,6 @@ function setMinDateDatepicker() {
 function animateButton() {
   document.getElementById('alertMessage').style.display = "flex";
   let alertMessage = document.getElementById("popup-message");
-
   setTimeout(() => {
     alertMessage.classList.add('translateNull');
     setTimeout(() => {
@@ -517,6 +515,7 @@ function animateButton() {
       document.getElementById('alertMessage').style.display = "none";
     }, 2000);
   }, 250);
+
 }
 
 

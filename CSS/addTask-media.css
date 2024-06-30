@@ -1,5 +1,7 @@
 @media (max-width: 1080px) {
- 
+  .dropdown-list {
+    top: 583px;
+  }
 
   #main-container {
     height: auto;
@@ -117,6 +119,9 @@
 } */
 
 @media (max-width: 840px) {
+  .dropdown-list {
+    top: 577px;
+  }
 
   #main-container {
     padding: 70px 64px 64px 32px !important;
@@ -163,6 +168,9 @@
 
 @media (max-width: 455px) {
 
+  .dropdown-list {
+    top: 486px;
+}
 
   #main-container{
     padding: 40px 64px 64px 8px !important;
@@ -230,6 +238,9 @@
 }
 
 @media (max-width: 430px) {
+  .dropdown-list {
+    min-width: 308px;
+}
   .sub-task-container img{
     margin-left: 224px;
   }
@@ -275,6 +286,9 @@
 }
  
 @media (max-width: 405px) {
+  .dropdown-list {
+    top: 471px;
+}
 
   #main-container {
     padding: 40px 16px 64px 8px !important;
@@ -292,6 +306,9 @@
 }
 
 @media (max-width: 360px) {
+  .dropdown-list {
+    min-width: 274px;
+}
 
   .sub-task-container img{
     margin-left: 180px;
