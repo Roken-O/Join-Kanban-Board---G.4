@@ -648,10 +648,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 15% 15%;
+  margin: 10% 20%;
   background: white;
   position: fixed;
-  padding: 32px 120px;
+  padding: 32px;
   border-radius: 10px;
 }
 

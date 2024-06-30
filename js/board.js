@@ -173,6 +173,7 @@ function editPopupTask(taskId) {
         
       </section>
       <button id="save-popup-button" onclick="saveEditedPopupTask('${taskId}'); openTaskDetails('${taskId}'); hidePopupEditContainer()">Save</button>
+      <button id="cancel-save-popup-button" onclick="openTaskDetails('${taskId}'); hidePopupEditContainer()">Cancel</button>
     `;
   
     selectedContactsEdit = currentSelection.slice();
