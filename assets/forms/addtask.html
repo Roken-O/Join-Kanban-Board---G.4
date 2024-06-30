@@ -78,16 +78,16 @@
                     <div class="padding-bottom-24" id="task-priority-container">
                         <div class="mb-8 field-headline">Prio</div>
                         <div class="flex gap-16 prio-container" id="task-priority-container">
-                            <button onclick="createCategoryIconUrgent('priority-urgent-text')" id="priority-urgent-text"
+                            <button onclick="createCategoryIconUrgent(event, 'priority-urgent-text')" id="priority-urgent-text"
                             class="btn urgent flex-just-align-center" 
                             >Urgent
                             <img id="task-urgent-icon" src="/assets/img/urgent_icon.png" />
                             </button>
-                            <button onclick="createCategoryIconMedium('priority-medium-text')" id="priority-medium-text"
+                            <button onclick="createCategoryIconMedium(event, 'priority-medium-text')" id="priority-medium-text"
                             class="btn urgent flex-just-align-center" >Medium
                             <img id="task-medium-icon" class="size-medium" src="/assets/img/medium_icon.svg" />
                             </button>
-                            <button onclick="createCategoryIconLow('priority-low-text')" id="priority-low-text"
+                            <button onclick="createCategoryIconLow(event, 'priority-low-text')" id="priority-low-text"
                             class="btn low flex-just-align-center">Low
                             <img  id="task-low-icon" class="size-low" src="/assets/img/low_icon.svg" />
                             </button>
@@ -189,7 +189,6 @@
         
         <script src="/js/firebase.js"></script>
         <script src="/js/script.js"></script>
-
         <script src="/js/addTask.js"></script>
         <script src="/js/load_tasks.js"></script>
         <script src="/js/index.js"></script>

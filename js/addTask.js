@@ -5,15 +5,19 @@ let allContacts = [];
 let subtasks = [];
 let subtasksEdit = [];
 let allTasks = [];
-let boardCategory = ['toDo', 'awaitFeedback', 'inProgress', 'done']
+let boardCategory = ['toDo', 'awaitFeedback', 'inProgress', 'done'];
 
-
-function initTask() {
+ function initTask() {
   includeHTML();
   loadContactList();
   loadTasks();
   setMinDateDatepicker();
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  initIndex();
+  initSummary();
+});
 
 
 function deleteTask(taskId) {
@@ -384,29 +388,29 @@ function selectCategory(event, category) {
 }
 
 
-function createCategoryIconUrgent(buttonId) {
+function createCategoryIconUrgent(event, buttonId) {
+  event.preventDefault();
   priority = '/assets/img/urgent_icon.svg';
   changeColor(buttonId);
 
 }
 
 
-function createCategoryIconMedium(buttonId) {
+function createCategoryIconMedium(event, buttonId) {
+  event.preventDefault();
   priority = '/assets/img/medium_icon.svg';
   changeColor(buttonId);
 }
 
 
-function createCategoryIconLow(buttonId) {
+function createCategoryIconLow(event, buttonId) {
+  event.preventDefault();
   priority = '/assets/img/low_icon.svg';
   changeColor(buttonId);
 }
 
 function changeColor(buttonId) {
   resetButtons();
-
-  let mediumIcon = document.getElementById('task-medium-icon');
-  let lowIcon = document.getElementById('task-low-icon');
 
   if (buttonId === 'priority-urgent-text') {
     document.getElementById('task-urgent-icon').src = '/assets/img/urgent_icon_WHT.png';
@@ -457,19 +461,6 @@ function resetButtons() {
   document.getElementById('priority-low-text').style.color = 'black';
   document.getElementById('task-low-icon').src = '/assets/img/low_icon.png';
 }
-
-
-
-//   let paths = ['urgent-path1', 'urgent-path2','medium-path1', 'medium-path2','low-path1', 'low-path2'];
-//   for (let i = 0; i < paths.length; i++) {
-//       document.getElementById(paths[i]).classList.remove('cls-13');
-//   const buttons = ['btn1', 'btn2', 'btn3'];
-//   for (const id of buttons) {
-//       document.getElementById(id).style.backgroundColor = 'white';
-//       document.getElementById(id).style.color = 'black';
-//   }
-// }
-
 
 function selectCategoryEdit(category) {
   let categoryColor;
@@ -536,3 +527,4 @@ function showPlusIcon() {
   document.getElementById('seperator-container').style.display = "none";
   document.getElementById('icon-close-image').style.display = "none";
 }
+

@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 async function initSummary() {
     await checkLoadUsers();
-    // loadLocalStorage();
     checkRegisteredUser();
     includeHTML();
     checkTrueRegistered();
@@ -67,7 +66,7 @@ function checkTrueRegistered() {
 }
 
 function greetAnimate() {
-    if (window.innerWidth < 1100) {
+    if (window.innerWidth < 1210) {
         setTimeout(() => {
             let leftMainContainer = document.getElementById('left-main-container');
             let greet = document.getElementById('greet');
@@ -141,6 +140,7 @@ function numOfDone(){
     }
     return numOfDoneTasks;
 }
+
 function numOfUrgent(){
     let numOfUrgentTasks = 0;
     for (let index = 0; index < allTasksSummary.length; index++) {

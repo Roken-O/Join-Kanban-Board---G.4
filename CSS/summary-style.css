@@ -1,5 +1,6 @@
 #main-container{
   height: 73.5vh;
+  padding: 36px 64px 64px 296px;
 }
 
 span {
@@ -230,6 +231,7 @@ span {
 }
 
 .greet h2 {
+ 
   font-size: 36px;
   font-weight: 500;
 }
