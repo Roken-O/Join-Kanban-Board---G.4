@@ -2,6 +2,10 @@
   display: none;
 }
 
+.d-flex {
+  display: flex;
+}
+
 #board-main-container {
   z-index: -1;
   padding: 0px 0px 32px 296px;
@@ -308,7 +312,7 @@
   font-family: 'Inter', sans-serif;
 }
 
-#add-subtask-popup-button, #save-popup-button {
+#add-subtask-popup-button, #save-popup-button, #cancel-save-popup-button {
   border: none;
   border-radius: 6px;
   display: flex;
@@ -316,7 +320,12 @@
   align-items: center;
   padding: 8px 16px;
   color: white;
+  background: #2a3647;
+}
+
+#add-subtask-popup-button:hover, #save-popup-button:hover, #cancel-save-popup-button:hover {
   background: #29abe2;
+  cursor: pointer;
 }
 
 .popup-task-container {
@@ -331,6 +340,11 @@
 }
 
 .animate-popup-task-container {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.animate-popup-addtask-container {
   transform: translateX(0);
   opacity: 1;
 }
@@ -633,8 +647,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
-  margin-top: 100px;
+  justify-content: center;
+  margin: 15% 15%;
+  background: white;
+  position: fixed;
+  padding: 32px 120px;
+  border-radius: 10px;
 }
 
 #task-task-edit-form {
@@ -711,13 +729,14 @@
 
 .dropdown-list {
   position: fixed;
-  margin-left: 5%;
+  margin-top: 4px;
   background-color: white;
   z-index: 1;
   max-height: 150px;
   min-width: 250px;
   overflow-y: auto;
-  border-radius: 8px;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
 }
 
 .dropdown-list::-webkit-scrollbar {
@@ -750,10 +769,6 @@
 
 .dropdown-list .dropdown-item:hover {
   background-color: #f1f1f1;
-}
-
-.d-none {
-  display: none;
 }
 
 #contacts-dropdown-headline {
@@ -818,23 +833,39 @@ input[type="date"]:before {
 }
 
 #edit-task-title-container-popup {
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0px 16px;
+  width: 325px;
+  height: 36px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
 }
 
 #edit-task-description-container-popup {
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0px 16px;
+  width: 325px;
+  height: 36px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
 }
 
 #edit-task-date-container-popup {
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0px 16px;
+  width: 325px;
+  height: 36px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
 }
 
 #edit-task-subtask-input-popup {
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0px 16px;
+  width: 325px;
+  height: 36px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid lightgray;
 }
 
 #edit-task-title-container-popup:focus {
@@ -877,22 +908,35 @@ input[type="date"]:before {
 
 #contact-list-selection-popup {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 32px;
-  margin-bottom: 8px;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  padding: 0px 16px 0px 16px;
+  width: 325px;
+  height: 36px;
 }
 
 #edit-category-dropdown-container-popup {
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  padding: 0px 16px 0px 16px;
+  width: 325px;
+  height: 36px;
 }
 
 #edit-priority-container-popup {
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  padding: 0px 16px 0px 16px;
+  width: 325px;
+  height: 36px;
 }
 
 #icon-category-dropdown-arrow-image-popup {
@@ -909,16 +953,20 @@ input[type="date"]:before {
 
 .category-dropdown-popup-container {
   position: fixed;
-  margin-top: 32px;
+  margin-top: 40px;
   background-color: white;
   z-index: 1;
   max-height: 150px;
   min-width: 250px;
   overflow-y: auto;
-  border-radius: 8px;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
 }
 
 .category-dropdown-popup-container .dropdown-item-category {
+  width: 325px;
+  height: 36px;
+  padding: 0px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -926,19 +974,29 @@ input[type="date"]:before {
 
 .priority-dropdown-popup {
   position: fixed;
-  margin-top: 32px;
+  margin-top: 40px;
   background-color: white;
   z-index: 1;
   max-height: 150px;
   min-width: 250px;
   overflow-y: auto;
-  border-radius: 8px;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
 }
 
 .priority-dropdown-popup .dropdown-item-priority {
+  width: 325px;
+  height: 36px;
+  padding: 0px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#contacts-list-popup-detail .dropdown-item {
+  width: 325px;
+  height: 36px;
+  display: flex;
 }
 
 .priority-dropdown-popup .dropdown-item-priority:hover {
@@ -949,3 +1007,60 @@ input[type="date"]:before {
   background-color: #f1f1f1;
 }
 
+#category-dropdown-popup {
+  margin-left: -12px;
+}
+
+#main-container-popup-board {
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 32px;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
+}
+
+#task-title-container {
+  max-width: 150px;
+  max-height: 50px;
+  overflow-x: auto;
+}
+
+#task-description-container {
+  max-width: 150px;
+  max-height: 50px;
+  overflow-x: auto;
+}
+
+#task-title-container::-webkit-scrollbar {
+  display: none;
+}
+
+#task-title-container::-webkit-scrollbar-track {
+   display: none;
+}
+
+#task-description-container::-webkit-scrollbar {
+  display: none;
+}
+
+#task-description-container::-webkit-scrollbar-track {
+   display: none;
+}
+
+#popup-addTask-BG {
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -99;
+}

@@ -2,8 +2,14 @@ let currentDraggedElement;
 
 window.onload = function() {
   loadContactListPopup();
+  loadContactList();
   loadTasksBoard();
   includeHTML();
+  createCategoryIconUrgent();
+  createCategoryIconMedium();
+  createCategoryIconLow();
+  changeColor();
+  resetButtons();
 }
 
 function openTaskDetails(taskId) {
@@ -176,7 +182,6 @@ function editPopupTask(taskId) {
   }
 }
 
-editPopupTask(taskId);
 
 function toggleContactsDropdown() {
   const dropdown = document.getElementById('contactsDropdown');
@@ -393,6 +398,17 @@ function closePopup() {
   taskDetails.style.display = 'none';
 }
 
+function closePopupBoard() {
+  let taskDetails = document.getElementById('main-container-popup-board');
+  if(taskDetails.classList.contains('d-none')) {
+    taskDetails.classList.remove('d-none');
+    taskDetails.classList.add('d-flex');
+  } else if (taskDetails.classList.contains('d-flex')) {
+    taskDetails.classList.remove('d-flex');
+    taskDetails.classList.add('d-none');
+  }
+}
+
 
 function doNotClose(event) {
   event.stopPropagation();
@@ -525,3 +541,19 @@ function filterTask() {
       }
   });
 }
+
+
+function showAddTaskPopupBoard() {
+  document.getElementById('main-container-popup-board').classList.remove('d-none');
+  document.getElementById('main-container-popup-board').classList.add('d-flex');
+  // setTimeout(() => {
+  //   document.getElementById('task-task-form').classList.add('animate-popup-addtask-container');
+  // }, 125);
+}
+
+
+function hideAddTaskPopupBoard() {
+  document.getElementById('main-container-popup-board').classList.remove('d-flex');
+  document.getElementById('main-container-popup-board').classList.add('d-none');
+}
+

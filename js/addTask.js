@@ -332,6 +332,7 @@ function toggleContactAssignment(checkbox) {
   }
 }
 
+
 function showInitialColor() {
 
   if (selectedContacts.length > 0) {
@@ -346,6 +347,8 @@ function showInitialColor() {
     document.getElementById('contacts-initial').style.display = 'none';
   }
 }
+
+
 function toggleContactDropdown() {
   let contactsDropdown = document.getElementById('contacts-list');
   let dropdownArrow = document.getElementById('icon-contacts-dropdown-arrow-image');
@@ -406,8 +409,8 @@ function createCategoryIconLow(buttonId) {
 function changeColor(buttonId) {
   resetButtons();
 
-  let mediumIcon = document.getElementById('task-medium-icon');
-  let lowIcon = document.getElementById('task-low-icon');
+  // let mediumIcon = document.getElementById('task-medium-icon');
+  // let lowIcon = document.getElementById('task-low-icon');
 
   if (buttonId === 'priority-urgent-text') {
     document.getElementById('task-urgent-icon').src = '/assets/img/urgent_icon_WHT.png';
@@ -501,6 +504,7 @@ function setMinDateDatepicker() {
   document.getElementById('task-date-picker').value = unformDate;
 }
 
+
 // animation
 function animateButton() {
   document.getElementById('alertMessage').style.display = "flex";
@@ -515,10 +519,12 @@ function animateButton() {
   }, 250);
 }
 
+
 // clear-button
 function changeCleaningColor() {
   document.querySelector('#close_icon .cls-20').style.fill = '#00bee8';
 }
+
 
 function changeCleaningColorToStandard() {
   document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
@@ -531,6 +537,8 @@ function showCheckAndCloseIcons() {
   document.getElementById('seperator-container').style.display = "flex";
   document.getElementById('icon-close-image').style.display = "flex";
 }
+
+
 function showPlusIcon() {
   document.getElementById('icon-plus-image').style.display = "flex";
   document.getElementById('icon-check-image').style.display = "none";
