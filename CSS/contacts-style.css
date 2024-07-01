@@ -83,7 +83,6 @@
 }
 
 .first-letters-name-contactlist-bg {
-  /* background-color: #ffbb2a; */
   width: 42px;
   height: 42px;
   display: flex;
@@ -135,36 +134,6 @@
   justify-content: center;
   align-items: center;
 }
-
-/* #add-new-contact-popUp-bg{
-  background: rgba(35, 36, 35, 0.3);
-  z-index: 998;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translateX(1750px);
-  transition: 200ms ease-in-out;
-}
-
-#edit-contact-popUp-bg{
-  background: rgba(35, 36, 35, 0.3);
-  z-index: 998;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translateX(1750px);
-  transition: 200ms ease-in-out;
-} */
 
 .translateX-null {
   transform: translateX(0) !important;
@@ -408,7 +377,6 @@
 }
 
 .first-letters-name-bg {
-  /* background-color: #ffbb2a; */
   width: 120px;
   height: 120px;
   display: flex;
