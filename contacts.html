@@ -11,13 +11,19 @@
     <link rel="stylesheet" href="/CSS/contacts-media.css" />
     <link rel="stylesheet" href="/CSS/media.css" />
     <link rel="icon" href="/assets/img/join_favicon.svg" />
-    
+
     <title>Join</title>
   </head>
   <body onload="includeHTML();initContact()">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
-    <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
-      <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
+    <div
+      id="contact-initial-container"
+      class="initial-container"
+      onclick="toggleShowLogout()"
+    >
+      <div id="sub-contact-initial-container" class="sub-initial-container">
+        G
+      </div>
     </div>
     <section class="main-container-contacts">
       <div class="contacts-list-container">
@@ -40,7 +46,7 @@
             <div class="parting-line-h1-horizontal"></div>
           </div>
           <div id="contact-responsive" class="contact-responsive">
-           <!-- render -->
+            <!-- render -->
           </div>
         </div>
         <div id="contacts-list" class="contacts-list flex-col-align-center">
@@ -52,9 +58,7 @@
             <span>Add new contact</span>
             <img src="./assets/img/add_contact_icon.svg" alt="" />
           </button>
-          <div id="contacts-list-content">
-           
-          </div>
+          <div id="contacts-list-content"></div>
           <img
             onclick="addNewContactPopUp()"
             class="button_add_contact_dark_blue"
@@ -98,7 +102,10 @@
                 alt=""
               />
             </div>
-            <div id="popUp-edit-leftside-content" class="popUp-edit-add-leftside-content">
+            <div
+              id="popUp-edit-leftside-content"
+              class="popUp-edit-add-leftside-content"
+            >
               <img src="./assets/img/join_logo_WHT.svg" alt="" />
               <span class="span-Contact">Add contact</span>
               <span class="span-tasks-are-better"
@@ -139,7 +146,11 @@
                 alt=""
               />
             </div>
-            <form onsubmit="validateAndSubmit(event)" class="form-add-new-contact" action="">
+            <form
+              onsubmit="validateAndSubmit(event)"
+              class="form-add-new-contact"
+              action=""
+            >
               <input
                 placeholder="Name"
                 id="contact-trial-name"
@@ -161,7 +172,7 @@
                 type="text"
                 required
               />
-              
+
               <div class="button-container-add">
                 <img
                   onclick="closePupUpaddNewOrEdditContact()"
@@ -169,7 +180,10 @@
                   src="./assets/img/button_cancel.svg"
                   alt="Abbrechen"
                 />
-                <button type="submit" style="background: transparent; border: none;">
+                <button
+                  type="submit"
+                  style="background: transparent; border: none"
+                >
                   <img
                     class="button_create_contact"
                     src="./assets/img/button_create_contact.svg"
@@ -178,7 +192,6 @@
                 </button>
               </div>
             </form>
-            
           </div>
         </div>
       </div>
@@ -187,7 +200,7 @@
           <div class="popUp-edit-add-leftside">
             <div class="container-close-icon-responsive">
               <img
-               id="close-icon-edit"
+                id="close-icon-edit"
                 onclick="closePupUpaddNewOrEdditContact()"
                 class="close-icon-responsive"
                 src="./assets/img/close_icon_white.svg"
@@ -213,8 +226,8 @@
               />
             </div>
             <div id="form-container">
-            <!-- render -->
-          </div>
+              <!-- render -->
+            </div>
           </div>
         </div>
       </div>
