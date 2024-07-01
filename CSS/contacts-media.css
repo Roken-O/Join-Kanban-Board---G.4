@@ -59,7 +59,11 @@
     align-items: flex-start;
   }
 }
-
+@media (min-width: 1050px) {
+  .contacts-container-responsive {
+    display: none !important;
+  }
+}
 @media (max-width: 1050px) {
   .contacts-container {
     display: none;
@@ -330,10 +334,6 @@
     height: 70%;
   }
 
-  /* .contacts-container-responsive {
-        padding: 57px 32px;
-    } */
-
   .h1-mobil {
     font-size: 40px;
   }
@@ -426,12 +426,6 @@
 @media (max-width: 400px) {
   #breakline-contactlist {
     width: 300px;
-  }
-}
-
-@media (min-width: 1050px) {
-  .contacts-container-responsive {
-    display: none !important;
   }
 }
 
