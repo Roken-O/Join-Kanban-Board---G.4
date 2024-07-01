@@ -336,6 +336,7 @@ function toggleContactAssignment(checkbox) {
   }
 }
 
+
 function showInitialColor() {
   if (selectedContacts.length > 0) {
       document.getElementById('contacts-initial').innerHTML = '';
@@ -349,6 +350,8 @@ function showInitialColor() {
     document.getElementById('contacts-initial').style.display = 'none';
   }
 }
+
+
 function toggleContactDropdown() {
   let contactsDropdown = document.getElementById('contacts-list');
   let dropdownArrow = document.getElementById('icon-contacts-dropdown-arrow-image');
@@ -428,27 +431,10 @@ function changeColor(buttonId) {
 
     document.getElementById('priority-low-text').style.backgroundColor = '#7ae229';
     document.getElementById('priority-low-text').style.color = 'white';
-
-    // const buttons = [
-    //     { id: 'btn1', color: '#ff3d00' },
-    //     { id: 'btn2', color: '#ff7a800' },l
-    //     { id: 'btn3', color: '#7ae229' }
-    // ];
-    // for (const button of buttons) { //button Schleifenvariable; buttons = Array
-    //     if (button.id === buttonId) {
-    //         document.getElementById(button.id).style.backgroundColor = button.color;
-    //         document.getElementById(button.id).style.color = 'white';
-    //     }
-    // }
-    // document.getElementById(path1Id).classList.add('cls-13');
-    // document.getElementById(path2Id).classList.add('cls-13');
   }
 }
 
 function resetButtons() {
-  // Buttons zurücksetzen
-
-
   document.getElementById('priority-urgent-text').style.backgroundColor = 'white';
   document.getElementById('priority-urgent-text').style.color = 'black';
   document.getElementById('task-urgent-icon').src = '/assets/img/urgent_icon.png';
@@ -491,6 +477,7 @@ function setMinDateDatepicker() {
   document.getElementById('task-date-picker').value = unformDate;
 }
 
+
 // animation
 function animateButton() {
   document.getElementById('alertMessage').style.display = "flex";
@@ -505,10 +492,12 @@ function animateButton() {
 
 }
 
+
 // clear-button
 function changeCleaningColor() {
   document.querySelector('#close_icon .cls-20').style.fill = '#00bee8';
 }
+
 
 function changeCleaningColorToStandard() {
   document.querySelector('#close_icon .cls-20').style.fill = '#2a3647';
@@ -521,6 +510,8 @@ function showCheckAndCloseIcons() {
   document.getElementById('seperator-container').style.display = "flex";
   document.getElementById('icon-close-image').style.display = "flex";
 }
+
+
 function showPlusIcon() {
   document.getElementById('icon-plus-image').style.display = "flex";
   document.getElementById('icon-check-image').style.display = "none";

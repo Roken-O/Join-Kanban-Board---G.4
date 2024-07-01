@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="stylesheet" href="/CSS/board-style.css">
     <link rel="stylesheet" href="/CSS/board-media.css">
+    <link rel="stylesheet" href="/CSS/addTask-style.css">
+    <link rel="stylesheet" href="/CSS/addTask-media.css">
     <link rel="stylesheet" href="/CSS/media.css">
     <link rel="icon" href="/assets/img/join_favicon.svg">
 
@@ -22,7 +24,7 @@
     </style>
 </head>
 
-<body>
+<body >
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>    
     <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
         <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
@@ -33,8 +35,8 @@
                 <h1>Board</h1>
                 <div class="input-search-container">
                     <input id="filterTaskInput" type="text" onkeyup="filterTask()" placeholder="Search for tasks..">
-                    <div class="button-container"><a href="/assets/forms/add_task.html">
-                            <button>Add task
+                    <div class="button-container">
+                            <button onclick="showAddTaskPopupBoard()">Add task
                                 <svg id="plus_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 90 90">
                                     <defs>
@@ -49,7 +51,7 @@
                                     </defs>
                                     <path class="cls-1" d="M45,5v80" />
                                     <path class="cls-1" d="M85,45.75H5" />
-                                </svg></button></a>
+                                </svg></button>
                     </div>
                 </div>
             </div>
@@ -59,7 +61,7 @@
                 <section id="to-do-column-container">
                     <div class="column-head">
                         <span>To do</span>
-                        <img src="./assets/img/plus_icon.png">
+                        <img onclick="showAddTaskPopupBoard()" src="./assets/img/plus_icon.png">
                     </div>
                     <div class="sub-column-container" id="toDo" ondrop="moveTo('toDo')" ondragleave="removeHighlight('toDo')" ondragover="allowDrop(event); highlight('toDo')">
 
@@ -68,7 +70,7 @@
                 <section id="in-progress-column-container">
                 <div class="column-head">
                     <span>In progress</span>
-                    <img src="./assets/img/plus_icon.png">
+                    <img onclick="showAddTaskPopupBoard()" src="./assets/img/plus_icon.png">
                 </div>
                 <div class="sub-column-container" id="inProgress" ondrop="moveTo('inProgress')" ondragleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')">
                     
@@ -78,7 +80,7 @@
                 <section id="await-feedback-column-container">
                 <div class="column-head">
                     <span>Await feedback</span>
-                    <img src="./assets/img/plus_icon.png">
+                    <img onclick="showAddTaskPopupBoard()" src="./assets/img/plus_icon.png">
                 </div>
                 <div class="sub-column-container" id="awaitFeedback" ondrop="moveTo('awaitFeedback')" ondragleave="removeHighlight('awaitFeedback')" ondragover="allowDrop(event); highlight('awaitFeedback')">
                     
@@ -96,18 +98,184 @@
         </div>
 
     </section>
-    <div style="display: none; flex-direction:column;" id="task-popup-edit-container"></div>
-    <div style="display: none; flex-direction:column;" id="task" onclick="closePopup()">
+    
+    <section id="main-container-popup-board" onclick="closePopupBoard()" class="d-none">
+        <!-- headline -->
+        
+        
+        <!-- form-start -->
+        
+        <form class="form-height w-50" id="task-task-form" onclick="doNotClose(event)" onsubmit="saveTask(); return false;">
+            <!-- <div id="popup-addTask-BG"></div> -->
+            <div class="flex-evenly-start padding-bottom-24 parent-container">
+                
+                <div class="left-container">
+                    <h2 class="task-headline mb-48">Add Task</h2>
+                    <!-- title -->
+                    <div class="padding-bottom-24">
+                        <div class="mb-8 flex field-headline">Title<div class="asterisk-color">*</div>
+                        </div>
+                        <input id="task-title" required minlength="2" class="field-325" type="text"
+                            placeholder="Enter a title">
+                    </div>
+
+                    <!-- description -->
+                    <div class="padding-bottom-24">
+                        <div class="mb-8 field-headline">Description</div>
+                        <textarea id="task-description" required pattern="[A-Za-z0-9]+" maxlength="450"
+                            class="description-input" name="w3review" rows="4" cols="50"
+                            placeholder="Enter a description in english please!"></textarea>
+                    </div>
+
+                    <span class="mb-8 flex field-headline">Assigned to</span>
+                    <div   class="dropbtn">
+                        <span class ="contacts-assignment-container">Select contacts to assign</span>
+                        <img  onclick="toggleContactDropdown()" id="icon-contacts-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon" />
+                    </div>
+                    
+                    <div id="contacts-list" class="dropdown-list d-none"></div> 
+                    <div id="contacts-initial" class="contacts-initial"></div>
+                </div>
+                
+                <div class="form-seperator"></div>
+
+                <div class="right-container">
+                    <div class="padding-bottom-24">
+                        <!-- date -->
+                        <div class="mb-8 flex field-headline">Due date<div class="asterisk-color">*</div>
+                        </div>
+                        <input id="task-date-picker" type="date" class="field-325 date"
+                            placeholder="dd/mm/yyyy Kalenderbutton" required>
+                    </div>
+
+                    <!-- prio -->
+                    <div class="padding-bottom-24" id="task-priority-container">
+                        <div class="mb-8 field-headline">Prio</div>
+                        <div class="flex gap-16 prio-container" id="task-priority-container">
+                            <button onclick="createCategoryIconUrgent('priority-urgent-text')" id="priority-urgent-text"
+                            class="btn urgent flex-just-align-center" 
+                            >Urgent
+                            <img id="task-urgent-icon" src="/assets/img/urgent_icon.png" />
+                            </button>
+                            <button onclick="createCategoryIconMedium('priority-medium-text')" id="priority-medium-text"
+                            class="btn urgent flex-just-align-center" >Medium
+                            <img id="task-medium-icon" class="size-medium" src="/assets/img/medium_icon.svg" />
+                            </button>
+                            <button onclick="createCategoryIconLow('priority-low-text')" id="priority-low-text"
+                            class="btn low flex-just-align-center">Low
+                            <img  id="task-low-icon" class="size-low" src="/assets/img/low_icon.svg" />
+                            </button>
+               
+                        </div>
+                    </div>
+    
+                    <!-- category -->
+                    <div class="padding-bottom-24 padding-responsive980">
+                        <div id="task-category-selection-container">
+                            <div class="mb-8 flex field-headline" id="task-category-selection"
+                                onclick="toggleCategoryDropdown()">Category
+                                <div class="asterisk-color">*</div>
+                            </div>
+                            <div class="dropbtn" onclick="toggleCategoryDropdown()">
+                                <span id="selected-category-container">Select task category</span>
+                                <img id="icon-dropdown-arrow-image" src="/assets/img/dropdown_down.svg"
+                                    alt="Dropdown Arrow Icon" />
+                            </div>
+                        </div>
+                        <div class="dropdown-content-category d-none" id="task-category-dropdown">
+                            <div class="tasks" onclick="selectCategory(event, 'Technical Task')">
+                                Technical Task
+                            </div>
+                            <div class="tasks" onclick="selectCategory(event, 'User Story')">
+                                User Story
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="assigned-flex padding-top-24">
+                        <div class="mb-8 field-headline">Subtasks</div>
+                        <div class="select-subtask">
+                            <input type="text" class="select-subtask-span" id="task-subtask-input"
+                                placeholder="Add new subtask">
+
+                            <div>
+                                <img id="icon-plus-image" src="/assets/img/plus_icon.svg"
+                                    onclick="showCheckAndCloseIcons()">
+                                <div class="close-check-icons-container">
+                                    <img onclick="showPlusIcon()" id="icon-close-image" class="d-none" src="/assets/img/close_icon.png">
+                                    <div id="seperator-container" class="mini-seperator d-none"></div>
+                                    <img id="icon-check-image" class="d-none" src="/assets/img/check_icon_DARK.png" onclick="addSubTask()">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="subtask-list" class="sub-task-container"></div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="flex-evenly-start execution-parent">
+                <div class="flex required-container">
+                    <div class="asterisk-color">*</div>
+                    <div class="required-text">This field is required</div>
+                </div>
+
+                <!-- cleaning -->
+                <div class="flex gap-16 execution-responsive">
+                    <button onclick="clearInputsAndArrays()" class="cleaning low flex-just-align-center">
+                        <span class="cleaning-text">Clear</span>
+                        <svg onmouseover="changeCleaningColor()" onmouseleave="changeCleaningColorToStandard()"
+                            class="cleaning-svg" id="close_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 80 80">
+                            <path class="cls-20"
+                                d="M40,48.52l-29.81,29.81c-1.12,1.12-2.53,1.67-4.26,1.67s-3.14-.56-4.26-1.67c-1.12-1.12-1.67-2.54-1.67-4.26s.56-3.14,1.67-4.26l29.81-29.81L1.67,10.19c-1.12-1.12-1.67-2.53-1.67-4.26S.56,2.79,1.67,1.67C2.79.56,4.21,0,5.93,0s3.14.56,4.26,1.67l29.81,29.81L69.81,1.67c1.12-1.12,2.54-1.67,4.26-1.67s3.14.56,4.26,1.67c1.12,1.12,1.67,2.53,1.67,4.26s-.56,3.14-1.67,4.26l-29.81,29.81,29.81,29.81c1.12,1.12,1.67,2.54,1.67,4.26s-.56,3.14-1.67,4.26-2.54,1.67-4.26,1.67-3.14-.56-4.26-1.67l-29.81-29.81Z" />
+                        </svg>
+                    </button>
+
+                    <!-- create task -->
+                    <button onclick="animateButton(); hideAddTaskPopupBoard();" required class="create-task" type="submit"><span
+                            class="create-text">Create
+                            Task</span></button>
+
+                </div>
+            </div>
+            
+        </form>
+        
+        <div class="alert-message" id="alertMessage">
+            <div class="popup-message" id="popup-message"><span class="animate-text">Task added to board</span>
+                <svg class="animate-svg" id="board_icon" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 114.4 96.8">
+                    <defs>
+                        <style>
+                            .cls-55 {
+                                fill: ghostwhite;
+                                stroke-width: 0px;
+                            }
+                        </style>
+                    </defs>
+                    <path class="cls-55"
+                        d="M88,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58h-17.6c-2.33,0-4.57-.93-6.22-2.58-1.65-1.65-2.58-3.89-2.58-6.22V8.8c0-2.33.93-4.57,2.58-6.22C57.03.93,59.27,0,61.6,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM61.6,88h17.6V8.8h-17.6v79.2ZM61.6,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58h-17.6c-2.33,0-4.57-.93-6.22-2.58-1.65-1.65-2.58-3.89-2.58-6.22V8.8c0-2.33.93-4.57,2.58-6.22C30.63.93,32.87,0,35.2,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM35.2,88h17.6s0-79.2,0-79.2h-17.6s0,79.2,0,79.2ZM35.2,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58H8.8c-2.33,0-4.57-.93-6.22-2.58C.93,92.57,0,90.33,0,88V8.8c0-2.33.93-4.57,2.58-6.22C4.23.93,6.47,0,8.8,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM8.8,88h17.6V8.8H8.8v79.2Z" />
+                    <path class="cls-55"
+                        d="M114.4,8.8v79.2c0,2.33-.93,4.57-2.58,6.22-1.65,1.65-3.89,2.58-6.22,2.58h-17.6c-2.33,0-4.57-.93-6.22-2.58-1.65-1.65-2.58-3.89-2.58-6.22V8.8c0-2.33.93-4.57,2.58-6.22C83.43.93,85.67,0,88,0h17.6c2.33,0,4.57.93,6.22,2.58,1.65,1.65,2.58,3.89,2.58,6.22ZM88,88h17.6s0-79.2,0-79.2h-17.6s0,79.2,0,79.2Z" />
+                </svg>
+            </div>
+        </div>
+    </section>
+    <div style="display: none; flex-direction:column; align-items: center;" id="task-popup-edit-container"></div>
+    <div style="display: none; flex-direction:column; align-items: center;" id="task" onclick="closePopup()">
     
                 
     </div>
+
     
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="/js/firebase.js"></script>
     <script src="/js/script.js"></script>
-    <script src="/js/add_task.js"></script>
     <script src="/js/load_tasks.js"></script>
+    <script src="/js/addTask.js"></script>
     <script src="/js/board.js"></script>
     
 </body>
