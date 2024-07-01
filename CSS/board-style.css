@@ -648,11 +648,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10% 20%;
+  margin: 5% 15%;
   background: white;
   position: fixed;
   padding: 32px;
   border-radius: 10px;
+  width: 70%;
 }
 
 #task-task-edit-form {
