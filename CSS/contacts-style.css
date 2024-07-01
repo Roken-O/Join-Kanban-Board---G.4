@@ -59,7 +59,7 @@
   padding: 17px 36px 17px 36px;
 }
 
-#breakline-contactlist {
+.breakline-contactlist {
   height: 1px;
   width: 352px;
   background-color: #d1d1d1;
@@ -93,10 +93,22 @@
   color: white;
 }
 
-#contact-name-email-contactlist {
+.initial-name-email-container{
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.contact-name-email-contactlist {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  margin-bottom: 8px;
+  
 }
 
 #contact-name-contactlist {
@@ -104,7 +116,7 @@
   font-weight: 400;
 }
 
-#email-contactlist {
+.email-contactlist {
   text-decoration: none;
   color: #007cee;
 }

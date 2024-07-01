@@ -442,3 +442,9 @@
     padding: 10px 32px;
   }
 }
+
+@media (max-width: 410px) {
+  .breakline-contactlist {
+    width: 250px;
+  }
+}

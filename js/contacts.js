@@ -1,7 +1,7 @@
 let allContacts = [];
 let hexColors = ['#29abe2', '#4589ff', '#0038ff', '#ff3d00', '#ff745e', '#ffa35e', '#ff7a00', '#ffbb2b', '#ffe62b', '#ffc701', '#7ae229', '#1fd7c1', '#fc71ff', '#ff5eb3', '#9327ff', '#462f8a'];
 
- function initContact() {
+function initContact() {
   document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
   document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
   loadLocalStorage();
@@ -43,16 +43,16 @@ function saveContact() {
 function validateAndSubmit(event) {
   event.preventDefault();
 
- 
+
   let name = document.getElementById('contact-trial-name').value.trim();
   let email = document.getElementById('contact-trial-email').value.trim();
   let phone = document.getElementById('contact-trial-phone').value.trim();
 
   if (name && email && phone) {
-    saveContact(); 
-    closePupUpaddNewOrEdditContact(); 
+    saveContact();
+    closePupUpaddNewOrEdditContact();
     saveEditedContact();
-  } 
+  }
 }
 
 function deleteContact(email) {
@@ -129,17 +129,17 @@ function editContact(email) {
 }
 
 function validateAndClosePopup() {
- 
+
   const name = document.getElementById('input-edit-name-contact').value.trim();
   const email = document.getElementById('input-edit-email-contact').value.trim();
   const phone = document.getElementById('input-edit-phone-contact').value.trim();
 
   if (name && email && phone) {
-    closePupUpaddNewOrEdditContact(); 
-  } 
+    closePupUpaddNewOrEdditContact();
+  }
 }
 
-function renderPopupEditAddMiddle(email){
+function renderPopupEditAddMiddle(email) {
   let popUpEditAddMiddle = document.getElementById('popUp-edit-add-middle');
   let currentColor;
 
@@ -227,7 +227,7 @@ function editContactPopUp() {
 
 function showContactInfo(email) {
   document.getElementById("contact").classList.add("translateX-null");
-  let database = firebase.database();  
+  let database = firebase.database();
   let contact = document.getElementById("contact");
   let currentColor;
   let currentName;
@@ -415,31 +415,45 @@ function loadContacts() {
     snapshot.forEach(function (childSnapshot) {
       let contact = childSnapshot.val();
       allContacts.push(contact);
+    });
+
+    allContacts.sort((a, b) => a.name.localeCompare(b.name));
+
+    let currentInitial = '';
+    allContacts.forEach(function (contact) {
+      let initial = contact.name.charAt(0).toUpperCase();
+
+      if (initial !== currentInitial) {
+        currentInitial = initial;
+        contactsListContent.innerHTML += /*html*/ `
+          <div>
+            <div class="initial-letter">${initial}</div>
+            <div class="breakline-contactlist" id="contacts-without-breakline">
+        `;
+      }
 
       contactsListContent.innerHTML += /*html*/ `
-          <div>
-              <div id="initial-letter">${contact.name.substring(0, 1)}</div>
-              <div id="breakline-contactlist"></div>
-              <div id="contacts-without-breakline"></div>
-              <div
-                onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
-                class="flex-align-center"
-                id="contact-contactlist"
-              >
-                <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
-                  <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
-                </div>
-                <div id="contact-name-email-contactlist">
-                  <span id="contact-name-contactlist">${contact.name}</span>
-                  <span id="email-contactlist">${contact.email}</span>
-                </div>
-              </div>
-            </div>
-            `;
+        <div
+          onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
+          class="flex-align-center contact-entry"
+        >
+        <div class="initial-name-email-container">
+          <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
+            <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
+          </div>
+          <div class="contact-name-email-contactlist">
+            <span class="contact-name-contactlist">${contact.name}</span>
+            <span class="email-contactlist">${contact.email}</span>
+          </div>
+        </div>
+        </div>
+      `;
+
+      if (allContacts.indexOf(contact) === allContacts.length - 1 || allContacts[allContacts.indexOf(contact) + 1].name.charAt(0).toUpperCase() !== currentInitial) {
+        contactsListContent.innerHTML += `</div></div>`;
+      }
     });
   });
 }
-
-
 
 
