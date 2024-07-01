@@ -513,4 +513,3 @@ function showPlusIcon() {
   document.getElementById('seperator-container').style.display = "none";
   document.getElementById('icon-close-image').style.display = "none";
 }
-

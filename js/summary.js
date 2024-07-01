@@ -1,7 +1,7 @@
 let allTasksSummary = [];
 let registeredUserName;
 let registeredUserInitials;
-let registeredID;
+// let registeredID;
 let upcomingDate;
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -159,35 +159,10 @@ function numOfAwaiting(){
     return numOfAwaitingTask ;
 }
 
-function toggleShowLogout() {
-    let logoutContainer = document.getElementById('showLogout');
-    logoutContainer.innerHTML = `
-     <div class="popout-showlogout">
-        <a href="privacy.html">Legal Notice</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a onclick="logout('${registeredID}')" href="#">Log Out</a>
-      </div>`;
-    if (logoutContainer.style.display == 'flex') {
-        logoutContainer.style.display = 'none';
-    } else {
-        logoutContainer.style.display = 'flex';
-    }
-}
-
 function getInitialsName() {
     if (registeredUserInitials) {
         document.getElementById('sub-contact-initial-container').innerHTML = registeredUserInitials;
     }
-}
-
-function logout(registeredID) {
-    let database = firebase.database();
-    if (registeredID) {
-        let userEntry = database.ref("users/" + registeredID + "/registered/");
-        userEntry.set(false);
-        saveLocalStorage();
-    }
-    window.location.href = 'index.html';
 }
 
 function goToBoardSite() {
