@@ -10,6 +10,8 @@ window.onload = function() {
   createCategoryIconLow();
   changeColor();
   resetButtons();
+  loadLocalStorage();
+  checkRegisteredUser();
 }
 
 function openTaskDetails(taskId) {

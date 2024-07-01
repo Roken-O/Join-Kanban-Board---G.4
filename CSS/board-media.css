@@ -220,6 +220,17 @@
   }
   
   @media (max-width: 1080px) {
+    .right-container {
+      padding-left: 0px !important;
+    }
+    #task-task-form {
+      margin: 0% 5%;
+    } 
+
+    #task-task-form h2{
+      display: none;
+    } 
+
     .dropdown-list {
       top: 583px;
     }
@@ -244,9 +255,6 @@
     }
   
     .execution-parent {
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
       align-items: center;
     }
   
@@ -262,7 +270,7 @@
     .right-container {
       display: flex;
       flex-direction: column;
-      padding: 24px 0 0 0;
+      padding-left: 0px;
     }
   
     .required-text {
@@ -306,6 +314,11 @@
 
 
   @media (max-width: 980px) {
+#execution-parent {
+  flex-direction: column;
+  align-items: center;
+}
+
     .column-container {
       margin-right: 10px;
     }
@@ -480,6 +493,10 @@
   }
   
   @media (max-width: 700px) {  
+    #task-task-form {
+      margin: 0% 0%;
+    } 
+
     .task-container {
       width: 160px;
       margin: 10px;
@@ -515,9 +532,33 @@
     }
   }
 
-  @media (max-width: 570px) {
+  @media (max-width: 580px) {
+    #task-task-form {
+      margin: -5% -5%;
+      padding: 16px;
+      width: 85%;
+  }
+    #task-priority-container {
+    flex-direction: column;
+  }
+
+  #execution-parent {
+    flex-direction: column;
+  }
+
+  #task-category-selection-container {
+    flex-direction: column;
+  }
+
+  .field-325 {
+      width: 150px;
+      height: 36px;
+      border-radius: 10px;
+      outline: none;
+      border: 1px solid lightgray;
+  }
+
     .cleaning {
-      display: none;
       margin-left: 0px;
       height: 0px;
     }
@@ -528,7 +569,7 @@
   }
   
   @media (max-width: 455px) {
-  
+
     .dropdown-list {
       top: 486px;
   }
@@ -547,26 +588,18 @@
     .required-container {
       margin-right: 14px;
     }
-    .execution-parent {
-      bottom: 80px;
-      position: fixed;
-      background-color: #f6f7f8;
-      text-align: center;
-      justify-content: unset;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
+    
     .create-task {
       margin-right: 0px;
       padding: 12px 8px 12px 12px;
     }
     .field-325 {
-      width: 325;
+      width: 150px;
       height: 24px;
     }
     
     .description-input {
-      width: 325px;
+      width: 150px;
       height: 65px;
     }
   
