@@ -33,7 +33,7 @@
         }
     </style>
   </head>
-  <body onload="includeHTML()">
+  <body onload="includeHTML(); loadLocalStorage(); checkRegisteredUser();">
     <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
     <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
       <div id="sub-contact-initial-container" class="sub-initial-container">G</div>

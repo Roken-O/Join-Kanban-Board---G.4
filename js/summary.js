@@ -19,20 +19,6 @@ async function initSummary() {
     await getNumOfTasks();
 }
 
-//checkRegisteredUser() muss auf jeder Seite eingebunden werden, um zu verhindern, dass der Nutzer auf andere Seiten zugreift, ohne eingeloggt zu sein oder als Gast eingeloggt ist.
-function checkRegisteredUser() {
-    let loged = false;
-    for (let i = 0; i < allUsers.length; i++) {
-        if (allUsers[i]['registered'] == true) {
-            loged = true;
-            break;
-        }
-    }
-    if (loged == false) {
-        window.location.href = 'index.html';
-    }
-}
-
 function showGreeting() {
     let hours = new Date().getHours();
     let greeting = document.getElementById('greeting');
@@ -144,7 +130,7 @@ function numOfDone(){
 function numOfUrgent(){
     let numOfUrgentTasks = 0;
     for (let index = 0; index < allTasksSummary.length; index++) {
-        if(allTasksSummary[index]['taskPriority'] == '/assets/img/urgent_icon.svg'){
+        if(allTasksSummary[index]['taskPriorityText'] == 'Urgent'){
             numOfUrgentTasks++;
             upcomingDate = allTasksSummary[index]['taskDate'];
         } 
@@ -199,6 +185,7 @@ function logout(registeredID) {
     if (registeredID) {
         let userEntry = database.ref("users/" + registeredID + "/registered/");
         userEntry.set(false);
+        saveLocalStorage();
     }
     window.location.href = 'index.html';
 }
@@ -206,5 +193,3 @@ function logout(registeredID) {
 function goToBoardSite() {
     window.location.href = 'board.html';
 }
-
-

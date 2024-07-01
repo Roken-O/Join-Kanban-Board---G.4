@@ -30,6 +30,7 @@ function loadUsers() {
 
 async function checkLoadUsers() {
     let prom = await loadUsers();
+    saveLocalStorage();
     console.log(prom);
 }
 
@@ -66,6 +67,7 @@ async function signup() {
                     allUsers.push({ email: emailSignup, password: passwordSignup, name: nameSignup });
                     saveNewUser(emailSignup, passwordSignup, nameSignup);
                     checkLoadUsers();
+                    saveLocalStorage();
                     window.location.href = 'index.html';
                 }, 2250);
             }
@@ -164,6 +166,7 @@ function userRegisterd(userID) {
         if (userID != notLoged) {
             let userEntry = database.ref("users/" + notLoged + "/registered/");
             userEntry.set(false);
+            saveLocalStorage();
         }
     }
     let userEntry = database.ref("users/" + userID + "/registered/");
@@ -267,4 +270,6 @@ async function usersSettoFalse() {
         let userEntry = database.ref("users/" + registeredID + "/registered/");
         await userEntry.set(false);
     }
+    saveLocalStorage();
 }
+

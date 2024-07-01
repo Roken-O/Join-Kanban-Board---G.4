@@ -36,5 +36,31 @@ function goToHelp(){
   window.location.href = 'help.html';
 }
 
+function checkRegisteredUser() {
+  let loged = false;
+  for (let i = 0; i < allUsers.length; i++) {
+      if (allUsers[i]['registered'] == true) {
+          loged = true;
+          document.getElementById('sub-contact-initial-container').innerHTML = allUsers[i]['initial'];
+          break;
+      }
+  }
+  if (loged == false) {
+      window.location.href = 'index.html';
+  }
+  saveLocalStorage();
+}
+
+function saveLocalStorage() {
+  let allUsersAsText = JSON.stringify(allUsers);
+  localStorage.setItem("Users", allUsersAsText);
+}
+
+function loadLocalStorage() {
+  let allUsersAsText = localStorage.getItem("Users");
+  if (allUsersAsText) {
+      allUsers = JSON.parse(allUsersAsText);
+  }
+}
 
 

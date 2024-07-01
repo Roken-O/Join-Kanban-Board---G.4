@@ -10,15 +10,10 @@ let boardCategory = ['toDo', 'awaitFeedback', 'inProgress', 'done'];
  function initTask() {
   includeHTML();
   loadContactList();
-  loadTasks();
   setMinDateDatepicker();
+  loadLocalStorage();
+  checkRegisteredUser();
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-  initIndex();
-  initSummary();
-});
-
 
 function deleteTask(taskId) {
   let database = firebase.database();
