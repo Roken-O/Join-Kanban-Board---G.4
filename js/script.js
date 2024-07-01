@@ -67,7 +67,7 @@ function toggleShowLogout(registeredID) {
   let logoutContainer = document.getElementById('showLogout');
   logoutContainer.innerHTML = `
    <div class="popout-showlogout">
-      <a href="privacy.html">Legal Notice</a>
+      <a href="imprint.html">Legal Notice</a>
       <a href="privacy.html">Privacy Policy</a>
       <a onclick="logout('${registeredID}')" href="#">Log Out</a>
     </div>`;

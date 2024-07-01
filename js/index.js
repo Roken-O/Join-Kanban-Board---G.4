@@ -254,7 +254,7 @@ function goToSignupSite() {
             <div id="wrong-password" class="wrong-password-container d-none">Ups! your password doesn't match</div>
             <div class="checkbox-signup-site">
                 <input oninvalid="this.setCustomValidity('You must accept the Privacy Policy')" oninput="this.setCustomValidity('')" type="checkbox" required>
-                <span>I accept <a href="#">Privacy Policy</a></span>
+                <span>I accept <a href="/privacy.html">Privacy Policy</a></span>
             </div>
         </div>
         <div class="login-buttons-container">
