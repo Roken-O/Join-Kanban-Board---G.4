@@ -611,13 +611,7 @@
     .dropbtn {
       width: 325px !important;
       height: 24px;
-      background-position: 300px;
-    }
-  
-    .select-subtask {
-      width: 325px;
-      background-position: 300px;
-      height:24px;
+      background-position: right 20px center;
     }
   
     .prio-container {
@@ -642,6 +636,16 @@
   }
 
   @media (max-width: 430px) {
+    #select-subtask {
+      width: 250px;
+      background-position: right 20px center;
+      height: 24px;
+    }
+
+    #icon-plus-image {
+      margin-left: 0px;
+    }
+
     .dropdown-list {
       min-width: 308px;
   }
@@ -655,26 +659,31 @@
     .close-check-icons-container img {
       margin-left: 8px !important;
     }
-  
-    .select-subtask input{
-      width:250px;
+
+    #task-title {
+      width: 250px;
     }
-    .field-325 {
-      width: 300px;
-    }
-  
-    .description-input {
-      width: 300px;
+
+    #task-description {
+      width: 250px;
     }
   
+    #task-date-picker {
+      width: 250px;
+    }
+
+    #board-add-task-prio {
+      gap: 0px !important;
+    }
+
+    #board-add-task-prio button {
+      font-size: 12px;
+      width: 80px;
+    }
+
     .dropbtn {
-      width: 300px !important;
-      background-position: 285px !important;
-    }
-  
-    .select-subtask {
-      width: 300px;
-      background-position: 285px;
+      width: 250px !important;
+      background-position: right 20px center;
     }
   
     .cleaning {
@@ -684,8 +693,21 @@
     .create-task {
       margin-right: 0px;
     }
+
     .select-subtask img{
-      margin-left:44px;
+      margin-left: 16px;
+    }
+
+    #task-task-form {
+      margin: -5% -8%;
+  }
+
+    #right-container {
+      margin-left: 32px;
+    }
+
+    #left-container {
+      margin-left: 32px;
     }
   }
    
@@ -697,9 +719,11 @@
     #main-container {
       padding: 40px 16px 64px 8px !important;
     }
+
     .form-height {
       margin-left: 8px;
     }
+
   .task-headline{
     margin-bottom: 16px;
   }
@@ -723,56 +747,35 @@
     }
   }
 
-  @media (max-width: 360px) {
-    .dropdown-list {
-      min-width: 274px;
-  }
-  
+  @media (max-width: 360px) {  
     .sub-task-container img{
       margin-left: 180px;
     }
+
     .close-check-icons-container img {
       margin-left: 4px !important;
     }
-  
-    .select-subtask input{
-      width:180px;
-    }
-    .field-325 {
-      width: 260px;
-    }
-  
-    .description-input {
-      width: 260px;
-  }
+
   .dropbtn{
-    width: 260px !important;
-    background-position: 250px !important;
+    background-position: right 20px center;
   }
+
   .urgent{
     font-size: 14px;
-  
     width: 85px;
   
   }
   .low {
     width: 60px;
     font-size: 14px;
-  
   }
   
   .prio-container {
     justify-content: unset;
   }
-  .select-subtask {
-    width: 260px !important;
-    background-position: 250px !important;
-  }
+
   .dropdown-content {
     min-width: 270px;
-  }
-  .select-subtask img{
-    margin-left:8px;
   }
   }
   

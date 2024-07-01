@@ -32,7 +32,7 @@
         <h2 class="task-headline mb-48">Add Task</h2>
 
         <!-- form-start -->
-        <form class="form-height w-50" id="task-task-form" onsubmit="saveTask(); return false;">
+        <form class="form-height w-50" id="task-task-form" onsubmit="saveTask(); animateButton(); return false;">
 
             <div class="flex-evenly-start padding-bottom-24 parent-container">
                 <div class="left-container">
@@ -160,7 +160,7 @@
                     </button>
 
                     <!-- create task -->
-                    <button onclick="animateButton()" required class="create-task" type="submit"><span class="create-text">Create Task</span></button>
+                    <button required class="create-task" type="submit"><span class="create-text">Create Task</span></button>
 
                 </div>
             </div>

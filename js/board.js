@@ -5,13 +5,51 @@ window.onload = function() {
   loadContactList();
   loadTasksBoard();
   includeHTML();
-  createCategoryIconUrgent();
-  createCategoryIconMedium();
-  createCategoryIconLow();
   changeColor();
   resetButtons();
   loadLocalStorage();
   checkRegisteredUser();
+  loadUsers();
+  checkLoadUsers();
+}
+
+function loadUsers() {
+  return new Promise((resolve, reject) => {
+      setTimeout(() => {
+          let database = firebase.database();
+          let usersEntries = database.ref("users");
+          usersEntries.on("value", function (snapshot) {
+              allUsers = [];
+              snapshot.forEach(function (childSnapshot) {
+                  let user = childSnapshot.val();
+                  user.id = childSnapshot.key;
+                  allUsers.push(user);
+              });
+              resolve('hat geklappt!');
+          }, () => {
+              reject('hat nicht geklappt!');
+          });
+      }, 10);
+  });
+}
+
+async function checkLoadUsers() {
+  let prom = await loadUsers();
+  saveLocalStorage();
+  console.log(prom);
+}
+
+function checkInputs() {
+  document.getElementById("email").value = '';
+  document.getElementById("password").value = '';
+
+  let rememberedEmail = localStorage.getItem('rememberedEmail');
+  let rememberedPassword = localStorage.getItem('rememberedPassword');
+  if (rememberedEmail) {
+      document.getElementById("email").value = rememberedEmail;
+      document.getElementById("password").value = rememberedPassword;
+      document.getElementById("rememberMe").checked = true;
+  }
 }
 
 function openTaskDetails(taskId) {
@@ -312,6 +350,28 @@ function selectCategoryPopup(event, category) {
   document.getElementById('task-category-dropdown').classList.add('d-none');
   document.getElementById('icon-dropdown-arrow-image').src = "/assets/img/dropdown_down.svg";
 }
+
+
+// function createCategoryIconUrgent(event, buttonId) {
+//   event.preventDefault();
+//   priority = '/assets/img/urgent_icon.svg';
+//   changeColor(buttonId);
+
+// }
+
+
+// function createCategoryIconMedium(event, buttonId) {
+//   event.preventDefault();
+//   priority = '/assets/img/medium_icon.svg';
+//   changeColor(buttonId);
+// }
+
+
+// function createCategoryIconLow(event, buttonId) {
+//   event.preventDefault();
+//   priority = '/assets/img/low_icon.svg';
+//   changeColor(buttonId);
+// }
 
 
 function selectCategoryEditPopup(category) {

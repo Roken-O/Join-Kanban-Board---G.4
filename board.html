@@ -108,7 +108,7 @@
             <!-- <div id="popup-addTask-BG"></div> -->
             <div class="flex-evenly-start padding-bottom-24 parent-container">
                 
-                <div class="left-container">
+                <div class="left-container" id="left-container">
                     <h2 class="task-headline mb-48">Add Task</h2>
                     <!-- title -->
                     <div class="padding-bottom-24">
@@ -138,7 +138,7 @@
                 
                 <div class="form-seperator"></div>
 
-                <div class="right-container">
+                <div class="right-container" id="right-container">
                     <div class="padding-bottom-24">
                         <!-- date -->
                         <div class="mb-8 flex field-headline">Due date<div class="asterisk-color">*</div>
@@ -150,17 +150,17 @@
                     <!-- prio -->
                     <div class="padding-bottom-24" id="task-priority-container">
                         <div class="mb-8 field-headline">Prio</div>
-                        <div class="flex gap-16 prio-container">
-                            <button onclick="createCategoryIconUrgent('priority-urgent-text')" id="priority-urgent-text"
+                        <div id="board-add-task-prio" class="flex gap-16 prio-container">
+                            <button onclick="createCategoryIconUrgent(event, 'priority-urgent-text')" id="priority-urgent-text"
                             class="btn urgent flex-just-align-center" 
                             >Urgent
                             <img id="task-urgent-icon" src="/assets/img/urgent_icon.png" />
                             </button>
-                            <button onclick="createCategoryIconMedium('priority-medium-text')" id="priority-medium-text"
+                            <button onclick="createCategoryIconMedium(event, 'priority-medium-text')" id="priority-medium-text"
                             class="btn urgent flex-just-align-center" >Medium
                             <img id="task-medium-icon" class="size-medium" src="/assets/img/medium_icon.svg" />
                             </button>
-                            <button onclick="createCategoryIconLow('priority-low-text')" id="priority-low-text"
+                            <button onclick="createCategoryIconLow(event, 'priority-low-text')" id="priority-low-text"
                             class="btn low flex-just-align-center">Low
                             <img  id="task-low-icon" class="size-low" src="/assets/img/low_icon.svg" />
                             </button>
@@ -193,7 +193,7 @@
 
                     <div class="assigned-flex padding-top-24">
                         <div class="mb-8 field-headline">Subtasks</div>
-                        <div class="select-subtask">
+                        <div class="select-subtask" id="select-subtask">
                             <input type="text" class="select-subtask-span" id="task-subtask-input"
                                 placeholder="Add new subtask">
 
@@ -273,8 +273,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="/js/firebase.js"></script>
     <script src="/js/script.js"></script>
-    <script src="/js/load_tasks.js"></script>
     <script src="/js/addTask.js"></script>
+    <script src="/js/load_tasks.js"></script>
     <script src="/js/board.js"></script>
     
 </body>
