@@ -1,5 +1,5 @@
 // W3SCHOOLS INCLUDE HTML TEMPLATE SCRIPT - START
-
+let registeredID;
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
   /* Loop through a collection of all HTML elements: */
@@ -42,6 +42,7 @@ function checkRegisteredUser() {
       if (allUsers[i]['registered'] == true) {
           loged = true;
           document.getElementById('sub-contact-initial-container').innerHTML = allUsers[i]['initial'];
+          registeredID = allUsers[i]['id'];
           break;
       }
   }
@@ -50,6 +51,33 @@ function checkRegisteredUser() {
   }
   saveLocalStorage();
 }
+
+function logout(registeredID) {
+  let database = firebase.database();
+  if (registeredID) {
+      let userEntry = database.ref("users/" + registeredID + "/registered/");
+      userEntry.set(false);
+      saveLocalStorage();
+  }
+  window.location.href = 'index.html';
+}
+
+
+function toggleShowLogout(registeredID) {
+  let logoutContainer = document.getElementById('showLogout');
+  logoutContainer.innerHTML = `
+   <div class="popout-showlogout">
+      <a href="privacy.html">Legal Notice</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a onclick="logout('${registeredID}')" href="#">Log Out</a>
+    </div>`;
+  if (logoutContainer.style.display == 'flex') {
+      logoutContainer.style.display = 'none';
+  } else {
+      logoutContainer.style.display = 'flex';
+  }
+}
+
 
 function saveLocalStorage() {
   let allUsersAsText = JSON.stringify(allUsers);

@@ -10,7 +10,7 @@
   margin: 87px 64px 64px 232px;
 }
 
-.contacts-list-container{
+.contacts-list-container {
   display: flex;
   justify-content: center;
 }
@@ -154,7 +154,7 @@
   transition: 200ms ease-in-out;
 } */
 
-.translateX-null{
+.translateX-null {
   transform: translateX(0) !important;
 }
 
@@ -258,20 +258,20 @@
   border-radius: 50%;
 }
 
-.container-close-icon-responsive{
+.container-close-icon-responsive {
   display: flex;
   justify-content: flex-end;
   width: 100%;
   display: none;
 }
-.close-icon-responsive{
+.close-icon-responsive {
   height: 13px;
   width: 13px;
   margin: -23px 20px 0px 0px;
   padding: 5px;
 }
 
-.close-icon-responsive:hover{
+.close-icon-responsive:hover {
   cursor: pointer;
   background-color: #29abe2;
   border-radius: 50%;
@@ -331,16 +331,16 @@
   cursor: pointer;
 }
 
-.button_save_contact{
+.button_save_contact {
   cursor: pointer;
 }
 
-.button_delete{
+.button_delete {
   cursor: pointer;
 }
 /* Contact-info-responisve */
 
-.margin-left-0{
+.margin-left-0 {
   margin-left: 0 !important;
 }
 
@@ -369,7 +369,7 @@
   background-color: #29abe2;
 }
 
-.parting-line-h1-horizontal{
+.parting-line-h1-horizontal {
   width: 90px;
   border: 3px;
   border-radius: 3px;
@@ -474,14 +474,14 @@
   color: black;
 }
 
-.contacts-container-backimage{
+.contacts-container-backimage {
   display: flex;
   justify-content: space-between;
   width: 78%;
   gap: 40px;
 }
 
-#back-icon{
+#back-icon {
   display: none;
 }
 
@@ -493,7 +493,7 @@
   display: none;
 }
 
-.contact-responsive{
+.contact-responsive {
   display: flex;
   flex-direction: column;
   gap: 21px;
@@ -510,7 +510,7 @@
   font-size: 47px;
 }
 
-.headline-div-contacts-mobil{
+.headline-div-contacts-mobil {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -518,73 +518,73 @@
   margin-bottom: 25px;
 }
 
-.contact-pic-name-container-mobil{
+.contact-pic-name-container-mobil {
   gap: 20px;
 }
 
-.h1-and-backimg-container{
+.h1-and-backimg-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-.h1-mobil{
+.h1-mobil {
   font-size: 61px;
 }
 
- .d-unset{
+.d-unset {
   display: unset !important;
- }
+}
 
- .display-none{
+.display-none {
   display: none !important;
- }
+}
 
- .back_icon{
+.back_icon {
   height: 32px;
   width: 32px;
- }
+}
 
- .back_icon:hover{
+.back_icon:hover {
   cursor: pointer;
- }
+}
 
- /* small-buttons */
+/* small-buttons */
 
- .button_add_contact_dark_blue{
+.button_add_contact_dark_blue {
   width: 56px;
   height: 56px;
   position: absolute;
   right: 20px;
   bottom: 205px;
- }
+}
 
- .button_add_contact_dark_blue:hover{
+.button_add_contact_dark_blue:hover {
   cursor: pointer;
- }
+}
 
- .button-more-options{
+.button-more-options {
   width: 56px;
   height: 56px;
   position: absolute;
   right: 20px;
   bottom: 205px;
- }
+}
 
- .button-more-options:hover{
+.button-more-options:hover {
   cursor: pointer;
- }
+}
 
- .PopUp-edit-delete-bg{
+.PopUp-edit-delete-bg {
   z-index: 998;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   top: 0;
- }
+}
 
- .PopUp-edit-delete{
+.PopUp-edit-delete {
   background-color: white;
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.312);
   width: 106px;
@@ -594,52 +594,51 @@
   position: absolute;
   right: 20px;
   bottom: 125px;
- }
- 
- .PopUp-edit-pen{
+}
+
+.PopUp-edit-pen {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px;
- }
+}
 
- .PopUp-edit-pen:hover{
+.PopUp-edit-pen:hover {
   cursor: pointer;
   background-color: #f1efef;
   border-radius: 10px;
- }
- 
- .PopUp-edit-pen:hover{
+}
+
+.PopUp-edit-pen:hover {
   cursor: pointer;
- }
+}
 
- .PopUp-edit-pen-img{
+.PopUp-edit-pen-img {
   height: 24px;
- }
+}
 
- .PopUp-delete{
+.PopUp-delete {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px;
- }
+}
 
- .PopUp-delete:hover{
+.PopUp-delete:hover {
   cursor: pointer;
   background-color: #f1efef;
   border-radius: 10px;
- }
+}
 
- .PopUp-delete:hover{
+.PopUp-delete:hover {
   cursor: pointer;
- }
+}
 
- .PopUp-delete-img{
+.PopUp-delete-img {
   height: 24px;
- }
+}
 
 /* main-container-contacts End */
-
 
 #subtask-list li {
   display: flex;
