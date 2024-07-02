@@ -62,6 +62,7 @@
                         <span>To do</span>
                         <img onclick="showAddTaskPopupBoard()" src="./assets/img/plus_icon.png">
                     </div>
+                    <div id="todo-empty" class="empty d-none">No tasks To do</div>
                     <div class="sub-column-container" id="toDo" ondrop="moveTo('toDo')" ondragleave="removeHighlight('toDo')" ondragover="allowDrop(event); highlight('toDo')">
 
                     </div>
@@ -71,6 +72,7 @@
                     <span>In progress</span>
                     <img onclick="showAddTaskPopupBoard()" src="./assets/img/plus_icon.png">
                 </div>
+                <div id="in-progress-empty" class="empty d-none">No tasks To do</div>
                 <div class="sub-column-container" id="inProgress" ondrop="moveTo('inProgress')" ondragleave="removeHighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')">
                     
                 </div>
@@ -81,6 +83,7 @@
                     <span>Await feedback</span>
                     <img onclick="showAddTaskPopupBoard()" src="./assets/img/plus_icon.png">
                 </div>
+                <div id="await-feedback-empty" class="empty d-none">No tasks To do</div>
                 <div class="sub-column-container" id="awaitFeedback" ondrop="moveTo('awaitFeedback')" ondragleave="removeHighlight('awaitFeedback')" ondragover="allowDrop(event); highlight('awaitFeedback')">
                     
                 </div>
@@ -89,6 +92,7 @@
                 <div class="column-head">
                     <span>Done</span>
                 </div>
+                <div id="done-empty" class="empty d-none">No tasks To do</div>
                 <div class="sub-column-container" id="done" ondrop="moveTo('done')" ondragleave="removeHighlight('done')" ondragover="allowDrop(event); highlight('done')">
                     
                 </div>
