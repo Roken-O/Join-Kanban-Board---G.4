@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body{
   background: #f6f7f8;
   padding-bottom: 30px;
