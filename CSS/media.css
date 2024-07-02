@@ -20,7 +20,7 @@
     height: 80px;
     background: #2a3647;
     width: 100vw;
-    z-index:999;
+    /* z-index:999; */
   }
 
   .mobile-menu-item {

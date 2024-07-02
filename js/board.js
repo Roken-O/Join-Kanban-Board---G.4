@@ -166,6 +166,7 @@ function editPopupTask(taskId) {
   if (task) {
     
     let editTask = document.getElementById('task-popup-edit-container');
+    editTask.scrollTop = 0;
     let currentTitle, currentDescription, currentDate, currentSubTask, currentCategory, currentPriority, currentPriorityText, currentSelection, currentCategoryColor;
 
     for (let i = 0; i < allTasks.length; i++) {
@@ -196,6 +197,8 @@ function editPopupTask(taskId) {
     });
   
     editTask.innerHTML = /*html*/ `
+      <h2 style="font-size: 32px;">Edit Task</h2>
+      <div id="popup-seperator"></div>
       <input type="text" id="edit-task-title-container-popup" value="${currentTitle}">
       <input type="text" id="edit-task-description-container-popup" value="${currentDescription}">
       <input type="date" id="edit-task-date-container-popup" value="${currentDate}">
@@ -619,24 +622,30 @@ function generateTaskHTML(task) {
   let assignedContactsHTML = task['taskAssignment'].map((contact, index) => {
       return `<div class="task-contact-initials" style="background: ${contact['color']};">${initials[index]}</div>`;
   }).join('');
+  
   let completedSubtasks = task['taskSubTask'] ? task['taskSubTask'].filter(subtask => subtask.done).length : 0;
   let totalSubtasks = task['taskSubTask'] ? task['taskSubTask'].length : 0;
   let progress = totalSubtasks > 0 ? Math.round((completedSubtasks / totalSubtasks) * 100) : 0;
   let taskId = `${task['taskId']}`;
 
+  let progressHTML = '';
+  if (totalSubtasks > 0) {
+      progressHTML = `<div class="task-item-output" id="task-progress-container">
+                          <progress style="max-width: 150px;" value="${progress}" max="100"></progress>
+                          <span>${completedSubtasks}/${totalSubtasks} Subtasks</span>
+                      </div>`;
+  }
+
   return /*html*/`<div id="${taskId}" class="task-board-container" onclick="openTaskDetails('${taskId}')" draggable="true" ondragstart="startDragging('${taskId}')">
-              <div class="task-item-output" id="task-category-container" style="background-color: ${categoryColor}">${task['taskCategory']}</div>
-              <div class="task-item-output" id="task-title-container"><span>${task['taskTitle']}</span></div>
-              <div class="task-item-output" id="task-description-container"><span>${task['taskDescription']}</span></div>
-              <div class="task-item-output" id="task-progress-container">
-                <progress style="max-width: 150px;" value="${progress}" max="100"></progress>
-                <span>${completedSubtasks}/${totalSubtasks} Subtasks</span>
-              </div>
-              <div id="task-bottom-row">
-                <div class="task-item-output" id="task-assignment-container"><div style="display: flex;">${assignedContactsHTML}</div></div>
-                <div class="task-item-output" id="task-priority-container"><img src="${task['taskPriority']}" id="task-priority-icon-task" alt="Priority Icon"/></div>
-              </div>
-          </div>`;
+            <div class="task-item-output" id="task-category-container" style="background-color: ${categoryColor}">${task['taskCategory']}</div>
+            <div class="task-item-output" id="task-title-container"><span>${task['taskTitle']}</span></div>
+            <div class="task-item-output" id="task-description-container"><span>${task['taskDescription']}</span></div>
+            ${progressHTML}
+            <div id="task-bottom-row">
+              <div class="task-item-output" id="task-assignment-container"><div style="display: flex;">${assignedContactsHTML}</div></div>
+              <div class="task-item-output" id="task-priority-container"><img src="${task['taskPriority']}" id="task-priority-icon-task" alt="Priority Icon"/></div>
+            </div>
+        </div>`;
 }
 
 
