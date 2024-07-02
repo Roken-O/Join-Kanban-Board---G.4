@@ -3,7 +3,7 @@
   /*///////////////////////////////////1580//////////////////////////////// */
   #task-task-form {
     margin: 10% 15%;
-    width: 65%;
+    min-width: 65%;
   }
 }
 
@@ -147,7 +147,7 @@
     margin: 10% 15%;
     max-height: 90%;
     border-radius: 10px;
-    width: 65%;
+    min-width: 65%;
   }
 
   .input-search-container {
@@ -387,7 +387,7 @@
 
   #task-task-form {
     margin: -2% 27%;
-    width: 40%;
+    min-width: 40%;
     max-height: 85%;
     justify-content: unset;
   }
@@ -587,7 +587,7 @@
 
   #task-task-form {
     margin: -2% 20%;
-    width: 50%;
+    min-width: 50%;
   }
 
   .empty {
@@ -612,7 +612,7 @@
   /*///////////////////////////////////700//////////////////////////////// */
   #task-task-form {
     margin: -2% 12%;
-    width: 65%;
+    min-width: 65%;
   }
 
   .task-container {
@@ -666,7 +666,7 @@
   #task-task-form {
     margin: -2% 3%;
     padding: 16px 16px 16px 16px;
-    width: 85%;
+    min-width: 75%;
   }
 
   #task-priority-container {
@@ -1017,7 +1017,7 @@
 
   #task-task-form {
     margin: -2% -4%;
-    width: 85%;
+    min-width: 80%;
   }
 
   #filter-task-input {
