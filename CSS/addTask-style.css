@@ -680,12 +680,6 @@ input[type='checkbox'] {
   margin-left: 4px;
 }
 
-/* .size-low {
-  width: 12px !important;
-  height: 8px !important;
-  margin-left:4px;
-} */
-
 .dropdown-list .dropdown-item {
   padding: 8px 16px;
   cursor: pointer;

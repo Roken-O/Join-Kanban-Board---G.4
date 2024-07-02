@@ -1,18 +1,24 @@
 let currentDraggedElement;
 
+
 window.onload = function() {
   loadContactListPopup();
   loadContactList();
   loadTasksBoard();
-  includeHTML();
   changeColor();
   resetButtons();
   loadLocalStorage();
   checkRegisteredUser();
   loadUsers();
   checkLoadUsers();
+  includeHTML();
 }
 
+
+/**
+ * Loads users from the database.
+ * @returns {Promise} - Resolves with a success message or rejects with an error message.
+ */
 function loadUsers() {
   return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -33,12 +39,21 @@ function loadUsers() {
   });
 }
 
+
+
+/**
+ * Checks if users are loaded and saves to local storage.
+ */
 async function checkLoadUsers() {
   let prom = await loadUsers();
   saveLocalStorage();
   console.log(prom);
 }
 
+
+/**
+ * Checks input fields and populates them if remembered.
+ */
 function checkInputs() {
   document.getElementById("email").value = '';
   document.getElementById("password").value = '';
@@ -52,6 +67,11 @@ function checkInputs() {
   }
 }
 
+
+/**
+ * Opens task details popup for a given task ID.
+ * @param {string} taskId - The ID of the task to open details for.
+ */
 function openTaskDetails(taskId) {
   let taskDetails = document.getElementById('task');
   taskDetails.style.display = 'flex';
@@ -120,6 +140,9 @@ function openTaskDetails(taskId) {
 }
 
 
+/**
+ * Loads contacts from the database into the popup.
+ */
 function loadContactListPopup() {
   let database = firebase.database();
   let contactEntries = database.ref('contacts');
@@ -134,6 +157,10 @@ function loadContactListPopup() {
 }
 
 
+/**
+ * Edits a task and displays its details in a popup.
+ * @param {string} taskId - The ID of the task to edit.
+ */
 function editPopupTask(taskId) {
   let task = allTasks.find(t => t.taskId === taskId);
   if (task) {
@@ -212,8 +239,10 @@ function editPopupTask(taskId) {
           </div>
         
       </section>
-      <button id="save-popup-button" onclick="saveEditedPopupTask('${taskId}'); openTaskDetails('${taskId}'); hidePopupEditContainer()">Save</button>
-      <button id="cancel-save-popup-button" onclick="openTaskDetails('${taskId}'); hidePopupEditContainer()">Cancel</button>
+      <section id="task-popup-edit-button-container">
+        <button id="save-popup-button" onclick="saveEditedPopupTask('${taskId}'); openTaskDetails('${taskId}'); hidePopupEditContainer()">Save</button>
+        <button id="cancel-save-popup-button" onclick="openTaskDetails('${taskId}'); hidePopupEditContainer()">Cancel</button>
+      </section>
     `;
   
     selectedContactsEdit = currentSelection.slice();
@@ -223,23 +252,24 @@ function editPopupTask(taskId) {
   }
 }
 
-
-function toggleContactsDropdown() {
-  const dropdown = document.getElementById('contactsDropdown');
-  dropdown.classList.toggle('show');
-}
-
-
+/**
+ * Shows the popup edit container.
+ */
 function showPopupEditContainer() {
   document.getElementById('task-popup-edit-container').style.display = 'flex';
 }
 
-
+/**
+ * Hides the popup edit container.
+ */
 function hidePopupEditContainer() {
   document.getElementById('task-popup-edit-container').style.display = 'none';
 }
 
-
+/**
+ * Toggles the selection of a contact in the edit task popup.
+ * @param {HTMLInputElement} checkbox - The checkbox element of the contact.
+ */
 function toggleContactEditPopup(checkbox) {
   let contactEmail = checkbox.value;
   if (checkbox.checked) {
@@ -251,17 +281,9 @@ function toggleContactEditPopup(checkbox) {
 }
 
 
-function toggleContactAssignmentPopup(checkbox) {
-  let contactEmail = checkbox.value;
-  if (checkbox.checked) {
-    let contact = allContacts.find(contact => contact['email'] === contactEmail);
-    selectedContacts.push(contact);
-  } else {
-    selectedContacts = selectedContacts.filter(contact => contact['email'] !== contactEmail);
-  }
-}
-
-
+/**
+ * Toggles the dropdown for contacts in the edit task popup.
+ */
 function toggleContactDropdownPopup() {
   let contactsDropdown = document.getElementById('contacts-list-popup-detail');
   let dropdownArrow = document.getElementById('icon-contacts-dropdown-arrow-image-popup');
@@ -276,6 +298,9 @@ function toggleContactDropdownPopup() {
 }
 
 
+/**
+ * Toggles the category dropdown in the edit task popup.
+ */
 function toggleCategoryDropdownPopup() {
   let categoryDropdownEdit = document.getElementById('category-dropdown-popup-container');
   let dropdownArrow = document.getElementById('icon-category-dropdown-arrow-image-popup');
@@ -290,6 +315,9 @@ function toggleCategoryDropdownPopup() {
 }
 
 
+/**
+ * Toggles the priority dropdown in the edit task popup.
+ */
 function togglePriorityDropdownPopup() {
   let categoryDropdownEdit = document.getElementById('priority-dropdown-popup');
   let dropdownArrow = document.getElementById('icon-priority-dropdown-arrow-image-popup');
@@ -304,6 +332,9 @@ function togglePriorityDropdownPopup() {
 }
 
 
+/**
+ * Adds a subtask to the edit task popup.
+ */
 function addSubTaskEditPopup() {
   let subTaskInputEdit = document.getElementById('edit-task-subtask-input-popup');
   let subTaskValueEdit = subTaskInputEdit.value.trim();
@@ -320,6 +351,11 @@ function addSubTaskEditPopup() {
 }
 
 
+/**
+ * Displays the list of subtasks in the edit popup.
+ * Clears the existing content and populates the list with subtasks from the subtasksEdit array.
+ * Each subtask item includes a checkbox, name, and a delete button.
+ */
 function displaySubTasksEditPopup() {
   let subtaskListEdit = document.getElementById('subtask-list-edit-popup');
   subtaskListEdit.innerHTML = "";
@@ -338,12 +374,23 @@ function displaySubTasksEditPopup() {
 }
 
 
+/**
+ * Removes a subtask from the subtasksEdit array based on the given index and updates the display.
+ * @param {number} index - The index of the subtask in the subtasksEdit array to be removed.
+ */
 function removeSubTaskEditPopup(index) {
   subtasksEdit.splice(index, 1);
   displaySubTasksEditPopup();
 }
 
 
+/**
+ * Selects a category for a task in the popup and updates the UI accordingly.
+ * Sets the selectedCategory variable, updates the category display text, hides the category dropdown,
+ * and changes the dropdown arrow icon.
+ * @param {Event} event - The event object that triggered the function.
+ * @param {string} category - The category to be selected for the task.
+ */
 function selectCategoryPopup(event, category) {
   selectedCategory = category;
   document.getElementById('task-category-selection').innerText = selectedCategory;
@@ -352,28 +399,10 @@ function selectCategoryPopup(event, category) {
 }
 
 
-// function createCategoryIconUrgent(event, buttonId) {
-//   event.preventDefault();
-//   priority = '/assets/img/urgent_icon.svg';
-//   changeColor(buttonId);
-
-// }
-
-
-// function createCategoryIconMedium(event, buttonId) {
-//   event.preventDefault();
-//   priority = '/assets/img/medium_icon.svg';
-//   changeColor(buttonId);
-// }
-
-
-// function createCategoryIconLow(event, buttonId) {
-//   event.preventDefault();
-//   priority = '/assets/img/low_icon.svg';
-//   changeColor(buttonId);
-// }
-
-
+/**
+ * Selects a category in the edit task popup and updates the UI.
+ * @param {string} category - The selected category.
+ */
 function selectCategoryEditPopup(category) {
   let categoryColor;
   if (category === 'User Story') {
@@ -387,12 +416,20 @@ function selectCategoryEditPopup(category) {
 }
 
 
+/**
+ * Selects a priority in the edit task popup and updates the UI.
+ * @param {string} priority - The selected priority.
+ */
 function selectPriorityEditPopup(priorityIcon, priorityText) {
   let dropdown = document.querySelector('#edit-task-priority-container-popup .dropdown-popup');
   dropdown.innerHTML = `${priorityText} <img src="${priorityIcon}" alt="Priority Icon"/>`;
 }
 
 
+/**
+ * Saves the edited task.
+ * @param {string} taskId - The ID of the task to save.
+ */
 function saveEditedPopupTask(taskId) {
   
   let editTitle = document.getElementById('edit-task-title-container-popup').value;
@@ -434,6 +471,11 @@ function saveEditedPopupTask(taskId) {
 }
 
 
+/**
+ * Toggles the completion status of a subtask in a task.
+ * @param {string} taskId - The ID of the task containing the subtask.
+ * @param {number} subtaskIndex - The index of the subtask in the task's subtask array.
+ */
 function toggleSubtaskDoneInTask(taskId, subtaskIndex) {
   let taskRef = database.ref('tasks/' + taskId + '/taskSubTask/' + subtaskIndex);
   taskRef.once('value', function(snapshot) {
@@ -444,6 +486,10 @@ function toggleSubtaskDoneInTask(taskId, subtaskIndex) {
 }
 
 
+/**
+ * Adds a new subtask field to the edit task popup.
+ * Each subtask field consists of a checkbox and an input for the subtask name.
+ */
 function addSubtaskField() {
   const subtasksContainer = document.getElementById('edit-subtasks');
   const subtaskIndex = subtasksContainer.children.length;
@@ -456,11 +502,20 @@ function addSubtaskField() {
 }
 
 
+/**
+ * Closes the task details popup by hiding it.
+ */
 function closePopup() {
   let taskDetails = document.getElementById('task');
   taskDetails.style.display = 'none';
 }
 
+
+/**
+ * Toggles the display of the main container popup board between flex and none.
+ * If the container is currently hidden (d-none), it will be displayed (d-flex).
+ * If the container is currently displayed (d-flex), it will be hidden (d-none).
+ */
 function closePopupBoard() {
   let taskDetails = document.getElementById('main-container-popup-board');
   if(taskDetails.classList.contains('d-none')) {
@@ -473,11 +528,18 @@ function closePopupBoard() {
 }
 
 
+/**
+ * Prevents the propagation of the given event, stopping it from reaching parent elements.
+ * @param {Event} event - The event object to prevent from propagating.
+ */
 function doNotClose(event) {
   event.stopPropagation();
 }
 
 
+/**
+ * Loads tasks from the database into the task board.
+ */
 function loadTasksBoard() {
     let tasks = database.ref('tasks');
 
@@ -495,6 +557,10 @@ function loadTasksBoard() {
 }
 
 
+/**
+ * Updates the task board UI based on the current state of allTasks array.
+ * This function generates HTML for each task and updates the respective category containers on the board.
+ */
 function updateTaskBoard() {
     boardCategory.forEach(category => {
         let tasks = allTasks.filter(task => task['taskBoardCategory'] === category);
@@ -507,6 +573,11 @@ function updateTaskBoard() {
 }
 
 
+/**
+ * Sets the current dragged element ID and adds a CSS class to indicate dragging.
+ * If the element with the specified ID is not found, an error message is logged.
+ * @param {string} id - The ID of the element being dragged.
+ */
 function startDragging(id) {
   currentDraggedElement = id;
   const element = document.getElementById(id);
@@ -518,6 +589,11 @@ function startDragging(id) {
 }
 
 
+/**
+ * Generates HTML markup for a task based on its details.
+ * @param {Object} task - The task object containing details like title, description, etc.
+ * @returns {string} HTML markup representing the task.
+ */
 function generateTaskHTML(task) {
   let contactNames = task['taskAssignment'] ? task['taskAssignment'].map(contact => contact['name']) : [];
   let initials;
@@ -551,18 +627,27 @@ function generateTaskHTML(task) {
                 <span>${completedSubtasks}/${totalSubtasks} Subtasks</span>
               </div>
               <div id="task-bottom-row">
-                <div class="task-item-output" id="task-assignment-container">${assignedContactsHTML}</div>
+                <div class="task-item-output" id="task-assignment-container"><div style="display: flex;">${assignedContactsHTML}</div></div>
                 <div class="task-item-output" id="task-priority-container"><img src="${task['taskPriority']}" id="task-priority-icon-task" alt="Priority Icon"/></div>
               </div>
           </div>`;
 }
 
 
+/**
+ * Prevents the default behavior of an event, allowing a drop operation to occur.
+ * @param {Event} ev - The event object for which the default behavior needs to be prevented.
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
 
+/**
+ * Moves the task currently being dragged to a specified category.
+ * Updates the task's board category in the database and refreshes the task board UI.
+ * @param {string} category - The category to move the task into.
+ */
 function moveTo(category) {
     let task = allTasks.find(t => t['taskId'] === currentDraggedElement);
 
@@ -573,6 +658,10 @@ function moveTo(category) {
 }
 
 
+/**
+ * Highlights a category on the task board temporarily to indicate a potential drop target.
+ * @param {string} category - The category ID to highlight.
+ */
 function highlight(category) {
   document.getElementById(category).classList.add('drag-area-highlight');
   setTimeout(() => {
@@ -581,6 +670,10 @@ function highlight(category) {
 }
 
 
+/**
+ * Removes the highlight from a category after a delay.
+ * @param {string} category - The category ID to remove highlight from.
+ */
 function removeHighlight(category) {
   setTimeout(() => {
   document.getElementById(category).classList.remove('drag-area-highlight');
@@ -588,8 +681,12 @@ function removeHighlight(category) {
 }
 
 
+/**
+ * Filters tasks on the task board based on a search input value.
+ * Hides tasks that do not match the filter criteria.
+ */
 function filterTask() {
-  let filterValue = document.getElementById('filterTaskInput').value.toUpperCase();
+  let filterValue = document.getElementById('filter-task-input').value.toUpperCase();
   let tasks = document.querySelectorAll('.task-board-container');
 
   tasks.forEach(task => {
@@ -606,15 +703,21 @@ function filterTask() {
 }
 
 
+/**
+ * Shows the add task popup board by setting its display to flex and animating the popup form.
+ */
 function showAddTaskPopupBoard() {
   document.getElementById('main-container-popup-board').classList.remove('d-none');
   document.getElementById('main-container-popup-board').classList.add('d-flex');
-  // setTimeout(() => {
-  //   document.getElementById('task-task-form').classList.add('animate-popup-addtask-container');
-  // }, 125);
+  setTimeout(() => {
+    document.getElementById('task-task-form').classList.add('animate-popup-addtask-container-board');
+  }, 1750);
 }
 
 
+/**
+ * Hides the add task popup board by setting its display to none after removing the flex display class.
+ */
 function hideAddTaskPopupBoard() {
   document.getElementById('main-container-popup-board').classList.remove('d-flex');
   document.getElementById('main-container-popup-board').classList.add('d-none');

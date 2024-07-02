@@ -47,10 +47,15 @@
 }
 
 #contacts-list-content {
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 385px;
+}
+
+#contacts-list-content:hover {
+  overflow-y: scroll;
 }
 
 #contacts-list-content::-webkit-scrollbar {
@@ -63,7 +68,7 @@
 }
 
 #contacts-list-content::-webkit-scrollbar-thumb {
-  background: #29abe2; 
+  background: #2a3647; 
    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
    border-radius: 4px;
    cursor: pointer;
