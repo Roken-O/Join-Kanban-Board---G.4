@@ -445,12 +445,18 @@
 
 .popup-task-container {
   width: 400px;
+  max-height: 65%;
+  overflow: hidden;
   padding: 30px;
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 1);
   transform: translateX(100%);
   transition: all 200ms ease-in-out;
   opacity: 0;
+}
+
+.popup-task-container:hover {
+  overflow-y: scroll;
 }
 
 .animate-popup-task-container {
