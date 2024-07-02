@@ -448,10 +448,6 @@ function loadContacts() {
         </div>
         </div>
       `;
-
-      if (allContacts.indexOf(contact) === allContacts.length - 1 || allContacts[allContacts.indexOf(contact) + 1].name.charAt(0).toUpperCase() !== currentInitial) {
-        contactsListContent.innerHTML += `</div></div>`;
-      }
     });
   });
 }
