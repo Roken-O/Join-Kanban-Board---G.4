@@ -234,7 +234,7 @@ function editPopupTask(taskId) {
                 <img id="icon-contacts-dropdown-arrow-image-popup" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"/>
             </div>
           </div>  
-          <div id="contacts-list-popup-detail" class="dropdown-list d-none">
+          <div id="contacts-list-popup-detail" class="dropdown-list-board d-none">
             ${contactsList}
           </div>
         
@@ -364,10 +364,8 @@ function displaySubTasksEditPopup() {
     let subtaskItemEdit = document.createElement('li');
     subtaskItemEdit.innerHTML = /*html*/`
       <input type="checkbox" id="subtask-edit-${index}" ${subtask.done ? 'checked' : ''} onclick="toggleSubtaskDoneEdit(${index})">
-      <div style="display: flex; justify-content: space-between; width: 80%;">
-        <label for="subtask-edit-${index}">${subtask.name}</label>
-        <button style="background: transparent; border: none; cursor: pointer;" type="button" onclick="removeSubTaskEditPopup(${index})"><img style="height: 12px; width: 12px;" src="assets/img/delete_icon.svg" alt=""></button>
-      </div>
+      <label for="subtask-edit-${index}">${subtask.name}</label>
+      <button style="background: transparent; border: none; cursor: pointer;" type="button" onclick="removeSubTaskEditPopup(${index})"><img style="height: 12px; width: 12px;" src="assets/img/delete_icon.svg" alt=""></button>
     `;
     subtaskListEdit.appendChild(subtaskItemEdit);
   });
@@ -560,16 +558,24 @@ function loadTasksBoard() {
 /**
  * Updates the task board UI based on the current state of allTasks array.
  * This function generates HTML for each task and updates the respective category containers on the board.
+ * It checks the length of the tasks arrays filtered by category and displays an empty container if there are none in a category.
  */
 function updateTaskBoard() {
-    boardCategory.forEach(category => {
-        let tasks = allTasks.filter(task => task['taskBoardCategory'] === category);
-        document.getElementById(category).innerHTML = '';
+  boardCategory.forEach(category => {
+      let tasks = allTasks.filter(task => task['taskBoardCategory'] === category);
+      let categoryContainer = document.getElementById(category);
+      categoryContainer.innerHTML = '';
 
-        tasks.forEach(task => {
-            document.getElementById(category).innerHTML += generateTaskHTML(task);
-        });
-    });
+      let columnHeader = categoryContainer.getAttribute('data-header');
+
+      if (tasks.length === 0) {
+          categoryContainer.innerHTML = `<div class="empty">No tasks in ${columnHeader}</div>`;
+      } else {
+          tasks.forEach(task => {
+              categoryContainer.innerHTML += generateTaskHTML(task);
+          });
+      }
+  });
 }
 
 
