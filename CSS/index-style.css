@@ -48,7 +48,7 @@ body {
   position: relative;
   transform: scale(2.5);
   top: 40%;
-  left: 40%;
+  left: 45%;
   transition: all 700ms ease-in-out, top 700ms ease-in-out,
     left 700ms ease-in-out;
 }
