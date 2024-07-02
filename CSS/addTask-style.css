@@ -134,8 +134,8 @@ textarea {
 }
 
 .field-325 {
-  width: 325px;
-  height: 36px;
+  width: 315px;
+  height: 24px;
   border-radius: 10px;
   outline: none;
   border: 1px solid lightgray;
@@ -229,7 +229,7 @@ input[type="date"]:before {
   height: 16px;
   position: absolute;
   right: 16px;
-  bottom: 20px;
+  bottom: 12px;
 }
 
 .select-category {
@@ -656,15 +656,20 @@ input[type='checkbox'] {
 
 .sub-task-container {
   margin-top: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .sub-task-container li {
   margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .sub-task-container img {
   width: 12px;
-  margin-left: 240px;
+  height: 16px;
+  margin-right: 24px;
   cursor: pointer;
 }
 
