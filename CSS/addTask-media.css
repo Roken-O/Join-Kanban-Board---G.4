@@ -79,7 +79,7 @@
 
   .cleaning {
     width: 34px;
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .cleaning-svg {
@@ -128,7 +128,7 @@
   }
 
   .form-height {
-    align-items: flex-start;
+    align-items: center;
     margin-left: 40px;
   }
 
@@ -137,7 +137,7 @@
   }
 
   .execution-parent {
-    justify-content: space-between;
+    justify-content: space-around;
     white-space: nowrap;
   }
 }
@@ -159,6 +159,7 @@
     display: none;
     margin-left: 0px;
     height: 0px;
+    font-size: 0px;
   }
 
   .required-container {
@@ -194,6 +195,7 @@
     justify-content: unset;
     padding-top: 10px;
     padding-bottom: 10px;
+    z-index: 99;
   }
   .create-task {
     margin-right: 0px;
@@ -291,7 +293,7 @@
 }
 
   #main-container {
-    padding: 40px 16px 64px 8px !important;
+    padding: 40px 8px 64px 8px !important;
   }
   .form-height {
     margin-left: 8px;
@@ -362,5 +364,9 @@
   .required-text {
     font-size: 12px;
   }
-
+}
+@media (max-width: 333px) {
+  .form-height {
+    width: 96%;
+  }
 }
