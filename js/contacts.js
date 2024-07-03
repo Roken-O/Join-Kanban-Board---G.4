@@ -26,11 +26,10 @@ function initContact() {
 function changeBackground(i) {
   let elements = document.querySelectorAll("[id^='contact-border']");
   elements.forEach(function (element) {
-    element.classList.remove("blue-background");
+    element.classList.remove("blue-background", "contact-border-no-hover");
   });
-  document
-    .getElementById(`contact-border${i}`)
-    .classList.add("blue-background");
+  // document.getElementById(`contact-border${i}`).classList.add("blue-background");
+  document.getElementById(`contact-border${i}`).classList.add("blue-background", "contact-border-no-hover");
 }
 
 function getRandomColor() {
@@ -274,15 +273,21 @@ function showContactResponsive(email, j) {
   );
 }
 
-function closeContact(j) {
+function closeContact() {
   document.getElementById("contacts-list").classList.remove("display-none");
   document
     .getElementById("contacts-container-responsive")
     .classList.remove("d-unset");
   document.getElementById("back-icon").classList.remove("d-unset");
-  document
-    .getElementById(`contact-border${j}`)
-    .classList.remove("blue-background");
+  // document
+  //   .getElementById(`contact-border${j}`)
+  //   .classList.remove("blue-background");
+
+    let elements = document.querySelectorAll("[id^='contact-border']");
+    elements.forEach(function (element) {
+      element.classList.remove("blue-background", "contact-border-no-hover");
+      element.classList.add('contact-border');
+    });
 }
 
 function closePopUpEditDelete() {

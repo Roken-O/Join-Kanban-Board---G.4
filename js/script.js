@@ -63,14 +63,10 @@ function logout(registeredID) {
 }
 
 
-function toggleShowLogout(registeredID) {
+function toggleShowLogout() {
+  checkRegisteredUser();
   let logoutContainer = document.getElementById('showLogout');
-  logoutContainer.innerHTML = `
-   <div class="popout-showlogout">
-      <a href="imprint.html">Legal Notice</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a onclick="logout('${registeredID}')" href="#">Log Out</a>
-    </div>`;
+  logoutContainer.innerHTML = renderLogout(registeredID);
   if (logoutContainer.style.display == 'flex') {
     logoutContainer.style.display = 'none';
   } else {

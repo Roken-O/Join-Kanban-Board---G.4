@@ -231,3 +231,12 @@ function renderFormEditContactHTML(currentEmail){
 </form>
     `;
 }
+
+function renderLogout(registeredID){
+    return `
+   <div class="popout-showlogout">
+      <a href="imprint.html">Legal Notice</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a onclick="logout('${registeredID}')" href="#">Log Out</a>
+    </div>`;
+}
