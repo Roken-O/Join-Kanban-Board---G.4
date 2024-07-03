@@ -47,7 +47,7 @@
 }
 
 #contacts-list-content {
-  overflow: hidden;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -113,13 +113,13 @@
 }
 
 .initial-name-email-container{
-  width: 250px;
+  width: 270px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
   margin-top: 12px;
   cursor: pointer;
+  gap: 25px;
 }
 
 .contact-name-email-contactlist {
@@ -128,6 +128,29 @@
   gap: 5px;
   margin-bottom: 8px;
   
+}
+
+.blue-background{
+  background-color: #293647;
+  border-radius: 10px;
+  color: white;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.contact-border{
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.contact-border:visited {
+  background: aqua;
+}
+
+.contact-border:hover{
+  cursor: pointer;
+  background-color: #f1efef;
+  border-radius: 10px;
 }
 
 #contact-name-contactlist {

@@ -2,11 +2,20 @@ let allContacts = [];
 let hexColors = ['#29abe2', '#4589ff', '#0038ff', '#ff3d00', '#ff745e', '#ffa35e', '#ff7a00', '#ffbb2b', '#ffe62b', '#ffc701', '#7ae229', '#1fd7c1', '#fc71ff', '#ff5eb3', '#9327ff', '#462f8a'];
 
 function initContact() {
-  document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
-  document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
+  // document.getElementById("add-new-contact-popUp-bg").classList.add("d-none");
+  // document.getElementById("edit-contact-popUp-bg").classList.add("d-none");
   loadLocalStorage();
   checkRegisteredUser();
 }
+
+function changeBackground(i) {
+  let elements = document.querySelectorAll("[id^='contact-border']");
+  elements.forEach(function(element) {
+    element.classList.remove("blue-background");
+  });
+  document.getElementById(`contact-border${i}`).classList.add("blue-background");
+}
+
 
 function getRandomColor() {
   let randomColor = Math.floor(Math.random() * hexColors.length);
@@ -42,7 +51,6 @@ function saveContact() {
 
 function validateAndSubmit(event) {
   event.preventDefault();
-
 
   let name = document.getElementById('contact-trial-name').value.trim();
   let email = document.getElementById('contact-trial-email').value.trim();
@@ -289,7 +297,7 @@ function showContactInfo(email) {
           `;
 }
 
-function showContactResponsive(email) {
+function showContactResponsive(email,j) {
   let width = window.innerWidth;
   if (width <= 1050) {
     document.getElementById("contacts-list").classList.add("display-none");
@@ -376,7 +384,7 @@ function showContactResponsive(email) {
                   />
                   <span>Edit</span>
                 </div>
-                <div onclick="deleteContact('${currentEmail}');closeContact()"  class="PopUp-delete">
+                <div onclick="deleteContact('${currentEmail}');closeContact('${j}');"  class="PopUp-delete">
                   <img
                     class="PopUp-delete-img"
                     src="./assets/img/delete_icon.svg"
@@ -389,11 +397,13 @@ function showContactResponsive(email) {
           `;
 }
 
-function closeContact() {
+function closeContact(j) {
   document.getElementById("contacts-list").classList.remove("display-none");
   document.getElementById("contacts-container-responsive").classList.remove("d-unset");
   document.getElementById("back-icon").classList.remove("d-unset");
+  document.getElementById(`contact-border${j}`).classList.remove("blue-background");
 }
+
 
 function closePopUpEditDelete() {
   document.getElementById("PopUp-edit-delete-bg").classList.add("display-none");
@@ -412,15 +422,21 @@ function loadContacts() {
     contactsListContent.innerHTML = "";
 
     allContacts = [];
+    let childSnapshots = [];
     snapshot.forEach(function (childSnapshot) {
-      let contact = childSnapshot.val();
-      allContacts.push(contact);
+      childSnapshots.push(childSnapshot);
     });
+
+    for (let i = 0; i < childSnapshots.length; i++) {
+      let contact = childSnapshots[i].val();
+      allContacts.push(contact);
+    }
 
     allContacts.sort((a, b) => a.name.localeCompare(b.name));
 
     let currentInitial = '';
-    allContacts.forEach(function (contact) {
+    for (let i = 0; i < allContacts.length; i++) {
+      let contact = allContacts[i];
       let initial = contact.name.charAt(0).toUpperCase();
 
       if (initial !== currentInitial) {
@@ -434,8 +450,9 @@ function loadContacts() {
 
       contactsListContent.innerHTML += /*html*/ `
         <div
-          onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}');closePopUpEditDelete();"
-          class="flex-align-center contact-entry"
+          id="contact-border${i}"
+          onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}','${i}');closePopUpEditDelete();changeBackground(${i});"
+          class="flex-align-center contact-entry contact-border"
         >
         <div class="initial-name-email-container">
           <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
@@ -448,7 +465,7 @@ function loadContacts() {
         </div>
         </div>
       `;
-    });
+    }
   });
 }
 

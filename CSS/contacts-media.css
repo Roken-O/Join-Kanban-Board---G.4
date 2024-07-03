@@ -270,7 +270,7 @@
     flex-direction: column;
     width: 300px;
     height: 635px;
-    margin-bottom: 80px;
+    /* margin-bottom: 80px; */
   }
 
   .popUp-edit-add-leftside {
@@ -427,6 +427,10 @@
   #breakline-contactlist {
     width: 300px;
   }
+  #contacts-list-content {
+    min-width: 313px;
+}
+
 }
 
 /* max-height-670px */
@@ -435,6 +439,26 @@
   .contacts-container-responsive {
     padding: 10px 32px;
   }
+}
+
+@media (max-height: 640px) {
+
+  .add-new-or-edit-contact-popUp {
+    height: 430px;
+}
+
+  .button_create_contact {
+  padding-bottom: 0px;
+}
+
+.input-text-email-number-contact {
+  padding: 5px 13px 5px 13px;
+}
+
+#close-icon-edit {
+  margin-top: -30px;
+}
+
 }
 
 @media (max-width: 410px) {

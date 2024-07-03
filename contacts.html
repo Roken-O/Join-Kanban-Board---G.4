@@ -91,7 +91,7 @@
         </div>
       </div>
 
-      <div id="add-new-contact-popUp-bg">
+      <div class="d-none" id="add-new-contact-popUp-bg">
         <div class="add-new-or-edit-contact-popUp">
           <div class="popUp-edit-add-leftside">
             <div class="container-close-icon-responsive">
@@ -169,7 +169,8 @@
                 placeholder="Telefon"
                 id="contact-trial-phone"
                 class="input-text-email-number-contact input-number-contact"
-                type="text"
+                type="tel"
+                pattern="[+0-9\s]+"
                 required
               />
 
@@ -195,7 +196,7 @@
           </div>
         </div>
       </div>
-      <div id="edit-contact-popUp-bg">
+      <div class="d-none" id="edit-contact-popUp-bg">
         <div class="add-new-or-edit-contact-popUp">
           <div class="popUp-edit-add-leftside">
             <div class="container-close-icon-responsive">
