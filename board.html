@@ -266,7 +266,9 @@
             </div>
         </div>
     </section>
-    <div style="display: none;" id="task-popup-edit-container"></div>
+    <div id="task-edit-popup-parent-container" style="display: none;" onclick="hidePopupEditContainer()">
+        <div style="display: none;" id="task-popup-edit-container" onclick="doNotClose(event)"></div>
+    </div>
     <div style="display: none;" id="task" onclick="closePopup()">
     
                 

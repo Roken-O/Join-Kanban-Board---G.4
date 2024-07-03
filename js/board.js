@@ -259,6 +259,7 @@ function editPopupTask(taskId) {
  * Shows the popup edit container.
  */
 function showPopupEditContainer() {
+  document.getElementById('task-edit-popup-parent-container').style.display = 'flex';
   document.getElementById('task-popup-edit-container').style.display = 'flex';
 }
 
@@ -266,6 +267,7 @@ function showPopupEditContainer() {
  * Hides the popup edit container.
  */
 function hidePopupEditContainer() {
+  document.getElementById('task-edit-popup-parent-container').style.display = 'none';
   document.getElementById('task-popup-edit-container').style.display = 'none';
 }
 
@@ -724,9 +726,6 @@ function filterTask() {
 function showAddTaskPopupBoard() {
   document.getElementById('main-container-popup-board').classList.remove('d-none');
   document.getElementById('main-container-popup-board').classList.add('d-flex');
-  setTimeout(() => {
-    document.getElementById('task-task-form').classList.add('animate-popup-addtask-container-board');
-  }, 1750);
 }
 
 
@@ -734,6 +733,23 @@ function showAddTaskPopupBoard() {
  * Hides the add task popup board by setting its display to none after removing the flex display class.
  */
 function hideAddTaskPopupBoard() {
+  document.getElementById('main-container-popup-board').classList.remove('d-flex');
+  document.getElementById('main-container-popup-board').classList.add('d-none');
+}
+
+/**
+ * Shows the add task popup board by setting its display to flex and animating the popup form.
+ */
+function showEditTaskPopupBoard() {
+  document.getElementById('main-container-popup-board').classList.remove('d-none');
+  document.getElementById('main-container-popup-board').classList.add('d-flex');
+}
+
+
+/**
+ * Hides the add task popup board by setting its display to none after removing the flex display class.
+ */
+function hideEditTaskPopupBoard() {
   document.getElementById('main-container-popup-board').classList.remove('d-flex');
   document.getElementById('main-container-popup-board').classList.add('d-none');
 }
