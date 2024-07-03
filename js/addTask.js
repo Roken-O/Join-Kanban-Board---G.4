@@ -13,6 +13,8 @@ let boardCategory = ['toDo', 'awaitFeedback', 'inProgress', 'done'];
   setMinDateDatepicker();
   loadLocalStorage();
   checkRegisteredUser();
+  createCategoryIconMedium(event, 'priority-medium-text');
+  changeColor('priority-medium-text');
 }
 
 function deleteTask(taskId) {
@@ -87,6 +89,8 @@ function saveTask() {
   selectedCategory = '';
   document.getElementById('task-category-selection').innerText = "Category";
   priority = '';
+  createCategoryIconMedium(event, 'priority-medium-text');
+  clearInputsAndArrays();
 }
 
 

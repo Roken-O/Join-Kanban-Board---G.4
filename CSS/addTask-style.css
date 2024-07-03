@@ -370,7 +370,7 @@ input[type="date"]:before {
   align-items: center;
 }
 
-.cleaning:hover {
+.cleaning:hover{
   cursor: pointer;
   opacity: 85%;
   transform: scale(1.05);
@@ -378,6 +378,10 @@ input[type="date"]:before {
   color: #00bee8;
   border-color: #00bee8 !important;
   font-size: 17px;
+}
+
+.cleaning:hover .cls-20{
+ fill: #00bee8;
 }
 
 .create-task {
