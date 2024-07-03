@@ -48,12 +48,12 @@
                     <!-- description -->
                     <div class="padding-bottom-24">
                         <div class="mb-8 field-headline">Description</div>
-                        <textarea id="task-description" required pattern="[A-Za-z0-9]+" maxlength="450"
+                        <textarea id="task-description" pattern="[A-Za-z0-9]+" maxlength="450"
                             class="description-input" name="w3review" rows="4" cols="50"
                             placeholder="Enter a description in english please!"></textarea>
                     </div>
 
-                    <span class="mb-8 flex field-headline">Assigned to</span>
+                    <span class="mb-8 flex field-headline">Assigned to <div class="asterisk-color">*</div></span>
                     <div   class="dropbtn">
                         <span class ="contacts-assignment-container">Select contacts to assign</span>
                         <img  onclick="toggleContactDropdown()" id="icon-contacts-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon" />
@@ -160,7 +160,7 @@
                     </button>
 
                     <!-- create task -->
-                    <button required class="create-task" type="submit"><span class="create-text">Create Task</span></button>
+                    <button class="create-task" type="submit"><span class="create-text">Create Task</span></button>
 
                 </div>
             </div>
