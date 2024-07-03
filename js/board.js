@@ -166,6 +166,7 @@ function editPopupTask(taskId) {
   if (task) {
     
     let editTask = document.getElementById('task-popup-edit-container');
+    editTask.scrollTop = 0;
     let currentTitle, currentDescription, currentDate, currentSubTask, currentCategory, currentPriority, currentPriorityText, currentSelection, currentCategoryColor;
 
     for (let i = 0; i < allTasks.length; i++) {
@@ -196,6 +197,8 @@ function editPopupTask(taskId) {
     });
   
     editTask.innerHTML = /*html*/ `
+      <h2 style="font-size: 32px;">Edit Task</h2>
+      <div id="popup-seperator"></div>
       <input type="text" id="edit-task-title-container-popup" value="${currentTitle}">
       <input type="text" id="edit-task-description-container-popup" value="${currentDescription}">
       <input type="date" id="edit-task-date-container-popup" value="${currentDate}">
@@ -234,7 +237,7 @@ function editPopupTask(taskId) {
                 <img id="icon-contacts-dropdown-arrow-image-popup" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"/>
             </div>
           </div>  
-          <div id="contacts-list-popup-detail" class="dropdown-list d-none">
+          <div id="contacts-list-popup-detail" class="dropdown-list-board d-none">
             ${contactsList}
           </div>
         
@@ -364,10 +367,8 @@ function displaySubTasksEditPopup() {
     let subtaskItemEdit = document.createElement('li');
     subtaskItemEdit.innerHTML = /*html*/`
       <input type="checkbox" id="subtask-edit-${index}" ${subtask.done ? 'checked' : ''} onclick="toggleSubtaskDoneEdit(${index})">
-      <div style="display: flex; justify-content: space-between; width: 80%;">
-        <label for="subtask-edit-${index}">${subtask.name}</label>
-        <button style="background: transparent; border: none; cursor: pointer;" type="button" onclick="removeSubTaskEditPopup(${index})"><img style="height: 12px; width: 12px;" src="assets/img/delete_icon.svg" alt=""></button>
-      </div>
+      <label for="subtask-edit-${index}">${subtask.name}</label>
+      <button style="background: transparent; border: none; cursor: pointer;" type="button" onclick="removeSubTaskEditPopup(${index})"><img style="height: 12px; width: 12px;" src="assets/img/delete_icon.svg" alt=""></button>
     `;
     subtaskListEdit.appendChild(subtaskItemEdit);
   });
@@ -560,16 +561,24 @@ function loadTasksBoard() {
 /**
  * Updates the task board UI based on the current state of allTasks array.
  * This function generates HTML for each task and updates the respective category containers on the board.
+ * It checks the length of the tasks arrays filtered by category and displays an empty container if there are none in a category.
  */
 function updateTaskBoard() {
-    boardCategory.forEach(category => {
-        let tasks = allTasks.filter(task => task['taskBoardCategory'] === category);
-        document.getElementById(category).innerHTML = '';
+  boardCategory.forEach(category => {
+      let tasks = allTasks.filter(task => task['taskBoardCategory'] === category);
+      let categoryContainer = document.getElementById(category);
+      categoryContainer.innerHTML = '';
 
-        tasks.forEach(task => {
-            document.getElementById(category).innerHTML += generateTaskHTML(task);
-        });
-    });
+      let columnHeader = categoryContainer.getAttribute('data-header');
+
+      if (tasks.length === 0) {
+          categoryContainer.innerHTML = `<div class="empty">No tasks in ${columnHeader}</div>`;
+      } else {
+          tasks.forEach(task => {
+              categoryContainer.innerHTML += generateTaskHTML(task);
+          });
+      }
+  });
 }
 
 
@@ -613,24 +622,30 @@ function generateTaskHTML(task) {
   let assignedContactsHTML = task['taskAssignment'].map((contact, index) => {
       return `<div class="task-contact-initials" style="background: ${contact['color']};">${initials[index]}</div>`;
   }).join('');
+  
   let completedSubtasks = task['taskSubTask'] ? task['taskSubTask'].filter(subtask => subtask.done).length : 0;
   let totalSubtasks = task['taskSubTask'] ? task['taskSubTask'].length : 0;
   let progress = totalSubtasks > 0 ? Math.round((completedSubtasks / totalSubtasks) * 100) : 0;
   let taskId = `${task['taskId']}`;
 
+  let progressHTML = '';
+  if (totalSubtasks > 0) {
+      progressHTML = `<div class="task-item-output" id="task-progress-container">
+                          <progress style="max-width: 150px;" value="${progress}" max="100"></progress>
+                          <span>${completedSubtasks}/${totalSubtasks} Subtasks</span>
+                      </div>`;
+  }
+
   return /*html*/`<div id="${taskId}" class="task-board-container" onclick="openTaskDetails('${taskId}')" draggable="true" ondragstart="startDragging('${taskId}')">
-              <div class="task-item-output" id="task-category-container" style="background-color: ${categoryColor}">${task['taskCategory']}</div>
-              <div class="task-item-output" id="task-title-container"><span>${task['taskTitle']}</span></div>
-              <div class="task-item-output" id="task-description-container"><span>${task['taskDescription']}</span></div>
-              <div class="task-item-output" id="task-progress-container">
-                <progress style="max-width: 150px;" value="${progress}" max="100"></progress>
-                <span>${completedSubtasks}/${totalSubtasks} Subtasks</span>
-              </div>
-              <div id="task-bottom-row">
-                <div class="task-item-output" id="task-assignment-container"><div style="display: flex;">${assignedContactsHTML}</div></div>
-                <div class="task-item-output" id="task-priority-container"><img src="${task['taskPriority']}" id="task-priority-icon-task" alt="Priority Icon"/></div>
-              </div>
-          </div>`;
+            <div class="task-item-output" id="task-category-container" style="background-color: ${categoryColor}">${task['taskCategory']}</div>
+            <div class="task-item-output" id="task-title-container"><span>${task['taskTitle']}</span></div>
+            <div class="task-item-output" id="task-description-container"><span>${task['taskDescription']}</span></div>
+            ${progressHTML}
+            <div id="task-bottom-row">
+              <div class="task-item-output" id="task-assignment-container"><div style="display: flex;">${assignedContactsHTML}</div></div>
+              <div class="task-item-output" id="task-priority-container"><img src="${task['taskPriority']}" id="task-priority-icon-task" alt="Priority Icon"/></div>
+            </div>
+        </div>`;
 }
 
 

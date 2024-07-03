@@ -32,22 +32,22 @@ function includeHTML() {
   }
 }
 
-function goToHelp(){
+function goToHelp() {
   window.location.href = 'help.html';
 }
 
 function checkRegisteredUser() {
   let loged = false;
   for (let i = 0; i < allUsers.length; i++) {
-      if (allUsers[i]['registered'] == true) {
-          loged = true;
-          document.getElementById('sub-contact-initial-container').innerHTML = allUsers[i]['initial'];
-          registeredID = allUsers[i]['id'];
-          break;
-      }
+    if (allUsers[i]['registered'] == true) {
+      loged = true;
+      document.getElementById('sub-contact-initial-container').innerHTML = allUsers[i]['initial'];
+      registeredID = allUsers[i]['id'];
+      break;
+    }
   }
   if (loged == false) {
-      window.location.href = 'index.html';
+    window.location.href = 'index.html';
   }
   saveLocalStorage();
 }
@@ -55,9 +55,9 @@ function checkRegisteredUser() {
 function logout(registeredID) {
   let database = firebase.database();
   if (registeredID) {
-      let userEntry = database.ref("users/" + registeredID + "/registered/");
-      userEntry.set(false);
-      saveLocalStorage();
+    let userEntry = database.ref("users/" + registeredID + "/registered/");
+    userEntry.set(false);
+    saveLocalStorage();
   }
   window.location.href = 'index.html';
 }
@@ -72,9 +72,9 @@ function toggleShowLogout(registeredID) {
       <a onclick="logout('${registeredID}')" href="#">Log Out</a>
     </div>`;
   if (logoutContainer.style.display == 'flex') {
-      logoutContainer.style.display = 'none';
+    logoutContainer.style.display = 'none';
   } else {
-      logoutContainer.style.display = 'flex';
+    logoutContainer.style.display = 'flex';
   }
 }
 
@@ -87,7 +87,43 @@ function saveLocalStorage() {
 function loadLocalStorage() {
   let allUsersAsText = localStorage.getItem("Users");
   if (allUsersAsText) {
-      allUsers = JSON.parse(allUsersAsText);
+    allUsers = JSON.parse(allUsersAsText);
+  }
+}
+
+async function goToPrivacyOrImprintOrHelp() {
+  let privacy = document.getElementById('privacy');
+  let imprint = document.getElementById('imprint');
+  let help = document.getElementById('help-icon-container');
+  let database = firebase.database();
+  await checkUser();
+  if (imprint) {
+    window.location.href = 'imprint.html';
+  }
+  if (privacy) {
+    window.location.href = 'privacy.html';
+  }
+  if (help) {
+    window.location.href = 'help.html';
+  }
+}
+
+async function checkUser(){
+  let loged = false;
+  for (let i = 0; i < allUsers.length; i++) {
+    if (allUsers[i]['registered'] == true) {
+      loged = true;
+      document.getElementById('sub-contact-initial-container').innerHTML = allUsers[i]['initial'];
+      registeredID = allUsers[i]['id'];
+      break;
+    }
+  }
+  if (loged == false) {
+    let user = allUsers.find(u => u.name == 'Guest');
+    registeredID = user['id'];
+    let userEntry = database.ref("users/" + registeredID + "/registered/");
+    await userEntry.set(true);
+    saveLocalStorage();
   }
 }
 

@@ -20,7 +20,7 @@ function deleteTask(taskId) {
   let taskRef = database.ref('tasks/' + taskId);
   taskRef.remove();
 }
-
+ 
 
 let getInitials = function (string) {
   if (!string || typeof string !== 'string') {
@@ -94,6 +94,11 @@ function clearInputsAndArrays() {
   document.getElementById('task-title').value = "";
   document.getElementById('task-description').value = "";
   document.getElementById('task-subtask-input').value = "";
+  document.getElementById('contacts-initial').innerHTML = "";
+  document.getElementById('selected-category-container').innerText = 'Select task category';
+  document.getElementById('subtask-list').innerHTML = "";
+  setMinDateDatepicker();
+  resetButtons();
 }
 
 

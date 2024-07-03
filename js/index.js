@@ -20,7 +20,7 @@ function loadUsers() {
                     user.id = childSnapshot.key;
                     allUsers.push(user);
                 });
-                resolve('hat geklappt!');
+                resolve();
             }, () => {
                 reject('hat nicht geklappt!');
             });
@@ -29,15 +29,13 @@ function loadUsers() {
 }
 
 async function checkLoadUsers() {
-    let prom = await loadUsers();
+    await loadUsers();
     saveLocalStorage();
-    console.log(prom);
 }
 
 function checkInputs() {
     document.getElementById("email").value = '';
     document.getElementById("password").value = '';
-
     let rememberedEmail = localStorage.getItem('rememberedEmail');
     let rememberedPassword = localStorage.getItem('rememberedPassword');
     if (rememberedEmail) {
@@ -52,7 +50,6 @@ async function signup() {
     let emailSignup = document.getElementById("email-signup").value;
     let passwordSignup = document.getElementById("password-signup").value;
     let confirmPasswordSignup = document.getElementById("confirmPassword-signup").value;
-
     if (passwordSignup != confirmPasswordSignup) {
         checkPassword();
     }
@@ -61,21 +58,25 @@ async function signup() {
         if (checkUser) {
             checkEmailSignupFunk(checkUser['email']);
         } else {
-            if (passwordSignup.length > 5) {
-                showMessageAlert();
-                setTimeout(() => {
-                    allUsers.push({ email: emailSignup, password: passwordSignup, name: nameSignup });
-                    saveNewUser(emailSignup, passwordSignup, nameSignup);
-                    checkLoadUsers();
-                    saveLocalStorage();
-                    window.location.href = 'index.html';
-                }, 2250);
-            }
-            else {
-                document.getElementById('wrong-password').innerHTML = `Password must be at least 6 characters!`;
-                document.getElementById('wrong-password').style.display = (passwordSignup.length <= 5) ? "flex" : "none";
-            }
+            checkPasswordLength(passwordSignup, emailSignup, passwordSignup, nameSignup);
         }
+    }
+}
+
+function checkPasswordLength(passwordSignup, emailSignup, passwordSignup, nameSignup) {
+    if (passwordSignup.length > 5) {
+        showMessageAlert();
+        setTimeout(() => {
+            allUsers.push({ email: emailSignup, password: passwordSignup, name: nameSignup });
+            saveNewUser(emailSignup, passwordSignup, nameSignup);
+            checkLoadUsers();
+            saveLocalStorage();
+            window.location.href = 'index.html';
+        }, 2250);
+    }
+    else {
+        document.getElementById('wrong-password').innerHTML = `Password must be at least 6 characters!`;
+        document.getElementById('wrong-password').style.display = (passwordSignup.length <= 5) ? "flex" : "none";
     }
 }
 
@@ -108,7 +109,6 @@ function saveNewUser(emailSignup, passwordSignup, nameSignup) {
 let getInitials = function (string) {
     let name = string.split(" "),
         initials = name[0].substring(0, 1).toUpperCase();
-
     if (name.length > 1) {
         initials += name[name.length - 1].substring(0, 1).toUpperCase();
     }
@@ -118,7 +118,6 @@ let getInitials = function (string) {
 function showMessageAlert() {
     document.getElementById('alertMessage').style.display = "flex";
     let alertMessage = document.getElementById("popup-message");
-
     setTimeout(() => {
         alertMessage.classList.add('animate-popup-message');
         setTimeout(() => {
@@ -140,22 +139,25 @@ function login(event) {
         if (user['password'] == password.value) {
             let userID = user['id'];
             userRegisterd(userID);
-            if (rememberMe) {
-                localStorage.setItem('rememberedEmail', email.value);
-                localStorage.setItem('rememberedPassword', password.value);
-            } else {
-                localStorage.removeItem('rememberedEmail');
-                localStorage.removeItem('rememberedPassword');
-            }
+            saveRememberMe(rememberMe, email, password);
             window.location.href = 'summary.html';
-        }
-        else {
+        }else {
             checkPasswordLogin(user['password'], password.value);
             document.getElementById('password').value = '';
         }
     }
     else {
         document.getElementById('wrong-email').classList.remove('d-none');
+    }
+}
+
+function saveRememberMe() {
+    if (rememberMe) {
+        localStorage.setItem('rememberedEmail', email.value);
+        localStorage.setItem('rememberedPassword', password.value);
+    } else {
+        localStorage.removeItem('rememberedEmail');
+        localStorage.removeItem('rememberedPassword');
     }
 }
 
@@ -202,9 +204,7 @@ function animate() {
             document.getElementById('logo-container').classList.add('animate');
             document.getElementById('login-site').classList.add('animate-login-site');
             setTimeout(() => {
-                document.getElementById('signUp-Container').style.opacity = "1";
-                document.getElementById('login-container').style.opacity = "1";
-                document.getElementById('imprint-container').style.opacity = "1";
+                setOpacitySignupAndLogin();
             }, 500);
         }, 500);
     } else {
@@ -213,13 +213,17 @@ function animate() {
             document.getElementById('logo-container').classList.add('animate');
             document.getElementById('login-site').classList.add('animate-login-site');
             setTimeout(() => {
-                document.getElementById('signUp-Container').style.opacity = "1";
-                document.getElementById('login-container').style.opacity = "1";
-                document.getElementById('imprint-container').style.opacity = "1";
+                setOpacitySignupAndLogin();
                 document.getElementById('logo').src = "./assets/img/join_logo_DARK.svg";
             }, 500);
         }, 500);
     }
+}
+
+function setOpacitySignupAndLogin() {
+    document.getElementById('signUp-Container').style.opacity = "1";
+    document.getElementById('login-container').style.opacity = "1";
+    document.getElementById('imprint-container').style.opacity = "1";
 }
 
 function goToLoginSite() {
@@ -235,32 +239,7 @@ function goToSignupSite() {
 
     let signupSite = document.getElementById('signup-site-container');
     signupSite.style.opacity = "1";
-    signupSite.innerHTML = `
-     <form onsubmit="signup(); return false;">
-        <div class="arrow-left-container">
-          <div onclick="goToLoginSite()" class="back-icon"> <img src="./assets/img/back_icon.svg"> </div>
-          <div class="h1-container">
-            <h1>Sign up</h1>
-            <div class="line"></div>
-          </div>
-        </div>
-
-        <div class="inputs-container flex-col-just-center">
-            <input id="username" type="text" required placeholder="Name" class="input0">
-            <input oninput="checkEmailSignupFunk()" id="email-signup" type="email" required placeholder="Email" class="input1">
-             <div id="existing-email" class="wrong-password-container d-none">This email address already exists!</div>
-            <input oninput="checkPassword()" type="password" id="password-signup" type="text" required placeholder="Password" class="input2">
-            <input oninput="checkPassword()" type="password" id="confirmPassword-signup" type="text" required placeholder="Confirm Password" class="input2">
-            <div id="wrong-password" class="wrong-password-container d-none">Ups! your password doesn't match</div>
-            <div class="checkbox-signup-site">
-                <input oninvalid="this.setCustomValidity('You must accept the Privacy Policy')" oninput="this.setCustomValidity('')" type="checkbox" required>
-                <span>I accept <a href="/privacy.html">Privacy Policy</a></span>
-            </div>
-        </div>
-        <div class="login-buttons-container">
-            <button id="signup-button">signup</button>
-        </div>
-    </form>`;
+    signupSite.innerHTML = getSignupSite();
 }
 
 async function usersSettoFalse() {
