@@ -441,30 +441,10 @@ function loadContacts() {
 
       if (initial !== currentInitial) {
         currentInitial = initial;
-        contactsListContent.innerHTML += /*html*/ `
-          <div>
-            <div class="initial-letter">${initial}</div>
-            <div class="breakline-contactlist" id="contacts-without-breakline">
-        `;
+        contactsListContent.innerHTML += renderLine(initial);
       }
 
-      contactsListContent.innerHTML += /*html*/ `
-        <div
-          id="contact-border${i}"
-          onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}','${i}');closePopUpEditDelete();changeBackground(${i});"
-          class="flex-align-center contact-entry contact-border"
-        >
-        <div class="initial-name-email-container">
-          <div style="background: ${contact.color}" class="first-letters-name-contactlist-bg">
-            <span class="first-letters-name-contactlist">${getInitials(contact.name)}</span>
-          </div>
-          <div class="contact-name-email-contactlist">
-            <span class="contact-name-contactlist">${contact.name}</span>
-            <span class="email-contactlist">${contact.email}</span>
-          </div>
-        </div>
-        </div>
-      `;
+      contactsListContent.innerHTML +=  renderContactHTML(contact, i);
     }
   });
 }
