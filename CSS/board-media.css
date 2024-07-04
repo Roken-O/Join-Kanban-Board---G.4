@@ -420,11 +420,6 @@
     cursor: pointer;
   }
 
-  #task-task-form:hover {
-    /* overflow-y: scroll; */
-    /* padding-right: 38px; */
-  }
-
   #main-container {
     height: auto;
     padding: 70px 64px 64px 296px;

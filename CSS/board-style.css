@@ -1205,10 +1205,6 @@
   overflow-y: hidden; */
 }
 
-#assigned-contacts-task-board::-webkit-scrollbar {
-  /* display: none; */
-}
-
 input[type="date"] {
   position: relative;
   padding: 16px 4px;
