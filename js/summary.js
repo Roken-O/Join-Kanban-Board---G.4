@@ -127,15 +127,24 @@ function numOfDone() {
 
 function numOfUrgent() {
     let numOfUrgentTasks = 0;
+    let upcomingDateArray = [];
     for (let index = 0; index < allTasksSummary.length; index++) {
         if (allTasksSummary[index]['taskPriorityText'] == 'Urgent') {
             numOfUrgentTasks++;
-            upcomingDate = allTasksSummary[index]['taskDate'];
+            upcomingDateArray.push(allTasksSummary[index]['taskDate']);
+        }
+    }
+    for (let i = 0; i < upcomingDateArray.length; i++) {
+        for (let j = 0; j < upcomingDateArray.length; j++) {
+            if (upcomingDateArray[i] < upcomingDateArray[j]) {
+                upcomingDate = upcomingDateArray[i];
+            } else {
+                upcomingDate = upcomingDateArray[j];
+            }
         }
     }
     return numOfUrgentTasks;
 }
-
 
 function numOfInProgress() {
     let numOfProgrssTask = 0;
