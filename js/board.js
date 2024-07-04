@@ -100,7 +100,7 @@ function openTaskDetails(taskId) {
       } else {
         subtasksHTML = 'No subtasks';
       }
-    taskDetails.innerHTML = /*html*/ `
+      taskDetails.innerHTML = /*html*/ `
       <div id="popup-task-container" class="popup-task-container" onclick="doNotClose(event)">
         <h4 style="background: ${categoryColor}">${task['taskCategory']}</h4>
         <h2>${task['taskTitle']}</h2>
@@ -113,7 +113,6 @@ function openTaskDetails(taskId) {
         <div id="contacts-list-popup">
           <span class="popup-span">Assigned To:</span>
           ${assignedContacts}
-          
         </div>
         <div class="popup-subtasks-container">
           <span class="popup-span">Subtasks</span>
@@ -252,8 +251,41 @@ function editPopupTask(taskId) {
     subtasksEdit = currentSubTask.slice();
     displaySubTasksEditPopup();
     loadContactListPopup();
+    setMinDateDatepickerPopup();
   }
 }
+
+
+function showCategoryDropdown(taskId) {
+  let dropdown = document.getElementById(`category-dropdown${taskId}`);
+  let button = document.getElementById(`dropbtn-category-dropdown-button-${taskId}`);
+
+  if (dropdown) {
+    dropdown.classList.toggle('d-none');
+    if (dropdown.classList.contains('d-none')) {
+      button.classList.remove('icon-close');
+      button.classList.add('icon-options');
+    } else {
+      button.classList.remove('icon-options');
+      button.classList.add('icon-close');
+    }
+  }
+}
+
+
+function moveTask(taskId, newCategory) {
+  let task = allTasks.find(t => t['taskId'] === taskId);
+
+  if (task) {
+    task['taskBoardCategory'] = newCategory;
+    let database = firebase.database();
+    let taskRef = database.ref('tasks/' + taskId);
+    taskRef.update({ taskBoardCategory: newCategory }).then(() => {
+      updateTaskBoard();
+    });
+  }
+}
+
 
 /**
  * Shows the popup edit container.
@@ -567,19 +599,19 @@ function loadTasksBoard() {
  */
 function updateTaskBoard() {
   boardCategory.forEach(category => {
-      let tasks = allTasks.filter(task => task['taskBoardCategory'] === category);
-      let categoryContainer = document.getElementById(category);
-      categoryContainer.innerHTML = '';
+    let tasks = allTasks.filter(task => task['taskBoardCategory'] === category);
+    let categoryContainer = document.getElementById(category);
+    categoryContainer.innerHTML = '';
 
-      let columnHeader = categoryContainer.getAttribute('data-header');
+    let columnHeader = categoryContainer.getAttribute('data-header');
 
-      if (tasks.length === 0) {
-          categoryContainer.innerHTML = `<div class="empty">No tasks in ${columnHeader}</div>`;
-      } else {
-          tasks.forEach(task => {
-              categoryContainer.innerHTML += generateTaskHTML(task);
-          });
-      }
+    if (tasks.length === 0) {
+      categoryContainer.innerHTML = `<div class="empty">No tasks in ${columnHeader}</div>`;
+    } else {
+      tasks.forEach(task => {
+        categoryContainer.innerHTML += generateTaskHTML(task);
+      });
+    }
   });
 }
 
@@ -609,22 +641,22 @@ function generateTaskHTML(task) {
   let contactNames = task['taskAssignment'] ? task['taskAssignment'].map(contact => contact['name']) : [];
   let initials;
   if (contactNames.length > 1) {
-      initials = getInitialsList(contactNames);
+    initials = getInitialsList(contactNames);
   } else if (contactNames.length === 1) {
-      initials = [getInitials(contactNames[0])];
+    initials = [getInitials(contactNames[0])];
   }
 
   let categoryColor = task['taskCategoryColor'];
-  if (selectedCategory === 'User Story') {
-      categoryColor = '#0038ff';
-  } else if (selectedCategory === 'Technical Task') {
-      categoryColor = '#1fd7c1';
+  if (task['taskCategory'] === 'User Story') {
+    categoryColor = '#0038ff';
+  } else if (task['taskCategory'] === 'Technical Task') {
+    categoryColor = '#1fd7c1';
   }
 
   let assignedContactsHTML = task['taskAssignment'].map((contact, index) => {
-      return `<div class="task-contact-initials" style="background: ${contact['color']};">${initials[index]}</div>`;
+    return `<div class="task-contact-initials" style="background: ${contact['color']};">${initials[index]}</div>`;
   }).join('');
-  
+
   let completedSubtasks = task['taskSubTask'] ? task['taskSubTask'].filter(subtask => subtask.done).length : 0;
   let totalSubtasks = task['taskSubTask'] ? task['taskSubTask'].length : 0;
   let progress = totalSubtasks > 0 ? Math.round((completedSubtasks / totalSubtasks) * 100) : 0;
@@ -632,22 +664,38 @@ function generateTaskHTML(task) {
 
   let progressHTML = '';
   if (totalSubtasks > 0) {
-      progressHTML = `<div class="task-item-output" id="task-progress-container">
-                          <progress style="max-width: 150px;" value="${progress}" max="100"></progress>
-                          <span>${completedSubtasks}/${totalSubtasks} Subtasks</span>
-                      </div>`;
+    progressHTML = `<div class="task-item-output" id="task-progress-container">
+                      <progress style="max-width: 150px;" value="${progress}" max="100"></progress>
+                      <span>${completedSubtasks}/${totalSubtasks} Subtasks</span>
+                    </div>`;
   }
 
-  return /*html*/`<div id="${taskId}" class="task-board-container" onclick="openTaskDetails('${taskId}')" draggable="true" ondragstart="startDragging('${taskId}')">
-            <div class="task-item-output" id="task-category-container" style="background-color: ${categoryColor}">${task['taskCategory']}</div>
-            <div class="task-item-output" id="task-title-container"><span>${task['taskTitle']}</span></div>
-            <div class="task-item-output" id="task-description-container"><span>${task['taskDescription']}</span></div>
-            ${progressHTML}
-            <div id="task-bottom-row">
-              <div class="task-item-output" id="task-assignment-container"><div style="display: flex;">${assignedContactsHTML}</div></div>
-              <div class="task-item-output" id="task-priority-container"><img src="${task['taskPriority']}" id="task-priority-icon-task" alt="Priority Icon"/></div>
-            </div>
-        </div>`;
+  return /*html*/`
+    <div id="${taskId}" class="task-board-container" onclick="openTaskDetails('${taskId}')" draggable="true" ondragstart="startDragging('${taskId}')">
+      <div class="task-item-output" id="task-category-container" style="background-color: ${categoryColor}">${task['taskCategory']}</div>
+      <div class="task-item-output" id="task-title-container"><span>${task['taskTitle']}</span></div>
+      <div class="task-item-output" id="task-description-container"><span>${task['taskDescription']}</span></div>
+      ${progressHTML}
+
+      <div id="task-bottom-row">
+      
+        <div class="task-item-output" id="task-assignment-container"><!--<div class="box-shadow-left-white"></div> --><div id="assigned-contacts-task-board">${assignedContactsHTML}</div></div>
+        
+        <section class="dropdown-move-to-category-container" onclick="event.stopPropagation();">
+          
+          <button id="dropbtn-category-dropdown-button-${task['taskId']}" class="icon-options" onclick="event.stopPropagation(); showCategoryDropdown('${task['taskId']}');"></button>
+          
+          <div id="category-dropdown${task['taskId']}" class="category-dropdown-board-edit d-none" onclick="event.stopPropagation();">
+            <a href="#" onclick="event.stopPropagation(); moveTask('${taskId}', 'toDo')">To Do</a>
+            <a href="#" onclick="event.stopPropagation(); moveTask('${taskId}', 'inProgress')">In Progress</a>
+            <a href="#" onclick="event.stopPropagation(); moveTask('${taskId}', 'awaitFeedback')">Await feedback</a>
+            <a href="#" onclick="event.stopPropagation(); moveTask('${taskId}', 'done')">Done</a>
+          </div>
+        </section>
+        
+        <div class="task-item-output" id="task-priority-container"><img src="${task['taskPriority']}" id="task-priority-icon-task" alt="Priority Icon"/></div>
+      </div>
+    </div>`;
 }
 
 
@@ -754,3 +802,16 @@ function hideEditTaskPopupBoard() {
   document.getElementById('main-container-popup-board').classList.add('d-none');
 }
 
+
+function setMinDateDatepickerPopup() {
+  let today = new Date();
+  let tt = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0');
+  let jjjj = today.getFullYear();
+
+  let unformDate = jjjj + '-' + mm + '-' + tt;
+  let dateParts = unformDate.split('-');
+  let formDate = dateParts[2] + '.' + dateParts[1] + '.' + dateParts[0];
+  document.getElementById('task-date-picker-popup').min = formDate;
+  document.getElementById('task-date-picker-popup').value = formDate;
+}

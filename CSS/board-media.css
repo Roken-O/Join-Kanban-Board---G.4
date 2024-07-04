@@ -33,16 +33,18 @@
   }
 
   .sub-column-container {
-    min-width: 1000px;
+    min-width: 990px;
   }
 
   .input-search-container {
     margin-right: 64px;
+    margin-left: 16px;
   }
 
   .sub-column-container::-webkit-scrollbar {
-    padding: 4px 0px;
-    height: 6px;
+    /* padding: 4px 0px;
+    height: 6px; */
+    display: none;
   }
 
   .sub-column-container::-webkit-scrollbar-track {
@@ -66,8 +68,8 @@
     max-height: 420px;
     display: flex;
     overflow: hidden;
-    padding-right: 6px;
-    padding-bottom: 6px;
+    /* padding-right: 6px;
+    padding-bottom: 6px; */
   }
 
   #awaitFeedback {
@@ -75,8 +77,8 @@
     max-height: 420px;
     display: flex;
     overflow: hidden;
-    padding-right: 6px;
-    padding-bottom: 6px;
+    /* padding-right: 6px;
+    padding-bottom: 6px; */
   }
 
   #inProgress {
@@ -84,8 +86,8 @@
     max-height: 420px;
     display: flex;
     overflow: hidden;
-    padding-right: 6px;
-    padding-bottom: 6px;
+    /* padding-right: 6px;
+    padding-bottom: 6px; */
   }
 
   #done {
@@ -93,13 +95,14 @@
     max-height: 420px;
     display: flex;
     overflow: hidden;
-    padding-right: 6px;
-    padding-bottom: 6px;
+    /* padding-right: 6px;
+    padding-bottom: 6px; */
   }
 
   #toDo::-webkit-scrollbar {
-    padding: 4px 0px;
-    height: 6px;
+    display: none;
+    /* padding: 4px 0px;
+    height: 6px; */
   }
 
   #toDo::-webkit-scrollbar-track {
@@ -214,6 +217,7 @@
     height: 80px;
     background: #2a3647;
     width: 100vw;
+    z-index: 1;
   }
 
   .mobile-menu-item {
@@ -371,9 +375,11 @@
   .dropbtn-board {
     height: 24px;
   }
+
   .cleaning {
     margin-left: 0px;
   }
+
   .create-task {
     margin-right: 0px;
   }
@@ -394,7 +400,8 @@
   }
 
   #task-task-form::-webkit-scrollbar {
-    width: 6px;
+    display: none;
+    /* width: 6px; */
   }
 
   #task-task-form::-webkit-scrollbar-track {
@@ -414,8 +421,8 @@
   }
 
   #task-task-form:hover {
-    overflow-y: scroll;
-    padding-right: 38px;
+    /* overflow-y: scroll; */
+    /* padding-right: 38px; */
   }
 
   #main-container {
@@ -477,9 +484,9 @@
     margin-left: 0px;
   }
 
-  .sub-column-container {
-    min-width: 800px;
-  }
+    .sub-column-container {
+        min-width: 740px;
+    }
 }
 
 @media (max-width: 980px) {
@@ -506,13 +513,25 @@
   .padding-responsive980 {
     padding-bottom: 0px !important;
   }
+
+  .parent-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
+    max-width: 100%;
+    margin-left: -20px;
+  }
+
+  .form-seperator {
+    display: none;
+  }
 }
 
 @media (max-width: 900px) {
   /*///////////////////////////////////900//////////////////////////////// */
   .sub-column-container {
-    min-width: 600px;
-  }
+    min-width: 495px;
+}
 
   #main-container {
     padding: 70px 64px 64px 32px !important;
@@ -588,15 +607,9 @@
 
 @media (max-width: 850px) {
   /*///////////////////////////////////850//////////////////////////////// */
-  .form-seperator {
-    display: none;
-  }
 
-  .parent-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: unset;
-  }
+
+  
 
   #task-task-form {
     justify-content: unset;
@@ -630,14 +643,18 @@
     max-width: 400px;
   }
 
-  .sub-column-container {
+  /* .sub-column-container {
     max-width: 650px;
     min-width: 600px;
-  }
+  } */
 }
 
 @media (max-width: 680px) {
   /*///////////////////////////////////640//////////////////////////////// */
+  /* .sub-column-container {
+    max-width: 650px;
+    min-width: 485px;
+} */
 
   .cleaning {
     margin-left: 50px;
@@ -651,9 +668,9 @@
 @media (max-width: 580px) {
   /*///////////////////////////////////580//////////////////////////////// */
   .sub-column-container {
-    max-width: 250px;
-    min-width: 250px;
-  }
+    max-width: 650px;
+    min-width: 240px;
+}
 
   #task-priority-container {
     flex-direction: column;
@@ -675,13 +692,13 @@
     margin-right: 16px;
   }
 
-  .field-325 {
+  /* .field-325 {
     width: 150px;
     height: 36px;
     border-radius: 10px;
     outline: none;
     border: 1px solid lightgray;
-  }
+  } */
 
   .cleaning {
     margin-left: 0px;
@@ -695,13 +712,17 @@
 
 @media (max-width: 500px) {
   /*///////////////////////////////////500//////////////////////////////// */
+  #task-date-picker-popup {
+    max-width: 325px;
+    min-width: 232px;
+  }
 
   .priority-dropdown-popup .dropdown-item-priority {
     width: unset;
   }
 
   .priority-dropdown-popup {
-    min-width: 232px;
+    min-width: 200px;
   }
 
   #task-popup-edit-container {
@@ -762,7 +783,6 @@
   #contacts-list-popup-detail .dropdown-item {
     max-width: 200px;
   }
-
 }
 
 @media (max-width: 455px) {
@@ -798,10 +818,10 @@
     padding: 12px 8px 12px 12px;
   }
 
-  .field-325 {
+  /* .field-325 {
     width: 150px;
     height: 24px;
-  }
+  } */
 
   .description-input {
     width: 150px;
@@ -828,6 +848,32 @@
     justify-content: center;
     align-items: center;
   }
+
+  .dropdown-content-category-board {
+    min-width: 248px;
+  }
+
+  #task-title-addTask {
+    max-width: 232px;
+    min-width: 232px;
+  }
+
+  #task-description {
+    max-width: 230px;
+  }
+
+  #task-date-picker {
+    max-width: 250px;
+    min-width: 232px
+  }
+
+  #contacts-assignment-container-popup {
+    max-width: 230px;
+  }
+
+  #category-selection-container-popup {
+    max-width: 230px;
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -836,9 +882,7 @@
 
 @media (max-width: 430px) {
   /*///////////////////////////////////430//////////////////////////////// */
-  .dropdown-content-category-board {
-    min-width: 248px;
-  }
+
 
   .select-subtask-board {
     max-width: 230px;
@@ -858,25 +902,7 @@
     margin-left: 4px !important;
   }
 
-  #task-title {
-    max-width: 230px;
-  }
 
-  #task-description {
-    max-width: 230px;
-  }
-
-  #task-date-picker {
-    max-width: 230px;
-  }
-
-  #contacts-assignment-container-popup {
-    max-width: 230px;
-  }
-
-  #category-selection-container-popup {
-    max-width: 230px;
-  }
 
   #board-add-task-prio {
     gap: 0px !important;
@@ -904,10 +930,7 @@
   .select-subtask-board img {
     margin-left: 16px;
   }
-}
 
-@media (max-width: 405px) {
-  /*///////////////////////////////////405//////////////////////////////// */
   .input-search-container {
     flex-direction: column;
     align-items: flex-start;
@@ -925,7 +948,10 @@
     padding: 0px 32px;
     gap: 16px;
   }
+}
 
+@media (max-width: 405px) {
+  /*///////////////////////////////////405//////////////////////////////// */
   #main-container {
     padding: 40px 16px 64px 8px !important;
   }
@@ -958,10 +984,6 @@
 
 @media (max-width: 360px) {
   /*///////////////////////////////////360//////////////////////////////// */
-  #task-task-form {
-    min-width: 85%;
-  }
-  
   .dropbtn-board {
     background-position: right 20px center;
   }
@@ -986,6 +1008,13 @@
 
 @media (max-width: 340px) {
   /*///////////////////////////////////340//////////////////////////////// */
+  .board-search-container h1 {
+    font-size: 60px;
+    font-weight: 700;
+    text-align: center;
+    margin-left: -32px;
+}
+
   .required-text {
     font-size: 12px;
   }

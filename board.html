@@ -118,7 +118,7 @@
                     <div class="padding-bottom-container">
                         <div class="mb-8 flex field-headline">Title<div class="asterisk-color">*</div>
                         </div>
-                        <input id="task-title" required minlength="2" class="field-325" type="text"
+                        <input id="task-title-addTask" required minlength="2" type="text"
                             placeholder="Enter a title">
                     </div>
 
@@ -133,11 +133,13 @@
                     <span class="mb-8 flex field-headline">Assigned to</span>
                     <div class="dropbtn-board" id="contacts-assignment-container-popup">
                         <span class="contacts-assignment-container" >Select contacts to assign</span>
-                        <img  onclick="toggleContactDropdownPopupBoard()" id="icon-contacts-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon" />
+                        <img  onclick="toggleContactDropdown()" id="icon-contacts-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon" />
                     </div>
                     
                     <div id="contacts-list" class="dropdown-list-board d-none"></div> 
-                    <div id="contacts-initial-board" class="contacts-initial-board"></div>
+                    <div id="contacts-initial" class="contacts-initial"></div>
+                    
+                    
                 </div>
                 
                 <div class="form-seperator"></div>
@@ -147,8 +149,8 @@
                         <!-- date -->
                         <div class="mb-8 flex field-headline">Due date<div class="asterisk-color">*</div>
                         </div>
-                        <input id="task-date-picker" type="date" class="field-325 date"
-                            placeholder="dd/mm/yyyy Kalenderbutton" required>
+                        <input id="task-date-picker-popup" type="date" class="date"
+                        placeholder="dd.mm.yyyy Kalenderbutton" required>
                     </div>
 
                     <!-- prio -->
