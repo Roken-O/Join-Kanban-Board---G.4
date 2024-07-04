@@ -683,7 +683,7 @@ function generateTaskHTML(task) {
         
         <section class="dropdown-move-to-category-container" onclick="event.stopPropagation();">
           
-          <button id="dropbtn-category-dropdown-button-${task['taskId']}" class="icon-options" onclick="event.stopPropagation(); showCategoryDropdown('${task['taskId']}');"></button>
+          <button style="cursor: pointer;" id="dropbtn-category-dropdown-button-${task['taskId']}" class="icon-options" onclick="event.stopPropagation(); showCategoryDropdown('${task['taskId']}');"></button>
           
           <div id="category-dropdown${task['taskId']}" class="category-dropdown-board-edit d-none" onclick="event.stopPropagation();">
             <a href="#" onclick="event.stopPropagation(); moveTask('${taskId}', 'toDo')">To Do</a>
