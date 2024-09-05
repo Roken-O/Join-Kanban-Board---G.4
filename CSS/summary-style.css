@@ -1,6 +1,6 @@
 #main-container{
   height: 73.5vh;
-  padding: 36px 64px 64px 296px;
+  padding: 88px 64px 64px 296px;
 }
 
 span {
@@ -68,6 +68,14 @@ span {
 
 .to-do-container:hover span {
   color: white;
+}
+
+.to-do-container:hover #pen-path {
+  fill: rgba(42, 54, 71, 1);
+}
+
+.to-do-container:hover #check-small-path {
+  stroke: rgba(42, 54, 71, 1);
 }
 
 .to-do-container h2 {

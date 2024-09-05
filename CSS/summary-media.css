@@ -31,7 +31,7 @@
     }
 
     #main-container {
-        padding: 36px 64px 64px 32px !important;
+        padding: 72px 64px 64px 64px !important;
     }
 }
 
@@ -39,12 +39,7 @@
     body {
         font-size: 14px;
     }
-
-    /* #main-container {
-        padding: 100px 32px 32px 0px !important;
-       
-    } */
-
+    
     .headline-div-join360 {
         flex-direction: column;
         align-items: flex-start;
@@ -187,7 +182,6 @@
     .urgent-container {
         margin-bottom: 0px;
         width: 210px;
-        /* padding: 6px 6px 6px 6px; */
     }
 
     .tasks-container {
@@ -197,7 +191,7 @@
     }
 
     #main-container {
-        padding: 20px 20px 0px 20px !important
+        padding: 80px 20px 0px 20px !important;
     }
 
 }

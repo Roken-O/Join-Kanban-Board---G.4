@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/colors.css">
-    <link rel="stylesheet" href="/CSS/fonts.css">
-    <link rel="stylesheet" href="/CSS/global_style.css">
-    <link rel="stylesheet" href="/CSS/style.css">
-    <link rel="stylesheet" href="/CSS/index-style.css">
-    <link rel="stylesheet" href="/CSS/index-media.css">
-    <link rel="stylesheet" href="/CSS/media.css">
-    <link rel="icon" href="/assets/img/join_favicon.svg">
+    <link rel="stylesheet" href="./CSS/colors.css">
+    <link rel="stylesheet" href="./CSS/fonts.css">
+    <link rel="stylesheet" href="./CSS/global_style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/index-style.css">
+    <link rel="stylesheet" href="./CSS/index-media.css">
+    <link rel="stylesheet" href="./CSS/media.css">
+    <link rel="icon" href="./assets/img/join_favicon.svg">
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <title>Join</title>
+    <title>JOIN - Login & Signup</title>
 </head>
 
 <body onload="initIndex()">
@@ -34,9 +34,9 @@
                 </div>
                 <div class="inputs-container flex-col-just-center">
                     <input id="email" type="email" required placeholder="Email" class="input1">
-                    <div id="wrong-email" class="wrong-password-container d-none">you are not registered, please sign up!</div>
+                    <div id="wrong-email" class="wrong-password-container d-none">You are not registered, please sign up!</div>
                     <input onclick="togglePasswordVisibility('password')" id="password" type="password" required placeholder="Password" class="input2">
-                    <div oninput="checkPasswordLogin()" id="wrong-password-login" class="wrong-password-container d-none">Wrong password Ups! Try again.</div>
+                    <div oninput="checkPasswordLogin()" id="wrong-password-login" class="wrong-password-container d-none">Ooops, wrong password! Try again.</div>
                     <div class="checkbox">
                         <input type="checkbox" id="rememberMe">
                         <span>Remember me</span>
@@ -44,13 +44,13 @@
                 </div>
                 <div class="login-buttons-container">
                     <button type="submit" class="login-button">Login</button>
-                    <button onclick="goToSummarySite()">Guest Log in</button>
+                    <button onclick="goToSummarySite()">Guest Login</button>
                 </div>
             </form>
         </div>
         <div id="signup-site-container" class="login-container" style="opacity: 0;"></div>
         <div id="alertMessage" class="alert-message">
-            <div id="popup-message" class="popup-message">You Signed Up successfully!</div>
+            <div id="popup-message" class="popup-message">You signed up successfully!</div>
         </div>
        
         <div id="imprint-container" class="imprint-container">
@@ -61,12 +61,10 @@
 
     <div id="msgBox"></div>
 
-
-    <script src="/js/firebase.js"></script>
-    <script src="/js/script.js"></script>
-    <script src="/js/index.js"></script>
-    <script src="/js/renderHTML.js"></script>
-    
+    <script src="./js/firebase.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/renderHTML.js"></script>
     
 </body>
 

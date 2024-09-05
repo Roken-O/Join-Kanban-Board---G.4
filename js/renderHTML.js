@@ -1,5 +1,5 @@
 function getSignupSite() {
-    return `
+  return `
      <form onsubmit="signup(); return false;">
         <div class="arrow-left-container">
           <div onclick="goToLoginSite()" class="back-icon"> <img src="./assets/img/back_icon.svg"> </div>
@@ -27,11 +27,10 @@ function getSignupSite() {
     </form>`;
 }
 
-
 //  Render functions Contacts
 
-function renderContactHTML(contact, i){
-    return `
+function renderContactHTML(contact, i) {
+  return `
         <div
           id="contact-border${i}"
           onclick="showContactInfo('${contact.email}');showContactResponsive('${contact.email}',${i});closePopUpEditDelete();changeBackground(${i});"
@@ -50,16 +49,16 @@ function renderContactHTML(contact, i){
       `;
 }
 
-function renderLine(initial){
-    return `
+function renderLine(initial) {
+  return `
           <div>
             <div class="initial-letter">${initial}</div>
             <div class="breakline-contactlist" id="contacts-without-breakline">
         `;
 }
 
-function renderContactResponisveHTML(j, currentColor, currentName, currentEmail, currentPhone ){
-  return`
+function renderContactResponisveHTML(j, currentColor, currentName, currentEmail, currentPhone) {
+  return `
   <div class="flex-align-center contact-pic-name-container-mobil">
           <div style="background-color: ${currentColor}"  class="first-letters-name-bg-mobil">
             <span class="first-letters-name-mobil">${getInitials(currentName)}</span>
@@ -74,7 +73,7 @@ function renderContactResponisveHTML(j, currentColor, currentName, currentEmail,
               >
                 <img
                   class="contact-pen-delete-img"
-                  src="assets/img/pen_DARK.svg"
+                  src="./assets/img/pen_DARK.svg"
                   alt=""
                 />
                 <span>Edit</span>
@@ -82,7 +81,7 @@ function renderContactResponisveHTML(j, currentColor, currentName, currentEmail,
               <div class="flex-align-center" id="contact-delete">
                 <img
                   class="contact-pen-delete-img"
-                  src="/assets/img/delete_icon.svg"
+                  src="./assets/img/delete_icon.svg"
                   alt=""
                 />
                 <span> Delete</span>
@@ -134,7 +133,7 @@ function renderContactResponisveHTML(j, currentColor, currentName, currentEmail,
       `;
 }
 
-function renderShowContactInfo(currentColor, currentName, currentEmail, currentPhone){
+function renderShowContactInfo(currentColor, currentName, currentEmail, currentPhone) {
   return `
   <div class="flex-align-center contact-pic-name-container">
         <div style="background-color: ${currentColor}"  class="first-letters-name-bg">
@@ -150,7 +149,7 @@ function renderShowContactInfo(currentColor, currentName, currentEmail, currentP
             >
               <img
                 class="contact-pen-delete-img"
-                src="assets/img/pen_DARK.svg"
+                src="./assets/img/pen_DARK.svg"
                 alt=""
               />
               <span>Edit</span>
@@ -158,7 +157,7 @@ function renderShowContactInfo(currentColor, currentName, currentEmail, currentP
             <div onclick="deleteContact('${currentEmail}')" class="flex-align-center" id="contact-delete">
               <img
                 class="contact-pen-delete-img"
-                src="/assets/img/delete_icon.svg"
+                src="./assets/img/delete_icon.svg"
                 alt=""
               />
               <span> Delete</span>
@@ -180,7 +179,7 @@ function renderShowContactInfo(currentColor, currentName, currentEmail, currentP
       `;
 }
 
-function renderPopupEditAddMiddleHTML(currentColor, currentName ){
+function renderPopupEditAddMiddleHTML(currentColor, currentName) {
   return `
   <div  style="background-color: ${currentColor}" id="first-letters-name-bg" class="first-letters-name-bg margin-top-60px">
             <span class="first-letters-name">${getInitials(currentName)}</span>
@@ -188,7 +187,7 @@ function renderPopupEditAddMiddleHTML(currentColor, currentName ){
   `;
 }
 
-function renderFormEditContactHTML(currentEmail){
+function renderFormEditContactHTML(currentEmail) {
   return `
   <form onsubmit="saveEditedContact('${currentEmail}');return false;" class="form-add-new-contact" id="form-edit-contact" action="">
   <input
@@ -232,11 +231,221 @@ function renderFormEditContactHTML(currentEmail){
     `;
 }
 
-function renderLogout(registeredID){
-    return `
+function renderLogout(registeredID) {
+  return `
    <div class="popout-showlogout">
       <a href="imprint.html">Legal Notice</a>
       <a href="privacy.html">Privacy Policy</a>
       <a onclick="logout('${registeredID}')" href="#">Log Out</a>
     </div>`;
+}
+
+function generateEditPopupHTML({ taskId, currentTitle, currentDescription, currentDate, currentSubTask, currentCategory, currentCategoryColor, currentPriority, currentPriorityText, currentSelection, allContacts }) {
+  let contactsList = '';
+  allContacts.forEach((contact, index) => {
+    let isChecked = currentSelection.find((selectedContact) => selectedContact.email === contact.email);
+    contactsList += /*html*/ `
+    <div class="dropdown-item" id="dropdown-items-${index}-${contact['email']}">
+      <div style="display: flex; align-items:center; justify-content: center; background: ${
+        contact['color']
+      }; font-size: 14px; color: white; height: 32px; width: 32px; border: 1px solid white; border-radius: 40px; cursor: pointer;" id="contact-badge-list">
+        ${getInitials(contact['name'])}
+      </div>
+      <label for="${contact['email']}">${contact['name']}</label>
+      <input type="checkbox" id="${contact['email']}" value="${contact['email']}" onclick="toggleContactEditPopup(this, 'dropdown-items-${index}-${contact['email']}')" ${isChecked ? 'checked' : ''}>
+    </div>
+  `;
+  });
+
+  let subTaskListItems = currentSubTask.map((subtask) => /*html*/ `<li>${subtask}</li>`).join('');
+
+  return /*html*/ `
+    <h2 style="font-size: 32px;">Edit Task</h2>
+    <div id="popup-seperator"></div>
+    <input type="text" id="edit-task-title-container-popup" value="${currentTitle}">
+    <input type="text" id="edit-task-description-container-popup" value="${currentDescription}">
+    <input type="date" id="edit-task-date-container-popup" value="${currentDate}">
+    <input type="text" id="edit-task-subtask-input-popup" placeholder="Subtask">
+    <section id="subtask-head">
+      <span id="subtask-head-span"></span>
+      <button id="add-subtask-popup-button" type="button" onclick="addSubTaskEditPopup()">Add Subtask</button>
+      <ul id="subtask-list-edit-popup">${subTaskListItems}</ul>
+    </section>
+    <section id="edit-task-category-container-popup" onclick="doNotClose(event)">
+      <div id="edit-category-dropdown-container-popup" onclick="toggleCategoryDropdownPopup(event)">  
+        <div class="dropdown-popup" id="category-dropdown-popup" style="background: ${currentCategoryColor}; color: white;">${currentCategory}</div>
+        <div>
+          <img id="icon-category-dropdown-arrow-image-popup" src="./assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"/>
+        </div>
+      </div>
+      <div id="category-dropdown-popup-container" class="category-dropdown-popup-container d-none">
+        <div class="dropdown-item-category" style="cursor: pointer;" onclick="selectCategoryEditPopup('Technical Task')">Technical Task</div>
+        <div class="dropdown-item-category" style="cursor: pointer;" onclick="selectCategoryEditPopup('User Story')">User Story</div>
+      </div>
+    </section>
+    <section id="edit-task-priority-container-popup">
+      <div id="edit-priority-container-popup" onclick="togglePriorityDropdownPopup(event)">        
+        <div class="dropdown-popup">${currentPriorityText} <img src="${currentPriority}" alt="Priority Icon"/></div>
+        <div>
+          <img id="icon-priority-dropdown-arrow-image-popup" src="./assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"/>
+        </div>
+      </div>
+      <div id="priority-dropdown-popup" class="priority-dropdown-popup d-none">
+        <div class="dropdown-item-priority" style="cursor: pointer;" onclick="selectPriorityEditPopup('./assets/img/urgent_icon.svg', 'Urgent')">Urgent</div>
+        <div class="dropdown-item-priority" style="cursor: pointer;" onclick="selectPriorityEditPopup('./assets/img/medium_icon.svg', 'Medium')">Medium</div>
+        <div class="dropdown-item-priority" style="cursor: pointer;" onclick="selectPriorityEditPopup('./assets/img/low_icon.svg', 'Low')">Low</div>
+      </div>
+    </section>
+    <section id="edit-task-assignment-container-popup">
+      <div id="contact-list-selection-popup" onclick="toggleContactDropdownPopup(event)">
+        <span>Assign Contacts</span>
+        <div class="icon-dropdown-arrow">
+          <img id="icon-contacts-dropdown-arrow-image-popup" src="./assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"/>
+        </div>
+      </div>  
+      <div id="contacts-list-popup-detail" class="dropdown-list-board d-none">
+        ${contactsList}
+      </div>
+    </section>
+    <section id="task-popup-edit-button-container">
+      <button id="save-popup-button" onclick="saveEditedPopupTask('${taskId}'); openTaskDetails('${taskId}'); hidePopupEditContainer()">Save</button>
+      <button id="cancel-save-popup-button" onclick="openTaskDetails('${taskId}'); hidePopupEditContainer()">Cancel</button>
+    </section>
+  `;
+}
+
+function generateTaskDetailsHTML(task, categoryColor, formDate, assignedContacts, subtasksHTML) {
+  return /*html*/ `
+    <div id="popup-task-container" class="popup-task-container" onclick="doNotClose(event)">
+      <h4 style="background: ${categoryColor}">${task['taskCategory']}</h4>
+      <h2>${task['taskTitle']}</h2>
+      <p>${task['taskDescription']}</p>
+      <span class="popup-span">Due date: ${formDate}</span>
+      <div class="popup-priority-container">
+        <span class="popup-span">Priority:</span>
+        <div class="popup-priority-img-container">${task['taskPriorityText']} <img src="${task['taskPriority']}"></div>
+      </div>
+      <div id="contacts-list-popup">
+        <span class="popup-span">Assigned To:</span>
+        ${assignedContacts}
+      </div>
+      <div class="popup-subtasks-container">
+        <span class="popup-span">Subtasks</span>
+        ${subtasksHTML}
+      </div>
+      <div class="popup-modify-delete-container">
+        <div class="popup-del-edit">
+          <img src="./assets/img/delete_icon.png">
+          <span onclick="deleteTask('${task['taskId']}'); closePopup()"> Delete </span>
+        </div>
+        <div class="popup-del-edit">
+          <img src="./assets/img/pen_DARK.png">
+          <span onclick="editPopupTask('${task['taskId']}'); showPopupEditContainer(); closePopup();"> Edit </span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderEditPopupHTML({ taskId, currentTitle, currentDescription, currentDate, currentSubTask, currentCategory, currentCategoryColor, currentPriority, currentPriorityText, currentSelection, contactsList }) {
+  let subTaskListItems = currentSubTask.map((subtask) => /*html*/ `<li>${subtask}</li>`).join('');
+
+  return /*html*/ `
+  <section class="edit-popup-HTML-wrapper">
+    <h2 style="font-size: 32px;">Edit Task</h2>
+    <div id="popup-seperator"></div>
+    <input type="text" id="edit-task-title-container-popup" value="${currentTitle}">
+    <input type="text" id="edit-task-description-container-popup" value="${currentDescription}">
+    <input type="date" id="edit-task-date-container-popup" value="${currentDate}">
+    <input type="text" id="edit-task-subtask-input-popup" placeholder="Subtask">
+    <section id="subtask-head">
+      <span id="subtask-head-span"></span>
+      <button id="add-subtask-popup-button" type="button" onclick="addSubTaskEditPopup()">Add Subtask</button>
+      <ul id="subtask-list-edit-popup">${subTaskListItems}</ul>
+    </section>
+    <section id="edit-task-category-container-popup">
+      <div id="edit-category-dropdown-container-popup" onclick="toggleCategoryDropdownPopup(event)">  
+        <div class="dropdown-popup" id="category-dropdown-popup" style="background: ${currentCategoryColor}; color: white;">${currentCategory}</div>
+        <div>
+          <img id="icon-category-dropdown-arrow-image-popup" src="./assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"/>
+        </div>
+      </div>
+      <div id="category-dropdown-popup-container" class="category-dropdown-popup-container d-none">
+        <div class="dropdown-item-category" style="cursor: pointer;" onclick="selectCategoryEditPopup('Technical Task')">Technical Task</div>
+        <div class="dropdown-item-category" style="cursor: pointer;" onclick="selectCategoryEditPopup('User Story')">User Story</div>
+      </div>
+    </section>
+    <section id="edit-task-priority-container-popup">
+      <div id="edit-priority-container-popup" onclick="togglePriorityDropdownPopup(event)">        
+        <div class="dropdown-popup">${currentPriorityText} <img src="${currentPriority}" alt="Priority Icon"/></div>
+        <div>
+          <img id="icon-priority-dropdown-arrow-image-popup" src="./assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"/>
+        </div>
+      </div>
+      <div id="priority-dropdown-popup" class="priority-dropdown-popup d-none">
+        <div class="dropdown-item-priority" style="cursor: pointer;" onclick="selectPriorityEditPopup('./assets/img/urgent_icon.svg', 'Urgent')">Urgent</div>
+        <div class="dropdown-item-priority" style="cursor: pointer;" onclick="selectPriorityEditPopup('./assets/img/medium_icon.svg', 'Medium')">Medium</div>
+        <div class="dropdown-item-priority" style="cursor: pointer;" onclick="selectPriorityEditPopup('./assets/img/low_icon.svg', 'Low')">Low</div>
+      </div>
+    </section>
+    <section id="edit-task-assignment-container-popup">
+        <div id="contact-list-selection-popup" onclick="toggleContactDropdownPopup(event)">
+          <span>Assign Contacts</span>
+          <div class="icon-dropdown-arrow">
+              <img id="icon-contacts-dropdown-arrow-image-popup" src="./assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon"/>
+          </div>
+        </div>  
+        <div id="contacts-list-popup-detail" class="dropdown-list-board d-none">
+          ${contactsList}
+        </div>
+    </section>
+    <section id="task-popup-edit-button-container">
+      <button id="save-popup-button" onclick="saveEditedPopupTask('${taskId}'); openTaskDetails('${taskId}'); hidePopupEditContainer()">Save</button>
+      <button id="cancel-save-popup-button" onclick="openTaskDetails('${taskId}'); hidePopupEditContainer()">Cancel</button>
+    </section>
+  </section>
+  `;
+}
+
+function renderTaskHTML({ taskId, taskTitle, taskDescription, categoryColor, taskCategory, assignedContactsHTML, progressHTML, taskPriority }) {
+  return /*html*/ `
+    <div id="${taskId}" class="task-board-container" onclick="openTaskDetails('${taskId}')" draggable="true" ondragstart="startDragging('${taskId}')">
+      <div class="task-item-output task-category-wrapper">
+        <div id="task-category-container" style="background-color: ${categoryColor}">${taskCategory}</div>
+        <section class="dropdown-move-to-category-container" onclick="event.stopPropagation();">
+          <button style="cursor: pointer;" id="dropbtn-category-dropdown-button-${taskId}" class="icon-options" onclick="event.stopPropagation(); showCategoryDropdown('${taskId}');"></button>
+          <div id="category-dropdown${taskId}" class="category-dropdown-board-edit d-none" onclick="event.stopPropagation();">
+            <section id="move-to-headline">
+              <img style="height: 16px; width: 16px; -webkit-transform: scaleX(-1); transform: scaleX(-1);" src="./assets/img/arrow-left-line.svg" />
+              <span style="font-weight: 700;">MOVE TO</span>
+            </section> 
+            <a href="#" onclick="event.stopPropagation(); moveTask('${taskId}', 'toDo')">To Do</a>
+            <a href="#" onclick="event.stopPropagation(); moveTask('${taskId}', 'inProgress')">In Progress</a>
+            <a href="#" onclick="event.stopPropagation(); moveTask('${taskId}', 'awaitFeedback')">Await feedback</a>
+            <a href="#" onclick="event.stopPropagation(); moveTask('${taskId}', 'done')">Done</a>
+          </div>
+          <span class="tooltiptext">Click to <b>move Task</b> to a different category</span>
+        </section>
+      </div>
+      <div class="task-item-output" id="task-title-container"><span>${taskTitle}</span></div>
+      <div class="task-item-output" id="task-description-container"><span>${taskDescription}</span></div>
+      ${progressHTML}
+      <div id="task-bottom-row">
+        <div class="task-board-contacts-wrapper">
+          <div class="box-shadow-left-white"></div>
+          <div onclick="preventklick(e); preventDragStart(e);" class="task-item-output" id="task-assignment-container">
+            <div id="assigned-contacts-task-board">${assignedContactsHTML}</div>
+          </div>
+          <span class="tooltiptext">Use <b>SHIFT + Mousewheel</b> to scroll through contacts</span>
+        </div>
+        <div class="task-item-output" id="task-priority-container"><img src="${taskPriority}" id="task-priority-icon-task" alt="Priority Icon"/></div>
+      </div>
+    </div>`;
+}
+
+function renderProgressHTML(progress, completedSubtasks, totalSubtasks) {
+  return /*html*/ `<div class="task-item-output" id="task-progress-container">
+  <progress style="max-width: 150px;" value="${progress}" max="100"></progress>
+  <span>${completedSubtasks}/${totalSubtasks} Subtasks</span>
+</div>`;
 }
