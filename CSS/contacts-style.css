@@ -1,4 +1,7 @@
 /* main-container-contacts Start */
+.z-index {
+  z-index: unset !important;
+}
 
 .main-container-contacts {
   display: flex;
@@ -7,7 +10,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  margin: 87px 64px 64px 232px;
+  margin: 72px 64px 64px 232px;
 }
 
 .contacts-list-container {
@@ -16,14 +19,17 @@
 }
 
 .contacts-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   height: 85%;
-  padding: 32px 32px;
+  padding: 16px 32px 64px 16px;
   background-color: white;
   margin-top: -6px;
 }
 
 #add-new-contact-btn {
-  width: 352px;
+  width: 375px;
   height: 56px;
   border-radius: 10px;
   padding: 12px 0px 12px 0px;
@@ -52,6 +58,7 @@
   flex-direction: column;
   align-items: center;
   min-width: 385px;
+  padding: 16px 0px 0px 32px;
 }
 
 #contacts-list-content:hover {
@@ -59,7 +66,7 @@
 }
 
 #contacts-list-content::-webkit-scrollbar {
-  width: 6px;
+  display: none;
 }
 
 #contacts-list-content::-webkit-scrollbar-track {
@@ -152,7 +159,7 @@
   border-radius: 10px;
 }
 
-.contact-border-no-hover:hover{
+.contact-border-no-hover:hover {
   background-color: #293647;
 }
 
@@ -320,21 +327,21 @@
 }
 
 .input-text-contact {
-  background: url("/assets/img/contact_icon.png");
+  background: url('./../assets/img/contact_icon.png');
   background-repeat: no-repeat;
   background-size: 16px;
   background-position: 421px;
 }
 
 .input-email-contact {
-  background: url("/assets/img/mail_icon.png");
+  background: url('./../assets/img/mail_icon.png');
   background-repeat: no-repeat;
   background-size: 16px;
   background-position: 421px;
 }
 
 .input-number-contact {
-  background: url("/assets/img/phone_icon.png");
+  background: url('./../assets/img/phone_icon.png');
   background-repeat: no-repeat;
   background-size: 16px;
   background-position: 421px;

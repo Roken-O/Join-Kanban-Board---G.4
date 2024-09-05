@@ -1,32 +1,64 @@
 <section id="header">
-    <h1>Kanban Project Management Tool</h1>
-    <div id="mobile-logo-container" class="d-none"><a href="/index.html"><img src="/assets/img/join_logo_DARK.svg" alt="" id="mobile-logo"></a></div>
-    <section id="header-icons-container">
-        <div id="help-icon-container" onclick="goToPrivacyOrImprintOrHelp()"><img id="help-icon-container-image" src="/assets/img/help_icon.svg" alt=""></div>
-        <div id="contact-initial-container" onclick="toggleShowLogout()"></div>
-    </section>    
+  <h1>Kanban Project Management Tool</h1>
+  <div id="mobile-logo-container" class="d-none">
+    <a href="./summary.html"><img src="./assets/img/join_logo_DARK.svg" alt="" id="mobile-logo" /></a>
+  </div>
+  <section class="header-icons-container">
+    <div id="contact-initial-container" ></div>
+    <div class="header-icons-wrapper">
+      <div id="privacy-icon-container" onclick="goToPrivacyOrImprintOrHelp(event)">
+        <img id="privacy-icon-container-image" src="./assets/img/privacy_icon.svg" alt="" />
+      </div>
+      <div id="imprint-icon-container" onclick="goToPrivacyOrImprintOrHelp(event)">
+        <img id="imprint-icon-container-image" src="./assets/img/imprint_icon.svg" alt="" />
+      </div>
+      <div id="help-icon-container" onclick="goToPrivacyOrImprintOrHelp(event)">
+        <img id="help-icon-container-image" src="./assets/img/help_icon.svg" alt="" />
+      </div>
+    </div>
+  </section>
 </section>
 <section id="sidebar-menu" class="dark-grey">
-    <div id="logo-main" class=""><a href="/index.html"><img src="/assets/img/join_logo_WHT.svg" alt="" id="logo-main-image"></a></div>
-    <section id="sidebar-menu-navigation">
-        <section class="link-container">
-            <table>
-                <div class="sidebar-menu-item" id="summary-menu-icon"><a class="sidebar-menu-link" href="/summary.html">Summary</a></div>
-                <div class="sidebar-menu-item" id="addtask-menu-icon"><a class="sidebar-menu-link" href="/addtask.html">Add Task</a></div>
-                <div class="sidebar-menu-item" id="board-menu-icon"><a class="sidebar-menu-link" href="/board.html">Board</a></div>
-                <div class="sidebar-menu-item" id="contacts-menu-icon"><a class="sidebar-menu-link" href="/contacts.html">Contacts</a></div>
-            </table>    
-        </section>
-        <section id="sidebar-menu-legal" class="">
-            <a href="privacy.html" id="sidebar-menu-privacy"><p>Privacy Policy</p></a>
-            <a href="imprint.html" id="sidebar-menu-imprint"><p>Legal notice</p></a>
-        </section>
+  <div id="logo-main" class="">
+    <a href="./summary.html"><img src="./assets/img/join_logo_WHT.svg" alt="" id="logo-main-image" /></a>
+  </div>
+  <section id="sidebar-menu-navigation">
+    <section class="link-container">
+      <div class="sidebar-menu-item" id="summary-menu-icon" onclick="openSite('summary.html', 'summary-menu-icon')">
+        <a class="sidebar-menu-link">Summary</a>
+      </div>
+      <div class="sidebar-menu-item" id="addtask-menu-icon" onclick="openSite('addtask.html', 'addtask-menu-icon')">
+        <a class="sidebar-menu-link">Add Task</a>
+      </div>
+      <div class="sidebar-menu-item" id="board-menu-icon" onclick="openSite('board.html', 'board-menu-icon')">
+        <a class="sidebar-menu-link">Board</a>
+      </div>
+      <div class="sidebar-menu-item" id="contacts-menu-icon" onclick="openSite('contacts.html', 'contacts-menu-icon')">
+        <a class="sidebar-menu-link">Contacts</a>
+      </div>
     </section>
+    <section id="sidebar-menu-legal" class="">
+      <div class="sidebar-menu-item" id="sidebar-menu-privacy" onclick="openSite('privacy.html', 'sidebar-menu-privacy')">
+        <a><p>Privacy Policy</p></a>
+      </div>
+      <div class="sidebar-menu-item" id="sidebar-menu-imprint" onclick="openSite('imprint.html', 'sidebar-menu-imprint')">
+        <a><p>Legal notice</p></a>
+      </div>
+    </section>
+  </section>
 </section>
 <section id="mobile-menu" class="d-none">
-    <div class="mobile-menu-item" id="mobile-menu-icon-summary"><a class="mobile-menu-link" href="/summary.html"><div class="mobile-menu-entry">Summary</div></a></div>
-    <div class="mobile-menu-item" id="mobile-menu-icon-addtask"><a class="mobile-menu-link" href="/addtask.html"><div class="mobile-menu-entry">Add Task</div></a></div>
-    <div class="mobile-menu-item" id="mobile-menu-icon-board"><a class="mobile-menu-link" href="/board.html"><div class="mobile-menu-entry">Board</div></a></div>
-    <div class="mobile-menu-item" id="mobile-menu-icon-contacts"><a class="mobile-menu-link" href="/contacts.html"><div class="mobile-menu-entry">Contacts</div></a></div>
+  <div class="mobile-menu-item" id="mobile-menu-icon-summary" onclick="openSite('summary.html', 'mobile-menu-icon-summary')">
+    <a class="mobile-menu-link">Summary</a>
+  </div>
+  <div class="mobile-menu-item" id="mobile-menu-icon-addtask" onclick="openSite('addtask.html', 'mobile-menu-icon-addtask')">
+    <a class="mobile-menu-link">Add Task</a>
+  </div>
+  <div class="mobile-menu-item" id="mobile-menu-icon-board" onclick="openSite('board.html', 'mobile-menu-icon-board')">
+    <a class="mobile-menu-link">Board</a>
+  </div>
+  <div class="mobile-menu-item" id="mobile-menu-icon-contacts" onclick="openSite('contacts.html', 'mobile-menu-icon-contacts')">
+    <a class="mobile-menu-link">Contacts</a>
+  </div>
 </section>
 <div id="showLogout" class="showLogout"></div>

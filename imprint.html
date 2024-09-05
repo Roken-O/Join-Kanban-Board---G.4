@@ -3,46 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/CSS/colors.css" />
-    <link rel="stylesheet" href="/CSS/fonts.css" />
-    <link rel="stylesheet" href="/CSS/global_style.css" />
-    <link rel="stylesheet" href="/CSS/style.css" />
-    <link rel="stylesheet" href="/CSS/media.css" />
-    <link rel="icon" href="/assets/img/join_favicon.svg" />
-    <title>Join</title>
+    <link rel="stylesheet" href="./CSS/colors.css" />
+    <link rel="stylesheet" href="./CSS/fonts.css" />
+    <link rel="stylesheet" href="./CSS/global_style.css" />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <link rel="stylesheet" href="./CSS/media.css" />
+    <link rel="icon" href="./assets/img/join_favicon.svg" />
+    <title>JOIN - Imprint</title>
     <style>
-        .imprint-container {
-            display: flex;
-            flex-direction: column;
-            margin-right: 32px;
-            color: #2a3647;
-        }
+      .imprint-container {
+        display: flex;
+        flex-direction: column;
+        margin-right: 32px;
+        color: #2a3647;
+        padding-bottom: 115px;
+        padding-top: 64px;
+      }
 
-        .imprint-container h2, h3 {
-            color: black;
-        }
+      .imprint-container h2 {
+        color: #2a3647;
+      }
 
-        .imprint-container p {
-            color: #2a3647;
-        }
+      .imprint-container h3 {
+        color: #29abe2;
+        font-weight: 600;
+      }
 
-        .imprint-container a {
-            color: #29abe2;
-            text-decoration: none;
-            font-weight: 600;
-        }
+      .imprint-container p {
+        color: #2a3647;
+      }
+
+      .imprint-container a {
+        color: #29abe2;
+        text-decoration: none;
+        font-weight: 600;
+      }
     </style>
   </head>
   <body onload="includeHTML(); loadLocalStorage(); checkRegisteredUser();">
-    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+    <div w3-include-html="./assets/templates/sidebar_menu.html"></div>
     <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
       <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
-  </div>
+    </div>
     <section id="main-container" class="background-grey">
       <div class="imprint-container">
         <h2>Impressum</h2>
         <br />
         <h3>Postadresse</h3>
+        <br />
         <p>
           Felix Kroth<br />
           Im Wingert 24<br />
@@ -50,28 +58,43 @@
         </p>
         <br />
         <h3>Kontakt</h3>
+        <br />
         <p>
           Telefon: 0163 2076800<br />
           E-Mail: felix_kroth@web.de
         </p>
-        <br>
+        <br />
+        <p></p>
+        <h3>Vertreten durch:</h3>
+        <br />
         <p>
-          <h3>Vertreten durch:</h3><br />
-          
           Roken Othman<br />
           Langerfelder Str.76<br />
           42389 Wuppertal<br />
-          roken.othman91@gmail.com<br /><br />
+          roken.othman91@gmail.com<br />
+        </p>
+        <br />
+        <p>
           Karina Tanei<br />
           Norderstr.11-13<br />
           24939 Flensburg<br />
-          karinataneis@gmail.com<br /><br />
+          karinataneis@gmail.com
+        </p>
+        <br />
+        <p>
           B&uuml;nyamin Tig<br />
           Lortzingstra&szlig;e 11<br />
           58840 Plettenberg<br />
           buenyamin.tig@gmail.com
         </p>
-
+        <br />
+        <h3>Credits</h3>
+        <br />
+        <p>Alert icons created by Freepik on <a href="https://www.flaticon.com/free-icons/alert" title="alert icons">Flaticon</a>.</p>
+        <p>Privacy icons created by Anggara<a href="https://www.flaticon.com/free-icons/privacy" title="privacy icons">Flaticon</a></p>
+        <p>Handprint icons created by egorpolyakov<a href="https://www.flaticon.com/free-icons/handprint" title="handprint icons">Flaticon</a></p>
+        <p>Lock icons created by Those Icons<a href="https://www.flaticon.com/free-icons/lock" title="lock icons">Flaticon</a></p>
+        <p>Paragraph icons created by Plastic Donut<a href="https://www.flaticon.com/free-icons/paragraph" title="paragraph icons">Flaticon</a></p>
         <br />
         <p>
           Quelle:
@@ -80,9 +103,10 @@
       </div>
     </section>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script src="/js/firebase.js"></script>
-    <script src="/js/script.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="./js/firebase.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/renderHTML.js"></script>
   </body>
 </html>

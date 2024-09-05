@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/CSS/colors.css" />
-    <link rel="stylesheet" href="/CSS/fonts.css" />
-    <link rel="stylesheet" href="/CSS/global_style.css" />
-    <link rel="stylesheet" href="/CSS/contacts-style.css" />
-    <link rel="stylesheet" href="/CSS/style.css" />
-    <link rel="stylesheet" href="/CSS/contacts-media.css" />
-    <link rel="stylesheet" href="/CSS/media.css" />
-    <link rel="icon" href="/assets/img/join_favicon.svg" />
+    <link rel="stylesheet" href="./CSS/colors.css" />
+    <link rel="stylesheet" href="./CSS/fonts.css" />
+    <link rel="stylesheet" href="./CSS/global_style.css" />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <link rel="stylesheet" href="./CSS/media.css" />
+    <link rel="stylesheet" href="./CSS/contacts-style.css" />
+    <link rel="stylesheet" href="./CSS/contacts-media.css" />
+    <link rel="icon" href="./assets/img/join_favicon.svg" />
 
-    <title>Join</title>
+    <title>JOIN - Contacts</title>
   </head>
-  <body onload="includeHTML();initContact()">
-    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+  <body onload="initContact()">
+    <div w3-include-html="./assets/templates/sidebar_menu.html"></div>
     <div
       id="contact-initial-container"
       class="initial-container"
@@ -49,7 +49,7 @@
             <!-- render -->
           </div>
         </div>
-        <div id="contacts-list" class="contacts-list flex-col-align-center">
+        <div id="contacts-list" class="contacts-list">
           <button
             onclick="addNewContactPopUp()"
             class="dark-grey flex-just-align-center"
@@ -236,9 +236,9 @@
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script src="/js/firebase.js"></script>
-    <script src="/js/script.js"></script>
-    <script src="/js/contacts.js"></script>
-    <script src="/js/renderHTML.js"></script>
+    <script src="./js/firebase.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/contacts.js"></script>
+    <script src="./js/renderHTML.js"></script>
   </body>
 </html>

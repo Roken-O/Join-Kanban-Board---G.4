@@ -1,6 +1,12 @@
 @media (max-width: 1080px) {
   .dropdown-list {
-    top: 583px;
+    top: 520px;
+  }
+
+  .task-headline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   #main-container {
@@ -112,17 +118,7 @@
   }
 }
 
-/* .task-headline {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 24px;
-} */
-
 @media (max-width: 840px) {
-  .dropdown-list {
-    top: 577px;
-  }
-
   #main-container {
     padding: 70px 64px 64px 32px !important;
   }
@@ -130,10 +126,6 @@
   .form-height {
     align-items: center;
     margin-left: 40px;
-  }
-
-  .task-headline {
-    font-size: 40px;
   }
 
   .execution-parent {
@@ -168,25 +160,27 @@
 }
 
 @media (max-width: 455px) {
-
   .dropdown-list {
-    top: 486px;
-}
+    top: 459px;
+  }
 
-  #main-container{
+  .dropdown-content-category {
+    min-width: 317px;
+  }
+
+  #main-container {
     padding: 40px 64px 64px 8px !important;
     margin-bottom: 40px;
   }
-  .task-headline {
-    padding-left: 12px;
-    margin-bottom: 20px;
-  }
+
   .padding-bottom-24 {
     padding-bottom: 20px;
-}
+  }
+
   .required-container {
     margin-right: 14px;
   }
+
   .execution-parent {
     bottom: 80px;
     position: fixed;
@@ -197,24 +191,26 @@
     padding-bottom: 10px;
     z-index: 99;
   }
+
   .create-task {
     margin-right: 0px;
     padding: 12px 8px 12px 12px;
   }
+
   .field-325 {
-    width: 325;
+    width: 325px;
     height: 24px;
   }
-  
+
   .description-input {
     width: 325px;
     height: 65px;
   }
 
-  input[type="date"]:before {
+  input[type='date']:before {
     right: 25px;
     bottom: 14px;
-}
+  }
 
   .dropbtn {
     width: 325px !important;
@@ -225,7 +221,7 @@
   .select-subtask {
     width: 325px;
     background-position: 300px;
-    height:24px;
+    height: 24px;
   }
 
   .prio-container {
@@ -242,11 +238,11 @@
 @media (max-width: 430px) {
   .dropdown-list {
     min-width: 308px;
-}
-  .sub-task-container img{
+  }
+  .sub-task-container img {
     margin-left: 224px;
   }
-  .close-check-icons-container{
+  .close-check-icons-container {
     justify-content: space-evenly;
   }
 
@@ -254,8 +250,8 @@
     margin-left: 8px !important;
   }
 
-  .select-subtask input{
-    width:250px;
+  .select-subtask input {
+    width: 250px;
   }
   .field-325 {
     width: 300px;
@@ -277,20 +273,20 @@
 
   .cleaning {
     margin-left: 0px;
-  } 
+  }
 
   .create-task {
     margin-right: 0px;
   }
-  .select-subtask img{
-    margin-left:44px;
+  .select-subtask img {
+    margin-left: 44px;
   }
 }
- 
+
 @media (max-width: 405px) {
   .dropdown-list {
-    top: 471px;
-}
+    top: 447px;
+  }
 
   #main-container {
     padding: 40px 8px 64px 8px !important;
@@ -298,29 +294,30 @@
   .form-height {
     margin-left: 8px;
   }
-.task-headline{
-  margin-bottom: 16px;
-}
 
-.field-headline {
-  margin-bottom: 4px;
-}
+  .field-headline {
+    margin-bottom: 4px;
+  }
 }
 
 @media (max-width: 360px) {
+  .dropdown-content-category {
+    min-width: 277px;
+  }
+
   .dropdown-list {
     min-width: 274px;
-}
+  }
 
-  .sub-task-container img{
+  .sub-task-container img {
     margin-left: 180px;
   }
   .close-check-icons-container img {
     margin-left: 4px !important;
   }
 
-  .select-subtask input{
-    width:180px;
+  .select-subtask input {
+    width: 180px;
   }
   .field-325 {
     width: 260px;
@@ -328,36 +325,34 @@
 
   .description-input {
     width: 260px;
-}
-.dropbtn{
-  width: 260px !important;
-  background-position: 250px !important;
-}
-.urgent{
-  font-size: 14px;
+  }
+  .dropbtn {
+    width: 260px !important;
+    background-position: 250px !important;
+  }
+  .urgent {
+    font-size: 14px;
 
-  width: 85px;
+    width: 85px;
+  }
+  .low {
+    width: 60px;
+    font-size: 14px;
+  }
 
-}
-.low {
-  width: 60px;
-  font-size: 14px;
-
-}
-
-.prio-container {
-  justify-content: unset;
-}
-.select-subtask {
-  width: 260px !important;
-  background-position: 250px !important;
-}
-.dropdown-content {
-  min-width: 270px;
-}
-.select-subtask img{
-  margin-left:8px;
-}
+  .prio-container {
+    justify-content: unset;
+  }
+  .select-subtask {
+    width: 260px !important;
+    background-position: 250px !important;
+  }
+  .dropdown-content {
+    min-width: 270px;
+  }
+  .select-subtask img {
+    margin-left: 8px;
+  }
 }
 
 @media (max-width: 340px) {

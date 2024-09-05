@@ -43,8 +43,6 @@ body {
   height: 170.97px;
   margin-top: -32px;
   margin-left: 64px;
-  /* margin-bottom: 16px; */
-
   position: relative;
   transform: scale(2.5);
   top: 40%;
@@ -124,11 +122,11 @@ form {
 }
 
 .input1 {
-  background-image: url("../assets/img/mail_icon.svg");
+  background-image: url("./../assets/img/mail_icon.svg");
 }
 
 .input2 {
-  background-image: url("../assets/img/lock_icon.svg");
+  background-image: url("./../assets/img/lock_icon.svg");
 }
 
 .checkbox {
@@ -232,7 +230,7 @@ form {
 }
 
 .input0 {
-  background-image: url("../assets/img/contact_icon.svg");
+  background-image: url("..assets/img/contact_icon.svg");
 }
 
 .checkbox-signup-site {

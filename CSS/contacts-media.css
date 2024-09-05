@@ -183,9 +183,14 @@
   }
 }
 
-@media (max-width: 975px) {
+@media (max-width: 980px) {
+  .main-container-contacts {
+    margin: 72px 32px 32px 0px;
+    justify-content: center;
+  }
+
   .contacts-list-container {
-    width: 76%;
+    width: 100%;
   }
 }
 
@@ -199,20 +204,11 @@
   #breakline-contactlist {
     width: 530px;
   }
-
-  .contacts-list-container {
-    width: 74%;
-  }
 }
 
 @media (max-width: 840px) {
   .contacts-list {
     margin-top: 8px;
-  }
-
-  .main-container-contacts {
-    margin: 80px 32px 32px 0px;
-    justify-content: center;
   }
 
   #breakline-contactlist {
@@ -255,9 +251,7 @@
     height: 75%;
   }
 
-  .contacts-list-container {
-    width: 100%;
-  }
+
 
   /* PopUp */
 

@@ -7,23 +7,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/CSS/colors.css">
-    <link rel="stylesheet" href="/CSS/fonts.css">
-    <link rel="stylesheet" href="/CSS/global_style.css">
-    <link rel="stylesheet" href="/CSS/style.css">
-    <link rel="stylesheet" href="/CSS/addTask-style.css">
-    <link rel="stylesheet" href="/CSS/addTask-media.css">
-    <link rel="stylesheet" href="/CSS/media.css">
-    <link rel="stylesheet" href="/CSS/addTask-style.css">
-    <link rel="stylesheet" href="/CSS/addTask-media.css">
-    <link rel="icon" href="/assets/img/join_favicon.svg">
+    <link rel="stylesheet" href="./CSS/colors.css">
+    <link rel="stylesheet" href="./CSS/fonts.css">
+    <link rel="stylesheet" href="./CSS/global_style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/media.css">
+    <link rel="stylesheet" href="./CSS/addTask-style.css">
+    <link rel="stylesheet" href="./CSS/addTask-media.css">
+    <link rel="icon" href="./assets/img/join_favicon.svg">
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <title>Join</title>
+    <title>JOIN - Add Task</title>
 </head>
 
 <body onload="initTask()">
-    <div w3-include-html="/assets/templates/sidebar_menu.html"></div>
+    <div w3-include-html="./assets/templates/sidebar_menu.html"></div>
     <div id="contact-initial-container" class="initial-container" onclick="toggleShowLogout()">
         <div id="sub-contact-initial-container" class="sub-initial-container">G</div>
     </div>
@@ -32,7 +30,7 @@
         <h2 class="task-headline mb-48">Add Task</h2>
 
         <!-- form-start -->
-        <form class="form-height w-50" id="task-task-form" onsubmit="saveTask(); animateButton(); return false;">
+        <form class="form-height w-50" id="task-task-form" onsubmit="return validateTaskForm() && saveTask();">
 
             <div class="flex-evenly-start padding-bottom-24 parent-container">
                 <div class="left-container">
@@ -54,9 +52,9 @@
                     </div>
 
                     <span class="mb-8 flex field-headline">Assigned to <div class="asterisk-color">*</div></span>
-                    <div   class="dropbtn">
+                    <div class="dropbtn" onclick="toggleContactDropdown(event)" style="cursor: pointer;">
                         <span class ="contacts-assignment-container">Select contacts to assign</span>
-                        <img  onclick="toggleContactDropdown()" id="icon-contacts-dropdown-arrow-image" src="/assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon" />
+                        <img id="icon-contacts-dropdown-arrow-image" src="./assets/img/dropdown_down.svg" alt="Dropdown Arrow Icon" />
                     </div>
                     
                     <div id="contacts-list" class="dropdown-list d-none"></div> 
@@ -81,15 +79,15 @@
                             <button onclick="createCategoryIconUrgent(event, 'priority-urgent-text')" id="priority-urgent-text"
                             class="btn urgent flex-just-align-center" 
                             >Urgent
-                            <img id="task-urgent-icon" src="/assets/img/urgent_icon.png" />
+                            <img id="task-urgent-icon" src="./assets/img/urgent_icon.png" />
                             </button>
                             <button onclick="createCategoryIconMedium(event, 'priority-medium-text')" id="priority-medium-text"
                             class="btn urgent flex-just-align-center" >Medium
-                            <img id="task-medium-icon" class="size-medium" src="/assets/img/medium_icon.svg" />
+                            <img id="task-medium-icon" class="size-medium" src="./assets/img/medium_icon.svg" />
                             </button>
                             <button onclick="createCategoryIconLow(event, 'priority-low-text')" id="priority-low-text"
                             class="btn low flex-just-align-center">Low
-                            <img  id="task-low-icon" class="size-low" src="/assets/img/low_icon.svg" />
+                            <img  id="task-low-icon" class="size-low" src="./assets/img/low_icon.svg" />
                             </button>
                
                         </div>
@@ -97,14 +95,12 @@
     
                     <!-- category -->
                     <div class="padding-bottom-24 padding-responsive980">
-                        <div id="task-category-selection-container">
-                            <div class="mb-8 flex field-headline" id="task-category-selection"
-                                onclick="toggleCategoryDropdown()">Category
-                                <div class="asterisk-color">*</div>
+                        <div id="task-category-selection-container" onclick="toggleCategoryDropdown(event)">
+                            <div class="mb-8 flex field-headline" id="task-category-selection">Category<div class="asterisk-color">*</div>
                             </div>
-                            <div class="dropbtn" onclick="toggleCategoryDropdown()">
+                            <div class="dropbtn">
                                 <span id="selected-category-container">Select task category</span>
-                                <img id="icon-dropdown-arrow-image" src="/assets/img/dropdown_down.svg"
+                                <img id="icon-dropdown-arrow-image" src="./assets/img/dropdown_down.svg"
                                     alt="Dropdown Arrow Icon" />
                             </div>
                         </div>
@@ -125,12 +121,12 @@
                                 placeholder="Add new subtask">
 
                             <div>
-                                <img id="icon-plus-image" src="/assets/img/plus_icon.svg"
+                                <img id="icon-plus-image" src="./assets/img/plus_icon.svg"
                                     onclick="showCheckAndCloseIcons()">
                                 <div class="close-check-icons-container">
-                                    <img onclick="showPlusIcon()" id="icon-close-image" class="d-none" src="/assets/img/close_icon.png">
+                                    <img onclick="showPlusIcon()" id="icon-close-image" class="d-none" src="./assets/img/close_icon.png">
                                     <div id="seperator-container" class="mini-seperator d-none"></div>
-                                    <img id="icon-check-image" class="d-none" src="/assets/img/check_icon_DARK.png" onclick="addSubTask()">
+                                    <img id="icon-check-image" class="d-none" src="./assets/img/check_icon_DARK.png" onclick="addSubTask()">
                                 </div>
                             </div>
 
@@ -187,10 +183,32 @@
             </div>
         </div>
         
-        <script src="/js/firebase.js"></script>
-        <script src="/js/script.js"></script>
-        <script src="/js/addTask.js"></script>
-        <script src="/js/load_tasks.js"></script>
+      <div class="alert-message" id="alert-message-contacts">
+        <div class="popup-message" id="popup-message-contacts">
+            <img style="width: 32px; height: 32px;" src="./assets/img/alert.svg" alt="">
+            <span class="animate-text">Please select at least 1 contact</span>
+        </div>
+      </div>
+
+      <div class="alert-message" id="alert-message-category">
+        <div class="popup-message" id="popup-message-category">
+            <img style="width: 32px; height: 32px;" src="./assets/img/alert.svg" alt="">
+            <span class="animate-text">Please choose a category</span>
+        </div>
+      </div>
+      
+      <div class="alert-message" id="alert-message-priority">
+        <div class="popup-message" id="popup-message-priority">
+          <img style="width: 24px; height: 24px;" src="./assets/img/alert.svg" alt="">
+          <span class="animate-text">Please choose a priority</span>
+        </div>
+      </div>
+    </section>
+        <script src="./js/firebase.js"></script>
+        <script src="./js/script.js"></script>
+        <script src="./js/addTask.js"></script>
+        <script src="./js/load_tasks.js"></script>
+        <script src="./js/renderHTML.js"></script>
 </body>
 
 </html>
